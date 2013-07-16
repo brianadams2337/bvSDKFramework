@@ -225,9 +225,15 @@ function loadReviewSubmissionForm (content, options) {
 
 				// cancel button
 				loadCancelButton ("Cancel", {
-					"parentContainer":$container,
-					"returnURL":settings["returnURL"]
+					"parentContainer":$container
 				});
+				// cancel button functionality
+				$container.find(defaultButtonCancelContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonCancelContainer + " " + defaultButtonContainer).click(function() {
+					// load return page
+					console.log(settings["returnURL"]);
+					//returnToPage(settings["returnURL"]);
+				});
+
 			},
 			error: function(e) {
 				defaultAjaxErrorFunction(e);

@@ -149,15 +149,35 @@ function loadQuickTake (content, options) {
 			success: function(container) {
 				var $container = $(container);
 				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
+				
+				// overall rating average
 				loadReviewRatingAverage (content, {
 					"parentContainer":$container
 				});
+
+				// recommended average
 				loadReviewRecommendedAverage (content, {
 					"parentContainer":$container
 				});
+
+				// write review button
 				loadWriteReviewButton ("Write a Review", {
 					"parentContainer":$container,
 					"productId":settings["productId"]
+				});
+				// write review button functionality
+				$container.find(defaultButtonWriteReviewContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonWriteReviewContainer + " " + defaultButtonContainer).click(function() {
+					console.log("click");
+					// set attributes and text for button
+					var returnURL = $(location).attr("href") + "";
+					var submissionParams = $.param({
+						"productId":settings["productId"],
+						"returnURL":returnURL
+					});
+					console.log(submissionParams);
+					var url = siteBaseSubmissionURL + submissionParams;
+
+					loadSubmissionPage(url);
 				});
 			},
 			error: function(e) {

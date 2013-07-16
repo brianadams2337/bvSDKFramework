@@ -29,19 +29,13 @@ function loadSubmissionPage (url) {
 }
 
 function returnToPage (url) {
-	console.log(url);
 	if (url) {
 		$(location).attr('href', url);
-	} else if (urlParameters["returnURL"]) {
-		$(location).attr('href', urlParameters["returnURL"]);
+	} else if (siteBaseURL) {
+		$(location).attr('href', siteBaseURL);
 	} else {
-		console.log("There is no URL to return to.");
+		alert("There is no URL to return to.");
 	}
-}
-
-function submitForm (action, form, productId) {
-	$("#title").parsley( 'validate' );
-	$(form).append("<input type='hidden' name='Action' value='" + action + "' />").append("<input type='hidden' name='ProductId' value='" + productId + "' />").submit();
 }
 
 
@@ -166,8 +160,6 @@ function loadSubmitButton (content, options) {
 		"parentContainer":"",
 		"targetContainer":defaultButtonSubmitContainer,
 		"viewContainer":defaultButtonContainerView,
-		"loadOrder":"",
-		"productId":""
 	}, options);
 	$.ajax({
 		url: settings["viewContainer"],
@@ -177,7 +169,6 @@ function loadSubmitButton (content, options) {
 		success: function(container) {
 			var $container = $(container);
 			// set attributes and text for button
-			var url = "submission.html?productId=" + settings["productId"];
 			$container.find("a").andSelf().filter("a").attr({
 				"id":"",
 				"title":"",
@@ -196,11 +187,9 @@ function loadSubmitButton (content, options) {
 // preview button
 function loadPreviewButton (content, options) {
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"",
 		"targetContainer":defaultButtonPreviewContainer,
 		"viewContainer":defaultButtonContainerView,
-		"loadOrder":"",
-		"productId":""
 	}, options);
 	$.ajax({
 		url: settings["viewContainer"],
@@ -210,7 +199,6 @@ function loadPreviewButton (content, options) {
 		success: function(container) {
 			var $container = $(container);
 			// set attributes and text for button
-			var url = "submission.html?productId=" + settings["productId"];
 			$container.find("a").andSelf().filter("a").attr({
 				"id":"",
 				"title":"",
@@ -229,11 +217,9 @@ function loadPreviewButton (content, options) {
 // edit button
 function loadEditButton (content, options) {
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"",
 		"targetContainer":defaultButtonEditContainer,
 		"viewContainer":defaultButtonContainerView,
-		"loadOrder":"",
-		"productId":""
 	}, options);
 	$.ajax({
 		url: settings["viewContainer"],
@@ -245,8 +231,8 @@ function loadEditButton (content, options) {
 			$container.find("a").andSelf().filter("a").attr({
 				"id":"",
 				"title":"",
-				"onclick":"",
-				"href":"#"
+				"onclick":"return false;",
+				"href":""
 			}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).text(content);
 			// add button template
 			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
@@ -263,9 +249,6 @@ function loadCancelButton (content, options) {
 		"parentContainer":"",
 		"targetContainer":defaultButtonCancelContainer,
 		"viewContainer":defaultButtonContainerView,
-		"loadOrder":"",
-		"productId":"",
-		"returnURL":""
 	}, options);
 	$.ajax({
 		url: settings["viewContainer"],
@@ -279,7 +262,6 @@ function loadCancelButton (content, options) {
 				"title":"",
 				"onclick":"return false;",
 				"href":""
-				//"onclick":"returnToPage('" + settings["returnURL"] + "');",
 			}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).text(content);
 			// add button template
 			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
@@ -292,17 +274,22 @@ function loadCancelButton (content, options) {
 
 // return button
 function loadReturnButton (toReceive, toLoad, content, id) {
+	var settings = $.extend(true, {
+		"parentContainer":"",
+		"targetContainer":defaultButtonCancelContainer,
+		"viewContainer":defaultButtonContainerView,
+	}, options);
 	$.ajax({
 		url: toLoad,
-		type: 'get',
+		type: 'GET',
 		dataType: 'html',
 		async: false,
 		success: function(container) {
 			$(container).appendTo(toReceive).find("a").attr({
 				"id":"",
 				"title":"",
-				"onclick":"returnToPage();",
-				"href":"#"
+				"onclick":"return false;",
+				"href":""
 			}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).text(content);
 		},
 		error: function(e) {
@@ -314,32 +301,23 @@ function loadReturnButton (toReceive, toLoad, content, id) {
 // write review button
 function loadWriteReviewButton (content, options) {
 	var settings = $.extend(true, {
-		"parentContainer":defaultReviewsParentContainer,
+		"parentContainer":"",
 		"targetContainer":defaultButtonWriteReviewContainer,
 		"viewContainer":defaultButtonContainerView,
-		"loadOrder":"",
-		"productId":""
 	}, options);
 	$.ajax({
 		url: settings["viewContainer"],
 		type: 'GET',
 		dataType: 'html',
+		async: false,
 		success: function(container) {
 			var $container = $(container);
-			// set attributes and text for button
-			var returnURL = $(location).attr("href") + "";
-			var submissionParams = $.param({
-				"productId":settings["productId"],
-				"returnURL":returnURL
-			});
-			console.log(submissionParams);
-			var url = "submission.html?" + submissionParams;
 			// set attributes
 			$container.find("a").andSelf().filter("a").attr({
 				"id":"",
 				"title":"",
-				"onclick":"loadSubmissionPage('" + url + "')",
-				"href":"#"
+				"onclick":"return false;",
+				"href":""
 			}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).text(content);
 			// add button template
 			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);

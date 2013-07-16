@@ -1,9 +1,11 @@
 /***** CLIENT DEFAULTS *****/
 
 // url path for staging site
-var stagingURL = "http://localhost:8888/Chameleon/";
+var stagingURL = "http://localhost:8888/bvSDKFramework/";
+var stagingSubmissionURL = "http://localhost:8888/bvSDKFramework/submission.html?";
 // url pate for production site
-var productionURL = "http://localhost:8888/Chameleon/";
+var productionURL = "http://localhost:8888/bvSDKFramework/";
+var productionSubmissionURL = "http://localhost:8888/bvSDKFramework/submission.html?";
 
 // api parameter deautls
 var apiDefaults = {
@@ -22,10 +24,10 @@ var apiDefaults = {
 
 var bvUserDefaults = {
 	"bvUAS": "3130699631fd89ad48010ddf8851aee55573657249643d627674657374657231323326646174653d3230313330373031266d61786167653d333030", // encoded user string
-	"userId": "testuser99",
+	"userId": "jdsklfjslkjfsdljflsdjlfjkdll",
 	"userEmail":"bvspambox@gmail.com", //User's email address
 	"userLocation":"austin, tx", //User location text
-	"userNickname":"testuser99", //User nickname display text
+	"userNickname":"testuser99sfasfdsaadsasdf", //User nickname display text
 };
 
 
@@ -41,6 +43,7 @@ var production = false;
 /***** SET SITE URLS *****/
 
 var apiBaseURL;
+var apiBaseSubmissionURL;
 	if (production) {
 		apiBaseURL = apiDefaults["prodURL"];
 		apiBaseSubmissionURL = apiDefaults["prodSubmissionURL"];
@@ -50,10 +53,13 @@ var apiBaseURL;
 };
 
 var siteBaseURL;
+var siteBaseSubmissionURL;
 	if (production) {
 		siteBaseURL = productionURL;
+		siteBaseSubmissionURL = productionSubmissionURL;
 	} else {
 		siteBaseURL = stagingURL;
+		siteBaseSubmissionURL = stagingSubmissionURL;
 };
 
 
