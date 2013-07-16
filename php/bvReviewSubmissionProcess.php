@@ -1,7 +1,6 @@
 <?php
 
 	$defaults = array();
-
 	$fields = array_keys($_POST);
 
 	foreach ($fields as $key => $value) {
