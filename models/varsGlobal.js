@@ -24,10 +24,10 @@ var apiDefaults = {
 
 var bvUserDefaults = {
 	"bvUAS": "3130699631fd89ad48010ddf8851aee55573657249643d627674657374657231323326646174653d3230313330373031266d61786167653d333030", // encoded user string
-	"userId": "jdsklfjslkjfsdljflsdjlfjkdll",
+	"userId": "testuser",
 	"userEmail":"bvspambox@gmail.com", //User's email address
 	"userLocation":"austin, tx", //User location text
-	"userNickname":"testuser99sfasfdsaadsasdf", //User nickname display text
+	"userNickname":"testuser", //User nickname display text
 };
 
 
@@ -60,6 +60,14 @@ var siteBaseSubmissionURL;
 	} else {
 		siteBaseURL = stagingURL;
 		siteBaseSubmissionURL = stagingSubmissionURL;
+};
+
+
+/***** TOGGLE OPTIONS *****/
+var defaultToggleOptions = {
+	duration: 300,
+	easing: "swing",
+	queue: true
 };
 
 
