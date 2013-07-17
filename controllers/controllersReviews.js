@@ -11,7 +11,8 @@ function loadReviews (content, options) {
 	}, options);
 	// hide the target container while reviews are loading
 	$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).empty().hide();
-	// set variables
+	
+	// set content variables
 	var reviewsStatisticsToLoad = content["Includes"]["Products"][settings["productId"]]['ReviewStatistics']; // review stats
 	var reviewsToLoad = content["Results"]; // reviews
 
@@ -26,7 +27,9 @@ function loadReviews (content, options) {
 		// all functions pertaining to individual reviews here
 		$.each(reviewsToLoad, function(key) {
 			// get a new id for the review container using review id - this will be needed for reference on child elements
-			var newID = "BVReviewContainer" + reviewsToLoad[key]["Id"];
+			var contentId = reviewsToLoad[key]["Id"]
+			var newID = "BVReviewContainer" + contentId;
+			// inject review content
 			$.ajax({
 				url: settings["viewContainer"],
 				type: 'GET',
@@ -34,47 +37,57 @@ function loadReviews (content, options) {
 				async: false,
 				success: function(container) {
 					var $container = $(container);
-					// set string varable with new id to use as reference
-					var containerID = "#" + newID + " ";
-					// add review container
+					// add review template container
 					$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container).attr("id", newID));
-					// load review content
+					// load review rating
 					loadReviewRating (reviewsToLoad[key], {
 						"parentContainer":$container
 					});
+					// load review secondary ratings
 					loadReviewSecondaryRatings (reviewsToLoad[key], {
 						"parentContainer":$container
 					});
+					// load review recommended
 					loadReviewRecommended (reviewsToLoad[key], {
 						"parentContainer":$container
 					});
+					// load review date
 					loadReviewDate (reviewsToLoad[key], {
 						"parentContainer":$container
 					});
+					// load review title
 					loadReviewTitle (reviewsToLoad[key], {
 						"parentContainer":$container
 					});
+					// load review text
 					loadReviewBody (reviewsToLoad[key], {
 						"parentContainer":$container
 					});
+					// load review user nickname
 					loadReviewUserNickname (reviewsToLoad[key], {
 						"parentContainer":$container
 					});
+					// load review user location
 					loadReviewUserLocation (reviewsToLoad[key], {
 						"parentContainer":$container
 					});
+					// load review cdvs
 					loadReviewContextDataValuesGroup (reviewsToLoad[key], {
 						"parentContainer":$container
 					});
+					// load review tags
 					loadReviewTagGroups(reviewsToLoad[key], {
 						"parentContainer":$container
 					});
+					// load review photos
 					loadReviewPhotosGroup(reviewsToLoad[key], {
 						"parentContainer":$container
 					});
+					// load review videos
 					loadReviewVideosGroup(reviewsToLoad[key], {
 						"parentContainer":$container
 					});
+					// load review feedback
 					loadFeedback(reviewsToLoad[key], {
 						"parentContainer":$container,
 						"productId":settings["productId"],
@@ -91,8 +104,10 @@ function loadReviews (content, options) {
 		})
 	).done(function(){
 		// all functions pertaining to reviews as a group here
+
 		// show target container once reviews are finished loading
 		$(settings["targetContainer"]).show();
+
 		// pagination
 		loadNumberedPagination (content, {
 			"parentContainer":settings["parentContainer"],
@@ -124,6 +139,7 @@ function loadReviews (content, options) {
 */
 		// remove loading styling (animated gif, etc.)
 		$(settings["parentContainer"]).removeClass("_BVContentLoadingContainer");
+		
 		// set classes
 		addOddEvenClasses (defaultReviewContainer);
 		addFirstLastClasses (defaultReviewContainer);
