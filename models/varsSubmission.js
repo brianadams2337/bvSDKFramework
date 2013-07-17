@@ -38,3 +38,5 @@ var defaultFormLabelTextContainer = "._BVLabelText"; // text input label text
 var defaultFormRadioLabelTextContainer = "._BVRadioLabelText"; // radio input label text
 var defaultFormCheckboxLabelTextContainer = "._BVCheckboxLabelText"; // checkbox input label text
 var defaultFormHelperTextContainer = "._BVHelperText"; // input helper text
+var defaultFormCharacterCounterTextContainer = "._BVCharacterCounter"; // character counter
+var defaultFormCharacterCounterTextContainerText = "._BVCharacterCounterText"; // character counter suffix

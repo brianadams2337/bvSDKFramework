@@ -96,8 +96,11 @@ function loadReviewSubmissionForm (content, options) {
 				// review text
 				loadReviewTextInput (content, {
 					"parentContainer":$container,
+					"viewContainer":"views/universal/submission/inputTextAreaWithCharacterCounter.html",
 					"inputSettings":{
-						"inputLabel":"Review Text"
+						"inputLabel":"Review Text",
+						"inputHelperText": "Example: This rocks!",
+						"inputCharacterCounterText": "Character(s) needed to meet minimum length: " 
 					}
 				});
 				/* TURNED OFF DUE TO ANON SUB
@@ -234,6 +237,12 @@ function loadReviewSubmissionForm (content, options) {
 					//returnToPage(settings["returnURL"]);
 				});
 
+				loadEventListeners("Listener", {
+					"textFieldCounter": {
+						"textField": ".BVFormInputTextarea",
+						"minCount": 50
+					}
+				});
 			},
 			error: function(e) {
 				defaultAjaxErrorFunction(e);
@@ -245,6 +254,8 @@ function loadReviewSubmissionForm (content, options) {
 		$(function(){
 			$('input[type=radio].star').rating();
 		});
+
+		
 	});
 }
 
@@ -875,7 +886,8 @@ function loadReviewTextInput (content, options) {
 			"inputType":content["Data"]["Fields"]["reviewtext"]["Type"],
 			"inputLabel":content["Data"]["Fields"]["reviewtext"]["Label"],
 			"inputPlaceholder":"", // user defined
-			"inputHelperText":"", // user defined
+			"inputHelperText":options["inputSettings"]["inputHelperText"], // user defined
+			"inputCharacterCounterText":options["inputSettings"]["inputCharacterCounterText"],
 			"inputValue":content["Data"]["Fields"]["reviewtext"]["Value"],
 			"inputMinLength":content["Data"]["Fields"]["reviewtext"]["MinLength"],
 			"inputMaxLength":content["Data"]["Fields"]["reviewtext"]["MaxLength"],
@@ -888,6 +900,7 @@ function loadReviewTextInput (content, options) {
 		url: settings["viewContainer"],
 		type: 'GET',
 		dataType: 'html',
+		async: false,
 		success: function(container) {
 			var $container = $(container);
 			// set label
@@ -896,6 +909,8 @@ function loadReviewTextInput (content, options) {
 			});
 			// set helper text
 			$container.find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(settings["inputSettings"]["inputHelperText"]);
+			// set character counter text
+			$container.find(defaultFormCharacterCounterTextContainerText).andSelf().filter(defaultFormCharacterCounterTextContainerText).text(settings["inputSettings"]["inputCharacterCounterText"]);
 			// add input template
 			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
 			// load input
@@ -903,6 +918,7 @@ function loadReviewTextInput (content, options) {
 				"parentContainer":$container,
 				"inputSettings":settings["inputSettings"]
 			});
+
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
@@ -1081,6 +1097,7 @@ function loadTextAreaInput (content, options) {
 		url: settings["viewContainer"],
 		type: 'GET',
 		dataType: 'html',
+		async: false,
 		success: function(container) {
 			var $container = $(container);
 			// set variables
@@ -1099,6 +1116,7 @@ function loadTextAreaInput (content, options) {
 			});
 			// add input template
 			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
+		
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
@@ -1618,6 +1636,21 @@ function loadCheckboxInputField (content, options) {
 			defaultAjaxErrorFunction(e);
 		}
 	});
+}
+
+function loadEventListeners(content, options) {
+	//event listener character counter
+	if(options["textFieldCounter"] !== 'undefined') {
+		$(defaultFormCharacterCounterTextContainer).html(options["textFieldCounter"]["minCount"]);
+		$(options["textFieldCounter"]["textField"]).bind('input', function(e) {
+			if(options["textFieldCounter"]["minCount"] >= e["currentTarget"]["textLength"]) {
+		    	$(defaultFormCharacterCounterTextContainer).html(options["textFieldCounter"]["minCount"]-e["currentTarget"]["textLength"]);
+			}
+		}); 
+	}
+	else {
+		console.log(options["textFieldCounter"]);
+	}
 }
 
 /* MEDIA UPLOAD */
