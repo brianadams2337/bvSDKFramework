@@ -18,5 +18,9 @@ var defaultFeedbackVotingButtonNegativeContainer = "._BVFeedbackNegativeButton";
 /* REPORT INAPPROPRIATE */
 
 
-var defaultReportInappropriateContainer = "._BVReportInappropriateContainer"; // inapropriate content container
-
+var defaultReportInappropriateContainer = "._BVReportInappropriateContainer"; // inappropriate content container
+var defaultReportInappropriateButtonContainer = "._BVReportInappropriateButtonContainer" // inappropriate button container
+var defaultReportInappropriateFormContainer = "._BVReportInappropriateFormContainer" // inappropriate form container
+var defaultReportInappropriateTextInputContainer = "._BVReportInappropriateTextInputContainer" // inappropriate text input container
+var defaultReportInappropriateTextInput = "._BVReportInappropriateTextInputContainer ._BVFormInput" // inappropriate text input
+var defaultReportInappropriateSectionHeaderContainer = "._BVSectionHeaderReportInappropriateContainer" // inappropriate section header container
