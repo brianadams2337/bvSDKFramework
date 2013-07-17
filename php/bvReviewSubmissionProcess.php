@@ -10,7 +10,6 @@
 	$defaults = http_build_query($defaults);
 
 	$h = curl_init();
-
 	curl_setopt($h, CURLOPT_URL, "http://stg.api.bazaarvoice.com/data/submitreview.json");
 	curl_setopt($h, CURLOPT_POST, true);
 	curl_setopt($h, CURLOPT_POSTFIELDS, $defaults);
