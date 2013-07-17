@@ -114,9 +114,9 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	.BVFeedbackVotingPrefix {float: left; line-height: 35px; margin-right: 10px;}
 		._BVFeedbackVotingContainer .BVButtonWrapper {float: left; margin-right: 10px;}
 		._BVFeedbackVotingContainer .BVButtonWrapper.selected {opacity: 1;}
-		._BVFeedbackVotingContainer ._BVButton.disabled {opacity: 0.5; cursor: default;}
+		._BVFeedbackVotingContainer ._BVButton.BVDisabled {opacity: 0.5; cursor: default;}
 
-._BVReportInappropriateContainer ._BVButton.disabled {opacity: 0.5; cursor: default;}
+._BVReportInappropriateContainer ._BVButton.BVDisabled {opacity: 0.5; cursor: default;}
 
 /* Submission Form */
 
