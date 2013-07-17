@@ -94,10 +94,6 @@ function convertDecimalToPercentage (value) {
 	return value.toFixed(2) * 100;
 }
 
-function toggleObject (object) {
-	$(object).toggle();
-}
-
 
 /***** HEADERS *****/
 

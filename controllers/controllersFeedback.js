@@ -441,7 +441,7 @@ function loadReportInappropriateButton (content, options) {
 				var formContainer = $("form[data-feedbacktype='" + feedbackType + "'][data-contentid='" + contentId + "']");
 				// toggle form if enabled
 				if (!$(this).hasClass("BVDisabled")) {
-					toggleObject(formContainer);
+					$(formContainer).fadeToggle(defaultToggleOptions);
 				}
 			});
 			// add button template
@@ -523,7 +523,7 @@ function loadReportInappropriateForm (content, options) {
 				// set display toggle for form
 				var formContainer = $("form[data-feedbacktype='" + feedbackType + "'][data-contentid='" + contentId + "']");
 				// toggle form
-				toggleObject(formContainer);
+				$(formContainer).fadeToggle(defaultToggleOptions);
 			});
 			// initially hide form on load
 			$container.hide();
@@ -624,7 +624,7 @@ function processFeedbackReportInappropriate (cookieName, options) {
 					}
 				});
 				// toggle form
-				toggleObject(formContainer);
+				$(formContainer).fadeToggle(defaultToggleOptions);
 			}, {
 				// feedback voting API parameters
 				"Parameters":{

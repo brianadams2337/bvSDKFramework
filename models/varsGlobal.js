@@ -63,6 +63,14 @@ var siteBaseSubmissionURL;
 };
 
 
+/***** TOGGLE OPTIONS *****/
+var defaultToggleOptions = {
+	duration: 300,
+	easing: "swing",
+	queue: true
+};
+
+
 
 /***** SERVER SIDE URLS *****/
 
