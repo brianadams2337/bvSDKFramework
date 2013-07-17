@@ -240,7 +240,6 @@ function loadReviewSubmissionForm (content, options) {
 				loadEventListeners("Listener", {
 					"textFieldCounter": {
 						"textField": ".BVFormInputTextarea",
-						"minCount": 50
 					}
 				});
 			},
@@ -1641,10 +1640,13 @@ function loadCheckboxInputField (content, options) {
 function loadEventListeners(content, options) {
 	//event listener character counter
 	if(options["textFieldCounter"] !== 'undefined') {
-		$(defaultFormCharacterCounterTextContainer).html(options["textFieldCounter"]["minCount"]);
+		$(defaultFormCharacterCounterTextContainer).html(controllerSubmissionDefaults["minimumCharacterCounter"]);
 		$(options["textFieldCounter"]["textField"]).bind('input', function(e) {
-			if(options["textFieldCounter"]["minCount"] >= e["currentTarget"]["textLength"]) {
-		    	$(defaultFormCharacterCounterTextContainer).html(options["textFieldCounter"]["minCount"]-e["currentTarget"]["textLength"]);
+			if(controllerSubmissionDefaults["minimumCharacterCounter"] >= e["currentTarget"]["textLength"]) {
+		    	$(defaultFormCharacterCounterTextContainer).html(controllerSubmissionDefaults["minimumCharacterCounter"]-e["currentTarget"]["textLength"]);
+			}
+			else {
+				$(defaultFormCharacterCounterTextContainer).html("0");
 			}
 		}); 
 	}
