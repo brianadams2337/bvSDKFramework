@@ -42,6 +42,16 @@ function postReviewsSubmissionForm (productID, callBack, options) {
 		dataType: "json",
 		success: function(data) {
 			console.log(data);
+			if(data.HasErrors) {
+				var errorObject = data.FormErrors.FieldErrors;
+				$('.BVSectionErrorContainer').html('');
+				$.each(errorObject, function(k, v) {
+					$('*[name="'+k+'"]').parent().parent().addClass('BVErrorText');
+					$('*[name="'+k+'"]').addClass('BVErrorBorder');
+					$('.BVSectionErrorContainer').append(v.Message+'<br/>');
+				});
+			}
+
 			callBack(data, settings);
 		},
 		error: function(e) {

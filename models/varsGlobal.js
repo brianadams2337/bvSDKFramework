@@ -16,7 +16,7 @@ var apiDefaults = {
 	"customerName": "bvpstemplates.ugc",
 	"format": "json",
 	"apiVersion": "5.4",
-	"passkey": "56m3b2rfbcquf5j6fejjuu3w", //kuy3zj9pr3n7i0wxajrzj04xo 56m3b2rfbcquf5j6fejjuu3w pywbyvnm7pmaes6vrfdvr5k7
+	"passkey": "56m3b2rfbcquf5j6fejjuu3w", //cssandbox apikey: iwmji1d018b62e3fshc70qaj8
 	"offset": 0,
 	"limit": 10,
 	"page": 1
@@ -30,7 +30,9 @@ var bvUserDefaults = {
 	"userNickname":"testuser", //User nickname display text
 };
 
-
+var controllerSubmissionDefaults = {
+	"minimumCharacterCounter": 50
+};
 
 /***** SET SITE TO PRODUCTION *****/
 // true = production
