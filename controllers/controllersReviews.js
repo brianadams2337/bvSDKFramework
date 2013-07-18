@@ -96,6 +96,10 @@ function loadReviews (content, options) {
 							"contentType":"review"
 						}
 					});
+					// load badges
+					loadReviewBadges(reviewsToLoad[key], {
+						"parentContainer":$container
+					});
 				},
 				error: function(e) {
 					defaultAjaxErrorFunction(e);

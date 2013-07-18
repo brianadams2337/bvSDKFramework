@@ -6,6 +6,8 @@
 var defaultSubmissionContainer = "._BVSubmissionContainer"; // main submission container
 var defaultSubmissionFormContainer = "._BVSubmissionFormContainer"; // main form inside submissio container
 
+var defaultFormErrorsContainer = "._BVFormErrorsContainer"; // main form inside submissio container
+
 var defaultOverallRatingInputContainer = "._BVOverallRatingInputContainer"; // overall rating input
 var defaultSecondaryRatingGroupInputContainer = "._BVSecondaryRatingGroupInputContainer"; // secondary rating input group
 var defaultSecondaryRatingIndividualInputContainer = "._BVSecondaryRatingIndividualInputContainer"; // secondary rating input individual

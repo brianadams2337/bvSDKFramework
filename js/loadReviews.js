@@ -15,6 +15,7 @@ $(document).ready(function() {
 			$.getScript(siteBaseURL + "controllers/controllersAskAnswer.js"),
 			$.getScript(siteBaseURL + "controllers/controllersFeedback.js"),
 			$.getScript(siteBaseURL + "controllers/controllersPagination.js"),
+			$.getScript(siteBaseURL + "controllers/controllersBadges.js"),
 			/* models */
 			$.getScript(siteBaseURL + "models/varsTemplates.js"),
 			$.getScript(siteBaseURL + "models/varsReviews.js"),
@@ -51,7 +52,7 @@ $(document).ready(function() {
 				"Parameters":{
 					//"limit":1,
 					"filter":{
-						//"isfeatured":false,
+						"isfeatured":true,
 						"hasphotos":false
 					}
 				}
