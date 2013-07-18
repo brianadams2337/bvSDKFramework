@@ -42,13 +42,13 @@ function postReviewsSubmissionForm (productID, callBack, options) {
 		dataType: "json",
 		success: function(data) {
 			console.log(data);
-			if(data.HasErrors) {
-				var errorObject = data.FormErrors.FieldErrors;
+			if(data["HasErrors"]) {
+				var errorObject = data["FormErrors"]["FieldErrors"];
 				$(defaultFormErrorsContainer).html('');
 				$.each(errorObject, function(k, v) {
-					$('*[name="'+k+'"]').parent().parent().addClass('BVErrorText');
-					$('*[name="'+k+'"]').addClass('BVErrorBorder');
-					$(defaultFormErrorsContainer).append(v.Message+'<br/>');
+					$('*[name="' + k + '"]').parent().parent().addClass('BVErrorText');
+					$('*[name="' + k + '"]').addClass('BVErrorBorder');
+					$(defaultFormErrorsContainer).append(v["Message"] + '<br/>');
 				});
 			}
 
