@@ -30,7 +30,9 @@ var bvUserDefaults = {
 	"userNickname":"testuser", //User nickname display text
 };
 
-
+var controllerSubmissionDefaults = {
+	"minimumCharacterCounter": 50
+};
 
 /***** SET SITE TO PRODUCTION *****/
 // true = production

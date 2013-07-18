@@ -44,6 +44,7 @@ function postReviewsSubmissionForm (productID, callBack, options) {
 			console.log(data);
 			if(data.HasErrors) {
 				var errorObject = data.FormErrors.FieldErrors;
+				$('.BVSectionErrorContainer').html('');
 				$.each(errorObject, function(k, v) {
 					$('*[name="'+k+'"]').parent().parent().addClass('BVErrorText');
 					$('*[name="'+k+'"]').addClass('BVErrorBorder');
