@@ -10,7 +10,7 @@ function loadReviews (content, options) {
 		"modelLocalDefaultSettings":""
 	}, options);
 	// hide the target container while reviews are loading
-	$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).empty().hide();
+	$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).empty().hide().addClass("_BVContentLoadingContainer");
 	
 	// set content variables
 	var reviewsStatisticsToLoad = content["Includes"]["Products"][settings["productId"]]['ReviewStatistics']; // review stats
@@ -91,15 +91,65 @@ function loadReviews (content, options) {
 					loadFeedback(reviewsToLoad[key], {
 						"parentContainer":$container,
 						"productId":settings["productId"],
-						"contentId":reviewsToLoad[key]["Id"],
+						"contentId":contentId,
 						"feedbackSettings":{
 							"contentType":"review"
 						}
 					});
-					// load badges
+					// load review badges
 					loadReviewBadges(reviewsToLoad[key], {
 						"parentContainer":$container
 					});
+
+					/***** COMMENTS *****/
+
+					// load reviews if available
+					if (reviewsToLoad[key]["TotalCommentCount"] > 0) {
+						getAllReviewComments (reviewsToLoad[key]["Id"], function(content, modelLocalDefaultSettings) {
+							// callback function
+							// add content id data param to content section
+							$container.find(defaultReviewCommentsSectionContainer).andSelf().filter(defaultReviewCommentsSectionContainer).attr({
+								"data-contentid":contentId
+							});
+
+							// comment section header
+							loadSectionHeader ("Comments", {
+								"parentContainer":$container,
+								"targetContainer":"._BVSectionHeaderReviewCommentsContainer"
+							});
+
+							// toggle comments button
+							loadToggleReviewCommentsButton ("Show/Hide Comments", {
+								"parentContainer":$container,
+								"productId":settings["productId"],
+								"contentId":contentId
+							});
+
+							// comments
+							loadReviewComments(content, {
+								"parentContainer":$container,
+								"productId":settings["productId"],
+								"modelLocalDefaultSettings":modelLocalDefaultSettings
+							});
+						}, {
+							"Parameters":{
+								"limit":2,
+								"filter":{
+									"hasvideos":false
+								}
+							}
+						});
+					}
+
+					// write review comment button
+					loadWriteReviewCommentButton ("Write a Comment", {
+						"parentContainer":$container,
+						"productId":settings["productId"],
+						"contentId":contentId
+					});
+
+					/***** END COMMENTS *****/
+
 				},
 				error: function(e) {
 					defaultAjaxErrorFunction(e);
@@ -108,9 +158,6 @@ function loadReviews (content, options) {
 		})
 	).done(function(){
 		// all functions pertaining to reviews as a group here
-
-		// show target container once reviews are finished loading
-		$(settings["targetContainer"]).show();
 
 		// pagination
 		loadNumberedPagination (content, {
@@ -140,13 +187,13 @@ function loadReviews (content, options) {
 				"controllerSettings":settings
 			}
 		});
-*/
-		// remove loading styling (animated gif, etc.)
-		$(settings["parentContainer"]).removeClass("_BVContentLoadingContainer");
-		
+*/		
 		// set classes
 		addOddEvenClasses (defaultReviewContainer);
 		addFirstLastClasses (defaultReviewContainer);
+	
+		// show target container once reviews are finished loading
+		$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).show().removeClass("_BVContentLoadingContainer");
 	});
 }
 
@@ -184,20 +231,6 @@ function loadQuickTake (content, options) {
 				loadWriteReviewButton ("Write a Review", {
 					"parentContainer":$container,
 					"productId":settings["productId"]
-				});
-				// write review button functionality
-				$container.find(defaultButtonWriteReviewContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonWriteReviewContainer + " " + defaultButtonContainer).click(function() {
-					console.log("click");
-					// set attributes and text for button
-					var returnURL = $(location).attr("href") + "";
-					var submissionParams = $.param({
-						"productId":settings["productId"],
-						"returnURL":returnURL
-					});
-					console.log(submissionParams);
-					var url = siteBaseSubmissionURL + submissionParams;
-
-					loadSubmissionPage(url);
 				});
 			},
 			error: function(e) {

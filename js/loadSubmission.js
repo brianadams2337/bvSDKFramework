@@ -23,7 +23,10 @@ $(document).ready(function() {
 			$.getScript(siteBaseURL + "js/createHTML5Elements.js"),
 			/* controllers */
 			$.getScript(siteBaseURL + "controllers/controllersGlobal.js"),
+			$.getScript(siteBaseURL + "controllers/controllersEventListeners.js"),
 			$.getScript(siteBaseURL + "controllers/controllersSubmission.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviewsSubmission.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviewCommentsSubmission.js"),
 			/* models */
 			$.getScript(siteBaseURL + "models/varsTemplates.js"),
 			$.getScript(siteBaseURL + "models/varsGlobal.js"),
@@ -31,6 +34,7 @@ $(document).ready(function() {
 			$.getScript(siteBaseURL + "models/varsSubmission.js"),
 			$.getScript(siteBaseURL + "models/modelsGlobal.js"),
 			$.getScript(siteBaseURL + "models/modelsReviewsSubmission.js"),
+			$.getScript(siteBaseURL + "models/modelsReviewCommentsSubmission.js"),
 			/* plugins */
 			$.getScript(siteBaseURL + "js/plugins/jquery.cookie.js"),
 			$.getScript(siteBaseURL + "js/plugins/jquery.dateFormat.js"),
@@ -46,13 +50,54 @@ $(document).ready(function() {
 			})
 		).done(function(){
 
-			// load review submission container
-			getReviewsSubmissionForm(urlParameters["productId"], function(content) {
-				loadReviewSubmissionForm(content, {
-					"productId":urlParameters["productId"],
-					"returnURL":urlParameters["returnURL"]
-				});
-			});
+			switch (urlParameters["contentType"]) {
+				case "review": 
+					console.log("review");
+					// load review submission container
+					getReviewsSubmissionForm(urlParameters["productId"], function(content) {
+						loadReviewSubmissionForm(content, {
+							"productId":urlParameters["productId"],
+							"returnURL":urlParameters["returnURL"]
+						});
+					});
+
+					break;
+
+				case "review_comment": 
+					console.log("review comment");
+					// load review submission container
+					getReviewCommentsSubmissionForm(urlParameters["reviewId"], function(content) {
+						console.log(urlParameters["reviewId"]);
+						loadReviewCommentSubmissionForm(content, {
+							"productId":urlParameters["productId"],
+							"returnURL":urlParameters["returnURL"]
+						});
+					});
+
+					break;
+
+				case "question": 
+					console.log("question");
+					break;
+
+				case "answer": 
+					console.log("answer");
+					break;
+
+				case "story": 
+					console.log("story");
+					break;
+
+				case "story_comment": 
+					console.log("story comment");
+					break;
+
+				default:
+					console.log("nothing");
+					break;
+
+			}
+
 
 		});
 	});

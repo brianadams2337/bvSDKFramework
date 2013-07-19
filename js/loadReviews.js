@@ -10,8 +10,10 @@ $(document).ready(function() {
 			$.getScript(siteBaseURL + "js/browserSelector.js"),
 			/* controllers */
 			$.getScript(siteBaseURL + "controllers/controllersGlobal.js"),
+			$.getScript(siteBaseURL + "controllers/controllersEventListeners.js"),
 			$.getScript(siteBaseURL + "controllers/controllersSubmission.js"),
 			$.getScript(siteBaseURL + "controllers/controllersReviews.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviewComments.js"),
 			$.getScript(siteBaseURL + "controllers/controllersAskAnswer.js"),
 			$.getScript(siteBaseURL + "controllers/controllersFeedback.js"),
 			$.getScript(siteBaseURL + "controllers/controllersPagination.js"),
@@ -19,11 +21,13 @@ $(document).ready(function() {
 			/* models */
 			$.getScript(siteBaseURL + "models/varsTemplates.js"),
 			$.getScript(siteBaseURL + "models/varsReviews.js"),
+			$.getScript(siteBaseURL + "models/varsReviewComments.js"),
 			$.getScript(siteBaseURL + "models/varsAskAnswer.js"),
 			$.getScript(siteBaseURL + "models/varsFeedback.js"),
 			$.getScript(siteBaseURL + "models/varsSubmission.js"),
 			$.getScript(siteBaseURL + "models/modelsGlobal.js"),
 			$.getScript(siteBaseURL + "models/modelsReviews.js"),
+			$.getScript(siteBaseURL + "models/modelsReviewComments.js"),
 			$.getScript(siteBaseURL + "models/modelsAskAnswer.js"),
 			$.getScript(siteBaseURL + "models/modelsFeedback.js"),
 			/* plugins */
@@ -52,8 +56,9 @@ $(document).ready(function() {
 				"Parameters":{
 					//"limit":1,
 					"filter":{
-						"isfeatured":true,
-						"hasphotos":false
+						//"isfeatured":true,
+						//"hasphotos":false,
+						"hascomments":true
 					}
 				}
 			});
