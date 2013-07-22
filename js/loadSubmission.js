@@ -72,6 +72,7 @@ $(document).ready(function() {
 						console.log(urlParameters["reviewId"]);
 						loadReviewCommentSubmissionForm(content, {
 							"productId":urlParameters["productId"],
+							"contentId":urlParameters["reviewId"],
 							"returnURL":urlParameters["returnURL"]
 						});
 					});

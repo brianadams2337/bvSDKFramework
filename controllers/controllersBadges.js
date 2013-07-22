@@ -1,8 +1,8 @@
 function loadReviewBadges (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"",
-		"targetContainer":"._BVBadgesContainer",
-		"viewContainer":"views/universal/display/badgeIndividualContainer.html",
+		"targetContainer":defaultBadgesContainer,
+		"viewContainer":defaultIndividualBadgeContainerView,
 		"loadOrder":content["BadgesOrder"],
 		"productId":""
 	}, options);
@@ -24,7 +24,7 @@ function loadReviewBadges (content, options) {
 				var badgeClass = "BVBadge_" + badgeId;
 				var typeClass = "BVBadge_" + badgeType;
 				// set badge value
-				$container.find("._BVBadgeText").andSelf().filter("._BVBadgeText").text(badgeId).addClass(badgeClass + " " + typeClass);
+				$container.find(defaultBadgeTextContainer).andSelf().filter(defaultBadgeTextContainer).text(badgeId).addClass(badgeClass + " " + typeClass);
 				// add badge container template
 				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
 			},
@@ -38,8 +38,8 @@ function loadReviewBadges (content, options) {
 function loadCommentBadges (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"",
-		"targetContainer":"._BVBadgesContainer",
-		"viewContainer":"views/universal/display/badgeIndividualContainer.html",
+		"targetContainer":defaultBadgesContainer,
+		"viewContainer":defaultIndividualBadgeContainerView,
 		"loadOrder":content["BadgesOrder"],
 		"productId":""
 	}, options);
@@ -61,7 +61,7 @@ function loadCommentBadges (content, options) {
 				var badgeClass = "BVBadge_" + badgeId;
 				var typeClass = "BVBadge_" + badgeType;
 				// set badge value
-				$container.find("._BVBadgeText").andSelf().filter("._BVBadgeText").text(badgeId).addClass(badgeClass + " " + typeClass);
+				$container.find(defaultBadgeTextContainer).andSelf().filter(defaultBadgeTextContainer).text(badgeId).addClass(badgeClass + " " + typeClass);
 				// add badge container template
 				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
 			},

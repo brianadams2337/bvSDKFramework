@@ -20,6 +20,7 @@ $(document).ready(function() {
 			$.getScript(siteBaseURL + "controllers/controllersBadges.js"),
 			/* models */
 			$.getScript(siteBaseURL + "models/varsTemplates.js"),
+			$.getScript(siteBaseURL + "models/varsUniversal.js"),
 			$.getScript(siteBaseURL + "models/varsReviews.js"),
 			$.getScript(siteBaseURL + "models/varsReviewComments.js"),
 			$.getScript(siteBaseURL + "models/varsAskAnswer.js"),

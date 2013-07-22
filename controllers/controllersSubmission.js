@@ -434,8 +434,8 @@ function loadTagGroupInput (content, options) {
 	});
 	var settings = $.extend(true, {
 		"parentContainer":defaultSubmissionFormContainer,
-		"targetContainer":"._BVTagGroupInputContainer",
-		"viewContainer":"views/universal/submission/inputTagIndividualContainer.html",
+		"targetContainer":defaultTagGroupInputContainer,
+		"viewContainer":defaultTagIndividualGroupContainerView,
 		"loadOrder":defaultLoadOrder,
 		"productId":"",
 		"inputSettings":{
@@ -482,8 +482,8 @@ function loadTagGroupInput (content, options) {
 function loadTagIndividualInput (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":defaultSubmissionFormContainer,
-		"targetContainer":"._BVInputGroupContainer",
-		"viewContainer":"views/universal/submission/inputTagContainer.html",
+		"targetContainer":defaultCheckboxGroupInputContainer,
+		"viewContainer":defaultTagIndividualContainerView,
 		"loadOrder":"",
 		"productId":"",
 		"inputSettings":{
@@ -526,8 +526,8 @@ function loadTermsAndConditionsInput (content, options) {
 	var content = content["Data"]["Fields"]["agreedtotermsandconditions"];
 	var settings = $.extend(true, {
 		"parentContainer":defaultSubmissionFormContainer,
-		"targetContainer":"._BVTermsConditionsContainer",
-		"viewContainer":"views/universal/submission/inputAgreedTermsConditionsContainer.html",
+		"targetContainer":defaultTermsConditionsInputContainer,
+		"viewContainer":defaultTermsConditionsContainerView,
 		"loadOrder":"",
 		"productId":""
 	}, options);
@@ -558,7 +558,7 @@ function loadSendEmailAlertWhenCommentedInput (content, options) {
 	content = content["Data"]["Fields"]["sendemailalertwhencommented"];
 	var settings = $.extend(true, {
 		"parentContainer":defaultSubmissionFormContainer,
-		"targetContainer":"._BVEmailAlertWhenCommentedContainer",
+		"targetContainer":defaultEmailAlertWhenCommentedInputContainer,
 		"viewContainer":"",
 		"loadOrder":"",
 		"productId":""
@@ -590,7 +590,7 @@ function loadSendEmailAlertWhenPublishedInput (content, options) {
 	var content = content["Data"]["Fields"]["sendemailalertwhenpublished"];
 	var settings = $.extend(true, {
 		"parentContainer":defaultSubmissionFormContainer,
-		"targetContainer":"._BVEmailAlertWhenPublishedContainer",
+		"targetContainer":defaultEmailAlertWhenPublishedInputContainer,
 		"viewContainer":"",
 		"loadOrder":"",
 		"productId":""

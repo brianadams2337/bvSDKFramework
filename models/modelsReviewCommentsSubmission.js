@@ -28,7 +28,8 @@ function getReviewCommentsSubmissionForm (reviewid, callBack, options) {
 function postReviewCommentsSubmissionForm (reviewid, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
-			"reviewid":reviewid
+			"reviewid":reviewid,
+			"userid":null
 		}
 	}, options);
 	var apiCall = reviewCommentsSubmissionAPICall(settings);
@@ -37,7 +38,7 @@ function postReviewCommentsSubmissionForm (reviewid, callBack, options) {
 	console.log(params);
 	$.ajax({
 		type: "POST",
-		url: defaultReviewSubmissionFormProcessingFile,
+		url: defaultReviewCommentSubmissionFormProcessingFile,
 		data: params,
 		dataType: "json",
 		success: function(data) {
