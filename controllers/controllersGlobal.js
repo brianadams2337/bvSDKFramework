@@ -94,6 +94,17 @@ function convertDecimalToPercentage (value) {
 	return value.toFixed(2) * 100;
 }
 
+function returnFormParamaters (form, options) {
+	var formData = $(form).serializeArray();
+	var params = options;
+	// add form data to params object
+	$.each(formData, function(key) {
+		params[this["name"]] = this["value"];
+	});
+	// return updated parameters
+	return params;
+}
+
 
 /***** HEADERS *****/
 
@@ -313,12 +324,27 @@ function loadWriteReviewButton (content, options) {
 		success: function(container) {
 			var $container = $(container);
 			// set attributes
-			$container.find("a").andSelf().filter("a").attr({
+			$container.find(defaultButtonContainer).andSelf().filter(defaultButtonContainer).attr({
 				"id":"",
 				"title":"",
 				"onclick":"return false;",
 				"href":""
 			}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).text(content);
+			// write review button functionality
+			$container.find(defaultButtonContainer).andSelf().filter(defaultButtonContainer).click(function() {
+				console.log("click");
+				// set attributes and text for button
+				var returnURL = $(location).attr("href") + "";
+				var submissionParams = $.param({
+					"productId":settings["productId"],
+					"contentType":"review",
+					"returnURL":returnURL
+				});
+				console.log(submissionParams);
+				var url = siteBaseSubmissionURL + submissionParams;
+
+				loadSubmissionPage(url);
+			});
 			// add button template
 			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
 		},
