@@ -8,7 +8,7 @@ function loadEventListeners(content, options) {
 		    	$(defaultFormCharacterCounterTextContainer).html(controllerSubmissionDefaults["minimumCharacterCounter"]-e["currentTarget"]["textLength"]);
 			}
 			else {
-				$(defaultFormCharacterCounterTextContainer).html("0");
+				$(defaultFormCharacterCounterTextContainer).html("Minimum Reached");
 			}
 		}); 
 	}
