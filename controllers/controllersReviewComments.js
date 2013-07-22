@@ -2,7 +2,7 @@ function loadReviewComments (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"",
 		"targetContainer":defaultReviewCommentsBodyContainer,
-		"viewContainer":"views/reviews/display/reviewCommentContainer.html",
+		"viewContainer":defaultReviewCommentContainerView,
 		"loadOrder":"",
 		"productId":"",
 		"modelLocalDefaultSettings":""
@@ -117,7 +117,7 @@ function loadCommentTitle (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"",
 		"targetContainer":defaultReviewCommentTitleContainer,
-		"viewContainer":defaultReviewTitleContainerView,
+		"viewContainer":defaultReviewCommentTitleContainerView,
 		"loadOrder":"",
 		"productId":""
 	}, options);
@@ -147,7 +147,7 @@ function loadCommentBody (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"",
 		"targetContainer":defaultReviewCommentBodyTextContainer,
-		"viewContainer":defaultReviewBodyTextContainerView,
+		"viewContainer":defaultReviewCommentBodyTextContainerView,
 		"loadOrder":"",
 		"productId":""
 	}, options);
@@ -174,7 +174,7 @@ function loadCommentDate (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"",
 		"targetContainer":defaultReviewCommentDateContainer,
-		"viewContainer":defaultReviewDateContainerView,
+		"viewContainer":defaultReviewCommentDateContainerView,
 		"loadOrder":"",
 		"productId":""
 	}, options);
@@ -207,7 +207,7 @@ function loadCommentUserNickname (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"",
 		"targetContainer":defaultReviewCommentUserNicknameContainer,
-		"viewContainer":defaultReviewUserNicknameContainerView,
+		"viewContainer":defaultReviewCommentUserNicknameContainerView,
 		"loadOrder":"",
 		"productId":""
 	}, options);
@@ -234,7 +234,7 @@ function loadCommentUserLocation (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"",
 		"targetContainer":defaultReviewCommentUserLocationContainer,
-		"viewContainer":defaultReviewUserLocationContainerView,
+		"viewContainer":defaultReviewCommentUserLocationContainerView,
 		"loadOrder":"",
 		"productId":""
 	}, options);
@@ -270,7 +270,7 @@ function loadCommentContextDataValuesGroup (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"",
 		"targetContainer":defaultReviewCommentContextDataValueGroupContainer,
-		"viewContainer":defaultReviewContextDataValueContainerView,
+		"viewContainer":defaultReviewCommentContextDataValueContainerView,
 		"loadOrder":content["ContextDataValuesOrder"],
 		"productId":""
 	}, options);
@@ -317,7 +317,7 @@ function loadCommentPhotosGroup (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"",
 		"targetContainer":defaultReviewCommentPhotoGroupContainer,
-		"viewContainer":defaultReviewPhotoContainerView,
+		"viewContainer":defaultReviewCommentPhotoContainerView,
 		"loadOrder":content["Photos"],
 		"productId":""
 	}, options);
@@ -366,7 +366,7 @@ function loadCommentVideosGroup (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"",
 		"targetContainer":defaultReviewCommentVideoGroupContainer,
-		"viewContainer":defaultReviewVideoContainerView,
+		"viewContainer":defaultReviewCommentVideoContainerView,
 		"loadOrder":content["Videos"],
 		"productId":""
 	}, options);

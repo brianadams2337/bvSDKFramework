@@ -55,19 +55,19 @@ function loadReviewSubmissionForm (content, options) {
 				});
 				loadSectionHeader ("Your Rating", {
 					"parentContainer":$container,
-					"targetContainer":"._BVSectionHeaderRatingsContainer"
+					"targetContainer":defaultFormSectionHeaderRatingsContainer
 				});
 				loadSectionHeader ("Your Review", {
 					"parentContainer":$container,
-					"targetContainer":"._BVSectionHeaderReviewContainer"
+					"targetContainer":defaultFormSectionHeaderReviewContainer
 				});
 				loadSectionHeader ("Media Upload", {
 					"parentContainer":$container,
-					"targetContainer":"._BVSectionHeaderMediaContainer"
+					"targetContainer":defaultFormSectionHeaderMediaContainer
 				});
 				loadSectionHeader ("User Info", {
 					"parentContainer":$container,
-					"targetContainer":"._BVSectionHeaderUserContainer"
+					"targetContainer":defaultFormSectionHeaderUserContainer
 				});
 				
 				/***** inputs *****/
@@ -96,7 +96,7 @@ function loadReviewSubmissionForm (content, options) {
 				// review text
 				loadReviewTextInput (content, {
 					"parentContainer":$container,
-					"viewContainer":"views/universal/submission/inputTextAreaWithCharacterCounter.html",
+					"viewContainer":defaultInputTextAreaWithCharacterCounterContainerView,
 					"inputSettings":{
 						"inputLabel":"Review Text",
 						"inputHelperText": "Example: This rocks!",
@@ -362,7 +362,7 @@ function loadSecondaryRatingIndividual (content, options) {
 	// content expected ["Data"]["Fields"][<fieldname>]
 	var settings = $.extend(true, {
 		"parentContainer":defaultSubmissionFormContainer,
-		"targetContainer":"._BVInputGroupContainer",
+		"targetContainer":defaultRadioButtonGroupInputContainer,
 		"viewContainer":defaultInputRadioIndividualContainerView,
 		"loadOrder":[
 					{1:"poor"},

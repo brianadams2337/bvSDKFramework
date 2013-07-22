@@ -26,6 +26,12 @@ var defaultContextDataValueIndividualInputContainer = "._BVContextDataValueIndiv
 var defaultAdditionalFieldGroupInputContainer = "._BVAdditionalFieldGroupInputContainer"; // context data values container
 var defaultAdditionalFieldIndividualInputContainer = "._BVAdditionalFieldIndividualInputContainer"; // individual context data value container
 
+var defaultTagGroupInputContainer = "._BVTagGroupInputContainer"; // tags container
+
+var defaultTermsConditionsInputContainer = "._BVTermsConditionsContainer"; // terms and conditions container
+var defaultEmailAlertWhenCommentedInputContainer = "._BVEmailAlertWhenCommentedContainer"; // email alert when commented container
+var defaultEmailAlertWhenPublishedInputContainer = "._BVEmailAlertWhenPublishedContainer"; // email alert when published container
+
 var defaultFormInputContainer = "._BVFormInput"; // form input container
 var defaultFormInputWrapperContainer = "._BVFormInputWrapper"; // form input wrapper container
 
@@ -42,3 +48,22 @@ var defaultFormCheckboxLabelTextContainer = "._BVCheckboxLabelText"; // checkbox
 var defaultFormHelperTextContainer = "._BVHelperText"; // input helper text
 var defaultFormCharacterCounterTextContainer = "._BVCharacterCounter"; // character counter
 var defaultFormCharacterCounterTextContainerText = "._BVCharacterCounterText"; // character counter suffix
+
+
+
+/***** HEADERS *****/
+
+
+
+var defaultFormSectionHeaderReviewContainer = "._BVSectionHeaderReviewContainer";
+var defaultFormSectionHeaderRatingsContainer = "._BVSectionHeaderRatingsContainer";
+var defaultFormSectionHeaderMediaContainer = "._BVSectionHeaderMediaContainer";
+var defaultFormSectionHeaderUserContainer = "._BVSectionHeaderUserContainer";
+var defaultFormSectionHeaderReviewCommentContainer = "._BVSectionHeaderReviewCommentContainer";
+var defaultFormSectionHeaderReviewContainer = "._BVSectionHeaderReviewContainer";
+var defaultFormSectionHeaderReviewContainer = "._BVSectionHeaderReviewContainer";
+var defaultFormSectionHeaderReviewContainer = "._BVSectionHeaderReviewContainer";
+var defaultFormSectionHeaderReviewContainer = "._BVSectionHeaderReviewContainer";
+
+
+

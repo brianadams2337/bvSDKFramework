@@ -115,7 +115,7 @@ function loadReviews (content, options) {
 							// comment section header
 							loadSectionHeader ("Comments", {
 								"parentContainer":$container,
-								"targetContainer":"._BVSectionHeaderReviewCommentsContainer"
+								"targetContainer":defualtSectionHeaderReviewCommentsContainer
 							});
 
 							// toggle comments button

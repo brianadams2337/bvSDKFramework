@@ -5,7 +5,7 @@ function loadNumberedPagination (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"", // value needs to be set when called
 		"targetContainer":"", // value needs to be set when called
-		"viewContainer":"views/universal/pagination/paginationContainer.html",
+		"viewContainer":defaultPaginationContainerView,
 		"loadOrder":"",
 		"productId":"",
 		"modelLocalDefaultSettings":"",
@@ -85,7 +85,7 @@ function loadNumberedPagination (content, options) {
 					// load button
 					loadPaginationButton (prevPageLabel, {
 						"parentContainer":$container,
-						"targetContainer":"._BVPaginationBtnPrev",
+						"targetContainer":defaultPaginationPrevBtnContainer,
 						"viewReloadOptions":settings["viewReloadOptions"]
 					});
 				}
@@ -99,7 +99,7 @@ function loadNumberedPagination (content, options) {
 					// load button
 					loadPaginationButton (firstPageLabel, {
 						"parentContainer":$container,
-						"targetContainer":"._BVPaginationBtnFirst",
+						"targetContainer":defaultPaginationFirstBtnContainer,
 						"viewReloadOptions":settings["viewReloadOptions"]
 					});
 				}
@@ -114,7 +114,7 @@ function loadNumberedPagination (content, options) {
 						// load button
 						loadPaginationButton (i, {
 							"parentContainer":$container,
-							"targetContainer":"._BVPaginationBtnContainer",
+							"targetContainer":defaultPaginationBtnGroupContainer,
 							"viewReloadOptions":settings["viewReloadOptions"]
 						});
 					} else {
@@ -125,14 +125,14 @@ function loadNumberedPagination (content, options) {
 						// load button
 						loadPaginationButton (i, {
 							"parentContainer":$container,
-							"targetContainer":"._BVPaginationBtnContainer",
+							"targetContainer":defaultPaginationBtnGroupContainer,
 							"viewReloadOptions":settings["viewReloadOptions"]
 						});
 					}
 				}
 				if (settings["paginationSettings"]["totalPageBool"]) {
 					// show the total number of pages if at the end of the loop
-					$container.find("._BVPaginationBtnOutOfText").andSelf().filter("._BVPaginationBtnOutOfText").html(pageCount);
+					$container.find(defaultPaginationOutOfTextContainer).andSelf().filter(defaultPaginationOutOfTextContainer).html(pageCount);
 				}
 
 				// last page button
@@ -145,7 +145,7 @@ function loadNumberedPagination (content, options) {
 					// load button
 					loadPaginationButton (lastPageLabel, {
 						"parentContainer":$container,
-						"targetContainer":"._BVPaginationBtnLast",
+						"targetContainer":defaultPaginationLastBtnContainer,
 						"viewReloadOptions":settings["viewReloadOptions"]
 					});
 				}
@@ -159,7 +159,7 @@ function loadNumberedPagination (content, options) {
 					// load button
 					loadPaginationButton (nextPageLabel, {
 						"parentContainer":$container,
-						"targetContainer":"._BVPaginationBtnNext",
+						"targetContainer":defaultPaginationNextBtnContainer,
 						"viewReloadOptions":settings["viewReloadOptions"]
 					});
 				}
@@ -178,8 +178,8 @@ function loadNumberedPagination (content, options) {
 function loadPaginationButton (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"", // value needs to be set when called
-		"targetContainer":"._BVPaginationBtnContainer",
-		"viewContainer":"views/universal/pagination/paginationButtonContainer.html",
+		"targetContainer":defaultPaginationBtnGroupContainer,
+		"viewContainer":defaultPaginationButtonContainerView,
 		"loadOrder":"",
 		"productId":"",
 		"viewReloadOptions":{
@@ -197,7 +197,7 @@ function loadPaginationButton (content, options) {
 		success: function(container) {
 			var $container = $(container);
 			// set variables
-			$container.find("._BVPaginationButtonContainer").andSelf().filter("._BVPaginationButtonContainer").html(content);
+			$container.find(defaultPaginationBtnContainer).andSelf().filter(defaultPaginationBtnContainer).html(content);
 			$container.click(function(){
 				settings["viewReloadOptions"]["model"] (
 					settings["productId"],

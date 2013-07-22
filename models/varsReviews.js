@@ -7,10 +7,14 @@ var defaultQuickTakeContainer = "._BVQuickTakeContainer"; // quick take containe
 var defaultReviewContainer = "._BVReviewContainer"; // individual review container
 
 /* HEADERS */
-var defualtPageHeaderContainer = "._BVPageHeaderContainer"
-var defualtPageHeaderTextContainer = "._BVPageHeaderText"
-var defualtSectionHeaderContainer = "._BVSectionHeaderContainer"
-var defualtSectionHeaderTextContainer = "._BVSectionHeaderText"
+var defualtPageHeaderContainer = "._BVPageHeaderContainer";
+var defualtPageHeaderTextContainer = "._BVPageHeaderText";
+var defualtSectionHeaderContainer = "._BVSectionHeaderContainer";
+var defualtSectionHeaderTextContainer = "._BVSectionHeaderText";
+
+var defualtSectionHeaderReviewCommentsContainer = "._BVSectionHeaderReviewCommentsContainer";
+var defualtSectionHeaderReviewCommentsTextContainer = "._BVSectionHeaderText";
+
 
 /* RATINGS */
 var defaultOverallRatingContainer = "._BVOverallRatingContainer"; // overall rating container

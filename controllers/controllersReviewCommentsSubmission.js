@@ -4,7 +4,7 @@ function loadReviewCommentSubmissionForm (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":defaultSubmissionContainer,
 		"targetContainer":defaultSubmissionFormContainer,
-		"viewContainer":"views/reviews/submission/submissionFormReviewCommentContainer.html",
+		"viewContainer":defaultSubmissionFormReviewCommentContainerView,
 		"loadOrder":"",
 		"productId":"",
 		"returnURL":"",
@@ -55,11 +55,11 @@ function loadReviewCommentSubmissionForm (content, options) {
 				});
 				loadSectionHeader ("Your Comment", {
 					"parentContainer":$container,
-					"targetContainer":"._BVSectionHeaderReviewCommentContainer"
+					"targetContainer":defaultFormSectionHeaderReviewCommentContainer
 				});
 				loadSectionHeader ("User Info", {
 					"parentContainer":$container,
-					"targetContainer":"._BVSectionHeaderUserContainer"
+					"targetContainer":defaultFormSectionHeaderUserContainer
 				});
 				
 				/***** inputs *****/
@@ -67,11 +67,8 @@ function loadReviewCommentSubmissionForm (content, options) {
 				// comment text
 				loadReviewCommentTextInput (content, {
 					"parentContainer":$container,
-					"viewContainer":"views/universal/submission/inputTextAreaWithCharacterCounter.html",
 					"inputSettings":{
 						"inputLabel":"Comment Text",
-						"inputHelperText": "Example: This rocks!",
-						"inputCharacterCounterText": "Character(s) needed to meet minimum length: " 
 					}
 				});
 				// nickname
@@ -118,7 +115,7 @@ function loadReviewCommentSubmissionForm (content, options) {
 						"action":"submit"
 					});
 					// POST form to server
-					postReviewsSubmissionForm(settings["productId"],
+					postReviewCommentsSubmissionForm(settings["contentId"],
 						function () {
 							console.log("submitted");
 						}, {
@@ -137,7 +134,7 @@ function loadReviewCommentSubmissionForm (content, options) {
 						"action":"preview"
 					});
 					// POST form to server
-					postReviewsSubmissionForm(settings["productId"],
+					postReviewCommentsSubmissionForm(settings["contentId"],
 						function () {
 							console.log("preview");
 						}, {
@@ -155,11 +152,6 @@ function loadReviewCommentSubmissionForm (content, options) {
 					returnToPage(settings["returnURL"]);
 				});
 
-				loadEventListeners("Listener", {
-					"textFieldCounter": {
-						"textField": ".BVFormInputTextarea",
-					}
-				});
 			},
 			error: function(e) {
 				defaultAjaxErrorFunction(e);
