@@ -202,6 +202,7 @@ function loadReviewSubmissionForm (content, options) {
 					postReviewsSubmissionForm(settings["productId"],
 						function () {
 							console.log("submitted");
+							console.log($container);
 							$container.html("Thank you for your submission!");
 						}, {
 						"Parameters": params

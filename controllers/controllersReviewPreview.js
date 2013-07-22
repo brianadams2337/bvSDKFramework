@@ -94,6 +94,18 @@ function loadReviewPreview (content, options) {
 					});
 				});
 
+				// edit button
+				loadEditButton ("Edit", {
+					"parentContainer":$container
+				});
+				// Edit button functionality
+				$container.find(defaultButtonEditContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonEditContainer + " " + defaultButtonContainer).click(function() {
+					// show form and hide preview
+					$("form").show().removeClass("_BVContentLoadingContainer");
+					$($container).hide();
+
+				});
+
 				// cancel button
 				loadCancelButton ("Cancel", {
 					"parentContainer":$container
