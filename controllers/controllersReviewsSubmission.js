@@ -202,16 +202,18 @@ function loadReviewSubmissionForm (content, options) {
 					postReviewsSubmissionForm(settings["productId"],
 						function () {
 							console.log("submitted");
+							console.log($container);
+							$container.html("Thank you for your submission!");
 						}, {
 						"Parameters": params
 					});
 				});
 
-				// preivew button
+				// preview button
 				loadPreviewButton ("Preview", {
 					"parentContainer":$container
 				});
-				// preivew button functionality
+				// preview button functionality
 				$container.find(defaultButtonPreviewContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonPreviewContainer + " " + defaultButtonContainer).click(function() {
 					// get form parameters
 					var params = returnFormParamaters("#" + newID, {
@@ -219,8 +221,14 @@ function loadReviewSubmissionForm (content, options) {
 					});
 					// POST form to server
 					postReviewsSubmissionForm(settings["productId"],
-						function () {
+						function (previewContent) {
 							console.log("preview");
+							previewContent["Review"]["RatingRange"] = 5; //default to 5 since API doesn't include this for preview
+							loadReviewPreview (previewContent["Review"], {
+								"parentContainer":"#BVSubmissionContainer",
+								"productId":"test1",
+								"modelLocalDefaultSettings":""
+							});
 						}, {
 						"Parameters": params
 					});
