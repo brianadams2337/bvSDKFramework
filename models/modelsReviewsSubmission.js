@@ -50,9 +50,9 @@ function postReviewsSubmissionForm (productID, callBack, options) {
 					$('*[name="' + k + '"]').addClass('BVErrorBorder');
 					$(defaultFormErrorsContainer).append(v["Message"] + '<br/>');
 				});
+			} else {
+				callBack(data, settings);
 			}
-
-			callBack(data, settings);
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);

@@ -26,6 +26,8 @@ $(document).ready(function() {
 			$.getScript(siteBaseURL + "controllers/controllersEventListeners.js"),
 			$.getScript(siteBaseURL + "controllers/controllersSubmission.js"),
 			$.getScript(siteBaseURL + "controllers/controllersReviewsSubmission.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviewPreview.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviews.js"),
 			$.getScript(siteBaseURL + "controllers/controllersReviewCommentsSubmission.js"),
 			/* models */
 			$.getScript(siteBaseURL + "models/varsTemplates.js"),
