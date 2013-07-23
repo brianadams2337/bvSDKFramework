@@ -30,6 +30,15 @@ var defaultQuickTakeContainerView = "views/universal/quicktake/quickTakeContaine
 
 
 
+/***** FILTERS *****/
+
+
+
+var defaultFilterGroupContainerView = "views/universal/filters/filterGroupContainer.html"; // filter group module
+var defaultFilterIndividualContainerView = "views/universal/filters/filterIndividualContainer.html"; // filter group module
+
+
+
 /***** REVIEWS *****/
 
 
