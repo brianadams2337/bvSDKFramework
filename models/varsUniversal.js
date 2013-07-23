@@ -11,6 +11,23 @@ var defaultBadgeTextContainer = "._BVBadgeText" // badge text value container
 
 
 
+/***** SORTING *****/
+
+
+
+var defaultSortInputWrapperContainer = "._BVSortInputWrapper"; // sort dropdown container
+
+
+
+/***** FILTERING *****/
+
+
+
+var defaultFilterGroupContainer = "._BVFiltersContainer"; // filter group container
+var defaultFilterIndividualContainer = "._BVFilterIndividualContainer" // filter individual container
+
+
+
 /***** PAGINATION *****/
 
 
