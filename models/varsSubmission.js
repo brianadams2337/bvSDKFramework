@@ -13,8 +13,6 @@ var defaultSecondaryRatingGroupInputContainer = "._BVSecondaryRatingGroupInputCo
 var defaultSecondaryRatingIndividualInputContainer = "._BVSecondaryRatingIndividualInputContainer"; // secondary rating input individual
 var defaultIsRecommendedInputContainer = "._BVRecommendedInputContainer"; // is recommended input
 var defaultReviewTitleInputContainer = "._BVTitleInputContainer"; // review title input
-var defaultReviewVideoInputContainer = "._BVVideoUploadInputContainer"; // review video input
-var defaultReviewVideoCaptionInputContainer = "._BVVideoCaptionInputContainer"; // review video input
 var defaultReviewTextInputContainer = "._BVBodyTextInputContainer"; // review text input
 
 var defaultUserNicknameInputContainer = "._BVUserNicknameInputContainer"; // user nickname text input
@@ -36,6 +34,9 @@ var defaultEmailAlertWhenPublishedInputContainer = "._BVEmailAlertWhenPublishedC
 
 var defaultFormInputContainer = "._BVFormInput"; // form input container
 var defaultFormInputWrapperContainer = "._BVFormInputWrapper"; // form input wrapper container
+
+var defaultReviewVideoInputContainer = "._BVVideoUploadInputContainer"; // review video input
+var defaultReviewVideoCaptionInputContainer = "._BVVideoCaptionInputContainer"; // review video input
 
 var defaultRadioButtonGroupInputContainer = "._BVInputGroupContainer"; // radio button group container
 var defaultRadioButtonIndividualInputContainer = "._BVRadioButtonIndividualContainer"; // radio button individual container
