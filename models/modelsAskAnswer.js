@@ -238,7 +238,7 @@ function questionAnswerAPICall (options) {
 			},
 			"filter_[TYPE]":null, // Filtering option for included nested content. TYPE can be any included nested content. i.e. Answers for Questions.
 			"include":null, // Related subjects to be included (e.g. Products, Categories, Authors, or Answers).
-			"limit":apiDefaults["limit"], // Max number of records returned. An error is returned if the value passed exceeds 100.
+			"limit":apiDefaults["limitQuestions"], // Max number of records returned. An error is returned if the value passed exceeds 100.
 			"limit_[TYPE]":null, // Limit option for the nested content type returned. TYPE can be any nested content. e.g. Answers for Questions. An error is returned if the value passed exceeds 20.
 			"locale":null, // Locale to display Labels, Configuration, Product Attributes and Category Attributes in. The default value is the locale defined in the display associated with the API key.
 			"offset":apiDefaults["offset"], // Index at which to return results. By default, indexing begins at 0 when you issue a query. Using Limit=100, Offset=0 returns results 0-99. When changing this to Offset=1, results 1-100 are returned.

@@ -18,7 +18,12 @@ var apiDefaults = {
 	"apiVersion": "5.4",
 	"passkey": "56m3b2rfbcquf5j6fejjuu3w", //cssandbox apikey: iwmji1d018b62e3fshc70qaj8
 	"offset": 0,
-	"limit": 10,
+	"limitReviews": 10,
+	"limitReviewComments": 2,
+	"limitQuestions": 10,
+	"limitAnswers": 2,
+	"limitStories": 10,
+	"limitStoryComments": 2,
 	"page": 1
 };
 

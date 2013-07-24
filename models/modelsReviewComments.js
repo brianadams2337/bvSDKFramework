@@ -84,7 +84,7 @@ function reviewCommentsAPICall (options) {
 				"userlocation":null //Location of the author
 			},
 			"include":null, // Related subjects to be included (e.g. Products, Categories, Authors, or Comments).
-			"limit":apiDefaults["limit"], // Max number of records returned. An error is returned if the value passed exceeds 100.
+			"limit":apiDefaults["limitReviewComments"], // Max number of records returned. An error is returned if the value passed exceeds 100.
 			"locale":null, // Locale to display Labels, Configuration, Product Attributes and Category Attributes in. The default value is the locale defined in the display associated with the API key.
 			"offset":apiDefaults["offset"], // Index at which to return results. By default, indexing begins at 0 when you issue a query. Using Limit=100, Offset=0 returns results 0-99. When changing this to Offset=1, results 1-100 are returned.
 			"passkey":apiDefaults["passkey"], //API key is required to authenticate API user and check permission to access particular client's data.
