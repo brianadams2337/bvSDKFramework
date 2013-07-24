@@ -119,6 +119,20 @@ function loadReviewSubmissionForm (content, options) {
 					}
 				});
 				*/
+				// video link
+				loadYoutubeUrlInput (content, {
+					"parentContainer":$container,
+					"inputSettings":{
+						"inputLabel":"Youtube Link"
+					}
+				});
+				// video caption
+				loadVideoCaptionInput (content, {
+					"parentContainer":$container,
+					"inputSettings":{
+						"inputLabel":"Video Caption"
+					}
+				});
 				// location
 				loadUserLocationInput (content, {
 					"parentContainer":$container,
@@ -582,4 +596,102 @@ function loadReviewTextInput (content, options) {
 	});
 }
 
+/***** Media Upload *****/
 
+function loadYoutubeUrlInput (content, options) {
+	var content = content["Data"]["Fields"]["videourl_1"];
+	var settings = $.extend(true, {
+		"parentContainer":defaultSubmissionFormContainer,
+		"targetContainer":defaultReviewVideoInputContainer,
+		"viewContainer":defaultInputContainerView,
+		"loadOrder":"",
+		"productId":"",
+		"inputSettings":{
+			"inputName":content["Id"],
+			"inputType":content["Type"],
+			"inputLabel":content["Label"],
+			"inputPlaceholder":"", // user defined
+			"inputHelperText":"", // user defined
+			"inputValue":content["Value"],
+			"inputMinLength":content["MinLength"],
+			"inputMaxLength":content["MaxLength"],
+			"inputRequired":content["Required"],
+			"inputDefault":content["Default"],
+			"inputOptionsArray":content["Options"]
+		}
+	}, options);
+	$.ajax({
+		url: settings["viewContainer"],
+		type: 'GET',
+		dataType: 'html',
+		success: function(container) {
+			var $container = $(container);
+			// set label
+			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(settings["inputSettings"]["inputLabel"]).attr({
+				"for":settings["inputSettings"]["inputName"]
+			});
+			// set helper text
+			$container.find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(settings["inputSettings"]["inputHelperText"]);
+			// add input template
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
+			// load input
+			loadTextFieldInput (content, {
+				"parentContainer":$container,
+				"targetContainer":defaultFormInputWrapperContainer,
+				"inputSettings":settings["inputSettings"]
+			});
+		},
+		error: function(e) {
+			defaultAjaxErrorFunction(e);
+		}
+	});
+}
+
+function loadVideoCaptionInput (content, options) {
+	var content = content["Data"]["Fields"]["videocaption_1"];
+	var settings = $.extend(true, {
+		"parentContainer":defaultSubmissionFormContainer,
+		"targetContainer":defaultReviewVideoCaptionInputContainer,
+		"viewContainer":defaultInputContainerView,
+		"loadOrder":"",
+		"productId":"",
+		"inputSettings":{
+			"inputName":content["Id"],
+			"inputType":content["Type"],
+			"inputLabel":content["Label"],
+			"inputPlaceholder":"", // user defined
+			"inputHelperText":"", // user defined
+			"inputValue":content["Value"],
+			"inputMinLength":content["MinLength"],
+			"inputMaxLength":content["MaxLength"],
+			"inputRequired":content["Required"],
+			"inputDefault":content["Default"],
+			"inputOptionsArray":content["Options"]
+		}
+	}, options);
+	$.ajax({
+		url: settings["viewContainer"],
+		type: 'GET',
+		dataType: 'html',
+		success: function(container) {
+			var $container = $(container);
+			// set label
+			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(settings["inputSettings"]["inputLabel"]).attr({
+				"for":settings["inputSettings"]["inputName"]
+			});
+			// set helper text
+			$container.find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(settings["inputSettings"]["inputHelperText"]);
+			// add input template
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
+			// load input
+			loadTextFieldInput (content, {
+				"parentContainer":$container,
+				"targetContainer":defaultFormInputWrapperContainer,
+				"inputSettings":settings["inputSettings"]
+			});
+		},
+		error: function(e) {
+			defaultAjaxErrorFunction(e);
+		}
+	});
+}

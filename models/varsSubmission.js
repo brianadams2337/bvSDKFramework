@@ -35,6 +35,9 @@ var defaultEmailAlertWhenPublishedInputContainer = "._BVEmailAlertWhenPublishedC
 var defaultFormInputContainer = "._BVFormInput"; // form input container
 var defaultFormInputWrapperContainer = "._BVFormInputWrapper"; // form input wrapper container
 
+var defaultReviewVideoInputContainer = "._BVVideoUploadInputContainer"; // review video input
+var defaultReviewVideoCaptionInputContainer = "._BVVideoCaptionInputContainer"; // review video input
+
 var defaultRadioButtonGroupInputContainer = "._BVInputGroupContainer"; // radio button group container
 var defaultRadioButtonIndividualInputContainer = "._BVRadioButtonIndividualContainer"; // radio button individual container
 var defaultCheckboxGroupInputContainer = "._BVInputGroupContainer"; // checkbox group container
@@ -57,6 +60,7 @@ var defaultFormCharacterCounterTextContainerText = "._BVCharacterCounterText"; /
 
 var defaultFormSectionHeaderReviewContainer = "._BVSectionHeaderReviewContainer";
 var defaultFormSectionHeaderRatingsContainer = "._BVSectionHeaderRatingsContainer";
+
 var defaultFormSectionHeaderMediaContainer = "._BVSectionHeaderMediaContainer";
 var defaultFormSectionHeaderUserContainer = "._BVSectionHeaderUserContainer";
 var defaultFormSectionHeaderReviewCommentContainer = "._BVSectionHeaderReviewCommentContainer";
