@@ -13,6 +13,8 @@ var defaultSecondaryRatingGroupInputContainer = "._BVSecondaryRatingGroupInputCo
 var defaultSecondaryRatingIndividualInputContainer = "._BVSecondaryRatingIndividualInputContainer"; // secondary rating input individual
 var defaultIsRecommendedInputContainer = "._BVRecommendedInputContainer"; // is recommended input
 var defaultReviewTitleInputContainer = "._BVTitleInputContainer"; // review title input
+var defaultReviewVideoInputContainer = "._BVVideoUploadInputContainer"; // review video input
+var defaultReviewVideoCaptionInputContainer = "._BVVideoCaptionInputContainer"; // review video input
 var defaultReviewTextInputContainer = "._BVBodyTextInputContainer"; // review text input
 
 var defaultUserNicknameInputContainer = "._BVUserNicknameInputContainer"; // user nickname text input
@@ -57,6 +59,7 @@ var defaultFormCharacterCounterTextContainerText = "._BVCharacterCounterText"; /
 
 var defaultFormSectionHeaderReviewContainer = "._BVSectionHeaderReviewContainer";
 var defaultFormSectionHeaderRatingsContainer = "._BVSectionHeaderRatingsContainer";
+
 var defaultFormSectionHeaderMediaContainer = "._BVSectionHeaderMediaContainer";
 var defaultFormSectionHeaderUserContainer = "._BVSectionHeaderUserContainer";
 var defaultFormSectionHeaderReviewCommentContainer = "._BVSectionHeaderReviewCommentContainer";
