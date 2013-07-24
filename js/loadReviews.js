@@ -17,6 +17,8 @@ $(document).ready(function() {
 			$.getScript(siteBaseURL + "controllers/controllersAskAnswer.js"),
 			$.getScript(siteBaseURL + "controllers/controllersFeedback.js"),
 			$.getScript(siteBaseURL + "controllers/controllersPagination.js"),
+			$.getScript(siteBaseURL + "controllers/controllersSorting.js"),
+			$.getScript(siteBaseURL + "controllers/controllersFilters.js"),
 			$.getScript(siteBaseURL + "controllers/controllersBadges.js"),
 			/* models */
 			$.getScript(siteBaseURL + "models/varsTemplates.js"),
@@ -59,7 +61,12 @@ $(document).ready(function() {
 					"filter":{
 						//"isfeatured":true,
 						//"hasphotos":false,
-						"hascomments":true
+						//"hascomments":true,
+						//"contextdatavalue_Gender":"Male",
+						//"contextdatavalue_Age": "18to24",
+					},
+					"sort":{
+						//"contextdatavalue_Age": "asc",
 					}
 				}
 			});

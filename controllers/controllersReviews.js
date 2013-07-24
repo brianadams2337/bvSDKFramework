@@ -112,17 +112,17 @@ function loadReviews (content, options) {
 								"data-contentid":contentId
 							});
 
-							// comment section header
-							loadSectionHeader ("Comments", {
-								"parentContainer":$container,
-								"targetContainer":defualtSectionHeaderReviewCommentsContainer
-							});
-
 							// toggle comments button
 							loadToggleReviewCommentsButton ("Show/Hide Comments", {
 								"parentContainer":$container,
 								"productId":settings["productId"],
 								"contentId":contentId
+							});
+
+							// comment section header
+							loadSectionHeader ("Comments", {
+								"parentContainer":$container,
+								"targetContainer":defualtSectionHeaderReviewCommentsContainer
 							});
 
 							// comments
@@ -133,7 +133,7 @@ function loadReviews (content, options) {
 							});
 						}, {
 							"Parameters":{
-								"limit":2,
+								"limit":apiDefaults["limitReviewComments"],
 								"filter":{
 									"hasvideos":false
 								}
@@ -158,36 +158,67 @@ function loadReviews (content, options) {
 		})
 	).done(function(){
 		// all functions pertaining to reviews as a group here
-
+		console.log("test", settings["modelLocalDefaultSettings"]);
 		// pagination
 		loadNumberedPagination (content, {
 			"parentContainer":settings["parentContainer"],
 			"targetContainer":settings["targetContainer"],
 			"viewReloadOptions":{
-				"model":getReviewsCustom,
+				"model":getAllReviews,
 				"modelSettings":settings["modelLocalDefaultSettings"],
 				"controller":loadReviews,
 				"controllerSettings":settings
 			}
 		});
-/*
-		// filters
-		loadFiltersGroup (content, {
-			"parentContainer":defaultQuickTakeContainer,
-			"targetContainer":"_BVFiltersContainer",
-			"filterSettings":{
-				"offset":content["Offset"],
-				"limit":content["Limit"],
-				"totalResults":content["TotalResults"]
-			},
+		loadSortDropdown (content, {
+			"parentContainer":settings["parentContainer"],
+			"loadOrder":defaultReviewSortLoadOrder,
 			"viewReloadOptions":{
-				"model":getReviewsCustom,
+				"model":getAllReviews,
 				"modelSettings":settings["modelLocalDefaultSettings"],
 				"controller":loadReviews,
 				"controllerSettings":settings
 			}
 		});
-*/		
+		// filters
+		loadFiltersOverallRating (content["Includes"]["Products"][settings["productId"]]['ReviewStatistics'], {
+			"parentContainer":settings["parentContainer"],
+			"viewReloadOptions":{
+				"model":getAllReviews,
+				"modelSettings":settings["modelLocalDefaultSettings"],
+				"controller":loadReviews,
+				"controllerSettings":settings
+			}
+		});
+		/*
+		loadFiltersSecondaryRatings (content["Includes"]["Products"][settings["productId"]]['ReviewStatistics'], {
+			"parentContainer":settings["parentContainer"],
+			"viewReloadOptions":{
+				"model":getAllReviews,
+				"modelSettings":settings["modelLocalDefaultSettings"],
+				"controller":loadReviews,
+				"controllerSettings":settings
+			}
+		});
+		loadFiltersContextDataValues (content["Includes"]["Products"][settings["productId"]]['ReviewStatistics'], {
+			"parentContainer":settings["parentContainer"],
+			"viewReloadOptions":{
+				"model":getAllReviews,
+				"modelSettings":settings["modelLocalDefaultSettings"],
+				"controller":loadReviews,
+				"controllerSettings":settings
+			}
+		});
+		loadFiltersTags (content["Includes"]["Products"][settings["productId"]]['ReviewStatistics'], {
+			"parentContainer":settings["parentContainer"],
+			"viewReloadOptions":{
+				"model":getAllReviews,
+				"modelSettings":settings["modelLocalDefaultSettings"],
+				"controller":loadReviews,
+				"controllerSettings":settings
+			}
+		});
+*/
 		// set classes
 		addOddEvenClasses (defaultReviewContainer);
 		addFirstLastClasses (defaultReviewContainer);
@@ -213,6 +244,7 @@ function loadQuickTake (content, options) {
 			url: settings["viewContainer"],
 			type: 'GET',
 			dataType: 'html',
+			async:false,
 			success: function(container) {
 				var $container = $(container);
 				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
@@ -232,6 +264,7 @@ function loadQuickTake (content, options) {
 					"parentContainer":$container,
 					"productId":settings["productId"]
 				});
+
 			},
 			error: function(e) {
 				defaultAjaxErrorFunction(e);
@@ -825,7 +858,5 @@ function loadReviewVideosGroup (content, options) {
 		});
 	});
 }
-
-
 
 

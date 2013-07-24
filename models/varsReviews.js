@@ -45,6 +45,12 @@ var defaultReviewTagIndividualContainer = "._BVTagIndividualContainer"; // indiv
 var defaultReviewTagLabelTextContainer = "._BVTagLabelText";
 var defaultReviewTagTextContainer = "._BVTagText";
 
+/* FILTERS */
+var defaultReviewFilterGroupContainer = "._BVFilterGroupContainer"; // all filters container
+var defaultReviewFilterIndividualContainer = "._BVFilterIndividualContainer"; // individual filter container
+var defaultReviewFilterLabelTextContainer = "._BVFilterLabelText";
+var defaultReviewFilterTextContainer = "._BVFilterText";
+
 /* USER INFO */
 var defaultReviewUserNicknameContainer = "._BVUserNicknameContainer"; // user nickname container
 var defaultReviewUserNicknameTextContainer = "._BVUserNicknameText";
