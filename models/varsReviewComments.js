@@ -2,7 +2,11 @@
 
 /* MAIN CONTAINERS */
 
-var defaultReviewCommentsSectionContainer = "._BVReviewCommentSectionContainer"; // all review comments section container
+var reviewCommentsContainers = {
+	"toggleContainer":"._BVReviewCommentsToggleContainer"
+}
+
+var defaultReviewCommentsSectionContainer = "._BVReviewCommentsWidgetContainer"; // all review comments section container
 var defaultReviewCommentsBodyContainer = "._BVReviewCommentBodyContainer"; // all review comments section container
 var defaultReviewCommentContainer = "._BVReviewCommentContainer"; // individual comment container
 

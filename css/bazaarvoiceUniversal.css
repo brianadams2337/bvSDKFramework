@@ -180,3 +180,8 @@ h1._BVPageHeaderText, h2._BVSectionHeaderText {margin: 10px 0;}
 /* Pagination */
 ._BVPaginationContainer {text-align: center;}
 .BVPaginationBtn {padding: 0 10px; cursor: pointer;}
+
+
+
+template {display: none !important;}
+.testtempclass {font-size: 18px; color: #ff0000;}
