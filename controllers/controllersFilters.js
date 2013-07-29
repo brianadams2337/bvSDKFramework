@@ -41,7 +41,6 @@ function loadFiltersOverallRating (content, options) {
 				"Label":"Overall Rating",
 				"Values":[]
 			};
-			console.log(settings["loadOrder"]);
 			$.each(settings["loadOrder"], function() {
 				var obj = new Object;
 				obj["Count"] = this["Count"];
@@ -273,7 +272,6 @@ function loadFiltersTags (content, options) {
 			"controllercontrollerSettings":""
 		}
 	}, options);
-	console.log(content["TagDistributionOrder"]);
 	$.each (settings["loadOrder"], function(key) {
 		$.ajax({
 			url: settings["viewContainer"],
@@ -339,7 +337,6 @@ function loadIndividualFilters (content, options) {
 			success: function(container) {
 				var $container = $(container);
 				// set variables
-				console.log(content["Values"]);
 				var filterText = content["Values"][key]["Label"];
 				var filterCountText = content["Values"][key]["Count"];
 				// set filter text

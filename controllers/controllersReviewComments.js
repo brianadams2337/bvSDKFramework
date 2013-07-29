@@ -23,7 +23,6 @@ function loadReviewCommentsWidget (content, options) {
 			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
 			// set variables
 			var commentsToDisplay = content["Results"]; // review comments to display
-			console.log(commentsToDisplay);
 			// load comments if available
 			if (commentsToDisplay.length > 0) {
 				// add content id data param to content section
