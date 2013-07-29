@@ -210,6 +210,7 @@ var defaultTagIndividualContainerView = "views/universal/submission/inputTagCont
 // checkbox templates
 var defaultTermsConditionsContainerView = "views/universal/submission/inputTermsConditionsContainer.html"; // tag individual input module
 
+var defaultThankYouView = "views/universal/submission/defaultThankYouView.html"; //thank you page template
 
 
 /***** REVIEW SPECIFIC *****/

@@ -1,8 +1,4 @@
-
-
 /***** TARGET CONTAINER CLASSES *****/
-
-
 var defaultSubmissionContainer = "._BVSubmissionContainer"; // main submission container
 var defaultSubmissionFormContainer = "._BVSubmissionFormContainer"; // main form inside submissio container
 
@@ -52,7 +48,8 @@ var defaultFormHelperTextContainer = "._BVHelperText"; // input helper text
 var defaultFormCharacterCounterTextContainer = "._BVCharacterCounter"; // character counter
 var defaultFormCharacterCounterTextContainerText = "._BVCharacterCounterText"; // character counter suffix
 
-
+var defaultThankYouContainer = ".BVThankYouContainer"; //Thank you container
+var defaultThankYouLabel = "._defaultThankYouText"; //Thank you text
 
 /***** HEADERS *****/
 

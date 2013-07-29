@@ -34,7 +34,7 @@ function loadReviewSubmissionForm (content, options) {
 			success: function(container) {
 				var $container = $(container);
 				// add submission container
-				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container).attr("id", newID));
+				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container));
 				// set form attributes (just fallbacks, not needed since we are using ajax submission)
 				$container.find("form").andSelf().filter("form").attr({
 					"id":newID,
@@ -216,8 +216,10 @@ function loadReviewSubmissionForm (content, options) {
 					postReviewsSubmissionForm(settings["productId"],
 						function () {
 							console.log("submitted");
-							console.log($container);
-							$container.html("Thank you for your submission!");
+							loadThankYou (content, {
+								"parentContainer":"#BVSubmissionContainer",
+								"labelThankYou":"Thank you for your submission!"
+							});
 						}, {
 						"Parameters": params
 					});
@@ -689,6 +691,34 @@ function loadVideoCaptionInput (content, options) {
 				"targetContainer":defaultFormInputWrapperContainer,
 				"inputSettings":settings["inputSettings"]
 			});
+		},
+		error: function(e) {
+			defaultAjaxErrorFunction(e);
+		}
+	});
+}
+
+function loadThankYou (content, options) {
+	var settings = $.extend(true, {
+		"parentContainer":defaultSubmissionFormContainer,
+		"targetContainer":defaultThankYouContainer,
+		"viewContainer":defaultThankYouView,
+		"labelThankYou":"Thank you for your review."
+	}, options);
+	$.ajax({
+		url: settings["viewContainer"],
+		type: 'GET',
+		dataType: 'html',
+		async: false,
+		success: function(container) {
+			var $container = $(container);
+			// set label
+			$container.find(defaultThankYouLabel).andSelf().filter(defaultThankYouLabel).text(settings["labelThankYou"]);
+			// add input template
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
+			$("form").hide();
+			$(".BVPreviewContainer").hide();
+			$(".BVField").hide();
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
