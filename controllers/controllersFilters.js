@@ -41,10 +41,12 @@ function loadFiltersOverallRating (content, options) {
 				"Label":"Overall Rating",
 				"Values":[]
 			};
+			console.log(settings["loadOrder"]);
 			$.each(settings["loadOrder"], function() {
 				var obj = new Object;
 				obj["Count"] = this["Count"];
 				obj["Value"] = this["RatingValue"];
+				obj["Label"] = labelsFilterOverallRating[this["RatingValue"]];
 				ratingsDistribution["Values"].push(obj);
 			});
 			// set variables
@@ -337,13 +339,16 @@ function loadIndividualFilters (content, options) {
 			success: function(container) {
 				var $container = $(container);
 				// set variables
-				var filterText = content["Values"][key]["Value"];
+				console.log(content["Values"]);
+				var filterText = content["Values"][key]["Label"];
+				var filterCountText = content["Values"][key]["Count"];
 				// set filter text
 				$container.attr({
 					"data-filter-parameter":content["Id"],
 					"data-filter-value":content["Values"][key]["Value"]
 				});
 				$container.find(defaultReviewFilterTextContainer).andSelf().filter(defaultReviewFilterTextContainer).text(filterText);
+				$container.find(defaultReviewFilterCountTextContainer).andSelf().filter(defaultReviewFilterCountTextContainer).text(filterCountText);
 				// filter option functionality
 				$container.click(function(){
 					var refreshContainer = $(settings["viewReloadOptions"]["controllerSettings"]["parentContainer"]).find(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]).andSelf().filter(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]);

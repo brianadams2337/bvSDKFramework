@@ -33,6 +33,8 @@ $(document).ready(function() {
 			$.getScript(siteBaseURL + "models/modelsReviewComments.js"),
 			$.getScript(siteBaseURL + "models/modelsAskAnswer.js"),
 			$.getScript(siteBaseURL + "models/modelsFeedback.js"),
+			/* properties */
+			$.getScript(siteBaseURL + "models/properties/properties.js"),
 			/* plugins */
 			$.getScript(siteBaseURL + "js/plugins/jquery.cookie.js"),
 			$.getScript(siteBaseURL + "js/plugins/jquery.dateFormat.js"),
