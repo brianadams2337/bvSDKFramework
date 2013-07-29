@@ -1,7 +1,7 @@
 function loadReviewPreview (content, options) {
-	defaultReviewsParentContainer = "#BVPreviewContainer";
+
 	var settings = $.extend(true, {
-		"parentContainer":defaultReviewsParentContainer,
+		"parentContainer":defaultPreviewContainer,
 		"targetContainer":defaultReviewsBodyContainer,
 		"viewContainer":defaultReviewContainerView,
 		"loadOrder":"",
@@ -88,7 +88,9 @@ function loadReviewPreview (content, options) {
 					postReviewsSubmissionForm(settings["productId"],
 						function () {
 							console.log("submitted");
-							$container.html("Thank you for your submission!");
+							loadThankYou (content, {
+								"parentContainer":defaultSubmissionFormContainer
+							});
 						}, {
 						"Parameters": params
 					});
