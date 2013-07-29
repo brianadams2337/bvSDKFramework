@@ -145,18 +145,20 @@ function returnBadgeTextView (content) {
 		case "featured" :
 			v = defaultBadgesUniversal["featured"]
 			break;
-		case "expert" :
+		case "Expert" :
 			v = defaultBadgesUniversal["expert"]
 			break;
-		case "staff" :
+		case "Staff" :
 			v = defaultBadgesUniversal["staff"]
 			break;
+		/* NEED TO BE TESTED BEFORE UNCOMMENTED
 		case "verifiedPurchaser" :
 			v = defaultBadgesUniversal["verifiedPurchaser"]
 			break;
 		case "socialAnsweringSubscriber" :
 			v = defaultBadgesUniversal["socialAnsweringSubscriber"]
 			break;
+		*/
 		default :
 			break;
 	}
