@@ -105,6 +105,16 @@ function returnFormParamaters (form, options) {
 	return params;
 }
 
+function loadingContainerAnimation (container, callback) {
+	$(container).empty().hide().addClass("_BVContentLoadingContainer");
+	$.when(
+		callback()
+	).done(function() {
+		console.log("done");
+		$(container).removeClass("_BVContentLoadingContainer").show();
+	})
+}
+
 
 /***** HEADERS *****/
 

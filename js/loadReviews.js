@@ -45,32 +45,36 @@ $(document).ready(function() {
 				$(deferred.resolve);
 			})
 		).done(function(){
+			// hide the target container while reviews are loading
+			//$(defaultReviewsParentContainer).empty().hide().addClass("_BVContentLoadingContainer");
 
 			// load reviews
-			getAllReviews (productId, function(content, modelLocalDefaultSettings) {
-				// callback function
-				loadReviews (content, {
-					"parentContainer":"#BVRRContainer",
-					"productId":productId,
-					"modelLocalDefaultSettings":modelLocalDefaultSettings
-				});
-			}, {
-				// api parameters
-				"Parameters":{
-					//"limit":1,
-					"filter":{
-						//"isfeatured":true,
-						//"hasphotos":false,
-						//"hascomments":true,
-						//"contextdatavalue_Gender":"Male",
-						//"contextdatavalue_Age": "18to24",
-					},
-					"sort":{
-						//"contextdatavalue_Age": "asc",
+			loadingContainerAnimation(defaultReviewsParentContainer, function() {
+				getAllReviews (productId, function(content, modelLocalDefaultSettings) {
+					// callback function
+					loadReviewWidget (content, {
+						"parentContainer":defaultReviewsParentContainer,
+						"productId":productId,
+						"modelLocalDefaultSettings":modelLocalDefaultSettings
+					});
+				}, {
+					// api parameters
+					"Parameters":{
+						//"limit":1,
+						"filter":{
+							//"isfeatured":true,
+							//"hasphotos":false,
+							//"hascomments":true,
+							//"contextdatavalue_Gender":"Male",
+							//"contextdatavalue_Age": "18to24",
+						},
+						"sort":{
+							//"contextdatavalue_Age": "asc",
+						}
 					}
-				}
+				});
 			});
-
+/*
 			// ask & answer
 			getAllQuestionsAnswers (productId, function(content, modelLocalDefaultSettings) {
 				// callback function
@@ -87,7 +91,7 @@ $(document).ready(function() {
 					}
 				}
 			});
-
+*/
 			/* MAGNIFIC LIGHTBOX POPIN */
 			// photos
 			$('#BVRRContainer').on('click', '._BVPhotoThumbnail', function() {
