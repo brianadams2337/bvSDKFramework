@@ -28,9 +28,6 @@ function getAllReviewComments (reviewID, callBack, options) {
 			"filter":{
 				"reviewid":reviewID
 			},
-			"sort":{
-				"submissiontime":"desc"
-			}
 		}
 	}, options);
 	var url = reviewCommentsAPICall(settings);
@@ -39,7 +36,6 @@ function getAllReviewComments (reviewID, callBack, options) {
 		url: url,
 		dataType: "jsonp",
 		success: function(data) {
-			console.log("com", data);
 			callBack(data, settings);
 		},
 		error: function(e) {

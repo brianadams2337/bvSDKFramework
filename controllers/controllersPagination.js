@@ -37,7 +37,7 @@ function loadNumberedPagination (content, options) {
 		dataType: 'html',
 		success: function(container) {
 			var $container = $(container);
-
+			//console.log(content, settings["viewReloadOptions"]);
 			// set variables
 			var pageOffset = settings["paginationSettings"]["offset"];
 			var pageLimit = settings["paginationSettings"]["limit"];
@@ -54,7 +54,7 @@ function loadNumberedPagination (content, options) {
 			var nextPage = currentPage + 1; // next page
 			var nextPageLabel = settings["paginationSettings"]["nextBtnLabel"]; // next page label
 
-			var startPage = currentPage - Math.floor(pagesToDisplay/2); // first pagination link to display - DEFAULT
+			var startPage = (currentPage - Math.floor(pagesToDisplay/2) + 1); // first pagination link to display - DEFAULT
 			var stopPage = (startPage + pagesToDisplay) - 1; // last pagination link to display - DEFAULT
 
 			// make sure pagination nav never goes below 1
@@ -75,7 +75,6 @@ function loadNumberedPagination (content, options) {
 
 			// check if pagination is needed
 			if (pageCount > 1) {
-
 				// prev page button
 				if (settings["paginationSettings"]["prevBtnBool"] && prevPage >= 0) {
 					// set offset and limit in api call for each button respectively
@@ -106,13 +105,13 @@ function loadNumberedPagination (content, options) {
 
 				// pagination buttons
 				for (var i = startPage; i <= stopPage; i++) {
-					if (i == currentPage) {
+					if (i == (currentPage + 1)) {
 						// set offset and limit in api call for each button respectively
 						settings["viewReloadOptions"]["modelSettings"]["Parameters"]["offset"] = (pageLimit * (i - 1));
 						settings["viewReloadOptions"]["modelSettings"]["Parameters"]["limit"] = pageLimit;
 						
 						// load button
-						loadPaginationButton (i, {
+						loadPaginationButton (i + "sel", {
 							"parentContainer":$container,
 							"targetContainer":defaultPaginationBtnGroupContainer,
 							"viewReloadOptions":settings["viewReloadOptions"]
@@ -121,7 +120,8 @@ function loadNumberedPagination (content, options) {
 						// set offset and limit in api call for each button respectively
 						settings["viewReloadOptions"]["modelSettings"]["Parameters"]["offset"] = (pageLimit * (i - 1));
 						settings["viewReloadOptions"]["modelSettings"]["Parameters"]["limit"] = pageLimit;
-						
+					//console.log(settings["viewReloadOptions"]["modelSettings"]["Parameters"]["offset"]);
+					//console.log(pageLimit, i);						
 						// load button
 						loadPaginationButton (i, {
 							"parentContainer":$container,
@@ -137,7 +137,6 @@ function loadNumberedPagination (content, options) {
 
 				// last page button
 				if (settings["paginationSettings"]["lastBtnBool"] && pageCount > stopPage) {
-					//echo "\t".' | '.'<a href="?limit='.$GLOBALS['displayLimit'].'&amp;page='.$pageCount.'" class="active">'.' ... '.$pageCount.'</a>'."\n";
 					// set offset and limit in api call for each button respectively
 					settings["viewReloadOptions"]["modelSettings"]["Parameters"]["offset"] = (pageLimit * (lastPage - 1));
 					settings["viewReloadOptions"]["modelSettings"]["Parameters"]["limit"] = pageLimit;
@@ -167,7 +166,7 @@ function loadNumberedPagination (content, options) {
 			}
 
 			// add pagination template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
@@ -199,14 +198,18 @@ function loadPaginationButton (content, options) {
 			// set variables
 			$container.find(defaultPaginationBtnContainer).andSelf().filter(defaultPaginationBtnContainer).html(content);
 			$container.click(function(){
-				settings["viewReloadOptions"]["model"] (
-					settings["productId"],
-					function(content) {
-						// callback function
-						settings["viewReloadOptions"]["controller"](content, settings["viewReloadOptions"]["controllerSettings"]);
-					},
-					settings["viewReloadOptions"]["modelSettings"]
-				);
+				var refreshContainer = $(settings["viewReloadOptions"]["controllerSettings"]["parentContainer"]).find(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]).andSelf().filter(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]);
+				loadingContainerAnimation(refreshContainer, function() {
+					settings["viewReloadOptions"]["model"] (
+						settings["productId"],
+						function(content) {
+							// callback function
+							settings["viewReloadOptions"]["controller"](content, settings["viewReloadOptions"]["controllerSettings"]);
+						},
+						settings["viewReloadOptions"]["modelSettings"]
+					);
+
+				});
 			});
 			// add pagination button template
 			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
