@@ -32,6 +32,7 @@ function loadFiltersOverallRating (content, options) {
 		url: settings["viewContainer"],
 		type: 'GET',
 		dataType: 'html',
+		async:false,
 		success: function(container) {
 			var $container = $(container);
 			// create ratings distribution to match other distribution objects from json repsonse
@@ -345,20 +346,21 @@ function loadIndividualFilters (content, options) {
 				$container.find(defaultReviewFilterTextContainer).andSelf().filter(defaultReviewFilterTextContainer).text(filterText);
 				// filter option functionality
 				$container.click(function(){
-					console.log($(this).attr("data-filter-parameter"));
-					console.log($(this).attr("data-filter-value"));
+					var refreshContainer = $(settings["viewReloadOptions"]["controllerSettings"]["parentContainer"]).find(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]).andSelf().filter(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]);
 					var selected = $(this).attr("data-filter-parameter");
 					var selectedValue = $(this).attr("data-filter-value");
-					//settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"] = {};
-					settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected] = selectedValue;
-					settings["viewReloadOptions"]["model"] (
-						settings["productId"],
-						function(content) {
-							// callback function
-							settings["viewReloadOptions"]["controller"](content, settings["viewReloadOptions"]["controllerSettings"]);
-						},
-						settings["viewReloadOptions"]["modelSettings"]
-					);
+					loadingContainerAnimation(refreshContainer, function() {
+						//settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"] = {};
+						settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected] = selectedValue;
+						settings["viewReloadOptions"]["model"] (
+							settings["productId"],
+							function(content) {
+								// callback function
+								settings["viewReloadOptions"]["controller"](content, settings["viewReloadOptions"]["controllerSettings"]);
+							},
+							settings["viewReloadOptions"]["modelSettings"]
+						);
+					});
 				});
 				// add filter container template
 				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);				

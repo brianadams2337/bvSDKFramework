@@ -99,18 +99,21 @@ function loadSortDropdown (content, options) {
 			});
 			// sort option functionality
 			$container.change(function(){
+				var refreshContainer = $(settings["viewReloadOptions"]["controllerSettings"]["parentContainer"]).find(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]).andSelf().filter(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]);
 				var selected = $(this.options[this.selectedIndex]).attr("data-sort-parameter");
 				var selectedValue = this.options[this.selectedIndex].value;
-				settings["viewReloadOptions"]["modelSettings"]["Parameters"]["sort"] = {};
-				settings["viewReloadOptions"]["modelSettings"]["Parameters"]["sort"][selected] = selectedValue;
-				settings["viewReloadOptions"]["model"] (
-					settings["productId"],
-					function(content) {
-						// callback function
-						settings["viewReloadOptions"]["controller"](content, settings["viewReloadOptions"]["controllerSettings"]);
-					},
-					settings["viewReloadOptions"]["modelSettings"]
-				);
+				loadingContainerAnimation(refreshContainer, function() {
+					settings["viewReloadOptions"]["modelSettings"]["Parameters"]["sort"] = {};
+					settings["viewReloadOptions"]["modelSettings"]["Parameters"]["sort"][selected] = selectedValue;
+					settings["viewReloadOptions"]["model"] (
+						settings["productId"],
+						function(content) {
+							// callback function
+							settings["viewReloadOptions"]["controller"](content, settings["viewReloadOptions"]["controllerSettings"]);
+						},
+						settings["viewReloadOptions"]["modelSettings"]
+					);
+				});
 			});
 
 		},

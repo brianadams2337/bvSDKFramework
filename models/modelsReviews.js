@@ -33,7 +33,6 @@ function getAllReviews (productID, callBack, options) {
 		}
 	}, options);
 	var url = reviewsAPICall(settings);
-	console.log(settings["Parameters"]["filter"]);
 	$.ajax({
 		type: "GET",
 		url: url,

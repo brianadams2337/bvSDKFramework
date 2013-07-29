@@ -1,6 +1,117 @@
 /* DEFAULT REVIEWS FUNCTION */
 
-function loadReviews (content, options) {
+function loadReviewWidget (content, options) {
+	var settings = $.extend(true, {
+		"parentContainer":"body",
+		"targetContainer":defaultReviewsParentContainer,
+		"viewContainer":"views/reviews/display/reviewWidgetContainer.html",
+		"loadOrder":"",
+		"productId":"",
+		"modelLocalDefaultSettings":""
+	}, options);
+	$.ajax({
+		url: settings["viewContainer"],
+		type: 'GET',
+		dataType: 'html',
+		async: false,
+		success: function(container) {
+			var $container = $(container);
+
+			// add review widget template
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
+
+			// set content variables
+			var reviewsStatisticsToLoad = content["Includes"]["Products"][settings["productId"]]['ReviewStatistics']; // review stats
+			var reviewsToLoad = content["Results"]; // reviews
+
+			// load quick take
+			loadQuickTake (reviewsStatisticsToLoad, {
+				"parentContainer":$container,
+				"productId":settings["productId"]
+			});
+			// load reviews
+			$.each (reviewsToLoad, function(key) {
+				loadIndividualReview (reviewsToLoad[key], {
+					"parentContainer":$container,
+					"productId":settings["productId"]
+				});
+			});
+			// pagination
+			loadNumberedPagination (content, {
+				"parentContainer":$container,
+				"targetContainer":"._BVReviewPaginationContainer",
+				"viewReloadOptions":{
+					"model":getAllReviews,
+					"modelSettings":settings["modelLocalDefaultSettings"],
+					"controller":loadReviewWidget,
+					"controllerSettings":settings
+				}
+			});
+			// sorting dropdown
+			loadSortDropdown (content, {
+				"parentContainer":$container,
+				"loadOrder":defaultReviewSortLoadOrder,
+				"viewReloadOptions":{
+					"model":getAllReviews,
+					"modelSettings":settings["modelLocalDefaultSettings"],
+					"controller":loadReviewWidget,
+					"controllerSettings":settings
+				}
+			});
+			// filters
+			loadFiltersOverallRating (content["Includes"]["Products"][settings["productId"]]['ReviewStatistics'], {
+				"parentContainer":$container,
+				"viewReloadOptions":{
+					"model":getAllReviews,
+					"modelSettings":settings["modelLocalDefaultSettings"],
+					"controller":loadReviewWidget,
+					"controllerSettings":settings
+				}
+			});
+/*
+			loadFiltersSecondaryRatings (content["Includes"]["Products"][settings["productId"]]['ReviewStatistics'], {
+				"parentContainer":$container,
+				"viewReloadOptions":{
+					"model":getAllReviews,
+					"modelSettings":settings["modelLocalDefaultSettings"],
+					"controller":loadReviews,
+					"controllerSettings":settings
+				}
+			});
+			loadFiltersContextDataValues (content["Includes"]["Products"][settings["productId"]]['ReviewStatistics'], {
+				"parentContainer":$container,
+				"viewReloadOptions":{
+					"model":getAllReviews,
+					"modelSettings":settings["modelLocalDefaultSettings"],
+					"controller":loadReviews,
+					"controllerSettings":settings
+				}
+			});
+			loadFiltersTags (content["Includes"]["Products"][settings["productId"]]['ReviewStatistics'], {
+				"parentContainer":$container,
+				"viewReloadOptions":{
+					"model":getAllReviews,
+					"modelSettings":settings["modelLocalDefaultSettings"],
+					"controller":loadReviews,
+					"controllerSettings":settings
+				}
+			});
+*/
+			// set classes
+			addOddEvenClasses (defaultReviewContainer);
+			addFirstLastClasses (defaultReviewContainer);
+		
+			// show target container once reviews are finished loading
+			//$(defaultReviewsParentContainer).removeClass("_BVContentLoadingContainer");
+			//$(defaultReviewsParentContainer).show();
+		},
+		error: function(e) {
+			defaultAjaxErrorFunction(e);
+		}
+	});
+}
+
+function loadIndividualReview (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":defaultReviewsParentContainer,
 		"targetContainer":defaultReviewsBodyContainer,
@@ -9,222 +120,103 @@ function loadReviews (content, options) {
 		"productId":"",
 		"modelLocalDefaultSettings":""
 	}, options);
-	// hide the target container while reviews are loading
-	$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).empty().hide().addClass("_BVContentLoadingContainer");
-	
-	// set content variables
-	var reviewsStatisticsToLoad = content["Includes"]["Products"][settings["productId"]]['ReviewStatistics']; // review stats
-	var reviewsToLoad = content["Results"]; // reviews
+	// get a new id for the review container using review id - this will be needed for reference on child elements
+	var contentId = content["Id"]
+	var newID = "BVReviewContainer" + contentId;
+	// inject review content
+	$.ajax({
+		url: settings["viewContainer"],
+		type: 'GET',
+		dataType: 'html',
+		async: false,
+		success: function(container) {
+			var $container = $(container);
+			// add review template container
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container).attr("id", newID));
+			// load review rating
+			loadReviewRating (content, {
+				"parentContainer":$container
+			});
+			// load review secondary ratings
+			loadReviewSecondaryRatings (content, {
+				"parentContainer":$container
+			});
+			// load review recommended
+			loadReviewRecommended (content, {
+				"parentContainer":$container
+			});
+			// load review date
+			loadReviewDate (content, {
+				"parentContainer":$container
+			});
+			// load review title
+			loadReviewTitle (content, {
+				"parentContainer":$container
+			});
+			// load review text
+			loadReviewBody (content, {
+				"parentContainer":$container
+			});
+			// load review user nickname
+			loadReviewUserNickname (content, {
+				"parentContainer":$container
+			});
+			// load review user location
+			loadReviewUserLocation (content, {
+				"parentContainer":$container
+			});
+			// load review cdvs
+			loadReviewContextDataValuesGroup (content, {
+				"parentContainer":$container
+			});
+			// load review tags
+			loadReviewTagGroups(content, {
+				"parentContainer":$container
+			});
+			// load review photos
+			loadReviewPhotosGroup(content, {
+				"parentContainer":$container
+			});
+			// load review videos
+			loadReviewVideosGroup(content, {
+				"parentContainer":$container
+			});
+			// load review badges
+			loadReviewBadges(content, {
+				"parentContainer":$container
+			});
 
-	// load quick take
-	loadQuickTake (reviewsStatisticsToLoad, {
-		"parentContainer":settings["parentContainer"],
-		"productId":settings["productId"]
-	});
+			// load review feedback
+			loadFeedback(content, {
+				"parentContainer":$container,
+				"productId":settings["productId"],
+				"contentId":contentId,
+				"feedbackSettings":{
+					"contentType":"review"
+				}
+			});
 
-	// load reviews
-	$.when(
-		// all functions pertaining to individual reviews here
-		$.each(reviewsToLoad, function(key) {
-			// get a new id for the review container using review id - this will be needed for reference on child elements
-			var contentId = reviewsToLoad[key]["Id"]
-			var newID = "BVReviewContainer" + contentId;
-			// inject review content
-			$.ajax({
-				url: settings["viewContainer"],
-				type: 'GET',
-				dataType: 'html',
-				async: false,
-				success: function(container) {
-					var $container = $(container);
-					// add review template container
-					$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container).attr("id", newID));
-					// load review rating
-					loadReviewRating (reviewsToLoad[key], {
-						"parentContainer":$container
-					});
-					// load review secondary ratings
-					loadReviewSecondaryRatings (reviewsToLoad[key], {
-						"parentContainer":$container
-					});
-					// load review recommended
-					loadReviewRecommended (reviewsToLoad[key], {
-						"parentContainer":$container
-					});
-					// load review date
-					loadReviewDate (reviewsToLoad[key], {
-						"parentContainer":$container
-					});
-					// load review title
-					loadReviewTitle (reviewsToLoad[key], {
-						"parentContainer":$container
-					});
-					// load review text
-					loadReviewBody (reviewsToLoad[key], {
-						"parentContainer":$container
-					});
-					// load review user nickname
-					loadReviewUserNickname (reviewsToLoad[key], {
-						"parentContainer":$container
-					});
-					// load review user location
-					loadReviewUserLocation (reviewsToLoad[key], {
-						"parentContainer":$container
-					});
-					// load review cdvs
-					loadReviewContextDataValuesGroup (reviewsToLoad[key], {
-						"parentContainer":$container
-					});
-					// load review tags
-					loadReviewTagGroups(reviewsToLoad[key], {
-						"parentContainer":$container
-					});
-					// load review photos
-					loadReviewPhotosGroup(reviewsToLoad[key], {
-						"parentContainer":$container
-					});
-					// load review videos
-					loadReviewVideosGroup(reviewsToLoad[key], {
-						"parentContainer":$container
-					});
-					// load review feedback
-					loadFeedback(reviewsToLoad[key], {
+			// load comments if available
+			if (content["TotalCommentCount"] != undefined) {
+				getAllReviewComments (contentId, function(content, modelLocalDefaultSettings) {
+					loadReviewCommentsWidget (content, {
 						"parentContainer":$container,
 						"productId":settings["productId"],
 						"contentId":contentId,
-						"feedbackSettings":{
-							"contentType":"review"
+						"modelLocalDefaultSettings":modelLocalDefaultSettings
+					});
+				}, {
+					"Parameters":{
+						"filter":{
+							//"hasvideos":false
 						}
-					});
-					// load review badges
-					loadReviewBadges(reviewsToLoad[key], {
-						"parentContainer":$container
-					});
-
-					/***** COMMENTS *****/
-
-					// load reviews if available
-					if (reviewsToLoad[key]["TotalCommentCount"] > 0) {
-						getAllReviewComments (reviewsToLoad[key]["Id"], function(content, modelLocalDefaultSettings) {
-							// callback function
-							// add content id data param to content section
-							$container.find(defaultReviewCommentsSectionContainer).andSelf().filter(defaultReviewCommentsSectionContainer).attr({
-								"data-contentid":contentId
-							});
-
-							// toggle comments button
-							loadToggleReviewCommentsButton ("Show/Hide Comments", {
-								"parentContainer":$container,
-								"productId":settings["productId"],
-								"contentId":contentId
-							});
-
-							// comment section header
-							loadSectionHeader ("Comments", {
-								"parentContainer":$container,
-								"targetContainer":defualtSectionHeaderReviewCommentsContainer
-							});
-
-							// comments
-							loadReviewComments(content, {
-								"parentContainer":$container,
-								"productId":settings["productId"],
-								"modelLocalDefaultSettings":modelLocalDefaultSettings
-							});
-						}, {
-							"Parameters":{
-								"limit":apiDefaults["limitReviewComments"],
-								"filter":{
-									"hasvideos":false
-								}
-							}
-						});
 					}
-
-					// write review comment button
-					loadWriteReviewCommentButton ("Write a Comment", {
-						"parentContainer":$container,
-						"productId":settings["productId"],
-						"contentId":contentId
-					});
-
-					/***** END COMMENTS *****/
-
-				},
-				error: function(e) {
-					defaultAjaxErrorFunction(e);
-				}
-			});
-		})
-	).done(function(){
-		// all functions pertaining to reviews as a group here
-		console.log("test", settings["modelLocalDefaultSettings"]);
-		// pagination
-		loadNumberedPagination (content, {
-			"parentContainer":settings["parentContainer"],
-			"targetContainer":settings["targetContainer"],
-			"viewReloadOptions":{
-				"model":getAllReviews,
-				"modelSettings":settings["modelLocalDefaultSettings"],
-				"controller":loadReviews,
-				"controllerSettings":settings
-			}
-		});
-		loadSortDropdown (content, {
-			"parentContainer":settings["parentContainer"],
-			"loadOrder":defaultReviewSortLoadOrder,
-			"viewReloadOptions":{
-				"model":getAllReviews,
-				"modelSettings":settings["modelLocalDefaultSettings"],
-				"controller":loadReviews,
-				"controllerSettings":settings
-			}
-		});
-		// filters
-		loadFiltersOverallRating (content["Includes"]["Products"][settings["productId"]]['ReviewStatistics'], {
-			"parentContainer":settings["parentContainer"],
-			"viewReloadOptions":{
-				"model":getAllReviews,
-				"modelSettings":settings["modelLocalDefaultSettings"],
-				"controller":loadReviews,
-				"controllerSettings":settings
-			}
-		});
-		/*
-		loadFiltersSecondaryRatings (content["Includes"]["Products"][settings["productId"]]['ReviewStatistics'], {
-			"parentContainer":settings["parentContainer"],
-			"viewReloadOptions":{
-				"model":getAllReviews,
-				"modelSettings":settings["modelLocalDefaultSettings"],
-				"controller":loadReviews,
-				"controllerSettings":settings
-			}
-		});
-		loadFiltersContextDataValues (content["Includes"]["Products"][settings["productId"]]['ReviewStatistics'], {
-			"parentContainer":settings["parentContainer"],
-			"viewReloadOptions":{
-				"model":getAllReviews,
-				"modelSettings":settings["modelLocalDefaultSettings"],
-				"controller":loadReviews,
-				"controllerSettings":settings
-			}
-		});
-		loadFiltersTags (content["Includes"]["Products"][settings["productId"]]['ReviewStatistics'], {
-			"parentContainer":settings["parentContainer"],
-			"viewReloadOptions":{
-				"model":getAllReviews,
-				"modelSettings":settings["modelLocalDefaultSettings"],
-				"controller":loadReviews,
-				"controllerSettings":settings
-			}
-		});
-*/
-		// set classes
-		addOddEvenClasses (defaultReviewContainer);
-		addFirstLastClasses (defaultReviewContainer);
-	
-		// show target container once reviews are finished loading
-		$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).show().removeClass("_BVContentLoadingContainer");
+				});
+			} 
+		},
+		error: function(e) {
+			defaultAjaxErrorFunction(e);
+		}
 	});
 }
 

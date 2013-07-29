@@ -1,4 +1,89 @@
-function loadReviewComments (content, options) {
+
+function loadReviewCommentsWidget (content, options) {
+	var settings = $.extend(true, {
+		"parentContainer":"",
+		"targetContainer":"._BVReviewCommentsWidgetContainer",
+		"viewContainer":"views/review_comments/display/reviewCommentsWidgetContainer.html",
+		"loadOrder":"",
+		"productId":"",
+		"modelLocalDefaultSettings":""
+	}, options);
+	var contentId = settings["contentId"];
+	var productId = settings["productId"];
+	//var newID = "BVReviewContainer" + contentId;
+	$.ajax({
+		url: settings["viewContainer"],
+		type: 'GET',
+		dataType: 'html',
+		async:false,
+		success: function(container) {
+			var $container = $(container);
+			//$("._BVReviewCommentsWidgetContainer").hide().addClass("_BVContentLoadingContainer");
+			// add review comments widget container
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
+			// set variables
+			var commentsToDisplay = content["Results"]; // review comments to display
+			// load comments if available
+			if (commentsToDisplay.length > 0) {
+				// add content id data param to content section
+				$container.find(reviewCommentsContainers["toggleContainer"]).andSelf().filter(reviewCommentsContainers["toggleContainer"]).attr({
+					"data-contentid":contentId
+				});
+
+				// toggle comments button
+				loadToggleReviewCommentsButton ("Show/Hide Comments", {
+					"parentContainer":$container,
+					"productId":productId,
+					"contentId":contentId
+				});
+
+				// comment section header
+				loadSectionHeader ("Comments", {
+					"parentContainer":$container,
+					"targetContainer":defualtSectionHeaderReviewCommentsContainer
+				});
+
+				// comments
+				$.each (commentsToDisplay, function(key) {
+					loadIndividualReviewComment(commentsToDisplay[key], {
+						"parentContainer":$container,
+						"productId":productId,
+					});
+				});
+
+				// pagination
+				loadNumberedPagination (content, {
+					"parentContainer":$container,
+					"targetContainer":"._BVReviewCommentsPaginationContainer",
+					"viewReloadOptions":{
+						"model":getAllReviewComments,
+						"modelSettings":settings["modelLocalDefaultSettings"],
+						"controller":loadReviewCommentsWidget,
+						"controllerSettings":settings
+					}
+				});
+						
+				// set classes
+				addOddEvenClasses (defaultReviewContainer);
+				addFirstLastClasses (defaultReviewContainer);
+
+				// show target container once reviews are finished loading
+				//$("._BVReviewCommentsWidgetContainer").show().removeClass("_BVContentLoadingContainer");
+			}
+			// write review comment button
+			loadWriteReviewCommentButton ("Write a Comment", {
+				"parentContainer":$container,
+				"productId":productId,
+				"contentId":contentId
+			});
+		},
+		error: function(e) {
+			defaultAjaxErrorFunction(e);
+		}
+	});
+}
+
+function loadIndividualReviewComment (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"",
 		"targetContainer":defaultReviewCommentsBodyContainer,
@@ -8,103 +93,80 @@ function loadReviewComments (content, options) {
 		"modelLocalDefaultSettings":""
 	}, options);
 	// hide the target container while comments are loading
-	$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).empty().hide().addClass("_BVContentLoadingContainer");
-	
-	// set content variables
-	var commentsToLoad = content["Results"]; // review comments
-
-	// load comments
-	$.when(
-		// all functions pertaining to individual reviews here
-		$.each(commentsToLoad, function(key) {
-			// get a new id for the comment container using comment id - this will be needed for reference on child elements
-			var contentId = commentsToLoad[key]["Id"]
-			var newID = "BVCommentContainer" + contentId;
-			// inject comment content
-			$.ajax({
-				url: settings["viewContainer"],
-				type: 'GET',
-				dataType: 'html',
-				async: false,
-				success: function(container) {
-					var $container = $(container);
-					// add comment template container
-					$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container).attr("id", newID));
-					// load comment title
-					loadCommentTitle (commentsToLoad[key], {
-						"parentContainer":$container
-					});
-					// load comment text
-					loadCommentBody (commentsToLoad[key], {
-						"parentContainer":$container
-					});
-					// load comment date
-					loadCommentDate (commentsToLoad[key], {
-						"parentContainer":$container
-					});
-					// load comment user nickname
-					loadCommentUserNickname (commentsToLoad[key], {
-						"parentContainer":$container
-					});
-					// load comment user location
-					loadCommentUserLocation (commentsToLoad[key], {
-						"parentContainer":$container
-					});
-					// load comment cdvs
-					if (content["ContextDataValuesOrder"]) {
-						loadCommentContextDataValuesGroup (commentsToLoad[key], {
-							"parentContainer":$container
-						});
-					}
-					// load comment photos
-					loadCommentPhotosGroup(commentsToLoad[key], {
-						"parentContainer":$container
-					});
-					// load comment videos
-					loadCommentVideosGroup(commentsToLoad[key], {
-						"parentContainer":$container
-					});
-					// load comment feedback
-					loadFeedback(commentsToLoad[key], {
-						"parentContainer":$container,
-						"productId":settings["productId"],
-						"contentId":contentId,
-						"feedbackSettings":{
-							"contentType":"review_comment"
-						}
-					});
-					// load badges
-					loadCommentBadges(commentsToLoad[key], {
-						"parentContainer":$container
-					});
-				},
-				error: function(e) {
-					defaultAjaxErrorFunction(e);
+	//$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).empty().hide().addClass("_BVContentLoadingContainer");
+	// get a new id for the comment container using comment id - this will be needed for reference on child elements
+	var contentId = content["Id"]
+	var newID = "BVCommentContainer" + contentId;
+	// inject comment content
+	$.ajax({
+		url: settings["viewContainer"],
+		type: 'GET',
+		dataType: 'html',
+		async: false,
+		success: function(container) {
+			var $container = $(container);
+			// add comment template container
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container).attr("id", newID));
+			// load comment title
+			loadCommentTitle (content, {
+				"parentContainer":$container
+			});
+			// load comment text
+			loadCommentBody (content, {
+				"parentContainer":$container
+			});
+			// load comment date
+			loadCommentDate (content, {
+				"parentContainer":$container
+			});
+			// load comment user nickname
+			loadCommentUserNickname (content, {
+				"parentContainer":$container
+			});
+			// load comment user location
+			loadCommentUserLocation (content, {
+				"parentContainer":$container
+			});
+			// load comment cdvs
+			if (content["ContextDataValuesOrder"]) {
+				loadCommentContextDataValuesGroup (content, {
+					"parentContainer":$container
+				});
+			}
+			// load comment photos
+			if (content["Photos"]) {
+				loadCommentPhotosGroup(content, {
+					"parentContainer":$container
+				});
+			}
+			// load comment videos
+			if (content["Videos"]) {
+				loadCommentVideosGroup(content, {
+					"parentContainer":$container
+				});
+			}
+			// load comment feedback
+			loadFeedback(content, {
+				"parentContainer":$container,
+				"productId":settings["productId"],
+				"contentId":contentId,
+				"feedbackSettings":{
+					"contentType":"review_comment"
 				}
 			});
-		})
-	).done(function(){
-		// all functions pertaining to comments as a group here
-
-		// pagination
-		loadNumberedPagination (content, {
-			"parentContainer":settings["parentContainer"],
-			"targetContainer":settings["targetContainer"],
-			"viewReloadOptions":{
-				"model":getAllReviewComments,
-				"modelSettings":settings["modelLocalDefaultSettings"],
-				"controller":loadReviewComments,
-				"controllerSettings":settings
+			// load badges
+			if (content["BadgesOrder"]) {
+				loadCommentBadges(content, {
+					"parentContainer":$container
+				});
 			}
-		});
-		
-		// set classes
-		addOddEvenClasses (defaultReviewContainer);
-		addFirstLastClasses (defaultReviewContainer);
-
-		// show target container once reviews are finished loading
-		$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).show().removeClass("_BVContentLoadingContainer");
+		},
+		error: function(e) {
+			defaultAjaxErrorFunction(e);
+		}
 	});
+// all functions pertaining to comments as a group here
+
 }
 
 
@@ -275,7 +337,6 @@ function loadCommentContextDataValuesGroup (content, options) {
 		"productId":""
 	}, options);
 	$.each(settings["loadOrder"], function(index) {
-	console.log("test");
 		$.ajax({
 			url: settings["viewContainer"],
 			type: 'GET',
@@ -321,7 +382,6 @@ function loadCommentPhotosGroup (content, options) {
 		"loadOrder":content["Photos"],
 		"productId":""
 	}, options);
-	console.log(settings["loadOrder"]);
 	$.each(settings["loadOrder"], function(index) {
 		$.ajax({
 			url: settings["viewContainer"],
@@ -442,7 +502,6 @@ function loadWriteReviewCommentButton (content, options) {
 			}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).text(content);
 			// write review comment button functionality
 			$container.find(defaultButtonContainer).andSelf().filter(defaultButtonContainer).click(function() {
-				console.log("click");
 				// set attributes and text for button
 				var submissionParams = $.param({
 					"productId":productId,
@@ -489,7 +548,7 @@ function loadToggleReviewCommentsButton (content, options) {
 			// apply toggle functionality to button
 			$container.find(defaultButtonContainer).andSelf().filter(defaultButtonContainer).click(function() {
 				// set display toggle for comment section
-				var commentContainer = $(defaultReviewCommentsSectionContainer + "[data-contentid='" + contentId + "']");
+				var commentContainer = $(reviewCommentsContainers["toggleContainer"] + "[data-contentid='" + contentId + "']");
 				// toggle form if enabled
 				if (!$(this).hasClass("BVDisabled")) {
 					$(commentContainer).fadeToggle(defaultToggleOptions);
