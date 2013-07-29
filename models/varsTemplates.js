@@ -150,6 +150,22 @@ var defaultReportInappropriateFormContainerView = "views/universal/feedback/subm
 
 var defaultIndividualBadgeContainerView = "views/universal/display/badgeIndividualContainer.html"; // generic individual badge module
 
+var defaultBadgesUniversal = {
+	"top1Contributor" : "views/universal/badges/badgeContributor1TextContainer.html",
+	"top10Contributor" : "views/universal/badges/badgeContributor10TextContainer.html",
+	"top25Contributor" : "views/universal/badges/badgeContributor25TextContainer.html",
+	"top50Contributor" : "views/universal/badges/badgeContributor50TextContainer.html",
+	"top100Contributor" : "views/universal/badges/badgeContributor100TextContainer.html",
+	"top250Contributor" : "views/universal/badges/badgeContributor250TextContainer.html",
+	"top500Contributor" : "views/universal/badges/badgeContributor500TextContainer.html",
+	"top1000Contributor" : "views/universal/badges/badgeContributor1000TextContainer.html",
+	"featured" : "views/universal/badges/badgeFeaturedTextContainer.html",
+	"expert" : "views/universal/badges/badgeExpertTextContainer.html",
+	"staff" : "views/universal/badges/badgeStaffTextContainer.html",
+	"verifiedPurchaser" : "views/universal/badges/badgeVerifiedPurchaserTextContainer.html",
+	"socialAnsweringSubscriber" : "views/universal/badges/badgeSocialAnsweringSubscriberTextContainer.html",
+}
+
 
 
 /***** PAGINATION *****/

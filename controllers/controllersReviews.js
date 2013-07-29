@@ -100,10 +100,7 @@ function loadReviewWidget (content, options) {
 			// set classes
 			addOddEvenClasses (defaultReviewContainer);
 			addFirstLastClasses (defaultReviewContainer);
-		
-			// show target container once reviews are finished loading
-			//$(defaultReviewsParentContainer).removeClass("_BVContentLoadingContainer");
-			//$(defaultReviewsParentContainer).show();
+	
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
