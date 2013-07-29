@@ -1,7 +1,7 @@
 function loadReviewPreview (content, options) {
-	defaultReviewsParentContainer = ".BVPreviewContainer";
+
 	var settings = $.extend(true, {
-		"parentContainer":defaultReviewsParentContainer,
+		"parentContainer":defaultPreviewContainer,
 		"targetContainer":defaultReviewsBodyContainer,
 		"viewContainer":defaultReviewContainerView,
 		"loadOrder":"",
@@ -89,8 +89,7 @@ function loadReviewPreview (content, options) {
 						function () {
 							console.log("submitted");
 							loadThankYou (content, {
-								"parentContainer":"#BVSubmissionContainer",
-								"labelThankYou":"Thank you for your submission!"
+								"parentContainer":defaultSubmissionFormContainer
 							});
 						}, {
 						"Parameters": params

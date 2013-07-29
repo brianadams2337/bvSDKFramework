@@ -217,9 +217,9 @@ function loadReviewSubmissionForm (content, options) {
 						function () {
 							console.log("submitted");
 							loadThankYou (content, {
-								"parentContainer":"#BVSubmissionContainer",
-								"labelThankYou":"Thank you for your submission!"
+								"parentContainer":defaultSubmissionFormContainer
 							});
+							$(defaultButtonContainer).hide();
 						}, {
 						"Parameters": params
 					});
@@ -241,7 +241,7 @@ function loadReviewSubmissionForm (content, options) {
 							console.log("preview");
 							previewContent["Review"]["RatingRange"] = 5; //default to 5 since API doesn't include this for preview
 							loadReviewPreview (previewContent["Review"], {
-								"parentContainer":"#BVSubmissionContainer",
+								"parentContainer":defaultPreviewContainer,
 								"productId":"test1",
 								"modelLocalDefaultSettings":""
 							});
@@ -702,8 +702,7 @@ function loadThankYou (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":defaultSubmissionFormContainer,
 		"targetContainer":defaultThankYouContainer,
-		"viewContainer":defaultThankYouView,
-		"labelThankYou":"Thank you for your review."
+		"viewContainer":defaultThankYouView
 	}, options);
 	$.ajax({
 		url: settings["viewContainer"],
@@ -712,13 +711,11 @@ function loadThankYou (content, options) {
 		async: false,
 		success: function(container) {
 			var $container = $(container);
-			// set label
-			$container.find(defaultThankYouLabel).andSelf().filter(defaultThankYouLabel).text(settings["labelThankYou"]);
 			// add input template
 			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
 			$("form").hide();
-			$(".BVPreviewContainer").hide();
-			$(".BVField").hide();
+			$(defaultPreviewContainer).hide();
+			$(defaultSubmissionButtonsContainer).hide();
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);

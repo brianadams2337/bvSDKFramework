@@ -48,8 +48,11 @@ var defaultFormHelperTextContainer = "._BVHelperText"; // input helper text
 var defaultFormCharacterCounterTextContainer = "._BVCharacterCounter"; // character counter
 var defaultFormCharacterCounterTextContainerText = "._BVCharacterCounterText"; // character counter suffix
 
-var defaultThankYouContainer = ".BVThankYouContainer"; //Thank you container
-var defaultThankYouLabel = "._defaultThankYouText"; //Thank you text
+var defaultSubmissionButtonsContainer = "._BVFieldButtonGroup"; //Submit, Preview, Edit and Cancel button container
+
+var defaultPreviewContainer = "._BVPreviewContainer"; //Preview container
+
+var defaultThankYouContainer = "._BVThankYouContainer"; //Thank you container
 
 /***** HEADERS *****/
 
