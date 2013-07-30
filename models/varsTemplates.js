@@ -150,6 +150,22 @@ var defaultReportInappropriateFormContainerView = "views/universal/feedback/subm
 
 var defaultIndividualBadgeContainerView = "views/universal/display/badgeIndividualContainer.html"; // generic individual badge module
 
+var defaultBadgesUniversal = {
+	"top1Contributor" : "views/universal/badges/badgeContributor1TextContainer.html",
+	"top10Contributor" : "views/universal/badges/badgeContributor10TextContainer.html",
+	"top25Contributor" : "views/universal/badges/badgeContributor25TextContainer.html",
+	"top50Contributor" : "views/universal/badges/badgeContributor50TextContainer.html",
+	"top100Contributor" : "views/universal/badges/badgeContributor100TextContainer.html",
+	"top250Contributor" : "views/universal/badges/badgeContributor250TextContainer.html",
+	"top500Contributor" : "views/universal/badges/badgeContributor500TextContainer.html",
+	"top1000Contributor" : "views/universal/badges/badgeContributor1000TextContainer.html",
+	"featured" : "views/universal/badges/badgeFeaturedTextContainer.html",
+	"expert" : "views/universal/badges/badgeExpertTextContainer.html",
+	"staff" : "views/universal/badges/badgeStaffTextContainer.html",
+	"verifiedPurchaser" : "views/universal/badges/badgeVerifiedPurchaserTextContainer.html",
+	"socialAnsweringSubscriber" : "views/universal/badges/badgeSocialAnsweringSubscriberTextContainer.html",
+}
+
 
 
 /***** PAGINATION *****/
@@ -209,8 +225,9 @@ var defaultTagIndividualContainerView = "views/universal/submission/inputTagCont
 
 // checkbox templates
 var defaultTermsConditionsContainerView = "views/universal/submission/inputTermsConditionsContainer.html"; // tag individual input module
+var defaultEmailWhenCommentedContainerView = "views/universal/submission/inputEmailWhenCommentedContainer.html"; // tag individual input module
+var defaultEmailAlertWhenPublishedContainerView = "views/universal/submission/inputEmailWhenPublishedContainer.html"; // tag individual input module
 
-var defaultThankYouView = "views/universal/submission/defaultThankYouView.html"; //thank you page template
 
 
 /***** REVIEW SPECIFIC *****/
@@ -218,6 +235,8 @@ var defaultThankYouView = "views/universal/submission/defaultThankYouView.html";
 
 // main templates
 var defaultSubmissionFormContainerView = "views/reviews/submission/submissionFormReviewContainer.html";
+var defaultThankYouView = "views/universal/submission/defaultThankYouView.html"; //thank you page template
+
 
 // ratings templates
 var defaultSecondaryRatingContainerView = "views/reviews/submission/inputSecondaryRatingContainer.html"; // secondary rating module
