@@ -141,7 +141,7 @@ function loadFeedbackVoting (content, options) {
 			// add feedback voting container
 			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
 			// load positive feedback button
-			loadFeedbackVotingButton("helpful " + feedbackCountPositive, {
+			loadFeedbackVotingButton("" + feedbackCountPositive, {
 				"parentContainer":$container,
 				"targetContainer":defaultFeedbackVotingButtonPositiveContainer,
 				"productId":settings["productId"],
@@ -153,7 +153,7 @@ function loadFeedbackVoting (content, options) {
 				}
 			});
 			// load negative feedback button
-			loadFeedbackVotingButton("unhelpful " + feedbackCountNegative, {
+			loadFeedbackVotingButton("" + feedbackCountNegative, {
 				"parentContainer":$container,
 				"targetContainer":defaultFeedbackVotingButtonNegativeContainer,
 				"productId":settings["productId"],
@@ -382,7 +382,7 @@ function loadReportInappropriate (content, options) {
 			// add report inappropriate template
 			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
 			// load report inappropriate button
-			loadReportInappropriateButton("report as inappropriate", {
+			loadReportInappropriateButton("Flag Review", {
 				"parentContainer":$container,
 				"productId":productId,
 				"contentId":contentId,

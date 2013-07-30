@@ -66,7 +66,7 @@ $(document).ready(function() {
 						"filter":{
 							//"isfeatured":true,
 							//"hasphotos":false,
-							//"hascomments":true,
+							// "hascomments":true,
 							//"contextdatavalue_Gender":"Male",
 							//"contextdatavalue_Age": "18to24",
 						},

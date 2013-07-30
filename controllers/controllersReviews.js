@@ -249,7 +249,7 @@ function loadQuickTake (content, options) {
 				});
 
 				// write review button
-				loadWriteReviewButton ("Write a Review", {
+				loadWriteReviewButton ("Review This Product", {
 					"parentContainer":$container,
 					"productId":settings["productId"]
 				});
@@ -320,7 +320,7 @@ function loadReviewRecommendedAverage (content, options) {
 			var recommendedPercentage = (recommendedYesCount/recommendedTotalCount);
 			var recommendedPercentageFormatted = convertDecimalToPercentage(recommendedPercentage);
 			// set text variable_BVReviewContainer
-			var recommendedAverageText = recommendedPercentageFormatted + "% recommeded this product";
+			var recommendedAverageText = recommendedPercentageFormatted + "% of reviewers would recommeded this product to a friend (" + recommendedYesCount + " out of " + recommendedTotalCount + ")";
 			// set average recommended text
 			$container.find(defaultIsRecommendedValueContainer).andSelf().filter(defaultIsRecommendedValueContainer).text(recommendedAverageText);
 			// add average recommended template
@@ -517,7 +517,7 @@ function loadReviewRecommended (content, options) {
 			success: function(container) {
 				var $container = $(container);
 				// set variables
-				var isRecommendedValue = "Yes, I do recommend this product.";
+				var isRecommendedValue = "I would recommend this to a friend!";
 				var isNotRecommendedValue = "No, I do not recommend this product.";
 				// set value
 				if (content['IsRecommended'] == true) {
