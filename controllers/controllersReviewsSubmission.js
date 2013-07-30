@@ -119,6 +119,20 @@ function loadReviewSubmissionForm (content, options) {
 					}
 				});
 				*/
+				// video link
+				loadYoutubeUrlInput (content, {
+					"parentContainer":$container,
+					"inputSettings":{
+						"inputLabel":"Youtube Link"
+					}
+				});
+				// video caption
+				loadVideoCaptionInput (content, {
+					"parentContainer":$container,
+					"inputSettings":{
+						"inputLabel":"Video Caption"
+					}
+				});
 				// location
 				loadUserLocationInput (content, {
 					"parentContainer":$container,
@@ -163,20 +177,8 @@ function loadReviewSubmissionForm (content, options) {
 				});
 				// photo upload
 				console.log("photoupload");
-				// video link
-				loadYoutubeUrlInput (content, {
-					"parentContainer":$container,
-					"inputSettings":{
-						"inputLabel":"Youtube Link"
-					}
-				});
-				// video caption
-				loadVideoCaptionInput (content, {
-					"parentContainer":$container,
-					"inputSettings":{
-						"inputLabel":"Video Caption"
-					}
-				});
+				// video upload
+				console.log("videoupload");
 				// product recommendations
 				console.log("productrecommendations");
 				// tags
@@ -189,21 +191,17 @@ function loadReviewSubmissionForm (content, options) {
 				console.log("hostedauthentication");
 
 				// buttons
-				if (content["Data"]["Fields"]["agreedtotermsandconditions"]) {
-					loadTermsAndConditionsInput (content, {
-						"parentContainer":$container
-					});
-				}
-				if (content["Data"]["Fields"]["sendemailalertwhencommented"]) {
-					loadSendEmailAlertWhenCommentedInput (content, {
-						"parentContainer":$container
-					});				};
-				if (content["Data"]["Fields"]["sendemailalertwhenpublished"]) {
-					loadSendEmailAlertWhenPublishedInput (content, {
-						"parentContainer":$container
-					});
-				};
-				
+				loadTermsAndConditionsInput (content, {
+					"parentContainer":$container
+				});
+				/*
+				loadSendEmailAlertWhenPublishedInput (content, {
+					"parentContainer":$container
+				});
+				loadSendEmailAlertWhenCommentedInput (content, {
+					"parentContainer":$container
+				});*/
+
 				// submit button
 				loadSubmitButton ("Submit", {
 					"parentContainer":$container
@@ -241,8 +239,6 @@ function loadReviewSubmissionForm (content, options) {
 							console.log("preview");
 							previewContent["Review"]["RatingRange"] = 5; //default to 5 since API doesn't include this for preview
 							loadReviewPreview (previewContent["Review"], {
-								"parentContainer":"#BVSubmissionContainer",
-								"targetContainer":"#BVPreviewContainer",
 								"productId":"test1",
 								"modelLocalDefaultSettings":""
 							});
@@ -692,6 +688,31 @@ function loadVideoCaptionInput (content, options) {
 				"targetContainer":defaultFormInputWrapperContainer,
 				"inputSettings":settings["inputSettings"]
 			});
+		},
+		error: function(e) {
+			defaultAjaxErrorFunction(e);
+		}
+	});
+}
+
+function loadThankYou (content, options) {
+	var settings = $.extend(true, {
+		"parentContainer":defaultSubmissionFormContainer,
+		"targetContainer":defaultThankYouContainer,
+		"viewContainer":defaultThankYouView
+	}, options);
+	$.ajax({
+		url: settings["viewContainer"],
+		type: 'GET',
+		dataType: 'html',
+		async: false,
+		success: function(container) {
+			var $container = $(container);
+			// add input template
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
+			$("form").hide();
+			$(defaultPreviewContainer).hide();
+			$(defaultSubmissionButtonsContainer).hide();
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);

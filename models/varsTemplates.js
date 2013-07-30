@@ -229,11 +229,14 @@ var defaultEmailWhenCommentedContainerView = "views/universal/submission/inputEm
 var defaultEmailAlertWhenPublishedContainerView = "views/universal/submission/inputEmailWhenPublishedContainer.html"; // tag individual input module
 
 
+
 /***** REVIEW SPECIFIC *****/
 
 
 // main templates
 var defaultSubmissionFormContainerView = "views/reviews/submission/submissionFormReviewContainer.html";
+var defaultThankYouView = "views/universal/submission/defaultThankYouView.html"; //thank you page template
+
 
 // ratings templates
 var defaultSecondaryRatingContainerView = "views/reviews/submission/inputSecondaryRatingContainer.html"; // secondary rating module

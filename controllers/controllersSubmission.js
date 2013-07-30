@@ -1001,6 +1001,7 @@ function loadCheckboxInputField (content, options) {
 			$container.find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
 				"id":inputId,
 				"name":inputName,
+				"value":inputValue,
 			});
 			/* commented out b/c it may be needed in the future but appers to not be needed right now.
 			// selected value
