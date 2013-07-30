@@ -119,20 +119,6 @@ function loadReviewSubmissionForm (content, options) {
 					}
 				});
 				*/
-				// video link
-				loadYoutubeUrlInput (content, {
-					"parentContainer":$container,
-					"inputSettings":{
-						"inputLabel":"Youtube Link"
-					}
-				});
-				// video caption
-				loadVideoCaptionInput (content, {
-					"parentContainer":$container,
-					"inputSettings":{
-						"inputLabel":"Video Caption"
-					}
-				});
 				// location
 				loadUserLocationInput (content, {
 					"parentContainer":$container,
@@ -177,8 +163,20 @@ function loadReviewSubmissionForm (content, options) {
 				});
 				// photo upload
 				console.log("photoupload");
-				// video upload
-				console.log("videoupload");
+				// video link
+				loadYoutubeUrlInput (content, {
+					"parentContainer":$container,
+					"inputSettings":{
+						"inputLabel":"Youtube Link"
+					}
+				});
+				// video caption
+				loadVideoCaptionInput (content, {
+					"parentContainer":$container,
+					"inputSettings":{
+						"inputLabel":"Video Caption"
+					}
+				});
 				// product recommendations
 				console.log("productrecommendations");
 				// tags
@@ -191,17 +189,21 @@ function loadReviewSubmissionForm (content, options) {
 				console.log("hostedauthentication");
 
 				// buttons
-				loadTermsAndConditionsInput (content, {
-					"parentContainer":$container
-				});
-				/*
-				loadSendEmailAlertWhenPublishedInput (content, {
-					"parentContainer":$container
-				});
-				loadSendEmailAlertWhenCommentedInput (content, {
-					"parentContainer":$container
-				});*/
-
+				if (content["Data"]["Fields"]["agreedtotermsandconditions"]) {
+					loadTermsAndConditionsInput (content, {
+						"parentContainer":$container
+					});
+				}
+				if (content["Data"]["Fields"]["sendemailalertwhencommented"]) {
+					loadSendEmailAlertWhenCommentedInput (content, {
+						"parentContainer":$container
+					});				};
+				if (content["Data"]["Fields"]["sendemailalertwhenpublished"]) {
+					loadSendEmailAlertWhenPublishedInput (content, {
+						"parentContainer":$container
+					});
+				};
+				
 				// submit button
 				loadSubmitButton ("Submit", {
 					"parentContainer":$container
@@ -240,6 +242,7 @@ function loadReviewSubmissionForm (content, options) {
 							previewContent["Review"]["RatingRange"] = 5; //default to 5 since API doesn't include this for preview
 							loadReviewPreview (previewContent["Review"], {
 								"parentContainer":"#BVSubmissionContainer",
+								"targetContainer":"#BVPreviewContainer",
 								"productId":"test1",
 								"modelLocalDefaultSettings":""
 							});

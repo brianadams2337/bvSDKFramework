@@ -21,14 +21,8 @@ $(document).ready(function() {
 			/* LOAD JS FILES */
 			$.getScript(siteBaseURL + "js/jquery.min.1.9.1.js"),
 			$.getScript(siteBaseURL + "js/createHTML5Elements.js"),
-			/* controllers */
-			$.getScript(siteBaseURL + "controllers/controllersGlobal.js"),
-			$.getScript(siteBaseURL + "controllers/controllersEventListeners.js"),
-			$.getScript(siteBaseURL + "controllers/controllersSubmission.js"),
-			$.getScript(siteBaseURL + "controllers/controllersReviewsSubmission.js"),
-			$.getScript(siteBaseURL + "controllers/controllersReviewPreview.js"),
-			$.getScript(siteBaseURL + "controllers/controllersReviews.js"),
-			$.getScript(siteBaseURL + "controllers/controllersReviewCommentsSubmission.js"),
+			/* properties */
+			$.getScript(siteBaseURL + "models/properties/properties.js"),
 			/* models */
 			$.getScript(siteBaseURL + "models/varsTemplates.js"),
 			$.getScript(siteBaseURL + "models/varsGlobal.js"),
@@ -37,6 +31,14 @@ $(document).ready(function() {
 			$.getScript(siteBaseURL + "models/modelsGlobal.js"),
 			$.getScript(siteBaseURL + "models/modelsReviewsSubmission.js"),
 			$.getScript(siteBaseURL + "models/modelsReviewCommentsSubmission.js"),
+			/* controllers */
+			$.getScript(siteBaseURL + "controllers/controllersGlobal.js"),
+			$.getScript(siteBaseURL + "controllers/controllersEventListeners.js"),
+			$.getScript(siteBaseURL + "controllers/controllersSubmission.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviewsSubmission.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviewPreview.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviews.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviewCommentsSubmission.js"),
 			/* plugins */
 			$.getScript(siteBaseURL + "js/plugins/jquery.cookie.js"),
 			$.getScript(siteBaseURL + "js/plugins/jquery.dateFormat.js"),

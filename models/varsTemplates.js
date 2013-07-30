@@ -225,7 +225,8 @@ var defaultTagIndividualContainerView = "views/universal/submission/inputTagCont
 
 // checkbox templates
 var defaultTermsConditionsContainerView = "views/universal/submission/inputTermsConditionsContainer.html"; // tag individual input module
-
+var defaultEmailWhenCommentedContainerView = "views/universal/submission/inputEmailWhenCommentedContainer.html"; // tag individual input module
+var defaultEmailAlertWhenPublishedContainerView = "views/universal/submission/inputEmailWhenPublishedContainer.html"; // tag individual input module
 
 
 /***** REVIEW SPECIFIC *****/

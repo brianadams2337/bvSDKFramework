@@ -544,7 +544,8 @@ function loadTermsAndConditionsInput (content, options) {
 			loadCheckboxInputField (content, {
 				"parentContainer":$container,
 				"inputSettings":{
-					"inputLabel":"I acknowledge that I have read and agree to the Terms & Conditions."
+					"inputLabel":labelsSubmissionOptIns["termsAndConditions"],
+					"inputValue":true,
 				}
 			});
 		},
@@ -559,7 +560,7 @@ function loadSendEmailAlertWhenCommentedInput (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":defaultSubmissionFormContainer,
 		"targetContainer":defaultEmailAlertWhenCommentedInputContainer,
-		"viewContainer":"",
+		"viewContainer":defaultEmailWhenCommentedContainerView,
 		"loadOrder":"",
 		"productId":""
 	}, options);
@@ -576,7 +577,8 @@ function loadSendEmailAlertWhenCommentedInput (content, options) {
 			loadCheckboxInputField (content, {
 				"parentContainer":$container,
 				"inputSettings":{
-					"inputLabel":"Yes, Please send me an email when a comment posts to my review."
+					"inputLabel":labelsSubmissionOptIns["emailAlertWhenCommented"],
+					"inputValue":true,
 				}
 			});
 		},
@@ -591,7 +593,7 @@ function loadSendEmailAlertWhenPublishedInput (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":defaultSubmissionFormContainer,
 		"targetContainer":defaultEmailAlertWhenPublishedInputContainer,
-		"viewContainer":"",
+		"viewContainer":defaultEmailAlertWhenPublishedContainerView,
 		"loadOrder":"",
 		"productId":""
 	}, options);
@@ -608,7 +610,8 @@ function loadSendEmailAlertWhenPublishedInput (content, options) {
 			loadCheckboxInputField (content, {
 				"parentContainer":$container,
 				"inputSettings":{
-					"inputLabel":"Yes, Please send me an email when my review is published."
+					"inputLabel":labelsSubmissionOptIns["emailAlertWhenPublished"],
+					"inputValue":true,
 				}
 			});
 		},
@@ -998,14 +1001,14 @@ function loadCheckboxInputField (content, options) {
 			$container.find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
 				"id":inputId,
 				"name":inputName,
-				"value":inputValue
 			});
+			/* commented out b/c it may be needed in the future but appers to not be needed right now.
 			// selected value
 			if (inputValue) {
 				$container.find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
 					"checked":"checked",
 				});
-			}
+			*/
 			// required
 			if (inputRequired == true) {
 				$container.find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass("required");
