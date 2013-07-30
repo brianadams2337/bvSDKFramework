@@ -1,8 +1,7 @@
 function loadReviewPreview (content, options) {
-
 	var settings = $.extend(true, {
-		"parentContainer":defaultPreviewContainer,
-		"targetContainer":defaultReviewsBodyContainer,
+		"parentContainer":defaultReviewsParentContainer,
+		"targetContainer":"#BVPreviewContainer",
 		"viewContainer":defaultReviewContainerView,
 		"loadOrder":"",
 		"productId":"",

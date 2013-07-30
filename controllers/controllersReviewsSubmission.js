@@ -34,7 +34,7 @@ function loadReviewSubmissionForm (content, options) {
 			success: function(container) {
 				var $container = $(container);
 				// add submission container
-				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container));
+				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container).attr("id", newID));
 				// set form attributes (just fallbacks, not needed since we are using ajax submission)
 				$container.find("form").andSelf().filter("form").attr({
 					"id":newID,
@@ -216,10 +216,8 @@ function loadReviewSubmissionForm (content, options) {
 					postReviewsSubmissionForm(settings["productId"],
 						function () {
 							console.log("submitted");
-							loadThankYou (content, {
-								"parentContainer":defaultSubmissionFormContainer
-							});
-							$(defaultButtonContainer).hide();
+							console.log($container);
+							$container.html("Thank you for your submission!");
 						}, {
 						"Parameters": params
 					});
@@ -241,7 +239,7 @@ function loadReviewSubmissionForm (content, options) {
 							console.log("preview");
 							previewContent["Review"]["RatingRange"] = 5; //default to 5 since API doesn't include this for preview
 							loadReviewPreview (previewContent["Review"], {
-								"parentContainer":defaultPreviewContainer,
+								"parentContainer":"#BVSubmissionContainer",
 								"productId":"test1",
 								"modelLocalDefaultSettings":""
 							});
@@ -691,31 +689,6 @@ function loadVideoCaptionInput (content, options) {
 				"targetContainer":defaultFormInputWrapperContainer,
 				"inputSettings":settings["inputSettings"]
 			});
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
-	});
-}
-
-function loadThankYou (content, options) {
-	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
-		"targetContainer":defaultThankYouContainer,
-		"viewContainer":defaultThankYouView
-	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
-			$("form").hide();
-			$(defaultPreviewContainer).hide();
-			$(defaultSubmissionButtonsContainer).hide();
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
