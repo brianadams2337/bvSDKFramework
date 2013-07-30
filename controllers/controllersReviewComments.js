@@ -18,7 +18,7 @@ function loadReviewCommentsWidget (content, options) {
 		async:false,
 		success: function(container) {
 			var $container = $(container);
-			//$("._BVReviewCommentsWidgetContainer").hide().addClass("_BVContentLoadingContainer");
+
 			// add review comments widget container
 			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
 			// set variables
@@ -67,8 +67,6 @@ function loadReviewCommentsWidget (content, options) {
 				addOddEvenClasses (defaultReviewContainer);
 				addFirstLastClasses (defaultReviewContainer);
 
-				// show target container once reviews are finished loading
-				//$("._BVReviewCommentsWidgetContainer").show().removeClass("_BVContentLoadingContainer");
 			}
 			// write review comment button
 			loadWriteReviewCommentButton ("Write a Comment", {

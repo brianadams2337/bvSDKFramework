@@ -50,6 +50,7 @@ var defaultReviewFilterGroupContainer = "._BVFilterGroupContainer"; // all filte
 var defaultReviewFilterIndividualContainer = "._BVFilterIndividualContainer"; // individual filter container
 var defaultReviewFilterLabelTextContainer = "._BVFilterLabelText";
 var defaultReviewFilterTextContainer = "._BVFilterText";
+var defaultReviewFilterCountTextContainer = "._BVFilterCountText";
 
 /* USER INFO */
 var defaultReviewUserNicknameContainer = "._BVUserNicknameContainer"; // user nickname container
