@@ -27,6 +27,7 @@ $(document).ready(function() {
 			$.getScript(siteBaseURL + "models/varsTemplates.js"),
 			$.getScript(siteBaseURL + "models/varsGlobal.js"),
 			$.getScript(siteBaseURL + "models/varsReviews.js"),
+			$.getScript(siteBaseURL + "models/varsReviewComments.js"),
 			$.getScript(siteBaseURL + "models/varsSubmission.js"),
 			$.getScript(siteBaseURL + "models/modelsGlobal.js"),
 			$.getScript(siteBaseURL + "models/modelsReviewsSubmission.js"),
@@ -34,11 +35,15 @@ $(document).ready(function() {
 			/* controllers */
 			$.getScript(siteBaseURL + "controllers/controllersGlobal.js"),
 			$.getScript(siteBaseURL + "controllers/controllersEventListeners.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviews.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviewComments.js"),
 			$.getScript(siteBaseURL + "controllers/controllersSubmission.js"),
 			$.getScript(siteBaseURL + "controllers/controllersReviewsSubmission.js"),
-			$.getScript(siteBaseURL + "controllers/controllersReviewPreview.js"),
-			$.getScript(siteBaseURL + "controllers/controllersReviews.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviewsSubmissionPreview.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviewsSubmissionThankYou.js"),
 			$.getScript(siteBaseURL + "controllers/controllersReviewCommentsSubmission.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviewCommentsSubmissionPreview.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviewCommentsSubmissionThankYou.js"),
 			/* plugins */
 			$.getScript(siteBaseURL + "js/plugins/jquery.cookie.js"),
 			$.getScript(siteBaseURL + "js/plugins/jquery.dateFormat.js"),
@@ -59,7 +64,7 @@ $(document).ready(function() {
 					console.log("review");
 					// load review submission container
 					getReviewsSubmissionForm(urlParameters["productId"], function(content) {
-						loadReviewSubmissionForm(content, {
+						loadReviewSubmissionWidget(content, {
 							"productId":urlParameters["productId"],
 							"returnURL":urlParameters["returnURL"]
 						});
@@ -72,7 +77,7 @@ $(document).ready(function() {
 					// load review submission container
 					getReviewCommentsSubmissionForm(urlParameters["reviewId"], function(content) {
 						console.log(urlParameters["reviewId"]);
-						loadReviewCommentSubmissionForm(content, {
+						loadReviewCommentSubmissionWidget(content, {
 							"productId":urlParameters["productId"],
 							"contentId":urlParameters["reviewId"],
 							"returnURL":urlParameters["returnURL"]

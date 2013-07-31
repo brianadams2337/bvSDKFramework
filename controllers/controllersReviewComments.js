@@ -2,8 +2,8 @@
 function loadReviewCommentsWidget (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"",
-		"targetContainer":"._BVReviewCommentsWidgetContainer",
-		"viewContainer":"views/review_comments/display/reviewCommentsWidgetContainer.html",
+		"targetContainer":defaultReviewCommentsWidgetContainer,
+		"viewContainer":defaultReviewCommentWidgetContainerView,
 		"loadOrder":"",
 		"productId":"",
 		"modelLocalDefaultSettings":""
@@ -54,7 +54,7 @@ function loadReviewCommentsWidget (content, options) {
 				// pagination
 				loadNumberedPagination (content, {
 					"parentContainer":$container,
-					"targetContainer":"._BVReviewCommentsPaginationContainer",
+					"targetContainer":defaultReviewCommentPaginationContainer,
 					"viewReloadOptions":{
 						"model":getAllReviewComments,
 						"modelSettings":settings["modelLocalDefaultSettings"],

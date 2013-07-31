@@ -1,5 +1,46 @@
 /***** DEFAULT REVIEW COMMENT SUBMISSION FORM FUNCTION *****/
 
+function loadReviewCommentSubmissionWidget (content, options) {
+	var settings = $.extend(true, {
+		"parentContainer":"body",
+		"targetContainer":defaultSubmissionContainer,
+		"viewContainer":defaultSubmissionWidgetContainerView,
+		"loadOrder":"",
+		"productId":"",
+		"returnURL":"",
+	}, options);
+	console.log(content);
+	$(settings["targetContainer"]).hide();
+	$.when(
+		$.ajax({
+			url: settings["viewContainer"],
+			type: 'get',
+			dataType: 'html',
+			async: false,
+			success: function(container) {
+				var $container = $(container);
+				// add submission container
+				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container));
+
+				// load review submission form
+				loadReviewCommentSubmissionForm (content, {
+					"parentContainer":$container,
+					"productId":settings["productId"],
+					"contentId":settings["contentId"],
+					"returnURL":settings["returnURL"]
+				});
+				
+			},
+			error: function(e) {
+				defaultAjaxErrorFunction(e);
+			}
+		})
+	).done(function(){
+		$(settings["targetContainer"]).show();
+		$(settings["targetContainer"]).removeClass("_BVContentLoadingContainer");
+	});
+}
+
 function loadReviewCommentSubmissionForm (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":defaultSubmissionContainer,
@@ -24,7 +65,7 @@ function loadReviewCommentSubmissionForm (content, options) {
 	console.log(content);
 	$(settings["targetContainer"]).hide();
 	// get a new id for the submission container using product id - this will be needed for reference on child elements
-	var newID = "BVSubmissionContainerID" + settings["productId"];
+	var newID = "BVSubmissionContainerID_" + settings["productId"];
 	$.when(
 		$.ajax({
 			url: settings["viewContainer"],
@@ -115,9 +156,13 @@ function loadReviewCommentSubmissionForm (content, options) {
 						"action":"submit"
 					});
 					// POST form to server
-					postReviewCommentsSubmissionForm(settings["contentId"],
-						function () {
+					postReviewCommentsSubmissionForm(settings["contentId"], function (content) {
 							console.log("submitted");
+							loadReviewCommentSubmissionThankYouWidget (content, {
+								"productId":settings["productId"],
+								"contentId":settings["contentId"],
+								"returnURL":settings["returnURL"],
+							});
 						}, {
 						"Parameters": params
 					});
@@ -131,12 +176,16 @@ function loadReviewCommentSubmissionForm (content, options) {
 				$container.find(defaultButtonPreviewContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonPreviewContainer + " " + defaultButtonContainer).click(function() {
 					// get form parameters
 					var params = returnFormParamaters("#" + newID, {
-						"action":"preview"
+						"action":"preview",
 					});
 					// POST form to server
-					postReviewCommentsSubmissionForm(settings["contentId"],
-						function () {
+					postReviewCommentsSubmissionForm(settings["contentId"], function (content) {
 							console.log("preview");
+							loadReviewCommentSubmissionPreviewWidget (content, {
+								"productId":settings["productId"],
+								"contentId":settings["contentId"],
+								"returnURL":settings["returnURL"],
+							});
 						}, {
 						"Parameters": params
 					});
@@ -228,7 +277,6 @@ function loadReviewCommentTextInput (content, options) {
 			"inputLabel":content["Label"],
 			"inputPlaceholder":"", // user defined
 			"inputHelperText":options["inputSettings"]["inputHelperText"], // user defined
-			"inputCharacterCounterText":options["inputSettings"]["inputCharacterCounterText"],
 			"inputValue":content["Value"],
 			"inputMinLength":content["MinLength"],
 			"inputMaxLength":content["MaxLength"],
@@ -250,8 +298,6 @@ function loadReviewCommentTextInput (content, options) {
 			});
 			// set helper text
 			$container.find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(settings["inputSettings"]["inputHelperText"]);
-			// set character counter text
-			$container.find(defaultFormCharacterCounterTextContainerText).andSelf().filter(defaultFormCharacterCounterTextContainerText).text(settings["inputSettings"]["inputCharacterCounterText"]);
 			// add input template
 			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
 			// load input

@@ -4,7 +4,7 @@ function loadReviewWidget (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"body",
 		"targetContainer":defaultReviewsParentContainer,
-		"viewContainer":"views/reviews/display/reviewWidgetContainer.html",
+		"viewContainer":defaultReviewWidgetContainerView,
 		"loadOrder":"",
 		"productId":"",
 		"modelLocalDefaultSettings":""
@@ -39,7 +39,7 @@ function loadReviewWidget (content, options) {
 			// pagination
 			loadNumberedPagination (content, {
 				"parentContainer":$container,
-				"targetContainer":"._BVReviewPaginationContainer",
+				"targetContainer":defaultReviewPaginationContainer,
 				"viewReloadOptions":{
 					"model":getAllReviews,
 					"modelSettings":settings["modelLocalDefaultSettings"],

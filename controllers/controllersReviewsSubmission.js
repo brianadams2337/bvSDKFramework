@@ -1,5 +1,50 @@
 /* DEFAULT REVIEW SUBMISSION FORM FUNCTION */
 
+function loadReviewSubmissionWidget (content, options) {
+	var settings = $.extend(true, {
+		"parentContainer":"body",
+		"targetContainer":defaultSubmissionContainer,
+		"viewContainer":defaultSubmissionWidgetContainerView,
+		"loadOrder":"",
+		"productId":"",
+		"returnURL":"",
+	}, options);
+	console.log(content);
+	$(settings["targetContainer"]).hide();
+	$.when(
+		$.ajax({
+			url: settings["viewContainer"],
+			type: 'get',
+			dataType: 'html',
+			async: false,
+			success: function(container) {
+				var $container = $(container);
+				// add submission container
+				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container));
+
+				// load review submission form
+				loadReviewSubmissionForm (content, {
+					"parentContainer":$container,
+					"productId":settings["productId"],
+					"returnURL":settings["returnURL"],
+				});
+				
+				loadEventListeners("Listener", {
+					"textFieldCounter": {
+						"textField": ".BVFormInputTextarea",
+					}
+				});
+			},
+			error: function(e) {
+				defaultAjaxErrorFunction(e);
+			}
+		})
+	).done(function(){
+		$(settings["targetContainer"]).show();
+		$(settings["targetContainer"]).removeClass("_BVContentLoadingContainer");
+	});
+}
+
 function loadReviewSubmissionForm (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":defaultSubmissionContainer,
@@ -8,23 +53,10 @@ function loadReviewSubmissionForm (content, options) {
 		"loadOrder":"",
 		"productId":"",
 		"returnURL":"",
-		"inputSettings":{
-			"inputName":content["Id"],
-			"inputType":content["Type"],
-			"inputLabel":content["Label"],
-			"inputPlaceholder":"",
-			"inputValue":content["Value"],
-			"inputMinLength":content["MinLength"],
-			"inputMaxLength":content["MaxLength"],
-			"inputRequired":content["Required"],
-			"inputDefault":content["Default"],
-			"inputOptionsArray":content["Options"]
-		}
 	}, options);
 	console.log(content);
-	$(settings["targetContainer"]).hide();
-	// get a new id for the submission container using product id - this will be needed for reference on child elements
-	var newID = "BVSubmissionContainerID" + settings["productId"];
+	// get a new id for the submission container using product id - this will be needed for reference on form processing
+	var newID = "BVSubmissionContainerID_" + settings["productId"];
 	$.when(
 		$.ajax({
 			url: settings["viewContainer"],
@@ -39,7 +71,7 @@ function loadReviewSubmissionForm (content, options) {
 				$container.find("form").andSelf().filter("form").attr({
 					"id":newID,
 					"name":newID,
-					//"action":"formprocess.php?productId=" + settings["productId"],
+					"action":"",
 					"method":"POST",
 					"enctype":"application/x-www-form-urlencoded",
 					"autocomplete":"on",
@@ -99,53 +131,42 @@ function loadReviewSubmissionForm (content, options) {
 					"viewContainer":defaultInputTextAreaWithCharacterCounterContainerView,
 					"inputSettings":{
 						"inputLabel":"Review Text",
-						"inputHelperText": "Example: This rocks!",
-						"inputCharacterCounterText": "Character(s) needed to meet minimum length: " 
 					}
 				});
-				/* TURNED OFF DUE TO ANON SUB
 				// nickname
-				loadUserNicknameInput (content, {
-					"parentContainer":$container,
-					"inputSettings":{
-						"inputLabel":"User Nickname",
-					}
-				});
+				if (content["Data"]["Fields"]["usernickname"]) {
+					loadUserNicknameInput (content, {
+						"parentContainer":$container,
+						"inputSettings":{
+							"inputLabel":"User Nickname",
+						}
+					});
+				}
 				// email
-				loadUserEmailInput (content, {
-					"parentContainer":$container,
-					"inputSettings":{
-						"inputLabel":"User Email",
-					}
-				});
-				*/
-				// video link
-				loadYoutubeUrlInput (content, {
-					"parentContainer":$container,
-					"inputSettings":{
-						"inputLabel":"Youtube Link"
-					}
-				});
-				// video caption
-				loadVideoCaptionInput (content, {
-					"parentContainer":$container,
-					"inputSettings":{
-						"inputLabel":"Video Caption"
-					}
-				});
-				// location
-				loadUserLocationInput (content, {
-					"parentContainer":$container,
-					"inputSettings":{
-						"inputLabel":"User Location",
-					}
-				});
+				if (content["Data"]["Fields"]["useremail"]) {
+					loadUserEmailInput (content, {
+						"parentContainer":$container,
+						"inputSettings":{
+							"inputLabel":"User Email",
+						}
+					});
+				}
+				/*
 				// user id
 				loadUserIDInput (content, {
 					"parentContainer":$container,
 					"inputSettings":{
 						"inputLabel":"User Id",
 						"inputName":"userid"
+					}
+				});
+				*/
+
+				// location
+				loadUserLocationInput (content, {
+					"parentContainer":$container,
+					"inputSettings":{
+						"inputLabel":"User Location",
 					}
 				});
 				// device fingerprint
@@ -175,10 +196,24 @@ function loadReviewSubmissionForm (content, options) {
 				loadSecondaryRatingGroup (content, {
 					"parentContainer":$container
 				});
+
 				// photo upload
 				console.log("photoupload");
-				// video upload
-				console.log("videoupload");
+				// video link
+				loadYoutubeUrlInput (content, {
+					"parentContainer":$container,
+					"inputSettings":{
+						"inputLabel":"Youtube Link"
+					}
+				});
+				// video caption
+				loadVideoCaptionInput (content, {
+					"parentContainer":$container,
+					"inputSettings":{
+						"inputLabel":"Video Caption"
+					}
+				});
+
 				// product recommendations
 				console.log("productrecommendations");
 				// tags
@@ -190,18 +225,23 @@ function loadReviewSubmissionForm (content, options) {
 				// hosted authentication
 				console.log("hostedauthentication");
 
-				// buttons
-				loadTermsAndConditionsInput (content, {
-					"parentContainer":$container
-				});
-				/*
-				loadSendEmailAlertWhenPublishedInput (content, {
-					"parentContainer":$container
-				});
-				loadSendEmailAlertWhenCommentedInput (content, {
-					"parentContainer":$container
-				});*/
+				// opt in checkboxes
+				if (content["Data"]["Fields"]["agreedtotermsandconditions"]) {
+					loadTermsAndConditionsInput (content, {
+						"parentContainer":$container
+					});
+				}
+				if (content["Data"]["Fields"]["sendemailalertwhencommented"]) {
+					loadSendEmailAlertWhenCommentedInput (content, {
+						"parentContainer":$container
+					});				};
+				if (content["Data"]["Fields"]["sendemailalertwhenpublished"]) {
+					loadSendEmailAlertWhenPublishedInput (content, {
+						"parentContainer":$container
+					});
+				};
 
+				// buttons
 				// submit button
 				loadSubmitButton ("Submit", {
 					"parentContainer":$container
@@ -213,11 +253,12 @@ function loadReviewSubmissionForm (content, options) {
 						"action":"submit"
 					});
 					// POST form to server
-					postReviewsSubmissionForm(settings["productId"],
-						function () {
+					postReviewsSubmissionForm(settings["productId"], function (content) {
 							console.log("submitted");
-							console.log($container);
-							$container.html("Thank you for your submission!");
+							loadReviewSubmissionThankYouWidget (content, {
+								"productId":settings["productId"],
+								"returnURL":settings["returnURL"],
+							});
 						}, {
 						"Parameters": params
 					});
@@ -234,13 +275,12 @@ function loadReviewSubmissionForm (content, options) {
 						"action":"preview"
 					});
 					// POST form to server
-					postReviewsSubmissionForm(settings["productId"],
-						function (previewContent) {
+					postReviewsSubmissionForm(settings["productId"], function (content) {
 							console.log("preview");
-							previewContent["Review"]["RatingRange"] = 5; //default to 5 since API doesn't include this for preview
-							loadReviewPreview (previewContent["Review"], {
-								"productId":"test1",
-								"modelLocalDefaultSettings":""
+							content["Review"]["RatingRange"] = 5; //default to 5 since API doesn't include this for preview
+							loadReviewSubmissionPreviewWidget (content, {
+								"productId":settings["productId"],
+								"returnURL":settings["returnURL"],
 							});
 						}, {
 						"Parameters": params
@@ -257,24 +297,15 @@ function loadReviewSubmissionForm (content, options) {
 					returnToPage(settings["returnURL"]);
 				});
 
-				loadEventListeners("Listener", {
-					"textFieldCounter": {
-						"textField": ".BVFormInputTextarea",
-					}
-				});
 			},
 			error: function(e) {
 				defaultAjaxErrorFunction(e);
 			}
 		})
 	).done(function(){
-		$(settings["targetContainer"]).show();
-		$(settings["parentContainer"]).removeClass("_BVContentLoadingContainer");
 		$(function(){
 			$('input[type=radio].star').rating();
 		});
-
-		
 	});
 }
 
@@ -556,7 +587,6 @@ function loadReviewTextInput (content, options) {
 			"inputLabel":content["Label"],
 			"inputPlaceholder":"", // user defined
 			"inputHelperText":options["inputSettings"]["inputHelperText"], // user defined
-			"inputCharacterCounterText":options["inputSettings"]["inputCharacterCounterText"],
 			"inputValue":content["Value"],
 			"inputMinLength":content["MinLength"],
 			"inputMaxLength":content["MaxLength"],
@@ -578,8 +608,6 @@ function loadReviewTextInput (content, options) {
 			});
 			// set helper text
 			$container.find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(settings["inputSettings"]["inputHelperText"]);
-			// set character counter text
-			$container.find(defaultFormCharacterCounterTextContainerText).andSelf().filter(defaultFormCharacterCounterTextContainerText).text(settings["inputSettings"]["inputCharacterCounterText"]);
 			// add input template
 			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
 			// load input
@@ -588,131 +616,6 @@ function loadReviewTextInput (content, options) {
 				"inputSettings":settings["inputSettings"]
 			});
 
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
-	});
-}
-
-/***** Media Upload *****/
-
-function loadYoutubeUrlInput (content, options) {
-	var content = content["Data"]["Fields"]["videourl_1"];
-	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
-		"targetContainer":defaultReviewVideoInputContainer,
-		"viewContainer":defaultInputContainerView,
-		"loadOrder":"",
-		"productId":"",
-		"inputSettings":{
-			"inputName":content["Id"],
-			"inputType":content["Type"],
-			"inputLabel":content["Label"],
-			"inputPlaceholder":"", // user defined
-			"inputHelperText":"", // user defined
-			"inputValue":content["Value"],
-			"inputMinLength":content["MinLength"],
-			"inputMaxLength":content["MaxLength"],
-			"inputRequired":content["Required"],
-			"inputDefault":content["Default"],
-			"inputOptionsArray":content["Options"]
-		}
-	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		success: function(container) {
-			var $container = $(container);
-			// set label
-			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(settings["inputSettings"]["inputLabel"]).attr({
-				"for":settings["inputSettings"]["inputName"]
-			});
-			// set helper text
-			$container.find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(settings["inputSettings"]["inputHelperText"]);
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-			// load input
-			loadTextFieldInput (content, {
-				"parentContainer":$container,
-				"targetContainer":defaultFormInputWrapperContainer,
-				"inputSettings":settings["inputSettings"]
-			});
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
-	});
-}
-
-function loadVideoCaptionInput (content, options) {
-	var content = content["Data"]["Fields"]["videocaption_1"];
-	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
-		"targetContainer":defaultReviewVideoCaptionInputContainer,
-		"viewContainer":defaultInputContainerView,
-		"loadOrder":"",
-		"productId":"",
-		"inputSettings":{
-			"inputName":content["Id"],
-			"inputType":content["Type"],
-			"inputLabel":content["Label"],
-			"inputPlaceholder":"", // user defined
-			"inputHelperText":"", // user defined
-			"inputValue":content["Value"],
-			"inputMinLength":content["MinLength"],
-			"inputMaxLength":content["MaxLength"],
-			"inputRequired":content["Required"],
-			"inputDefault":content["Default"],
-			"inputOptionsArray":content["Options"]
-		}
-	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		success: function(container) {
-			var $container = $(container);
-			// set label
-			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(settings["inputSettings"]["inputLabel"]).attr({
-				"for":settings["inputSettings"]["inputName"]
-			});
-			// set helper text
-			$container.find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(settings["inputSettings"]["inputHelperText"]);
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-			// load input
-			loadTextFieldInput (content, {
-				"parentContainer":$container,
-				"targetContainer":defaultFormInputWrapperContainer,
-				"inputSettings":settings["inputSettings"]
-			});
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
-	});
-}
-
-function loadThankYou (content, options) {
-	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
-		"targetContainer":defaultThankYouContainer,
-		"viewContainer":defaultThankYouView
-	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
-			$("form").hide();
-			$(defaultPreviewContainer).hide();
-			$(defaultSubmissionButtonsContainer).hide();
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);

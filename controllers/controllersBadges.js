@@ -83,7 +83,7 @@ function loadCommentBadges (content, options) {
 function loadBadgeContent (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"",
-		"targetContainer":"._BVBadgeText",
+		"targetContainer":defaultBadgeTextContainer,
 		"viewContainer":"",
 		"loadOrder":"",
 		"productId":""
@@ -151,15 +151,14 @@ function returnBadgeTextView (content) {
 		case "Staff" :
 			v = defaultBadgesUniversal["staff"]
 			break;
-		/* NEED TO BE TESTED BEFORE UNCOMMENTED
-		case "verifiedPurchaser" :
+		case "VerifiedPurchaser" :
 			v = defaultBadgesUniversal["verifiedPurchaser"]
 			break;
-		case "socialAnsweringSubscriber" :
+		case "SocialAnsweringSubscriber" :
 			v = defaultBadgesUniversal["socialAnsweringSubscriber"]
 			break;
-		*/
 		default :
+			v = defaultBadgesUniversal["default"]
 			break;
 	}
 
