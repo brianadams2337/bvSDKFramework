@@ -294,24 +294,27 @@ function loadCancelButton (content, options) {
 }
 
 // return button
-function loadReturnButton (toReceive, toLoad, content, id) {
+function loadReturnButton (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"",
-		"targetContainer":defaultButtonCancelContainer,
+		"targetContainer":defaultButtonReturnContainer,
 		"viewContainer":defaultButtonContainerView,
 	}, options);
 	$.ajax({
-		url: toLoad,
+		url: settings["viewContainer"],
 		type: 'GET',
 		dataType: 'html',
 		async: false,
 		success: function(container) {
-			$(container).appendTo(toReceive).find("a").attr({
+			var $container = $(container);
+			$container.find("a").andSelf().filter("a").attr({
 				"id":"",
 				"title":"",
 				"onclick":"return false;",
 				"href":""
 			}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).text(content);
+			// add button template
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);

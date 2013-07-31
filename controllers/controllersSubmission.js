@@ -905,45 +905,7 @@ function loadSelectOptionsInput (content, options) {
 		});
 	});
 }
-/*
-function loadCheckboxInputGroup (content, options) {
-	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer, // needs to be given a more specific container if called more than once
-		"targetContainer":defaultCheckboxGroupInputContainer,
-		"viewContainer":defaultInputCheckboxIndividualContainerView,
-		"loadOrder":"", // this must be defined in the call
-		"productId":"",
-		"inputSettings":{
-			"inputName":content["Id"],
-			"inputType":content["Type"],
-			"inputLabel":content["Label"],
-			"inputRequired":content["Required"],
-			"inputSubElements":content["SubElements"]
-		}
-	}, options);
-	console.log(settings["inputSettings"]);
-	$.each (settings["loadOrder"], function(key, value) {
-		$.ajax({
-			url: settings["viewContainer"],
-			type: 'GET',
-			dataType: 'html',
-			async: false,
-			success: function(container) {
-				var $container = $(container);
-				// add input template
-				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
-				// load checkboxes
-				loadCheckboxInputField(content["Data"]["Fields"][value], {
-					"parentContainer":$container
-				});
-			},
-			error: function(e) {
-				defaultAjaxErrorFunction(e);
-			}
-		});
-	});
-}
-*/
+
 function loadCheckboxInputField (content, options) {
 	// content expected ["Data"]["Fields"][<fieldname>]
 	var settings = $.extend(true, {
@@ -1003,13 +965,26 @@ function loadCheckboxInputField (content, options) {
 				"name":inputName,
 				"value":inputValue,
 			});
-			/* commented out b/c it may be needed in the future but appers to not be needed right now.
+			/* may be needed for editing
 			// selected value
 			if (inputValue) {
 				$container.find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
-					"checked":"checked",
+					"checked":true,
 				});
+			}
 			*/
+			// add functionality to update checked attribute on change
+			$container.change(function() {
+				if (this.checked) {
+					$(this).attr({
+						"checked":true,
+					});
+				} else {
+					$(this).attr({
+						"checked":false,
+					});
+				}
+			});
 			// required
 			if (inputRequired == true) {
 				$container.find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass("required");
@@ -1024,7 +999,107 @@ function loadCheckboxInputField (content, options) {
 }
 
 
-/* MEDIA UPLOAD */
 
+/***** MEDIA UPLOAD *****/
+
+
+
+function loadYoutubeUrlInput (content, options) {
+	var content = content["Data"]["Fields"]["videourl_1"];
+	var settings = $.extend(true, {
+		"parentContainer":defaultSubmissionFormContainer,
+		"targetContainer":defaultReviewVideoInputContainer,
+		"viewContainer":defaultInputContainerView,
+		"loadOrder":"",
+		"productId":"",
+		"inputSettings":{
+			"inputName":content["Id"],
+			"inputType":content["Type"],
+			"inputLabel":content["Label"],
+			"inputPlaceholder":"", // user defined
+			"inputHelperText":"", // user defined
+			"inputValue":content["Value"],
+			"inputMinLength":content["MinLength"],
+			"inputMaxLength":content["MaxLength"],
+			"inputRequired":content["Required"],
+			"inputDefault":content["Default"],
+			"inputOptionsArray":content["Options"]
+		}
+	}, options);
+	$.ajax({
+		url: settings["viewContainer"],
+		type: 'GET',
+		dataType: 'html',
+		success: function(container) {
+			var $container = $(container);
+			// set label
+			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(settings["inputSettings"]["inputLabel"]).attr({
+				"for":settings["inputSettings"]["inputName"]
+			});
+			// set helper text
+			$container.find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(settings["inputSettings"]["inputHelperText"]);
+			// add input template
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
+			// load input
+			loadTextFieldInput (content, {
+				"parentContainer":$container,
+				"targetContainer":defaultFormInputWrapperContainer,
+				"inputSettings":settings["inputSettings"]
+			});
+		},
+		error: function(e) {
+			defaultAjaxErrorFunction(e);
+		}
+	});
+}
+
+function loadVideoCaptionInput (content, options) {
+	var content = content["Data"]["Fields"]["videocaption_1"];
+	var settings = $.extend(true, {
+		"parentContainer":defaultSubmissionFormContainer,
+		"targetContainer":defaultReviewVideoCaptionInputContainer,
+		"viewContainer":defaultInputContainerView,
+		"loadOrder":"",
+		"productId":"",
+		"inputSettings":{
+			"inputName":content["Id"],
+			"inputType":content["Type"],
+			"inputLabel":content["Label"],
+			"inputPlaceholder":"", // user defined
+			"inputHelperText":"", // user defined
+			"inputValue":content["Value"],
+			"inputMinLength":content["MinLength"],
+			"inputMaxLength":content["MaxLength"],
+			"inputRequired":content["Required"],
+			"inputDefault":content["Default"],
+			"inputOptionsArray":content["Options"]
+		}
+	}, options);
+	$.ajax({
+		url: settings["viewContainer"],
+		type: 'GET',
+		dataType: 'html',
+		success: function(container) {
+			var $container = $(container);
+			// set label
+			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(settings["inputSettings"]["inputLabel"]).attr({
+				"for":settings["inputSettings"]["inputName"]
+			});
+			// set helper text
+			$container.find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(settings["inputSettings"]["inputHelperText"]);
+			// add input template
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
+			// load input
+			loadTextFieldInput (content, {
+				"parentContainer":$container,
+				"targetContainer":defaultFormInputWrapperContainer,
+				"inputSettings":settings["inputSettings"]
+			});
+		},
+		error: function(e) {
+			defaultAjaxErrorFunction(e);
+		}
+	});
+}
 
 

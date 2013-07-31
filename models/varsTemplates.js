@@ -44,6 +44,7 @@ var defaultFilterIndividualContainerView = "views/universal/filters/filterIndivi
 
 
 // main templates
+var defaultReviewWidgetContainerView = "views/reviews/display/reviewWidgetContainer.html" // entire review widget
 var defaultReviewContainerView = "views/reviews/display/reviewContainer.html"; // individual review module
 
 // ratings templates
@@ -81,6 +82,7 @@ var defaultReviewVideoContainerView = "views/universal/media/videoThumbnailConta
 
 
 // main templates
+var defaultReviewCommentWidgetContainerView = "views/review_comments/display/reviewCommentsWidgetContainer.html"
 var defaultReviewCommentContainerView = "views/review_comments/display/reviewCommentContainer.html"; // individual review module
 
 // review comment content templates
@@ -164,6 +166,7 @@ var defaultBadgesUniversal = {
 	"staff" : "views/universal/badges/badgeStaffTextContainer.html",
 	"verifiedPurchaser" : "views/universal/badges/badgeVerifiedPurchaserTextContainer.html",
 	"socialAnsweringSubscriber" : "views/universal/badges/badgeSocialAnsweringSubscriberTextContainer.html",
+	"default" : "views/universal/badges/badgeDefaultTextContainer.html",
 }
 
 
@@ -234,8 +237,11 @@ var defaultEmailAlertWhenPublishedContainerView = "views/universal/submission/in
 
 
 // main templates
+var defaultSubmissionWidgetContainerView = "views/reviews/submission/reviewSubmissionWidgetContainer.html"
+var defaultSubmissionPreviewWidgetContainerView = "views/reviews/submission/reviewSubmissionPreviewWidgetContainer.html";
+var defaultSubmissionThankYouWidgetContainerView = "views/reviews/submission/reviewSubmissionThankYouWidgetContainer.html";
+
 var defaultSubmissionFormContainerView = "views/reviews/submission/submissionFormReviewContainer.html";
-var defaultThankYouView = "views/universal/submission/defaultThankYouView.html"; //thank you page template
 
 
 // ratings templates
@@ -249,7 +255,10 @@ var defaultInputRadioSecondaryRatingContainerView = "views/reviews/submission/in
 
 
 // main templates
-var defaultSubmissionFormReviewCommentContainerView = "views/reviews/submission/submissionFormReviewCommentContainer.html" // review comment submission form module
+var defaultSubmissionReviewCommentWidgetContainerView = "views/review_comments/submission/reviewCommentSubmissionWidgetContainer.html"
+var defaultSubmissionReviewCommentPreviewWidgetContainerView = "views/review_comments/submission/reviewCommentSubmissionPreviewWidgetContainer.html";
+var defaultSubmissionReviewCommentThankYouWidgetContainerView = "views/review_comments/submission/reviewCommentSubmissionThankYouWidgetContainer.html";
 
+var defaultSubmissionFormReviewCommentContainerView = "views/review_comments/submission/submissionFormReviewCommentContainer.html" // review comment submission form module
 
 

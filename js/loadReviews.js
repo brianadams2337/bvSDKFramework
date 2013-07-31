@@ -47,9 +47,6 @@ $(document).ready(function() {
 				$(deferred.resolve);
 			})
 		).done(function(){
-			// hide the target container while reviews are loading
-			//$(defaultReviewsParentContainer).empty().hide().addClass("_BVContentLoadingContainer");
-
 			// load reviews
 			loadingContainerAnimation(defaultReviewsParentContainer, function() {
 				getAllReviews (productId, function(content, modelLocalDefaultSettings) {

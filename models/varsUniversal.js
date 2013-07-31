@@ -7,6 +7,8 @@
 
 
 var defaultBadgesContainer = "._BVBadgesContainer" // badge group container
+var defaultBadgesUserContainer = "._BVBadgesUserContainer" // user badge group container
+var defaultBadgesContentContainer = "._BVBadgesContentContainer" // content badge group container
 var defaultBadgeTextContainer = "._BVBadgeText" // badge text value container
 
 
@@ -52,5 +54,8 @@ var defaultButtonSubmitContainer = "._BVButtonSubmitContainer"; // submit button
 var defaultButtonPreviewContainer = "._BVButtonPreviewContainer"; // preview button
 var defaultButtonEditContainer = "._BVButtonEditContainer"; // edit button
 var defaultButtonCancelContainer = "._BVButtonCancelContainer"; // cancel button
+var defaultButtonReturnContainer = "._BVButtonReturnContainer"; // return button
 var defaultButtonContainer = "._BVButton"; // button container
 var defaultButtonTextContainer = "._BVButtonText"; // button text
+
+
