@@ -41,10 +41,17 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 
 /* Buttons */
 .BVButtonWrapper {}
-	.BVButtonWrapper a {display: inline-block; padding: 7px 12px; font-size: 13px; font-weight: bold; line-height: 19px; color: #085EB9; text-shadow: 0 1px 0 rgba(255,255,255,0.9); white-space: nowrap; background-color: #F6F6F6; background-image: -moz-linear-gradient(#F6F6F6, #E8E8E8); background-image: -webkit-linear-gradient(#F6F6F6, #E8E8E8); background-image: linear-gradient(#F6F6F6, #E8E8E8); background-repeat: repeat-x; border-radius: 4px; border: 1px solid #C3C4C4; vertical-align: middle; cursor: pointer; text-decoration: none;}
 
-	._BVButtonWriteReviewContainer .BVButtonWrapper a._BVButton {display: inline-block; padding: 7px 12px; font-size: 13px; font-weight: bold; line-height: 19px; color: #fff; white-space: nowrap; background-color: #006CBC; background-image: -moz-linear-gradient(#006CBC, #00449E); background-image: -webkit-linear-gradient(#006CBC, #00449E); background-image: linear-gradient(#006CBC, #00449E); background-repeat: repeat-x; border-radius: 4px; border: 1px solid #003865; vertical-align: middle; cursor: pointer; text-decoration: none;}
-		._BVButtonWriteReviewContainer .BVButtonWrapper a._BVButton ._BVButtonText {color: #fff; text-shadow: 0 -1px 1px rgba(0,0,0,0.75);}
+	/* Generic */
+	a._BVButton, a._BVButton:active, a._BVButton:focus, a._BVButton:hover, a._BVButton:visited {display: inline-block; padding: 7px 12px; font-size: 13px; font-weight: bold; line-height: 19px; color: #085EB9; text-shadow: 0 1px 0 rgba(255,255,255,0.9); white-space: nowrap; background-color: #F6F6F6; background-image: -moz-linear-gradient(#F6F6F6, #E8E8E8); background-image: -webkit-linear-gradient(#F6F6F6, #E8E8E8); background-image: linear-gradient(#F6F6F6, #E8E8E8); background-repeat: repeat-x; border-radius: 4px; border: 1px solid #C3C4C4; vertical-align: middle; cursor: pointer; text-decoration: none;}
+
+	/* Submit */
+	._BVButtonSubmitContainer a._BVButton, ._BVButtonSubmitContainer a._BVButton:active, ._BVButtonSubmitContainer a._BVButton:focus, ._BVButtonSubmitContainer a._BVButton:hover, ._BVButtonSubmitContainer a._BVButton:visited {background-color: #F7CF00; background-image: -moz-linear-gradient(#FFF200, #F7CF00); background-image: -webkit-linear-gradient(#FFF200, #F7CF00); background-image: linear-gradient(#FFF200, #F7CF00); border: 1px solid #F9C500;}
+		._BVButtonSubmitContainer a._BVButton ._BVButtonText {color: #003B64; text-shadow: 0 1px 1px rgba(255,255,255,0.75);}
+
+	/* Write a Review */
+	._BVButtonWriteReviewContainer a._BVButton, ._BVButtonWriteReviewContainer a._BVButton:active, ._BVButtonWriteReviewContainer a._BVButton:focus, ._BVButtonWriteReviewContainer a._BVButton:hover, ._BVButtonWriteReviewContainer a._BVButton:visited {background-color: #006CBC; background-image: -moz-linear-gradient(#006CBC, #00449E); background-image: -webkit-linear-gradient(#006CBC, #00449E); background-image: linear-gradient(#006CBC, #00449E); border: 1px solid #003865;}
+		._BVButtonWriteReviewContainer a._BVButton ._BVButtonText {color: #fff; text-shadow: 0 -1px 1px rgba(0,0,0,0.75);}
 
 /* Ratings */
 ._BVReviewContainer ._BVRatingStarsFilledImage, ._BVReviewContainer ._BVRatingStarsUnfilledImage {width: 115px !important;}
@@ -130,8 +137,18 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	._BVFeedbackPositiveButton ._BVButtonText {background: url(images/votingThumbUpSprite.gif) no-repeat; padding-left: 22px;}
 	._BVFeedbackNegativeButton ._BVButtonText {background: url(images/votingThumbDownSprite.gif) no-repeat; padding-left: 22px;}
 
-._BVReportInappropriateContainer ._BVButton.BVDisabled {opacity: 0.5; cursor: default;}
-	._BVReportInappropriateContainer .BVButtonWrapper a._BVButton, ._BVReportInappropriateContainer .BVButtonWrapper a._BVButton:hover, ._BVReportInappropriateContainer .BVButtonWrapper a._BVButton:active, ._BVReportInappropriateContainer .BVButtonWrapper a._BVButton:focus {padding: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px;}
+/* Inappropriate Reporting */
+._BVReportInappropriateContainer {position: relative;}
+	._BVReportInappropriateForm .BVFooter {margin-left: 0;}
+
+	/* Button */
+	._BVReportInappropriateForm .BVFieldButtonGroup, ._BVReportInappropriateForm .BVFieldButtonGroup .BVField {margin-bottom: 0;}
+	._BVReportInappropriateButtonContainer a._BVButton.BVDisabled {opacity: 0.5; cursor: default;}
+		._BVReportInappropriateButtonContainer a._BVButton, ._BVReportInappropriateButtonContainer a._BVButton:hover, ._BVReportInappropriateButtonContainer a._BVButton:active, ._BVReportInappropriateButtonContainer a._BVButton:focus, ._BVReportInappropriateButtonContainer a._BVButton:visited {padding: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px;}
+
+	/* Form */
+	._BVReportInappropriateFormContainer {position: absolute; top: 30px; left: 270px;}
+		._BVReportInappropriateFormContainer ._BVReportInappropriateForm {background-color: #fff; border: 1px solid #C3C4C4; border-radius: 4px; padding: 10px; box-shadow: 0px 0px 3px rgba(0,0,0,0.3);}
 
 /* Comments */
 .BVUGCCommentContent {position: relative;}
@@ -142,7 +159,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 
 /* General - Titles, Labels, Values */
 ._BVLabelText {width: 150px; float: left; margin-right: 10px;}
-h1._BVPageHeaderText, h2._BVSectionHeaderText {margin: 10px 0;}
+h1._BVPageHeaderText, h2._BVSectionHeaderText {margin: 0;}
 
 /* Sections */
 .BVSection {border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 30px;}
@@ -158,7 +175,7 @@ h1._BVPageHeaderText, h2._BVSectionHeaderText {margin: 10px 0;}
 	.BVFormInputText, .BVFormInputTextarea {padding: 7px 8px; outline: none; color: #333; background-color: #fff; background-repeat: no-repeat; background-position: right center; border: 1px solid #ccc; border-radius: 3px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.075); -moz-box-sizing: border-box; box-sizing: border-box; transition: all 0.15s ease-in; -webkit-transition: all 0.15s ease-in 0; vertical-align: middle;}
 	.BVFormInputText:focus, .BVFormInputTextarea:focus {border-color: #51a7e8; box-shadow: inset 0 1px 2px rgba(0,0,0,0.075),0 0 5px rgba(81,167,232,0.5);}
 	.BVFormInputText {width: 380px;}
-	.BVFormInputTextarea {width: 381px; height: 125px;}
+	.BVFormInputTextarea {width: 381px; height: 125px; resize: vertical;}
 	._BVCharacterCounter {display: inline;}
 	._BVCharacterCounterText {display: inline-block;}
 	._BVRadioButtonGroupContainer {float: left;}
