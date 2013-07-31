@@ -10,38 +10,32 @@ function loadReviewSubmissionWidget (content, options) {
 		"returnURL":"",
 	}, options);
 	console.log(content);
-	$(settings["targetContainer"]).hide();
-	$.when(
-		$.ajax({
-			url: settings["viewContainer"],
-			type: 'get',
-			dataType: 'html',
-			async: false,
-			success: function(container) {
-				var $container = $(container);
-				// add submission container
-				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container));
+	$.ajax({
+		url: settings["viewContainer"],
+		type: 'get',
+		dataType: 'html',
+		async: false,
+		success: function(container) {
+			var $container = $(container);
+			// add submission container
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container));
 
-				// load review submission form
-				loadReviewSubmissionForm (content, {
-					"parentContainer":$container,
-					"productId":settings["productId"],
-					"returnURL":settings["returnURL"],
-				});
-				
-				loadEventListeners("Listener", {
-					"textFieldCounter": {
-						"textField": ".BVFormInputTextarea",
-					}
-				});
-			},
-			error: function(e) {
-				defaultAjaxErrorFunction(e);
-			}
-		})
-	).done(function(){
-		$(settings["targetContainer"]).show();
-		$(settings["targetContainer"]).removeClass("_BVContentLoadingContainer");
+			// load review submission form
+			loadReviewSubmissionForm (content, {
+				"parentContainer":$container,
+				"productId":settings["productId"],
+				"returnURL":settings["returnURL"],
+			});
+			
+			loadEventListeners("Listener", {
+				"textFieldCounter": {
+					"textField": ".BVFormInputTextarea",
+				}
+			});
+		},
+		error: function(e) {
+			defaultAjaxErrorFunction(e);
+		}
 	});
 }
 
@@ -253,14 +247,17 @@ function loadReviewSubmissionForm (content, options) {
 						"action":"submit"
 					});
 					// POST form to server
-					postReviewsSubmissionForm(settings["productId"], function (content) {
-							console.log("submitted");
-							loadReviewSubmissionThankYouWidget (content, {
-								"productId":settings["productId"],
-								"returnURL":settings["returnURL"],
-							});
-						}, {
-						"Parameters": params
+					$(defaultSubmissionFormContainer).hide();
+					loadingContainerAnimation(defaultSubmissionThankYouContainer, function() {
+						postReviewsSubmissionForm(settings["productId"], function (content) {
+								console.log("submitted");
+								loadReviewSubmissionThankYouWidget (content, {
+									"productId":settings["productId"],
+									"returnURL":settings["returnURL"],
+								});
+							}, {
+							"Parameters": params
+						});
 					});
 				});
 
@@ -275,15 +272,18 @@ function loadReviewSubmissionForm (content, options) {
 						"action":"preview"
 					});
 					// POST form to server
-					postReviewsSubmissionForm(settings["productId"], function (content) {
-							console.log("preview");
-							content["Review"]["RatingRange"] = 5; //default to 5 since API doesn't include this for preview
-							loadReviewSubmissionPreviewWidget (content, {
-								"productId":settings["productId"],
-								"returnURL":settings["returnURL"],
-							});
-						}, {
-						"Parameters": params
+					$(defaultSubmissionFormContainer).hide();
+					loadingContainerAnimation(defaultSubmissionPreviewContainer, function() {
+						postReviewsSubmissionForm(settings["productId"], function (content) {
+								console.log("preview");
+								content["Review"]["RatingRange"] = 5; //default to 5 since API doesn't include this for preview
+								loadReviewSubmissionPreviewWidget (content, {
+									"productId":settings["productId"],
+									"returnURL":settings["returnURL"],
+								});
+							}, {
+							"Parameters": params
+						});
 					});
 				});
 

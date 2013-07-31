@@ -90,8 +90,6 @@ function loadIndividualReviewComment (content, options) {
 		"productId":"",
 		"modelLocalDefaultSettings":""
 	}, options);
-	// hide the target container while comments are loading
-	//$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).empty().hide().addClass("_BVContentLoadingContainer");
 	// get a new id for the comment container using comment id - this will be needed for reference on child elements
 	var contentId = content["Id"]
 	var newID = "BVCommentContainer" + contentId;

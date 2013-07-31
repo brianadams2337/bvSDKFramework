@@ -8,44 +8,43 @@ function loadReviewCommentSubmissionPreviewWidget (content, options) {
 		"returnURL":"",
 	}, options);
 	console.log(content);
-	$(settings["targetContainer"]).hide();
 	// get a new id for the submission container using product id - this will be needed for reference on form processing
 	var newID = "BVSubmissionContainerID_" + settings["productId"];
-	$.when(
-		$.ajax({
-			url: settings["viewContainer"],
-			type: 'get',
-			dataType: 'html',
-			async: false,
-			success: function(container) {
-				var $container = $(container);
-				// add submission container
-				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container));
+	$.ajax({
+		url: settings["viewContainer"],
+		type: 'get',
+		dataType: 'html',
+		async: false,
+		success: function(container) {
+			var $container = $(container);
+			// add submission container
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container));
 
-				loadPageHeader ("Preview Your Comment", {
-					"parentContainer":$container,
-					"targetContainer":defualtPageHeaderContainer
-				});
+			loadPageHeader ("Preview Your Comment", {
+				"parentContainer":$container,
+				"targetContainer":defualtPageHeaderContainer
+			});
 
-				// load review submission form
-				loadReviewCommentSubmissionPreview (content["Comment"], {
-					"parentContainer":$container,
-					"productId":settings["productId"],
-				});
+			// load review submission form
+			loadReviewCommentSubmissionPreview (content["Comment"], {
+				"parentContainer":$container,
+				"productId":settings["productId"],
+			});
 
-				// buttons
-				// submit button
-				loadSubmitButton ("Submit", {
-					"parentContainer":$container
+			// buttons
+			// submit button
+			loadSubmitButton ("Submit", {
+				"parentContainer":$container
+			});
+			// submit button functionality
+			$container.find(defaultButtonSubmitContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonSubmitContainer + " " + defaultButtonContainer).click(function() {
+				// get form parameters
+				var params = returnFormParamaters("#" + newID, {
+					"action":"submit"
 				});
-				// submit button functionality
-				$container.find(defaultButtonSubmitContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonSubmitContainer + " " + defaultButtonContainer).click(function() {
-					// get form parameters
-					var params = returnFormParamaters("#" + newID, {
-						"action":"submit"
-					});
-					console.log(newID, params);
-					// POST form to server
+				console.log(newID, params);
+				// POST form to server
+				loadingContainerAnimation($container, function() {
 					postReviewCommentsSubmissionForm(settings["contentId"], function (content) {
 							console.log("submitted");
 							loadReviewCommentSubmissionThankYouWidget (content, {
@@ -56,38 +55,35 @@ function loadReviewCommentSubmissionPreviewWidget (content, options) {
 						"Parameters": params
 					});
 				});
+			});
 
-				// edit button
-				loadEditButton ("Edit", {
-					"parentContainer":$container,
-				});
-				// edit button functionality
-				$(settings["parentContainer"]).find(defaultButtonEditContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonEditContainer + " " + defaultButtonContainer).click(function() {
-					// show form and hide preview
-					$(defaultSubmissionFormContainer).show().removeClass("_BVContentLoadingContainer");
-					$($container).hide();
+			// edit button
+			loadEditButton ("Edit", {
+				"parentContainer":$container,
+			});
+			// edit button functionality
+			$(settings["parentContainer"]).find(defaultButtonEditContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonEditContainer + " " + defaultButtonContainer).click(function() {
+				// show form and hide preview
+				$(defaultSubmissionFormContainer).show();
+				$($container).hide();
 
-				});
+			});
 
-				// cancel button
-				loadCancelButton ("Cancel", {
-					"parentContainer":$container,
-				});
-				// cancel button functionality
-				$container.find(defaultButtonCancelContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonCancelContainer + " " + defaultButtonContainer).click(function() {
-					// load return page
-					returnToPage(settings["returnURL"]);
-				});
+			// cancel button
+			loadCancelButton ("Cancel", {
+				"parentContainer":$container,
+			});
+			// cancel button functionality
+			$container.find(defaultButtonCancelContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonCancelContainer + " " + defaultButtonContainer).click(function() {
+				// load return page
+				returnToPage(settings["returnURL"]);
+			});
 
-			},
-			error: function(e) {
-				defaultAjaxErrorFunction(e);
-			}
-		})
-	).done(function(){
-		$(settings["targetContainer"]).show();
-		$(settings["targetContainer"]).removeClass("_BVContentLoadingContainer");
-	});
+		},
+		error: function(e) {
+			defaultAjaxErrorFunction(e);
+		}
+	})
 }
 
 function loadReviewCommentSubmissionPreview (content, options) {
@@ -98,9 +94,6 @@ function loadReviewCommentSubmissionPreview (content, options) {
 		"loadOrder":"",
 		"productId":"",
 	}, options);
-	// hide the target container while reviews are loading
-	$(defaultSubmissionFormContainer).hide().addClass("_BVContentLoadingContainer");
-
 	// inject review content
 	$.ajax({
 		url: settings["viewContainer"],
@@ -156,8 +149,6 @@ function loadReviewCommentSubmissionPreview (content, options) {
 						"parentContainer":$container
 					});
 				}
-
-				$(settings["parentContainer"]).show().removeClass("_BVContentLoadingContainer");
 			},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);

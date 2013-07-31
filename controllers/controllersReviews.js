@@ -236,41 +236,35 @@ function loadQuickTake (content, options) {
 		"loadOrder":"",
 		"productId":""
 	}, options);
-	$(settings["targetContainer"]).hide();
-	$.when(
-		$.ajax({
-			url: settings["viewContainer"],
-			type: 'GET',
-			dataType: 'html',
-			async:false,
-			success: function(container) {
-				var $container = $(container);
-				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-				
-				// overall rating average
-				loadReviewRatingAverage (content, {
-					"parentContainer":$container
-				});
+	$.ajax({
+		url: settings["viewContainer"],
+		type: 'GET',
+		dataType: 'html',
+		async:false,
+		success: function(container) {
+			var $container = $(container);
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
+			
+			// overall rating average
+			loadReviewRatingAverage (content, {
+				"parentContainer":$container
+			});
 
-				// recommended average
-				loadReviewRecommendedAverage (content, {
-					"parentContainer":$container
-				});
+			// recommended average
+			loadReviewRecommendedAverage (content, {
+				"parentContainer":$container
+			});
 
-				// write review button
-				loadWriteReviewButton ("Write a Review", {
-					"parentContainer":$container,
-					"productId":settings["productId"]
-				});
+			// write review button
+			loadWriteReviewButton ("Write a Review", {
+				"parentContainer":$container,
+				"productId":settings["productId"]
+			});
 
-			},
-			error: function(e) {
-				defaultAjaxErrorFunction(e);
-			}
-		})
-	).done(function(){
-		$(settings["targetContainer"]).show();
-		$(settings["parentContainer"]).removeClass("_BVContentLoadingContainer");
+		},
+		error: function(e) {
+			defaultAjaxErrorFunction(e);
+		}
 	});
 }
 

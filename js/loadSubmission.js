@@ -63,10 +63,13 @@ $(document).ready(function() {
 				case "review": 
 					console.log("review");
 					// load review submission container
-					getReviewsSubmissionForm(urlParameters["productId"], function(content) {
-						loadReviewSubmissionWidget(content, {
-							"productId":urlParameters["productId"],
-							"returnURL":urlParameters["returnURL"]
+					loadingContainerAnimation(defaultSubmissionContainer, function() {
+						getReviewsSubmissionForm(urlParameters["productId"], function(content) {
+							loadReviewSubmissionWidget(content, {
+								"parentContainer":defaultSubmissionContainer,
+								"productId":urlParameters["productId"],
+								"returnURL":urlParameters["returnURL"]
+							});
 						});
 					});
 
@@ -75,12 +78,15 @@ $(document).ready(function() {
 				case "review_comment": 
 					console.log("review comment");
 					// load review submission container
-					getReviewCommentsSubmissionForm(urlParameters["reviewId"], function(content) {
-						console.log(urlParameters["reviewId"]);
-						loadReviewCommentSubmissionWidget(content, {
-							"productId":urlParameters["productId"],
-							"contentId":urlParameters["reviewId"],
-							"returnURL":urlParameters["returnURL"]
+					loadingContainerAnimation(defaultSubmissionContainer, function() {
+						getReviewCommentsSubmissionForm(urlParameters["reviewId"], function(content) {
+							console.log(urlParameters["reviewId"]);
+							loadReviewCommentSubmissionWidget(content, {
+								"parentContainer":defaultSubmissionContainer,
+								"productId":urlParameters["productId"],
+								"contentId":urlParameters["reviewId"],
+								"returnURL":urlParameters["returnURL"]
+							});
 						});
 					});
 
