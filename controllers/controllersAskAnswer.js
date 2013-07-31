@@ -9,8 +9,6 @@ function loadQuestionAnswer (content, options) {
 		"productId":"",
 		"modelLocalDefaultSettings":""
 	}, options);
-	// hide the target container while reviews are loading
-	$(settings["targetContainer"]).empty().hide();
 	// set variables
 	//var questionsStatisticsToLoad = content["Includes"]["Products"][settings["productId"]]['ReviewStatistics'];
 	var questionsToLoad = content["Results"];
@@ -80,8 +78,6 @@ function loadQuestionAnswer (content, options) {
 		})
 	).done(function(){
 		// all functions pertaining to questions as a group here
-		// show target container once reviews are finished loading
-		$(settings["targetContainer"]).show();
 		// pagination
 		loadNumberedPagination (content, {
 			"parentContainer":defaultQuestionAnswerParentContainer,
@@ -93,8 +89,6 @@ function loadQuestionAnswer (content, options) {
 				"controllerSettings":settings
 			}
 		});
-		// remove loading styling (animated gif, etc.)
-		$(settings["parentContainer"]).removeClass("_BVContentLoadingContainer");
 		// set classes
 		addOddEvenClasses (defaultQuestionAnswerContainer);
 		addFirstLastClasses (defaultQuestionAnswerContainer);

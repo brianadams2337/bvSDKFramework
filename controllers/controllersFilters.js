@@ -5,7 +5,7 @@
 function loadFiltersOverallRating (content, options) {
 	var filtersToLoad = content["RatingDistribution"]; // review stats
 	var defaultLoadOrder = new Array();
-	$.each(filtersToLoad, function() {
+	$.each(filtersToLoad.reverse(), function() {
 		defaultLoadOrder.push(this);
 	});
 	var settings = $.extend(true, {

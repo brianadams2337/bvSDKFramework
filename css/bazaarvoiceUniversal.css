@@ -140,7 +140,7 @@ h1._BVPageHeaderText, h2._BVSectionHeaderText {margin: 10px 0;}
 	.BVFormInputText {width: 380px;}
 	.BVFormInputTextarea {width: 381px; height: 125px;}
 	._BVCharacterCounter {display: inline;}
-	._BVCharacterCounterText {display: inline-block;}
+	.BVCharacterCounterText {display: inline-block;}
 	._BVRadioButtonGroupContainer {float: left;}
 
 /* Rating Stars */

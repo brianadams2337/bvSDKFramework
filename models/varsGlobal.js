@@ -14,9 +14,11 @@ var apiDefaults = {
 	"stagSubmissionURL": "stg.api.bazaarvoice.com/",
 	"prodSubmissionURL": "api.bazaarvoice.com/",
 	"customerName": "bvpstemplates.ugc",
+	//"customerName": "cssandbox.ugc", // cssandbox customer name
 	"format": "json",
 	"apiVersion": "5.4",
-	"passkey": "56m3b2rfbcquf5j6fejjuu3w", //cssandbox apikey: iwmji1d018b62e3fshc70qaj8
+	"passkey": "56m3b2rfbcquf5j6fejjuu3w",
+	//"passkey": "iwmji1d018b62e3fshc70qaj8", // cssandbox passkey
 	"offset": 0,
 	"limitReviews": 10,
 	"limitReviewComments": 2,
