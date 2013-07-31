@@ -352,7 +352,7 @@ function loadReviewRating (content, options) {
 			var $container = $(container);
 			// variables
 			var id = "Overall";				
-			var value = content['Rating'];
+			var value = content['Rating'] + ".0";
 			var valueRange = content['RatingRange'];
 			var labelText = "Overall Rating";
 			// set rating label (title)
@@ -392,7 +392,7 @@ function loadReviewSecondaryRatings (content, options) {
 				var cur = settings["loadOrder"][index];
 				// set text variables
 				var id = content["SecondaryRatings"][cur]["Id"];
-				var value = content["SecondaryRatings"][cur]["Value"];
+				var value = content["SecondaryRatings"][cur]["Value"] + ".0";
 				var valueRange = content["SecondaryRatings"][cur]["ValueRange"];
 				var valueLabelText = content["SecondaryRatings"][cur]["ValueLabel"];
 				var labelText = content["SecondaryRatings"][cur]["Label"];

@@ -169,6 +169,29 @@ var defaultBadgesUniversal = {
 	"default" : "views/universal/badges/badgeDefaultTextContainer.html",
 }
 
+var defaultBadgesBestBuy = {
+    /* BBY SPECIFIC */
+    "EliteContributor" : "views/universal/badges/badgeEliteContributorTextContainer.html",
+    "TopContributorsArchived" : "views/universal/badges/badgeTopContributorsArchivedTextContainer.html",
+    "EliteReviewer" : "views/universal/badges/badgeEliteReviewerTextContainer.html",
+    "BlogHerReviewer" : "views/universal/badges/badgeBlogHerReviewerTextContainer.html",
+    "BusinessUser" : "views/universal/badges/badgeBusinessUserTextContainer.html",
+    "RewardZone" : "views/universal/badges/badgeRewardZoneTextContainer.html",
+    "RewardZoneSilver" : "views/universal/badges/badgeRewardZoneSilverTextContainer.html",
+    "RewardZoneNumber" : "views/universal/badges/badgeRewardZoneNumberTextContainer.html",
+    "RewardZoneNumberSilver" : "views/universal/badges/badgeRewardZoneNumberSilverTextContainer.html",
+    "RewardZoneNumberV3" : "views/universal/badges/badgeRewardZoneNumberV3TextContainer.html",
+    "RewardZoneNumberSilverV3" : "views/universal/badges/badgeRewardZoneNumberSilverV3TextContainer.html",
+    "RewardZoneMember" : "views/universal/badges/badgeRewardZoneMemberTextContainer.html",
+    "RewardZoneMemberUnlocked" : "views/universal/badges/badgeRewardZoneMemberUnlockedTextContainer.html",
+    "RewardZonePremierSilverReview" : "views/universal/badges/badgeRewardZonePremierSilverReviewTextContainer.html",
+    "DellSupport" : "views/universal/badges/badgeDellSupportTextContainer.html",
+    "SlingMedia" : "views/universal/badges/badgeSlingMediaTextContainer.html",
+    "Sennheiser" : "views/universal/badges/badgeSennheiserTextContainer.html",
+    "EcReviewer" : "views/universal/badges/badgeEcReviewerTextContainer.html",
+    "EcProductReview" : "views/universal/badges/badgeEcProductReviewTextContainer.html",
+}
+
 
 
 /***** PAGINATION *****/

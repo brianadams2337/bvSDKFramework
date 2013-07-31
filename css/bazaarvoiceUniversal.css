@@ -151,9 +151,16 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		._BVReportInappropriateFormContainer ._BVReportInappropriateForm {background-color: #fff; border: 1px solid #C3C4C4; border-radius: 4px; padding: 10px; box-shadow: 0px 0px 3px rgba(0,0,0,0.3);}
 
 /* Comments */
-.BVUGCCommentContent {position: relative;}
-._BVButtonWriteReviewCommentContainer {position: absolute; top: -60px; right: 12px;}
-._BVButtonWriteReviewCommentContainer .BVButtonWrapper a._BVButton, ._BVButtonWriteReviewCommentContainer .BVButtonWrapper a._BVButton:hover, ._BVButtonWriteReviewCommentContainer .BVButtonWrapper a._BVButton:active, ._BVButtonWriteReviewCommentContainer .BVButtonWrapper a._BVButton:focus {padding: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px;}
+._BVReviewCommentsWidgetContainer {position: relative;}
+
+	/* Write Button */
+	._BVButtonWriteReviewCommentContainer {position: absolute; right: 0; top: 0;}
+		._BVButtonWriteReviewCommentContainer a._BVButton, ._BVButtonWriteReviewCommentContainer a._BVButton:hover, ._BVButtonWriteReviewCommentContainer a._BVButton:active, ._BVButtonWriteReviewCommentContainer a._BVButton:focus, ._BVButtonWriteReviewCommentContainer a._BVButton:visited {padding: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px;}
+	._BVButtonToggleReviewCommentsContainer {}
+		._BVButtonToggleReviewCommentsContainer a._BVButton, ._BVButtonToggleReviewCommentsContainer a._BVButton:hover, ._BVButtonToggleReviewCommentsContainer a._BVButton:active, ._BVButtonToggleReviewCommentsContainer a._BVButton:focus, ._BVButtonToggleReviewCommentsContainer a._BVButton:visited {padding: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px;}
+
+	/* Comments Display */
+	._BVReviewCommentContainer ._BVFeedbackContainer {background: none transparent; padding: 0;}
 
 /* Submission Form */
 
