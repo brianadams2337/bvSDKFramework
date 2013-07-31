@@ -7,6 +7,8 @@
 
 
 var defaultBadgesContainer = "._BVBadgesContainer" // badge group container
+var defaultBadgesUserContainer = "._BVBadgesUserContainer" // user badge group container
+var defaultBadgesContentContainer = "._BVBadgesContentContainer" // content badge group container
 var defaultBadgeTextContainer = "._BVBadgeText" // badge text value container
 
 

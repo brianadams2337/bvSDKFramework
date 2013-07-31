@@ -1,3 +1,22 @@
+var defaultBadgesUserOrder = [
+	"top1Contributor",
+	"top10Contributor",
+	"top25Contributor",
+	"top50Contributor",
+	"top100Contributor",
+	"top250Contributor",
+	"top500Contributor",
+	"top1000Contributor",
+	"Expert",
+	"Staff",
+	"VerifiedPurchaser",
+	"SocialAnsweringSubscriber",
+]
+
+var defaultBadgesContentOrder = [
+	"featured",
+]
+
 function loadReviewBadges (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"",
@@ -7,35 +26,38 @@ function loadReviewBadges (content, options) {
 		"productId":""
 	}, options);
 	$.each(settings["loadOrder"], function(index) {
-		$.ajax({
-			url: settings["viewContainer"],
-			type: 'GET',
-			dataType: 'html',
-			async: false,
-			success: function(container) {
-				var $container = $(container);
-				// current iteration of loop
-				var cur = settings["loadOrder"][index];
-				// set text variables
-				var badgeId = content["Badges"][cur]["Id"];
-				var badgeType = content["Badges"][cur]["BadgeType"];
-				var contentType = content["Badges"][cur]["ContentType"];
-				
-				// add badge container template
-				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
+		// current iteration of loop
+		var cur = settings["loadOrder"][index];
+		if (content["Badges"][cur]) {
+			console.log(content["Badges"][cur]);
+			$.ajax({
+				url: settings["viewContainer"],
+				type: 'GET',
+				dataType: 'html',
+				async: false,
+				success: function(container) {
+					var $container = $(container);
+					// set text variables
+					var badgeId = content["Badges"][cur]["Id"];
+					var badgeType = content["Badges"][cur]["BadgeType"];
+					var contentType = content["Badges"][cur]["ContentType"];
+					
+					// add badge container template
+					$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
 
-				// get correct view for badge text
-				var view = returnBadgeTextView(badgeId);
-				// load badge text			
-				loadBadgeContent (content["Badges"][cur], {
-					"parentContainer":$container,
-					"viewContainer":view
-				});
-			},
-			error: function(e) {
-				defaultAjaxErrorFunction(e);
-			}
-		});
+					// get correct view for badge text
+					var view = returnBadgeTextView(badgeId);
+					// load badge text			
+					loadBadgeContent (content["Badges"][cur], {
+						"parentContainer":$container,
+						"viewContainer":view
+					});
+				},
+				error: function(e) {
+					defaultAjaxErrorFunction(e);
+				}
+			});
+		}
 	});
 }
 

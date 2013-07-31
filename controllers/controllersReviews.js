@@ -180,7 +180,16 @@ function loadIndividualReview (content, options) {
 			});
 			// load review badges
 			loadReviewBadges(content, {
-				"parentContainer":$container
+				"parentContainer":$container,
+				"targetContainer":defaultBadgesUserContainer,
+				"loadOrder":defaultBadgesUserOrder,
+			});
+
+			// load review badges
+			loadReviewBadges(content, {
+				"parentContainer":$container,
+				"targetContainer":defaultBadgesContentContainer,
+				"loadOrder":defaultBadgesContentOrder,
 			});
 
 			// load review feedback
