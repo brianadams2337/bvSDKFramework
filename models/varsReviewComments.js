@@ -6,7 +6,7 @@ var reviewCommentsContainers = {
 	"toggleContainer":"._BVReviewCommentsToggleContainer"
 }
 
-var defaultReviewCommentsSectionContainer = "._BVReviewCommentsWidgetContainer"; // all review comments section container
+var defaultReviewCommentsWidgetContainer = "._BVReviewCommentsWidgetContainer"; // all review comments section container
 var defaultReviewCommentsBodyContainer = "._BVReviewCommentBodyContainer"; // all review comments section container
 var defaultReviewCommentContainer = "._BVReviewCommentContainer"; // individual comment container
 
@@ -63,3 +63,5 @@ var defaultReviewCommentReportInappropriateContainer = "._BVReportInappropriateC
 var defaultButtonWriteReviewCommentContainer = "._BVButtonWriteReviewCommentContainer"; // write comment button
 var defaultButtonToggleReviewCommentsContainer = "._BVButtonToggleReviewCommentsContainer"; // toggle comments button
 
+/* PAGINATION */
+var defaultReviewCommentPaginationContainer = "._BVReviewCommentsPaginationContainer" // review comments pagination container

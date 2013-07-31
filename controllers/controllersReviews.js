@@ -4,7 +4,7 @@ function loadReviewWidget (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"body",
 		"targetContainer":defaultReviewsParentContainer,
-		"viewContainer":"views/reviews/display/reviewWidgetContainer.html",
+		"viewContainer":defaultReviewWidgetContainerView,
 		"loadOrder":"",
 		"productId":"",
 		"modelLocalDefaultSettings":""
@@ -39,7 +39,7 @@ function loadReviewWidget (content, options) {
 			// pagination
 			loadNumberedPagination (content, {
 				"parentContainer":$container,
-				"targetContainer":"._BVReviewPaginationContainer",
+				"targetContainer":defaultReviewPaginationContainer,
 				"viewReloadOptions":{
 					"model":getAllReviews,
 					"modelSettings":settings["modelLocalDefaultSettings"],
@@ -180,7 +180,16 @@ function loadIndividualReview (content, options) {
 			});
 			// load review badges
 			loadReviewBadges(content, {
-				"parentContainer":$container
+				"parentContainer":$container,
+				"targetContainer":defaultBadgesUserContainer,
+				"loadOrder":defaultBadgesUserOrder,
+			});
+
+			// load review badges
+			loadReviewBadges(content, {
+				"parentContainer":$container,
+				"targetContainer":defaultBadgesContentContainer,
+				"loadOrder":defaultBadgesContentOrder,
 			});
 
 			// load review feedback
@@ -227,41 +236,35 @@ function loadQuickTake (content, options) {
 		"loadOrder":"",
 		"productId":""
 	}, options);
-	$(settings["targetContainer"]).hide();
-	$.when(
-		$.ajax({
-			url: settings["viewContainer"],
-			type: 'GET',
-			dataType: 'html',
-			async:false,
-			success: function(container) {
-				var $container = $(container);
-				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-				
-				// overall rating average
-				loadReviewRatingAverage (content, {
-					"parentContainer":$container
-				});
+	$.ajax({
+		url: settings["viewContainer"],
+		type: 'GET',
+		dataType: 'html',
+		async:false,
+		success: function(container) {
+			var $container = $(container);
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
+			
+			// overall rating average
+			loadReviewRatingAverage (content, {
+				"parentContainer":$container
+			});
 
-				// recommended average
-				loadReviewRecommendedAverage (content, {
-					"parentContainer":$container
-				});
+			// recommended average
+			loadReviewRecommendedAverage (content, {
+				"parentContainer":$container
+			});
 
-				// write review button
-				loadWriteReviewButton ("Write a Review", {
-					"parentContainer":$container,
-					"productId":settings["productId"]
-				});
+			// write review button
+			loadWriteReviewButton ("Write a Review", {
+				"parentContainer":$container,
+				"productId":settings["productId"]
+			});
 
-			},
-			error: function(e) {
-				defaultAjaxErrorFunction(e);
-			}
-		})
-	).done(function(){
-		$(settings["targetContainer"]).show();
-		$(settings["parentContainer"]).removeClass("_BVContentLoadingContainer");
+		},
+		error: function(e) {
+			defaultAjaxErrorFunction(e);
+		}
 	});
 }
 
@@ -677,36 +680,40 @@ function loadReviewContextDataValuesGroup (content, options) {
 		"loadOrder":content["ContextDataValuesOrder"],
 		"productId":""
 	}, options);
-	$.each(settings["loadOrder"], function(index) {
-		$.ajax({
-			url: settings["viewContainer"],
-			type: 'GET',
-			dataType: 'html',
-			async: false,
-			success: function(container) {
-				var $container = $(container);
-				// current iteration of loop
-				var cur = settings["loadOrder"][index];
-				// set variables
-				var id = content["ContextDataValues"][cur]["Id"];
-				var value = content["ContextDataValues"][cur]["Value"];
-				var valueText = content["ContextDataValues"][cur]["ValueLabel"];
-				var labelText = content["ContextDataValues"][cur]["DimensionLabel"];
-				// set class variables
-				var labelClass = "BVContextDataValue" + id;
-				var valueClass = "BVContextDataValue" + value;
-				// set CDV label (title)
-				$container.find(defaultReviewContextDataValueLabelTextContainer).andSelf().filter(defaultReviewContextDataValueLabelTextContainer).text(labelText);
-				// set CDV value
-				$container.find(defaultReviewContextDataValueTextContainer).andSelf().filter(defaultReviewContextDataValueTextContainer).text(valueText);
-				// add CDVs container template
-				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container).addClass(labelClass));
-			},
-			error: function(e) {
-				defaultAjaxErrorFunction(e);
-			}
+	if (settings["loadOrder"].length != 0) {
+		$.each(settings["loadOrder"], function(index) {
+			$.ajax({
+				url: settings["viewContainer"],
+				type: 'GET',
+				dataType: 'html',
+				async: false,
+				success: function(container) {
+					var $container = $(container);
+					// current iteration of loop
+					var cur = settings["loadOrder"][index];
+					// set variables
+					var id = content["ContextDataValues"][cur]["Id"];
+					var value = content["ContextDataValues"][cur]["Value"];
+					var valueText = content["ContextDataValues"][cur]["ValueLabel"];
+					var labelText = content["ContextDataValues"][cur]["DimensionLabel"];
+					// set class variables
+					var labelClass = "BVContextDataValue" + id;
+					var valueClass = "BVContextDataValue" + value;
+					// set CDV label (title)
+					$container.find(defaultReviewContextDataValueLabelTextContainer).andSelf().filter(defaultReviewContextDataValueLabelTextContainer).text(labelText);
+					// set CDV value
+					$container.find(defaultReviewContextDataValueTextContainer).andSelf().filter(defaultReviewContextDataValueTextContainer).text(valueText);
+					// add CDVs container template
+					$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container).addClass(labelClass));
+				},
+				error: function(e) {
+					defaultAjaxErrorFunction(e);
+				}
+			});
 		});
-	});
+	} else {
+		$(settings["targetContainer"]).remove();
+	}
 }
 
 /* ADDITIONAL FIELDS */

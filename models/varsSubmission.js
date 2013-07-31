@@ -2,7 +2,13 @@
 var defaultSubmissionContainer = "._BVSubmissionContainer"; // main submission container
 var defaultSubmissionFormContainer = "._BVSubmissionFormContainer"; // main form inside submissio container
 
-var defaultFormErrorsContainer = "._BVFormErrorsContainer"; // main form inside submissio container
+var defaultSubmissionPreviewContainer = "._BVSubmissionPreviewContainer"; // preview container
+var defaultSubmissionReviewBodyPreviewContainer = "._BVReviewPreviewBodyContainer"; // review preview body container
+var defaultSubmissionReviewCommentBodyPreviewContainer = "._BVReviewCommentPreviewBodyContainer"; // review preview body container
+
+var defaultSubmissionThankYouContainer = "._BVSubmissionThankYouContainer"; // thank you container
+
+var defaultFormErrorsContainer = "._BVFormErrorsContainer"; // errors container
 
 var defaultOverallRatingInputContainer = "._BVOverallRatingInputContainer"; // overall rating input
 var defaultSecondaryRatingGroupInputContainer = "._BVSecondaryRatingGroupInputContainer"; // secondary rating input group
@@ -50,9 +56,8 @@ var defaultFormCharacterCounterTextContainerText = "._BVCharacterCounterText"; /
 
 var defaultSubmissionButtonsContainer = "._BVFieldButtonGroup"; //Submit, Preview, Edit and Cancel button container
 
-var defaultPreviewContainer = "._BVPreviewContainer"; //Preview container
+var defaultTypicalHoursToPostTextContainer = "._BVTypicalHoursToPostText"; // time till post text on thank you page
 
-var defaultThankYouContainer = "._BVThankYouContainer"; //Thank you container
 
 /***** HEADERS *****/
 
