@@ -677,36 +677,40 @@ function loadReviewContextDataValuesGroup (content, options) {
 		"loadOrder":content["ContextDataValuesOrder"],
 		"productId":""
 	}, options);
-	$.each(settings["loadOrder"], function(index) {
-		$.ajax({
-			url: settings["viewContainer"],
-			type: 'GET',
-			dataType: 'html',
-			async: false,
-			success: function(container) {
-				var $container = $(container);
-				// current iteration of loop
-				var cur = settings["loadOrder"][index];
-				// set variables
-				var id = content["ContextDataValues"][cur]["Id"];
-				var value = content["ContextDataValues"][cur]["Value"];
-				var valueText = content["ContextDataValues"][cur]["ValueLabel"];
-				var labelText = content["ContextDataValues"][cur]["DimensionLabel"];
-				// set class variables
-				var labelClass = "BVContextDataValue" + id;
-				var valueClass = "BVContextDataValue" + value;
-				// set CDV label (title)
-				$container.find(defaultReviewContextDataValueLabelTextContainer).andSelf().filter(defaultReviewContextDataValueLabelTextContainer).text(labelText);
-				// set CDV value
-				$container.find(defaultReviewContextDataValueTextContainer).andSelf().filter(defaultReviewContextDataValueTextContainer).text(valueText);
-				// add CDVs container template
-				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container).addClass(labelClass));
-			},
-			error: function(e) {
-				defaultAjaxErrorFunction(e);
-			}
+	if (settings["loadOrder"].length != 0) {
+		$.each(settings["loadOrder"], function(index) {
+			$.ajax({
+				url: settings["viewContainer"],
+				type: 'GET',
+				dataType: 'html',
+				async: false,
+				success: function(container) {
+					var $container = $(container);
+					// current iteration of loop
+					var cur = settings["loadOrder"][index];
+					// set variables
+					var id = content["ContextDataValues"][cur]["Id"];
+					var value = content["ContextDataValues"][cur]["Value"];
+					var valueText = content["ContextDataValues"][cur]["ValueLabel"];
+					var labelText = content["ContextDataValues"][cur]["DimensionLabel"];
+					// set class variables
+					var labelClass = "BVContextDataValue" + id;
+					var valueClass = "BVContextDataValue" + value;
+					// set CDV label (title)
+					$container.find(defaultReviewContextDataValueLabelTextContainer).andSelf().filter(defaultReviewContextDataValueLabelTextContainer).text(labelText);
+					// set CDV value
+					$container.find(defaultReviewContextDataValueTextContainer).andSelf().filter(defaultReviewContextDataValueTextContainer).text(valueText);
+					// add CDVs container template
+					$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container).addClass(labelClass));
+				},
+				error: function(e) {
+					defaultAjaxErrorFunction(e);
+				}
+			});
 		});
-	});
+	} else {
+		$(settings["targetContainer"]).remove();
+	}
 }
 
 /* ADDITIONAL FIELDS */
