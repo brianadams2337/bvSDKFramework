@@ -40,7 +40,7 @@ var defaultBadgesContentOrder = [
 ];
 
 function loadReviewBadges (content, options) {
-	var settings = $.extend(true, {
+	var settings = $.extend(false, {
 		"parentContainer":"",
 		"targetContainer":defaultBadgesContainer,
 		"viewContainer":defaultIndividualBadgeContainerView,
