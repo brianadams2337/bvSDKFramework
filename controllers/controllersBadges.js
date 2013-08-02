@@ -1,23 +1,45 @@
-var defaultBadgesUserOrder = [
-	"top1Contributor",
-	"top10Contributor",
-	"top25Contributor",
-	"top50Contributor",
-	"top100Contributor",
-	"top250Contributor",
-	"top500Contributor",
-	"top1000Contributor",
-	"Expert",
-	"Staff",
-	"VerifiedPurchaser",
-	"SocialAnsweringSubscriber",
-]
+var defaultBadgesUserOrder = {
+    "top1Contributor":defaultBadgesUniversal["top1Contributor"],
+    "top10Contributor":defaultBadgesUniversal["top10Contributor"],
+    "top25Contributor":defaultBadgesUniversal["top25Contributor"],
+    "top50Contributor":defaultBadgesUniversal["top50Contributor"],
+    "top100Contributor":defaultBadgesUniversal["top100Contributor"],
+    "top250Contributor":defaultBadgesUniversal["top250Contributor"],
+    "top500Contributor":defaultBadgesUniversal["top500Contributor"],
+    "top1000Contributor":defaultBadgesUniversal["top1000Contributor"],
+    "Expert":defaultBadgesUniversal["expert"],
+    "Staff":defaultBadgesUniversal["staff"],
+    "VerifiedPurchaser":defaultBadgesUniversal["verifiedPurchaser"],
+    "SocialAnsweringSubscriber":defaultBadgesUniversal["socialAnsweringSubscriber"],
 
-var defaultBadgesContentOrder = [
-	"featured",
-]
+    /* BBY SPECIFIC */
 
-function loadReviewBadges (content, options) {
+    "EliteContributor":defaultBadgesBestBuy["EliteContributor"],
+    "TopContributorsArchived":defaultBadgesBestBuy["TopContributorsArchived"],
+    "EliteReviewer":defaultBadgesBestBuy["EliteReviewer"],
+    "BlogHerReviewer":defaultBadgesBestBuy["BlogHerReviewer"],
+    "BusinessUser":defaultBadgesBestBuy["BusinessUser"],
+    "RewardZone":defaultBadgesBestBuy["RewardZone"],
+    "RewardZoneSilver":defaultBadgesBestBuy["RewardZoneSilver"],
+    "RewardZoneNumber":defaultBadgesBestBuy["RewardZoneNumber"],
+    "RewardZoneNumberSilver":defaultBadgesBestBuy["RewardZoneNumberSilver"],
+    "RewardZoneNumberV3":defaultBadgesBestBuy["RewardZoneNumberV3"],
+    "RewardZoneNumberSilverV3":defaultBadgesBestBuy["RewardZoneNumberSilverV3"],
+    "RewardZoneMember":defaultBadgesBestBuy["RewardZoneMember"],
+    "RewardZoneMemberUnlocked":defaultBadgesBestBuy["RewardZoneMemberUnlocked"],
+    "RewardZonePremierSilverReview":defaultBadgesBestBuy["RewardZonePremierSilverReview"],
+    "DellSupport":defaultBadgesBestBuy["DellSupport"],
+    "SlingMedia":defaultBadgesBestBuy["SlingMedia"],
+    "Sennheiser":defaultBadgesBestBuy["Sennheiser"],
+    "EcReviewer":defaultBadgesBestBuy["EcReviewer"],
+};
+
+var defaultBadgesContentOrder = {
+    "featured":defaultBadgesUniversal["featured"],
+    "EcProductReview":defaultBadgesBestBuy["EcProductReview"],
+};
+
+function loadBadges (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"",
 		"targetContainer":defaultBadgesContainer,
@@ -25,11 +47,8 @@ function loadReviewBadges (content, options) {
 		"loadOrder":content["BadgesOrder"],
 		"productId":""
 	}, options);
-	$.each(settings["loadOrder"], function(index) {
-		// current iteration of loop
-		var cur = settings["loadOrder"][index];
-		if (content["Badges"][cur]) {
-			console.log(content["Badges"][cur]);
+	$.each(settings["loadOrder"], function(key, value) {
+		if (content["Badges"][key]) {
 			$.ajax({
 				url: settings["viewContainer"],
 				type: 'GET',
@@ -38,19 +57,17 @@ function loadReviewBadges (content, options) {
 				success: function(container) {
 					var $container = $(container);
 					// set text variables
-					var badgeId = content["Badges"][cur]["Id"];
-					var badgeType = content["Badges"][cur]["BadgeType"];
-					var contentType = content["Badges"][cur]["ContentType"];
+					var badgeId = content["Badges"][key]["Id"];
+					var badgeType = content["Badges"][key]["BadgeType"];
+					var contentType = content["Badges"][key]["ContentType"];
 					
 					// add badge container template
 					$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
 
-					// get correct view for badge text
-					var view = returnBadgeTextView(badgeId);
 					// load badge text			
-					loadBadgeContent (content["Badges"][cur], {
+					loadBadgeContent (content["Badges"][key], {
 						"parentContainer":$container,
-						"viewContainer":view
+						"viewContainer":value
 					});
 				},
 				error: function(e) {
@@ -58,47 +75,6 @@ function loadReviewBadges (content, options) {
 				}
 			});
 		}
-	});
-}
-
-function loadCommentBadges (content, options) {
-	var settings = $.extend(true, {
-		"parentContainer":"",
-		"targetContainer":defaultBadgesContainer,
-		"viewContainer":defaultIndividualBadgeContainerView,
-		"loadOrder":content["BadgesOrder"],
-		"productId":""
-	}, options);
-	$.each(settings["loadOrder"], function(index) {
-		$.ajax({
-			url: settings["viewContainer"],
-			type: 'GET',
-			dataType: 'html',
-			async: false,
-			success: function(container) {
-				var $container = $(container);
-				// current iteration of loop
-				var cur = settings["loadOrder"][index];
-				// set text variables
-				var badgeId = content["Badges"][cur]["Id"];
-				var badgeType = content["Badges"][cur]["BadgeType"];
-				var contentType = content["Badges"][cur]["ContentType"];
-				
-				// add badge container template
-				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
-
-				// get correct view for badge text
-				var view = returnBadgeTextView(badgeId);
-				// load badge text			
-				loadBadgeContent (content["Badges"][cur], {
-					"parentContainer":$container,
-					"viewContainer":view
-				});
-			},
-			error: function(e) {
-				defaultAjaxErrorFunction(e);
-			}
-		});
 	});
 }
 
@@ -135,55 +111,4 @@ function loadBadgeContent (content, options) {
 	});
 }
 
-function returnBadgeTextView (content) {
 
-	var v = "";
-
-	switch (content) {
-		case "top1Contributor" :
-			v = defaultBadgesUniversal["top1Contributor"]
-			break;
-		case "top10Contributor" :
-			v = defaultBadgesUniversal["top10Contributor"]
-			break;
-		case "top25Contributor" :
-			v = defaultBadgesUniversal["top25Contributor"]
-			break;
-		case "top50Contributor" :
-			v = defaultBadgesUniversal["top50Contributor"]
-			break;
-		case "top100Contributor" :
-			v = defaultBadgesUniversal["top100Contributor"]
-			break;
-		case "top250Contributor" :
-			v = defaultBadgesUniversal["top250Contributor"]
-			break;
-		case "top500Contributor" :
-			v = defaultBadgesUniversal["top500Contributor"]
-			break;
-		case "top1000Contributor" :
-			v = defaultBadgesUniversal["top1000Contributor"]
-			break;
-		case "featured" :
-			v = defaultBadgesUniversal["featured"]
-			break;
-		case "Expert" :
-			v = defaultBadgesUniversal["expert"]
-			break;
-		case "Staff" :
-			v = defaultBadgesUniversal["staff"]
-			break;
-		case "VerifiedPurchaser" :
-			v = defaultBadgesUniversal["verifiedPurchaser"]
-			break;
-		case "SocialAnsweringSubscriber" :
-			v = defaultBadgesUniversal["socialAnsweringSubscriber"]
-			break;
-		default :
-			v = defaultBadgesUniversal["default"]
-			break;
-	}
-
-	return v;
-
-}

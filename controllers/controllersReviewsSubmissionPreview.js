@@ -153,7 +153,7 @@ function loadReviewSubmissionPreview (content, options) {
 				// 	"parentContainer":$container
 				// });
 				// // load review badges
-				// loadReviewBadges(content, {
+				// loadBadges(content, {
 				// 	"parentContainer":$container
 				// });
 			},

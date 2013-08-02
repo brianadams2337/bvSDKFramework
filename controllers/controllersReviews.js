@@ -179,14 +179,14 @@ function loadIndividualReview (content, options) {
 				"parentContainer":$container
 			});
 			// load review badges
-			loadReviewBadges(content, {
+			loadBadges(content, {
 				"parentContainer":$container,
 				"targetContainer":defaultBadgesUserContainer,
 				"loadOrder":defaultBadgesUserOrder,
 			});
 
 			// load review badges
-			loadReviewBadges(content, {
+			loadBadges(content, {
 				"parentContainer":$container,
 				"targetContainer":defaultBadgesContentContainer,
 				"loadOrder":defaultBadgesContentOrder,
