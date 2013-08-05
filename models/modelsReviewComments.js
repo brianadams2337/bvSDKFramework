@@ -111,7 +111,7 @@ function reviewCommentsAPICall (options) {
 	}, options);
 
 	// set URL base for API call
-	var url = "http://" + defaultSettings["URL"]["customername"] + "." + defaultSettings["URL"]["baseurl"] + "data/" + "reviewcomments." + defaultSettings["URL"]["format"] + "?";
+	var url = "http://" + defaultSettings["URL"]["baseurl"] + "data/" + "reviewcomments." + defaultSettings["URL"]["format"] + "?";
 	
 	// add URL parameters for API call
 	url =  addAPIParameters(url, defaultSettings["Parameters"]);

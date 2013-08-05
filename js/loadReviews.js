@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$.when(
 		// global variables
-		$.getScript("http://bbypoc.ts.bazaarvoice.com/bvSDKFramework/models/varsGlobal.js")
+		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '')+"/bvSDKFramework/models/varsGlobal.js")
 	).done(function(){
 		$.when(
 			/* LOAD JS FILES */
@@ -55,7 +55,7 @@ $(document).ready(function() {
 						"parentContainer":defaultReviewsParentContainer,
 						"productId":productId,
 						"modelLocalDefaultSettings":modelLocalDefaultSettings,
-						"viewContainer":siteBaseURL+"views/reviews/display/reviewWidgetContainer.html"
+						"viewContainer":siteBaseURL + "views/reviews/display/reviewWidgetContainer.html"
 					});
 				}, {
 					// api parameters
