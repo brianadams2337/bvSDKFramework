@@ -9,11 +9,11 @@ var productionSubmissionURL = "http://localhost:8888/bvSDKFramework/submission.h
 
 // api parameter deautls
 var apiDefaults = {
-	"stagURL": "bazaarvoice.com/",
-	"prodURL": "bazaarvoice.com/",
+	"stagURL": "stg.api.bazaarvoice.com/",
+	"prodURL": "api.bazaarvoice.com/",
 	"stagSubmissionURL": "stg.api.bazaarvoice.com/",
 	"prodSubmissionURL": "api.bazaarvoice.com/",
-	"customerName": "stg.api",
+	"customerName": "cssandbox.ugc",
 	// "customerName": "bvpstemplates.ugc",
 	"format": "json",
 	"apiVersion": "5.4",
