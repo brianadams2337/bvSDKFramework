@@ -30,7 +30,7 @@ var apiDefaults = {
 };
 
 var bvUserDefaults = {
-	"bvUAS": typeof userToken != 'undefined' ? userToken : "3130699631fd89ad48010ddf8851aee55573657249643d627674657374657231323326646174653d3230313330373031266d61786167653d333030", // encoded user string, or userToken if set
+	"bvUAS": typeof userToken != 'undefined' ? userToken : (function(){console.log("userToken variable not declared");})(), // encoded user string, or userToken if set
 	"userId": "testuser",
 	"userEmail":"bvspambox@gmail.com", //User's email address
 	"userLocation":"austin, tx", //User location text

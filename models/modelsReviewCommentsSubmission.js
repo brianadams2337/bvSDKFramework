@@ -99,7 +99,7 @@ function reviewCommentsSubmissionAPICall (options) {
 	}, options);
 
 	// set URL base for API call
-	var url = "http://" + apiBaseURL + "data/" + "submitreviewcomment." + defaultSettings["URL"]["format"];
+	var url = "http://" + defaultSettings["URL"]["baseurl"] + "data/" + "submitreviewcomment." + defaultSettings["URL"]["format"];
 	
 	// set URL parameters for API call
 	var params = defaultSettings["Parameters"];
