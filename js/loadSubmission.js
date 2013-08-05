@@ -15,7 +15,7 @@ $(document).ready(function() {
 
 	$.when(
 		// global variables
-		$.getScript("models/varsGlobal.js")
+		$.getScript("http://localhost:8888/bvSDKFramework/models/varsGlobal.js")
 	).done(function(){
 		$.when(
 			/* LOAD JS FILES */
