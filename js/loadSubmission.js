@@ -65,6 +65,7 @@ $(document).ready(function() {
 					// load review submission container
 					loadingContainerAnimation(defaultSubmissionContainer, function() {
 						getReviewsSubmissionForm(urlParameters["productId"], function(content) {
+							console.log(parseUAS(bvUserDefaults['bvUAS']));
 							loadReviewSubmissionWidget(content, {
 								"parentContainer":defaultSubmissionContainer,
 								"productId":urlParameters["productId"],
