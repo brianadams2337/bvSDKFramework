@@ -187,9 +187,9 @@ function loadReviewSubmissionForm (content, options) {
 					"parentContainer":$container
 				});
 				// secondary ratings
-				loadSecondaryRatingGroup (content, {
-					"parentContainer":$container
-				});
+//				loadSecondaryRatingGroup (content, {
+//					"parentContainer":$container
+//				});
 
 				// photo upload
 				console.log("photoupload");
@@ -211,9 +211,9 @@ function loadReviewSubmissionForm (content, options) {
 				// product recommendations
 				console.log("productrecommendations");
 				// tags
-				loadTagGroupInput (content, {
-					"parentContainer":$container
-				});
+//				loadTagGroupInput (content, {
+//					"parentContainer":$container
+//				});
 				// user location geocode
 				console.log("userlocationgeocode");
 				// hosted authentication

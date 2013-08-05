@@ -1,19 +1,19 @@
 /***** CLIENT DEFAULTS *****/
 
 // url path for staging site
-var stagingURL = "http://localhost:8888/bvSDKFramework/";
-var stagingSubmissionURL = "http://localhost:8888/bvSDKFramework/submission.html?";
+var stagingURL = "http://bbypoc.ts.bazaarvoice.com/bvSDKFramework/";
+var stagingSubmissionURL = "http://bbypoc.ts.bazaarvoice.com/submit.html?";
 // url pate for production site
 var productionURL = "http://localhost:8888/bvSDKFramework/";
 var productionSubmissionURL = "http://localhost:8888/bvSDKFramework/submission.html?";
 
 // api parameter deautls
 var apiDefaults = {
-	"stagURL": "bazaarvoice.com/bvstaging/",
+	"stagURL": "bazaarvoice.com/",
 	"prodURL": "bazaarvoice.com/",
 	"stagSubmissionURL": "stg.api.bazaarvoice.com/",
 	"prodSubmissionURL": "api.bazaarvoice.com/",
-	"customerName": "cssandbox.ugc",
+	"customerName": "stg.api", //temporarily setting to stg.api until revisions can be made to revert calls to generic model domain
 	// "customerName": "bvpstemplates.ugc",
 	"format": "json",
 	"apiVersion": "5.4",

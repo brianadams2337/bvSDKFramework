@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$.when(
 		// global variables
-		$.getScript("models/varsGlobal.js")
+		$.getScript("http://bbypoc.ts.bazaarvoice.com/bvSDKFramework/models/varsGlobal.js")
 	).done(function(){
 		$.when(
 			/* LOAD JS FILES */
@@ -54,7 +54,8 @@ $(document).ready(function() {
 					loadReviewWidget (content, {
 						"parentContainer":defaultReviewsParentContainer,
 						"productId":productId,
-						"modelLocalDefaultSettings":modelLocalDefaultSettings
+						"modelLocalDefaultSettings":modelLocalDefaultSettings,
+						"viewContainer":siteBaseURL+"views/reviews/display/reviewWidgetContainer.html"
 					});
 				}, {
 					// api parameters
