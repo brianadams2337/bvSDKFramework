@@ -16,6 +16,11 @@ function pathController (controller) {
 	return path;
 }
 
+function pathResource (relativeURI) {
+	var path = relativeURI.substr(0,4) == 'http' ? relativeURI : siteBaseURL+relativeURI;
+	return path;
+}
+
 
 /***** FORMS *****/
 
