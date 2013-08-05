@@ -98,7 +98,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	.BVAvatar {width: 46px; float: left;}
 	.BVUserInfo {margin-left: 56px;}
 		._BVUserNicknameContainer, ._BVUserLocationContainer, ._BVDateContainer {display: inline;}
-		._BVContextDataValueGroupContainer {}
+		._BVContextDataValueGroupContainer {display: inline;}
 			.BVContextDataValueContainer {float: left; margin-right: 15px;}
 				._BVContextDataValueLabelText {}
 
@@ -130,6 +130,8 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 ._BVFeedbackContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
 	._BVFeedbackCountContainer {color: #666; margin-bottom: 10px; display: none;}
 	.BVFeedbackVotingPrefix {float: left; line-height: 33px; margin-right: 10px;}
+		._BVFeedbackVotingContainer, ._BVReportInappropriateContainer {float: left;}
+			._BVFeedbackPositiveButton, ._BVFeedbackNegativeButton {float: left;}
 		._BVFeedbackVotingContainer .BVButtonWrapper {float: left; margin-right: 10px;}
 		._BVFeedbackVotingContainer .BVButtonWrapper.selected {opacity: 1;}
 		._BVFeedbackVotingContainer ._BVButton.BVDisabled {opacity: 0.5; cursor: default;}
@@ -137,7 +139,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	._BVFeedbackNegativeButton ._BVButtonText {background: url(images/votingThumbDownSprite.gif) no-repeat; padding-left: 22px;}
 
 /* Inappropriate Reporting */
-._BVReportInappropriateContainer {position: relative;}
+._BVReportInappropriateContainer {}
 	._BVReportInappropriateForm .BVFooter {margin-left: 0;}
 
 	/* Button */
@@ -146,20 +148,30 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		._BVReportInappropriateButtonContainer a._BVButton, ._BVReportInappropriateButtonContainer a._BVButton:hover, ._BVReportInappropriateButtonContainer a._BVButton:active, ._BVReportInappropriateButtonContainer a._BVButton:focus, ._BVReportInappropriateButtonContainer a._BVButton:visited {padding: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px;}
 
 	/* Form */
-	._BVReportInappropriateFormContainer {position: absolute; top: 30px; left: 270px;}
-		._BVReportInappropriateFormContainer ._BVReportInappropriateForm {background-color: #fff; border: 1px solid #C3C4C4; border-radius: 4px; padding: 10px; box-shadow: 0px 0px 3px rgba(0,0,0,0.3);}
+	._BVReportInappropriateFormContainer {position: relative;}
+		._BVReportInappropriateFormContainer ._BVReportInappropriateForm {position: absolute; top: 0; left: 0; background-color: #fff; border: 1px solid #C3C4C4; border-radius: 4px; padding: 10px; box-shadow: 0px 0px 3px rgba(0,0,0,0.3);}
 
 /* Comments */
-._BVReviewCommentsWidgetContainer {position: relative;}
+._BVReviewCommentsWidgetContainer {}
 
 	/* Write Button */
-	._BVButtonWriteReviewCommentContainer {position: absolute; right: 0; top: 0;}
+	._BVButtonWriteReviewCommentContainer {float: left;}
 		._BVButtonWriteReviewCommentContainer a._BVButton, ._BVButtonWriteReviewCommentContainer a._BVButton:hover, ._BVButtonWriteReviewCommentContainer a._BVButton:active, ._BVButtonWriteReviewCommentContainer a._BVButton:focus, ._BVButtonWriteReviewCommentContainer a._BVButton:visited {padding: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px;}
-	._BVButtonToggleReviewCommentsContainer {}
+	/* Toggle Button */
+	._BVButtonToggleReviewCommentsContainer {float: left; margin-right: 15px;}
 		._BVButtonToggleReviewCommentsContainer a._BVButton, ._BVButtonToggleReviewCommentsContainer a._BVButton:hover, ._BVButtonToggleReviewCommentsContainer a._BVButton:active, ._BVButtonToggleReviewCommentsContainer a._BVButton:focus, ._BVButtonToggleReviewCommentsContainer a._BVButton:visited {padding: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px;}
 
 	/* Comments Display */
-	._BVReviewCommentContainer ._BVFeedbackContainer {background: none transparent; padding: 0;}
+	._BVReviewCommentsToggleContainer {clear: both;}
+		._BVReviewCommentsToggleContainer .BVSectionHeader {margin: 0;}
+			._BVReviewCommentsToggleContainer .BVSectionHeader h2._BVSectionHeaderText {margin-bottom: 30px;}
+	._BVReviewCommentContainer ._BVFeedbackContainer {background: none transparent; padding: 0; margin-top: 0;}
+	._BVReviewCommentContainer {margin: 0 0 45px 45px; padding-left: 30px; border-left: 1px solid #ccc;}
+		._BVReviewCommentContainer .BVUserDataContainer {background-image: none; padding: 0;}
+			._BVReviewCommentContainer .BVAvatar, ._BVReviewCommentContainer .BVUGCSecondaryContent {display: none;}
+			._BVReviewCommentContainer .BVUserInfo {margin-left: 0; display: inline;}
+			._BVReviewCommentContainer ._BVDateContainer {display: inline;}
+		._BVReviewCommentsPaginationContainer ._BVPaginationContainer {padding: 15px 0;}
 
 /* Submission Form */
 
