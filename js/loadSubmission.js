@@ -21,22 +21,29 @@ $(document).ready(function() {
 			/* LOAD JS FILES */
 			$.getScript(siteBaseURL + "js/jquery.min.1.9.1.js"),
 			$.getScript(siteBaseURL + "js/createHTML5Elements.js"),
-			/* controllers */
-			$.getScript(siteBaseURL + "controllers/controllersGlobal.js"),
-			$.getScript(siteBaseURL + "controllers/controllersEventListeners.js"),
-			$.getScript(siteBaseURL + "controllers/controllersSubmission.js"),
-			$.getScript(siteBaseURL + "controllers/controllersReviewsSubmission.js"),
-			$.getScript(siteBaseURL + "controllers/controllersReviewPreview.js"),
-			$.getScript(siteBaseURL + "controllers/controllersReviews.js"),
-			$.getScript(siteBaseURL + "controllers/controllersReviewCommentsSubmission.js"),
+			/* properties */
+			$.getScript(siteBaseURL + "models/properties/properties.js"),
 			/* models */
 			$.getScript(siteBaseURL + "models/varsTemplates.js"),
 			$.getScript(siteBaseURL + "models/varsGlobal.js"),
 			$.getScript(siteBaseURL + "models/varsReviews.js"),
+			$.getScript(siteBaseURL + "models/varsReviewComments.js"),
 			$.getScript(siteBaseURL + "models/varsSubmission.js"),
 			$.getScript(siteBaseURL + "models/modelsGlobal.js"),
 			$.getScript(siteBaseURL + "models/modelsReviewsSubmission.js"),
 			$.getScript(siteBaseURL + "models/modelsReviewCommentsSubmission.js"),
+			/* controllers */
+			$.getScript(siteBaseURL + "controllers/controllersGlobal.js"),
+			$.getScript(siteBaseURL + "controllers/controllersEventListeners.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviews.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviewComments.js"),
+			$.getScript(siteBaseURL + "controllers/controllersSubmission.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviewsSubmission.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviewsSubmissionPreview.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviewsSubmissionThankYou.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviewCommentsSubmission.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviewCommentsSubmissionPreview.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviewCommentsSubmissionThankYou.js"),
 			/* plugins */
 			$.getScript(siteBaseURL + "js/plugins/jquery.cookie.js"),
 			$.getScript(siteBaseURL + "js/plugins/jquery.dateFormat.js"),
@@ -56,10 +63,13 @@ $(document).ready(function() {
 				case "review": 
 					console.log("review");
 					// load review submission container
-					getReviewsSubmissionForm(urlParameters["productId"], function(content) {
-						loadReviewSubmissionForm(content, {
-							"productId":urlParameters["productId"],
-							"returnURL":urlParameters["returnURL"]
+					loadingContainerAnimation(defaultSubmissionContainer, function() {
+						getReviewsSubmissionForm(urlParameters["productId"], function(content) {
+							loadReviewSubmissionWidget(content, {
+								"parentContainer":defaultSubmissionContainer,
+								"productId":urlParameters["productId"],
+								"returnURL":urlParameters["returnURL"]
+							});
 						});
 					});
 
@@ -68,12 +78,15 @@ $(document).ready(function() {
 				case "review_comment": 
 					console.log("review comment");
 					// load review submission container
-					getReviewCommentsSubmissionForm(urlParameters["reviewId"], function(content) {
-						console.log(urlParameters["reviewId"]);
-						loadReviewCommentSubmissionForm(content, {
-							"productId":urlParameters["productId"],
-							"contentId":urlParameters["reviewId"],
-							"returnURL":urlParameters["returnURL"]
+					loadingContainerAnimation(defaultSubmissionContainer, function() {
+						getReviewCommentsSubmissionForm(urlParameters["reviewId"], function(content) {
+							console.log(urlParameters["reviewId"]);
+							loadReviewCommentSubmissionWidget(content, {
+								"parentContainer":defaultSubmissionContainer,
+								"productId":urlParameters["productId"],
+								"contentId":urlParameters["reviewId"],
+								"returnURL":urlParameters["returnURL"]
+							});
 						});
 					});
 

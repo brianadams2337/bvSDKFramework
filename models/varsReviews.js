@@ -50,6 +50,7 @@ var defaultReviewFilterGroupContainer = "._BVFilterGroupContainer"; // all filte
 var defaultReviewFilterIndividualContainer = "._BVFilterIndividualContainer"; // individual filter container
 var defaultReviewFilterLabelTextContainer = "._BVFilterLabelText";
 var defaultReviewFilterTextContainer = "._BVFilterText";
+var defaultReviewFilterCountTextContainer = "._BVFilterCountText";
 
 /* USER INFO */
 var defaultReviewUserNicknameContainer = "._BVUserNicknameContainer"; // user nickname container
@@ -97,6 +98,11 @@ var defaultButtonSubmitContainer = "._BVButtonSubmitContainer"; // submit button
 var defaultButtonPreviewContainer = "._BVButtonPreviewContainer"; // preview button
 var defaultButtonEditContainer = "._BVButtonEditContainer"; // edit button
 var defaultButtonCancelContainer = "._BVButtonCancelContainer"; // cancel button
+var defaultButtonReturnContainer = "._BVButtonReturnContainer"; // return button
 var defaultButtonContainer = "._BVButton"; // button container
 var defaultButtonTextContainer = "._BVButtonText"; // button text
+
+/* PAGINATION */
+var defaultReviewPaginationContainer = "._BVReviewPaginationContainer" // review pagination container
+
 

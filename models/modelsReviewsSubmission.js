@@ -72,7 +72,7 @@ function reviewsSubmissionAPICall (options) {
 			"apiversion":apiDefaults["apiVersion"], //The API version.
 			"action":null, //The submission action to take -- either 'Preview' or 'Submit'. 'Preview' will show a draft of the content to be submitted; 'Submit' will submit the content. Note that if Action=Submit, the request must be an HTTP POST.
 			"additionalfield_<Dimension-External-Id>":null, //A concrete example of the parameter might be 'AdditionalField_Seat' with a value of '24F' (describing the seat number at a stadium or on a plane).
-			"agreedtotermsandconditions":true, //Boolean indicating whether or not the user agreed to the terms and conditions. Required depending on the client's settings.
+			"agreedtotermsandconditions":null, //Boolean indicating whether or not the user agreed to the terms and conditions. Required depending on the client's settings.
 			"callback":null, //Callback function name (JsonP).
 			"campaignId":null, //Arbitrary text that may be saved alongside content to indicate vehicle by which content was captured, e.g. “post-purchase email”.
 			"contextDataValue_<Dimension-External-Id>":null, //Some examples of this parameter include the following. Each is followed by possible values. ContextDataValue_PurchaserRank - "top", "top10", "top100", "top1000" ContextDataValue_Purchaser - "yes", "no" ContextDataValue_Age - "under21", "21to34", "35to44", "45to54", "55to64", "over65" ContextDataValue_Gender - "male", "female"
@@ -96,7 +96,8 @@ function reviewsSubmissionAPICall (options) {
 			"title":null, //Value is content title text.
 			"user":bvUserDefaults["bvUAS"], //Value of the encrypted user. This parameter demonstrates that a user has been authenticated. Note that the UserId parameter does not contain authentication information and should not be used for hosted authentication. See the Authenticate User method for more information.
 			"useremail":bvUserDefaults["userEmail"], //User's email address
-			"userid":bvUserDefaults["userId"], //User's external ID
+			//"userid":bvUserDefaults["userId"], //User's external ID
+			"userid":null, //User's external ID
 			"userlocation":bvUserDefaults["userLocation"], //User location text
 			"usernickname":bvUserDefaults["userNickname"], //User nickname display text
 			"videocaption_<n>":null, //Value is caption text for the video URL with the same value of <n>.

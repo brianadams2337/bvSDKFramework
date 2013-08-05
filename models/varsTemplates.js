@@ -44,6 +44,7 @@ var defaultFilterIndividualContainerView = "views/universal/filters/filterIndivi
 
 
 // main templates
+var defaultReviewWidgetContainerView = "views/reviews/display/reviewWidgetContainer.html" // entire review widget
 var defaultReviewContainerView = "views/reviews/display/reviewContainer.html"; // individual review module
 
 // ratings templates
@@ -81,6 +82,7 @@ var defaultReviewVideoContainerView = "views/universal/media/videoThumbnailConta
 
 
 // main templates
+var defaultReviewCommentWidgetContainerView = "views/review_comments/display/reviewCommentsWidgetContainer.html"
 var defaultReviewCommentContainerView = "views/review_comments/display/reviewCommentContainer.html"; // individual review module
 
 // review comment content templates
@@ -150,6 +152,46 @@ var defaultReportInappropriateFormContainerView = "views/universal/feedback/subm
 
 var defaultIndividualBadgeContainerView = "views/universal/display/badgeIndividualContainer.html"; // generic individual badge module
 
+var defaultBadgesUniversal = {
+	"top1Contributor" : "views/universal/badges/badgeContributor1TextContainer.html",
+	"top10Contributor" : "views/universal/badges/badgeContributor10TextContainer.html",
+	"top25Contributor" : "views/universal/badges/badgeContributor25TextContainer.html",
+	"top50Contributor" : "views/universal/badges/badgeContributor50TextContainer.html",
+	"top100Contributor" : "views/universal/badges/badgeContributor100TextContainer.html",
+	"top250Contributor" : "views/universal/badges/badgeContributor250TextContainer.html",
+	"top500Contributor" : "views/universal/badges/badgeContributor500TextContainer.html",
+	"top1000Contributor" : "views/universal/badges/badgeContributor1000TextContainer.html",
+	"featured" : "views/universal/badges/badgeFeaturedTextContainer.html",
+	"expert" : "views/universal/badges/badgeExpertTextContainer.html",
+	"staff" : "views/universal/badges/badgeStaffTextContainer.html",
+	"verifiedPurchaser" : "views/universal/badges/badgeVerifiedPurchaserTextContainer.html",
+	"socialAnsweringSubscriber" : "views/universal/badges/badgeSocialAnsweringSubscriberTextContainer.html",
+	"default" : "views/universal/badges/badgeDefaultTextContainer.html",
+}
+
+var defaultBadgesBestBuy = {
+    /* BBY SPECIFIC */
+    "EliteContributor" : "views/universal/badges/badgeEliteContributorTextContainer.html",
+    "TopContributorsArchived" : "views/universal/badges/badgeTopContributorsArchivedTextContainer.html",
+    "EliteReviewer" : "views/universal/badges/badgeEliteReviewerTextContainer.html",
+    "BlogHerReviewer" : "views/universal/badges/badgeBlogHerReviewerTextContainer.html",
+    "BusinessUser" : "views/universal/badges/badgeBusinessUserTextContainer.html",
+    "RewardZone" : "views/universal/badges/badgeRewardZoneTextContainer.html",
+    "RewardZoneSilver" : "views/universal/badges/badgeRewardZoneSilverTextContainer.html",
+    "RewardZoneNumber" : "views/universal/badges/badgeRewardZoneNumberTextContainer.html",
+    "RewardZoneNumberSilver" : "views/universal/badges/badgeRewardZoneNumberSilverTextContainer.html",
+    "RewardZoneNumberV3" : "views/universal/badges/badgeRewardZoneNumberV3TextContainer.html",
+    "RewardZoneNumberSilverV3" : "views/universal/badges/badgeRewardZoneNumberSilverV3TextContainer.html",
+    "RewardZoneMember" : "views/universal/badges/badgeRewardZoneMemberTextContainer.html",
+    "RewardZoneMemberUnlocked" : "views/universal/badges/badgeRewardZoneMemberUnlockedTextContainer.html",
+    "RewardZonePremierSilverReview" : "views/universal/badges/badgeRewardZonePremierSilverReviewTextContainer.html",
+    "DellSupport" : "views/universal/badges/badgeDellSupportTextContainer.html",
+    "SlingMedia" : "views/universal/badges/badgeSlingMediaTextContainer.html",
+    "Sennheiser" : "views/universal/badges/badgeSennheiserTextContainer.html",
+    "EcReviewer" : "views/universal/badges/badgeEcReviewerTextContainer.html",
+    "EcProductReview" : "views/universal/badges/badgeEcProductReviewTextContainer.html",
+}
+
 
 
 /***** PAGINATION *****/
@@ -209,15 +251,21 @@ var defaultTagIndividualContainerView = "views/universal/submission/inputTagCont
 
 // checkbox templates
 var defaultTermsConditionsContainerView = "views/universal/submission/inputTermsConditionsContainer.html"; // tag individual input module
+var defaultEmailWhenCommentedContainerView = "views/universal/submission/inputEmailWhenCommentedContainer.html"; // tag individual input module
+var defaultEmailAlertWhenPublishedContainerView = "views/universal/submission/inputEmailWhenPublishedContainer.html"; // tag individual input module
 
-var defaultThankYouView = "views/universal/submission/defaultThankYouView.html"; //thank you page template
 
 
 /***** REVIEW SPECIFIC *****/
 
 
 // main templates
+var defaultSubmissionWidgetContainerView = "views/reviews/submission/reviewSubmissionWidgetContainer.html"
+var defaultSubmissionPreviewWidgetContainerView = "views/reviews/submission/reviewSubmissionPreviewWidgetContainer.html";
+var defaultSubmissionThankYouWidgetContainerView = "views/reviews/submission/reviewSubmissionThankYouWidgetContainer.html";
+
 var defaultSubmissionFormContainerView = "views/reviews/submission/submissionFormReviewContainer.html";
+
 
 // ratings templates
 var defaultSecondaryRatingContainerView = "views/reviews/submission/inputSecondaryRatingContainer.html"; // secondary rating module
@@ -230,7 +278,10 @@ var defaultInputRadioSecondaryRatingContainerView = "views/reviews/submission/in
 
 
 // main templates
-var defaultSubmissionFormReviewCommentContainerView = "views/reviews/submission/submissionFormReviewCommentContainer.html" // review comment submission form module
+var defaultSubmissionReviewCommentWidgetContainerView = "views/review_comments/submission/reviewCommentSubmissionWidgetContainer.html"
+var defaultSubmissionReviewCommentPreviewWidgetContainerView = "views/review_comments/submission/reviewCommentSubmissionPreviewWidgetContainer.html";
+var defaultSubmissionReviewCommentThankYouWidgetContainerView = "views/review_comments/submission/reviewCommentSubmissionThankYouWidgetContainer.html";
 
+var defaultSubmissionFormReviewCommentContainerView = "views/review_comments/submission/submissionFormReviewCommentContainer.html" // review comment submission form module
 
 

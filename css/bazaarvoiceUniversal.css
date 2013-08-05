@@ -1,15 +1,5 @@
 behavior: url(includes/PIE-1.0.0/PIE.htc);
 
-@font-face {
-	font-family: 'Sosa';
-	src: url('../fonts/sosa-regular-webfont.eot');
-	src: url('../fonts/sosa-regular-webfont.woff') format('woff'),
-		url('../fonts/sosa-regular-webfont.ttf') format('truetype'),
-		url('../fonts/sosa-regular-webfont.svg') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
 /* STAR RATINGS */
 
 .BVOverallRatingContainer ._BVRatingStarsContainer {
@@ -38,69 +28,97 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 }
 
 /* CONTAINER STYLES */
-#BVRRContainer, #BVQAContainer, #BVSubmissionContainer {width: 60%; margin: 0 auto; font-family: Arial, Verdana, sans-serif; font-size: 13px; line-height: 1.5em;}
-#BVRRContainer, #BVQAContainer {background-color: #eee; padding: 3px;}
+#BVRRContainer, #BVQAContainer, #BVSubmissionContainer {width: 960px; margin: 0 auto; font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #49494A; line-height: 1.5em;}
+#BVRRContainer a, #BVQAContainer a, #BVSubmissionContainer a, #BVRRContainer a:visited, #BVQAContainer a:visited, #BVSubmissionContainer a:visited {color: #085EB9;}
+#BVRRContainer a:hover, #BVQAContainer a:hover, #BVSubmissionContainer a:hover, #BVRRContainer a:focus, #BVQAContainer a:focus, #BVSubmissionContainer a:focus, #BVRRContainer a:active, #BVQAContainer a:active, #BVSubmissionContainer a:active {color: #085EB9;}
+#BVRRContainer, #BVQAContainer {}
 ._BVContentLoadingContainer {background: url(../images/bvLoading.gif) no-repeat center transparent !important; min-height: 50px;}
 
 /* General - Titles, Labels, Values */
 .BVTitle {}
-.BVLabel {color: #999;}
-.BVValue {color: #666;}
+.BVLabel {font-weight: bold;}
+.BVValue {}
 
 /* Buttons */
 .BVButtonWrapper {}
-	.BVButtonWrapper a {display: inline-block; padding: 7px 15px; font-size: 13px; font-weight: bold; color: #333; text-shadow: 0 1px 0 rgba(255,255,255,0.9); white-space: nowrap; background-color: #eaeaea; background-image: -moz-linear-gradient(#fafafa, #eaeaea); background-image: -webkit-linear-gradient(#fafafa, #eaeaea); background-image: linear-gradient(#fafafa, #eaeaea); background-repeat: repeat-x; border-radius: 3px; border: 1px solid #ddd; border-bottom-color: #c5c5c5; box-shadow: 0 1px 3px rgba(0,0,0,0.05); vertical-align: middle; cursor: pointer; text-decoration: none;}
+
+	/* Generic */
+	a._BVButton, a._BVButton:active, a._BVButton:focus, a._BVButton:hover, a._BVButton:visited {display: inline-block; padding: 7px 12px; font-size: 13px; font-weight: bold; line-height: 19px; color: #085EB9; text-shadow: 0 1px 0 rgba(255,255,255,0.9); white-space: nowrap; background-color: #F6F6F6; background-image: -moz-linear-gradient(#F6F6F6, #E8E8E8); background-image: -webkit-linear-gradient(#F6F6F6, #E8E8E8); background-image: linear-gradient(#F6F6F6, #E8E8E8); background-repeat: repeat-x; border-radius: 4px; border: 1px solid #C3C4C4; vertical-align: middle; cursor: pointer; text-decoration: none;}
+
+	/* Submit */
+	._BVButtonSubmitContainer a._BVButton, ._BVButtonSubmitContainer a._BVButton:active, ._BVButtonSubmitContainer a._BVButton:focus, ._BVButtonSubmitContainer a._BVButton:hover, ._BVButtonSubmitContainer a._BVButton:visited {background-color: #F7CF00; background-image: -moz-linear-gradient(#FFF200, #F7CF00); background-image: -webkit-linear-gradient(#FFF200, #F7CF00); background-image: linear-gradient(#FFF200, #F7CF00); border: 1px solid #F9C500;}
+		._BVButtonSubmitContainer a._BVButton ._BVButtonText {color: #003B64; text-shadow: 0 1px 1px rgba(255,255,255,0.75);}
+
+	/* Write a Review */
+	._BVButtonWriteReviewContainer a._BVButton, ._BVButtonWriteReviewContainer a._BVButton:active, ._BVButtonWriteReviewContainer a._BVButton:focus, ._BVButtonWriteReviewContainer a._BVButton:hover, ._BVButtonWriteReviewContainer a._BVButton:visited {background-color: #006CBC; background-image: -moz-linear-gradient(#006CBC, #00449E); background-image: -webkit-linear-gradient(#006CBC, #00449E); background-image: linear-gradient(#006CBC, #00449E); border: 1px solid #003865;}
+		._BVButtonWriteReviewContainer a._BVButton ._BVButtonText {color: #fff; text-shadow: 0 -1px 1px rgba(0,0,0,0.75);}
 
 /* Ratings */
-.BVSecondaryRatingContainer {width: 123px;}
+.BVSecondaryRatingContainer {width: 195px;}
 .BVSecondaryRatingContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
-	.BVSecondaryRatingContainer ._BVRatingLabelText {display: block;}
-	.BVSecondaryRatingContainer ._BVRatingStarsContainer {display: block;}
-	.BVSecondaryRatingContainer .BVRatingOutOfContainer {display: none;}
+	.BVSecondaryRatingContainer ._BVRatingLabelText {font-weight: bold; display: block;}
+	.BVSecondaryRatingContainer ._BVRatingStarsContainer, .BVSecondaryRatingContainer .BVRatingOutOfContainer {display: block; float: left;}
+	.BVSecondaryRatingContainer .BVRatingOutOfContainer {font-weight: bold;}
+		.BVSecondaryRatingContainer .BVRatingOutOfContainer .BVRatingSeparator, .BVSecondaryRatingContainer .BVRatingOutOfContainer ._BVRatingRange {display: none;}
 
 /* QuickTake */
-._BVQuickTakeContainer {background-color: #fff; border-bottom-width: 0; overflow: hidden;}
-	._BVQuickTakeContainer ._BVOverallRatingContainer {border-width: 1px 1px 0; border-color: #ccc; border-style: solid;}
-		._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsContainer {float: none;}
-		._BVQuickTakeContainer .BVOverallRatingContainer .BVRatingOutOfContainer {display: none;}
-	._BVQuickTakeContainer ._BVOverallRatingContainer, ._BVQuickTakeContainer ._BVRecommendedContainerAverage {padding: 5px 10px;}
-	._BVQuickTakeContainer ._BVRecommendedContainerAverage {clear: both; border-width: 0 1px 0; border-color: #ccc; border-style: solid;}
+._BVQuickTakeContainer {overflow: hidden; position: relative;}
+	._BVQuickTakeContainer ._BVOverallRatingContainer {}
+		._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsContainer {float: left;}
+			._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsFilledImage, ._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsUnfilledImage {width: 170px !important;}
+		._BVQuickTakeContainer .BVOverallRatingContainer .BVRatingOutOfContainer {font-weight: bold; line-height: 33px; font-size: 36px; color: #085EB9; float: left;}
+			._BVQuickTakeContainer .BVOverallRatingContainer .BVRatingSeparator, ._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingRange {display: none;}
+	._BVQuickTakeContainer ._BVOverallRatingContainer, ._BVQuickTakeContainer ._BVRecommendedContainerAverage {}
+	._BVQuickTakeContainer ._BVRecommendedContainerAverage {background: url(images/backgroundBuyAgain.gif) no-repeat; padding: 25px 0 25px 76px; position: absolute; left: 306px;}
 		._BVQuickTakeContainer ._BVRecommendedContainerAverage .BVIsRecommended {margin: 0;}
-	._BVQuickTakeContainer ._BVButtonWriteReviewContainer {padding: 5px 10px; border: 1px solid #ccc; border-bottom: 1px solid #d8d8d8; background-color: #eaeaea; background-image: -moz-linear-gradient(#fafafa, #eaeaea); background-image: -webkit-linear-gradient(#fafafa, #eaeaea); background-image: linear-gradient(#fafafa, #eaeaea); background-repeat: repeat-x; overflow: hidden; }
+	._BVQuickTakeContainer ._BVFilters {clear: both; padding: 30px 0;}
+		._BVFiltersTitle {font-weight: bold;}
+	._BVQuickTakeContainer ._BVButtonWriteReviewContainer {background: -moz-linear-gradient(center top , #E7E7E7 0%, #F2F2F2 20%) repeat scroll 0 0 transparent; padding: 7px 12px; overflow: hidden;}
+	._BVQuickTakeContainer .BVSortContainer {position: absolute; right: 12px; bottom: 14px;}
 
 /* Reviews Display */
-._BVReviewBodyContainer, ._BVQuestionAnswerBodyContainer {background-color: #fff; border: 1px solid #ccc; padding: 5px 10px;}
-	._BVReviewContainer, ._BVQuestionAnswerContainer {border-bottom: 1px solid #ccc; padding: 30px 0 20px;}
-	._BVReviewContainer.BVlast, ._BVQuestionAnswerContainer.BVlast {border-bottom-width: 0;}
+._BVReviewBodyContainer, ._BVQuestionAnswerBodyContainer {}
+	._BVReviewContainer, ._BVQuestionAnswerContainer {}
+	._BVReviewContainer.BVlast, ._BVQuestionAnswerContainer.BVlast {}
+	._BVReviewContainer .BVUGCSpacerTop {height: 30px; margin-bottom: 40px; background: -moz-linear-gradient(center top , #E7E7E7 20%, #FFFFFF 100%) repeat scroll 0 0 transparent;}
 
 /* UGC Header - Rating, Title, Date */
 .BVUGCHeader {}
 	._BVOverallRatingContainer {}
-		.BVUGCHeader ._BVRatingLabelText, .BVUGCHeader .BVRatingOutOfContainer {display: none;}
-		.BVUGCHeader ._BVRatingStarsContainer {float: none;}
+		.BVUGCHeader ._BVRatingLabelText {display: none;}
+		.BVUGCHeader .BVRatingOutOfContainer .BVRatingSeparator, .BVUGCHeader .BVRatingOutOfContainer ._BVRatingRange {display: none;}
+		.BVUGCHeader ._BVRatingStarsContainer {width: 118px; float: left;}
+		.BVUGCHeader .BVRatingOutOfContainer {font-weight: bold; line-height: 28px;}
 	._BVTitleContainer {clear: left;}
-		h3._BVTitleText {margin: 10px 0;}
-	._BVDateContainer {font-size: 12px; font-style: italic;}
+		h3._BVTitleText {font-size: 18px; margin: 0;}
+	._BVDateContainer {}
 
 /* User Information */
-.BVUserDataContainer {margin: 10px 0; clear: both; overflow: hidden;}
+.BVUserDataContainer {background: url(images/backgroundShadowEdge.png) no-repeat bottom left; padding: 0 14px 8px; margin: 10px 0; clear: both; overflow: hidden;}
 	.BVAvatar {width: 46px; float: left;}
 	.BVUserInfo {margin-left: 56px;}
+		._BVUserNicknameContainer, ._BVUserLocationContainer, ._BVDateContainer {display: inline;}
 		._BVContextDataValueGroupContainer {}
 			.BVContextDataValueContainer {float: left; margin-right: 15px;}
 				._BVContextDataValueLabelText {}
+
+/* Badges */
+._BVBadgesContainer {}
+	.BVBadgeContainer {display: inline;}
+		.BVBadgeContainer div {display: inline;}
 
 /* Primary UGC - Text, Tags, Recommendations */
 .BVUGCPrimaryContent {margin-right: 175px;}
 	._BVTagGroupContainer {margin: 10px 0;}
 	._BVTagGroupContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
-		.BVTagContainer {width: 45%; float: left; margin-right: 15px;}
-	._BVRecommendedContainer {clear: both;}
+		.BVTagContainer {}
+			.BVTagContainer ._BVTagLabelText, .BVTagContainer .BVTag, ._BVTagIndividualContainer {display: inline;}
+	._BVRecommendedContainer {font-weight: bold; clear: both;}
 		.BVIsRecommended {margin: 10px 0;}
 
 /* Secondary UGC - Secondary Ratings */
 .BVUGCSecondaryContent {float: right;}
-	.BVUGCSecondaryContent ._BVSecondaryRatingsContainer, .BVUGCSecondaryContent .BVUGCMediaContent {width: 150px; clear: left; margin: 10px 0;}
+	.BVUGCSecondaryContent ._BVSecondaryRatingsContainer, .BVUGCSecondaryContent .BVUGCMediaContent {width: 200px; clear: left; margin: 10px 0;}
 
 /* Media UGC */
 ._BVPhotoGroupContainer {}
@@ -108,21 +126,46 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		._BVPhotoThumbnail img, ._BVVideoThumbnail img {width: 125px; margin-left: -25px; display: block;}
 
 /* Helpfulness Voting */
-._BVFeedbackContainer {clear: both; margin: 10px 0;}
+._BVFeedbackContainer {background: -moz-linear-gradient(center top , #E7E7E7 0%, #F2F2F2 20%) repeat scroll 0 0 transparent; padding: 12px; margin-top: 30px; clear: both;}
 ._BVFeedbackContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
-	._BVFeedbackCountContainer {color: #666; margin-bottom: 10px;}
-	.BVFeedbackVotingPrefix {float: left; line-height: 35px; margin-right: 10px;}
+	._BVFeedbackCountContainer {color: #666; margin-bottom: 10px; display: none;}
+	.BVFeedbackVotingPrefix {float: left; line-height: 33px; margin-right: 10px;}
 		._BVFeedbackVotingContainer .BVButtonWrapper {float: left; margin-right: 10px;}
 		._BVFeedbackVotingContainer .BVButtonWrapper.selected {opacity: 1;}
 		._BVFeedbackVotingContainer ._BVButton.BVDisabled {opacity: 0.5; cursor: default;}
+	._BVFeedbackPositiveButton ._BVButtonText {background: url(images/votingThumbUpSprite.gif) no-repeat; padding-left: 22px;}
+	._BVFeedbackNegativeButton ._BVButtonText {background: url(images/votingThumbDownSprite.gif) no-repeat; padding-left: 22px;}
 
-._BVReportInappropriateContainer ._BVButton.BVDisabled {opacity: 0.5; cursor: default;}
+/* Inappropriate Reporting */
+._BVReportInappropriateContainer {position: relative;}
+	._BVReportInappropriateForm .BVFooter {margin-left: 0;}
+
+	/* Button */
+	._BVReportInappropriateForm .BVFieldButtonGroup, ._BVReportInappropriateForm .BVFieldButtonGroup .BVField {margin-bottom: 0;}
+	._BVReportInappropriateButtonContainer a._BVButton.BVDisabled {opacity: 0.5; cursor: default;}
+		._BVReportInappropriateButtonContainer a._BVButton, ._BVReportInappropriateButtonContainer a._BVButton:hover, ._BVReportInappropriateButtonContainer a._BVButton:active, ._BVReportInappropriateButtonContainer a._BVButton:focus, ._BVReportInappropriateButtonContainer a._BVButton:visited {padding: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px;}
+
+	/* Form */
+	._BVReportInappropriateFormContainer {position: absolute; top: 30px; left: 270px;}
+		._BVReportInappropriateFormContainer ._BVReportInappropriateForm {background-color: #fff; border: 1px solid #C3C4C4; border-radius: 4px; padding: 10px; box-shadow: 0px 0px 3px rgba(0,0,0,0.3);}
+
+/* Comments */
+._BVReviewCommentsWidgetContainer {position: relative;}
+
+	/* Write Button */
+	._BVButtonWriteReviewCommentContainer {position: absolute; right: 0; top: 0;}
+		._BVButtonWriteReviewCommentContainer a._BVButton, ._BVButtonWriteReviewCommentContainer a._BVButton:hover, ._BVButtonWriteReviewCommentContainer a._BVButton:active, ._BVButtonWriteReviewCommentContainer a._BVButton:focus, ._BVButtonWriteReviewCommentContainer a._BVButton:visited {padding: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px;}
+	._BVButtonToggleReviewCommentsContainer {}
+		._BVButtonToggleReviewCommentsContainer a._BVButton, ._BVButtonToggleReviewCommentsContainer a._BVButton:hover, ._BVButtonToggleReviewCommentsContainer a._BVButton:active, ._BVButtonToggleReviewCommentsContainer a._BVButton:focus, ._BVButtonToggleReviewCommentsContainer a._BVButton:visited {padding: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px;}
+
+	/* Comments Display */
+	._BVReviewCommentContainer ._BVFeedbackContainer {background: none transparent; padding: 0;}
 
 /* Submission Form */
 
 /* General - Titles, Labels, Values */
 ._BVLabelText {width: 150px; float: left; margin-right: 10px;}
-h1._BVPageHeaderText, h2._BVSectionHeaderText {margin: 10px 0;}
+h1._BVPageHeaderText, h2._BVSectionHeaderText {margin: 0;}
 
 /* Sections */
 .BVSection {border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 30px;}
@@ -138,9 +181,9 @@ h1._BVPageHeaderText, h2._BVSectionHeaderText {margin: 10px 0;}
 	.BVFormInputText, .BVFormInputTextarea {padding: 7px 8px; outline: none; color: #333; background-color: #fff; background-repeat: no-repeat; background-position: right center; border: 1px solid #ccc; border-radius: 3px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.075); -moz-box-sizing: border-box; box-sizing: border-box; transition: all 0.15s ease-in; -webkit-transition: all 0.15s ease-in 0; vertical-align: middle;}
 	.BVFormInputText:focus, .BVFormInputTextarea:focus {border-color: #51a7e8; box-shadow: inset 0 1px 2px rgba(0,0,0,0.075),0 0 5px rgba(81,167,232,0.5);}
 	.BVFormInputText {width: 380px;}
-	.BVFormInputTextarea {width: 381px; height: 125px;}
+	.BVFormInputTextarea {width: 381px; height: 125px; resize: vertical;}
 	._BVCharacterCounter {display: inline;}
-	._BVCharacterCounterText {display: inline-block;}
+	.BVCharacterCounterText {display: inline-block;}
 	._BVRadioButtonGroupContainer {float: left;}
 
 /* Rating Stars */

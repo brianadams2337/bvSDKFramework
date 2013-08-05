@@ -8,18 +8,8 @@ $(document).ready(function() {
 			$.getScript(siteBaseURL + "js/jquery.min.1.9.1.js"),
 			$.getScript(siteBaseURL + "js/createHTML5Elements.js"),
 			$.getScript(siteBaseURL + "js/browserSelector.js"),
-			/* controllers */
-			$.getScript(siteBaseURL + "controllers/controllersGlobal.js"),
-			$.getScript(siteBaseURL + "controllers/controllersEventListeners.js"),
-			$.getScript(siteBaseURL + "controllers/controllersSubmission.js"),
-			$.getScript(siteBaseURL + "controllers/controllersReviews.js"),
-			$.getScript(siteBaseURL + "controllers/controllersReviewComments.js"),
-			$.getScript(siteBaseURL + "controllers/controllersAskAnswer.js"),
-			$.getScript(siteBaseURL + "controllers/controllersFeedback.js"),
-			$.getScript(siteBaseURL + "controllers/controllersPagination.js"),
-			$.getScript(siteBaseURL + "controllers/controllersSorting.js"),
-			$.getScript(siteBaseURL + "controllers/controllersFilters.js"),
-			$.getScript(siteBaseURL + "controllers/controllersBadges.js"),
+			/* properties */
+			$.getScript(siteBaseURL + "models/properties/properties.js"),
 			/* models */
 			$.getScript(siteBaseURL + "models/varsTemplates.js"),
 			$.getScript(siteBaseURL + "models/varsUniversal.js"),
@@ -33,6 +23,18 @@ $(document).ready(function() {
 			$.getScript(siteBaseURL + "models/modelsReviewComments.js"),
 			$.getScript(siteBaseURL + "models/modelsAskAnswer.js"),
 			$.getScript(siteBaseURL + "models/modelsFeedback.js"),
+			/* controllers */
+			$.getScript(siteBaseURL + "controllers/controllersGlobal.js"),
+			$.getScript(siteBaseURL + "controllers/controllersEventListeners.js"),
+			$.getScript(siteBaseURL + "controllers/controllersSubmission.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviews.js"),
+			$.getScript(siteBaseURL + "controllers/controllersReviewComments.js"),
+			$.getScript(siteBaseURL + "controllers/controllersAskAnswer.js"),
+			$.getScript(siteBaseURL + "controllers/controllersFeedback.js"),
+			$.getScript(siteBaseURL + "controllers/controllersPagination.js"),
+			$.getScript(siteBaseURL + "controllers/controllersSorting.js"),
+			$.getScript(siteBaseURL + "controllers/controllersFilters.js"),
+			$.getScript(siteBaseURL + "controllers/controllersBadges.js"),
 			/* plugins */
 			$.getScript(siteBaseURL + "js/plugins/jquery.cookie.js"),
 			$.getScript(siteBaseURL + "js/plugins/jquery.dateFormat.js"),
@@ -45,9 +47,6 @@ $(document).ready(function() {
 				$(deferred.resolve);
 			})
 		).done(function(){
-			// hide the target container while reviews are loading
-			//$(defaultReviewsParentContainer).empty().hide().addClass("_BVContentLoadingContainer");
-
 			// load reviews
 			loadingContainerAnimation(defaultReviewsParentContainer, function() {
 				getAllReviews (productId, function(content, modelLocalDefaultSettings) {
@@ -64,7 +63,7 @@ $(document).ready(function() {
 						"filter":{
 							//"isfeatured":true,
 							//"hasphotos":false,
-							//"hascomments":true,
+							// "hascomments":true,
 							//"contextdatavalue_Gender":"Male",
 							//"contextdatavalue_Age": "18to24",
 						},

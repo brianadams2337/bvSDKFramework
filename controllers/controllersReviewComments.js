@@ -2,8 +2,8 @@
 function loadReviewCommentsWidget (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"",
-		"targetContainer":"._BVReviewCommentsWidgetContainer",
-		"viewContainer":"views/review_comments/display/reviewCommentsWidgetContainer.html",
+		"targetContainer":defaultReviewCommentsWidgetContainer,
+		"viewContainer":defaultReviewCommentWidgetContainerView,
 		"loadOrder":"",
 		"productId":"",
 		"modelLocalDefaultSettings":""
@@ -18,7 +18,7 @@ function loadReviewCommentsWidget (content, options) {
 		async:false,
 		success: function(container) {
 			var $container = $(container);
-			//$("._BVReviewCommentsWidgetContainer").hide().addClass("_BVContentLoadingContainer");
+
 			// add review comments widget container
 			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
 			// set variables
@@ -54,7 +54,7 @@ function loadReviewCommentsWidget (content, options) {
 				// pagination
 				loadNumberedPagination (content, {
 					"parentContainer":$container,
-					"targetContainer":"._BVReviewCommentsPaginationContainer",
+					"targetContainer":defaultReviewCommentPaginationContainer,
 					"viewReloadOptions":{
 						"model":getAllReviewComments,
 						"modelSettings":settings["modelLocalDefaultSettings"],
@@ -67,11 +67,9 @@ function loadReviewCommentsWidget (content, options) {
 				addOddEvenClasses (defaultReviewContainer);
 				addFirstLastClasses (defaultReviewContainer);
 
-				// show target container once reviews are finished loading
-				//$("._BVReviewCommentsWidgetContainer").show().removeClass("_BVContentLoadingContainer");
 			}
 			// write review comment button
-			loadWriteReviewCommentButton ("Write a Comment", {
+			loadWriteReviewCommentButton ("Post Comment", {
 				"parentContainer":$container,
 				"productId":productId,
 				"contentId":contentId
@@ -92,8 +90,6 @@ function loadIndividualReviewComment (content, options) {
 		"productId":"",
 		"modelLocalDefaultSettings":""
 	}, options);
-	// hide the target container while comments are loading
-	//$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).empty().hide().addClass("_BVContentLoadingContainer");
 	// get a new id for the comment container using comment id - this will be needed for reference on child elements
 	var contentId = content["Id"]
 	var newID = "BVCommentContainer" + contentId;

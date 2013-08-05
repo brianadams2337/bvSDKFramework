@@ -2,63 +2,63 @@ var defaultReviewSortLoadOrder = [
 	// lowest overall rating
 	{
 		"SortParameter":"rating",
-		"Label": "Lowest Rating",
+		"Label": labelsSortReviewOptions["ratingAsc"],
 		"Selected": false,
 		"Value": "asc"
 	},
 	// highest overall rating
 	{
 		"SortParameter":"rating",
-		"Label": "Highest Rating",
+		"Label": labelsSortReviewOptions["ratingDesc"],
 		"Selected": false,
 		"Value": "desc"
 	},
 	// oldest reviews
 	{
 		"SortParameter":"submissiontime",
-		"Label": "Oldest",
+		"Label": labelsSortReviewOptions["submissiontimeAsc"],
 		"Selected": false,
 		"Value": "asc"
 	},
 	// newest reviews
 	{
 		"SortParameter":"submissiontime",
-		"Label": "Newest",
+		"Label": labelsSortReviewOptions["submissiontimeDesc"],
 		"Selected": false,
 		"Value": "desc"
 	},
 	// least helpful reviews reviews
 	{
 		"SortParameter":"totalnegativefeedbackcount",
-		"Label": "Least Helpful",
+		"Label": labelsSortReviewOptions["totalnegativefeedbackcountDesc"],
 		"Selected": false,
 		"Value": "desc"
 	},
 	// most helpful reviews reviews
 	{
 		"SortParameter":"totalpositivefeedbackcount",
-		"Label": "Most Helpful",
+		"Label": labelsSortReviewOptions["totalpositivefeedbackcountDesc"],
 		"Selected": false,
 		"Value": "desc"
 	},
 	// featured reviews first
 	{
 		"SortParameter":"isfeatured",
-		"Label": "Featured Reviews",
+		"Label": labelsSortReviewOptions["isfeaturedDesc"],
 		"Selected": false,
 		"Value": "desc"
 	},
 	// photo reviews first
 	{
 		"SortParameter":"hasphotos",
-		"Label": "Photo Reviews",
+		"Label": labelsSortReviewOptions["hasphotosDesc"],
 		"Selected": false,
 		"Value": "desc"
 	},
 	// video reviews first
 	{
 		"SortParameter":"hasvideos",
-		"Label": "Video Reviews",
+		"Label": labelsSortReviewOptions["hasvideosDesc"],
 		"Selected": false,
 		"Value": "desc"
 	},
