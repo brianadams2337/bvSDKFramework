@@ -192,7 +192,15 @@ function loadReviewSubmissionForm (content, options) {
 				});
 
 				// photo upload
-				console.log("photoupload");
+				loadPhotoGroupInput (content, {
+					"parentContainer":$container,
+					"inputSettings":{
+						"inputLabel":"Upload your photos"
+					},
+					"mediaSettings":{
+						"contentType":"review"
+					}
+				});
 				// video link
 				loadYoutubeUrlInput (content, {
 					"parentContainer":$container,

@@ -93,7 +93,7 @@ $(document).ready(function() {
 */
 			/* MAGNIFIC LIGHTBOX POPIN */
 			// photos
-			$('#BVRRContainer').on('click', '._BVPhotoThumbnail', function() {
+			$(defaultReviewsParentContainer).on('click', defaultReviewPhotoThumbnailContainer, function() {
 				event.preventDefault();
 				$(this).magnificPopup({
 					type: 'image',
@@ -101,7 +101,7 @@ $(document).ready(function() {
 				}).click();
 			});
 			// videos
-			$('#BVRRContainer').on('click', '._BVVideoThumbnail', function() {
+			$(defaultReviewsParentContainer).on('click', defaultReviewVideoThumbnailContainer, function() {
 				event.preventDefault();
 				$(this).magnificPopup({
 					type: 'iframe',
@@ -109,7 +109,7 @@ $(document).ready(function() {
 				}).click();
 			});
 			// photos
-			$('#BVQAContainer').on('click', '._BVPhotoThumbnail', function() {
+			$(defaultQuestionAnswerParentContainer).on('click', defaultQuestionPhotoThumbnailContainer, function() {
 				event.preventDefault();
 				$(this).magnificPopup({
 					type: 'image',
@@ -117,7 +117,7 @@ $(document).ready(function() {
 				}).click();
 			});
 			// videos
-			$('#BVQAContainer').on('click', '._BVVideoThumbnail', function() {
+			$(defaultQuestionAnswerParentContainer).on('click', defaultQuestionVideoThumbnailContainer, function() {
 				event.preventDefault();
 				$(this).magnificPopup({
 					type: 'iframe',
