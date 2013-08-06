@@ -256,11 +256,10 @@ function loadQuickTake (content, options) {
 			});
 
 			// write review button
-			loadWriteReviewButton ("Write a Review", {
+			loadWriteReviewButton ("Review This Product", {
 				"parentContainer":$container,
 				"productId":settings["productId"]
 			});
-
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
@@ -323,7 +322,7 @@ function loadReviewRecommendedAverage (content, options) {
 			var recommendedPercentage = (recommendedYesCount/recommendedTotalCount);
 			var recommendedPercentageFormatted = convertDecimalToPercentage(recommendedPercentage);
 			// set text variable_BVReviewContainer
-			var recommendedAverageText = recommendedPercentageFormatted + "% recommeded this product";
+			var recommendedAverageText = recommendedPercentageFormatted + "% of reviewers would recommeded this product to a friend (" + recommendedYesCount + " out of " + recommendedTotalCount + ")";
 			// set average recommended text
 			$container.find(defaultIsRecommendedValueContainer).andSelf().filter(defaultIsRecommendedValueContainer).text(recommendedAverageText);
 			// add average recommended template
@@ -353,7 +352,7 @@ function loadReviewRating (content, options) {
 			var $container = $(container);
 			// variables
 			var id = "Overall";				
-			var value = content['Rating'];
+			var value = content['Rating'] + ".0";
 			var valueRange = content['RatingRange'];
 			var labelText = "Overall Rating";
 			// set rating label (title)
@@ -393,7 +392,7 @@ function loadReviewSecondaryRatings (content, options) {
 				var cur = settings["loadOrder"][index];
 				// set text variables
 				var id = content["SecondaryRatings"][cur]["Id"];
-				var value = content["SecondaryRatings"][cur]["Value"];
+				var value = content["SecondaryRatings"][cur]["Value"] + ".0";
 				var valueRange = content["SecondaryRatings"][cur]["ValueRange"];
 				var valueLabelText = content["SecondaryRatings"][cur]["ValueLabel"];
 				var labelText = content["SecondaryRatings"][cur]["Label"];
@@ -520,7 +519,7 @@ function loadReviewRecommended (content, options) {
 			success: function(container) {
 				var $container = $(container);
 				// set variables
-				var isRecommendedValue = "Yes, I do recommend this product.";
+				var isRecommendedValue = "I would recommend this to a friend!";
 				var isNotRecommendedValue = "No, I do not recommend this product.";
 				// set value
 				if (content['IsRecommended'] == true) {

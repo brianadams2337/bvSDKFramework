@@ -69,7 +69,7 @@ function loadReviewCommentsWidget (content, options) {
 
 			}
 			// write review comment button
-			loadWriteReviewCommentButton ("Write a Comment", {
+			loadWriteReviewCommentButton ("Post Comment", {
 				"parentContainer":$container,
 				"productId":productId,
 				"contentId":contentId

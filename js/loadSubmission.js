@@ -15,7 +15,7 @@ $(document).ready(function() {
 
 	$.when(
 		// global variables
-		$.getScript("models/varsGlobal.js")
+		$.getScript("http://localhost:8888/bvSDKFramework/models/varsGlobal.js")
 	).done(function(){
 		$.when(
 			/* LOAD JS FILES */
@@ -69,6 +69,7 @@ $(document).ready(function() {
 					// load review submission container
 					loadingContainerAnimation(defaultSubmissionContainer, function() {
 						getReviewsSubmissionForm(urlParameters["productId"], function(content) {
+							console.log(parseUAS(bvUserDefaults['bvUAS']));
 							loadReviewSubmissionWidget(content, {
 								"parentContainer":defaultSubmissionContainer,
 								"productId":urlParameters["productId"],

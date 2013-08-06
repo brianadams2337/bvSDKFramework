@@ -9,16 +9,16 @@ var productionSubmissionURL = "http://localhost:8888/bvSDKFramework/submission.h
 
 // api parameter deautls
 var apiDefaults = {
-	"stagURL": "bazaarvoice.com/bvstaging/",
-	"prodURL": "bazaarvoice.com/",
+	"stagURL": "stg.api.bazaarvoice.com/",
+	"prodURL": "api.bazaarvoice.com/",
 	"stagSubmissionURL": "stg.api.bazaarvoice.com/",
 	"prodSubmissionURL": "api.bazaarvoice.com/",
-	"customerName": "bvpstemplates.ugc",
-	//"customerName": "cssandbox.ugc", // cssandbox customer name
+	"customerName": "cssandbox.ugc",
+	// "customerName": "bvpstemplates.ugc",
 	"format": "json",
 	"apiVersion": "5.4",
-	"passkey": "56m3b2rfbcquf5j6fejjuu3w",
-	//"passkey": "iwmji1d018b62e3fshc70qaj8", // cssandbox passkey
+	"passkey": "iwmji1d018b62e3fshc70qaj8",
+	// "passkey": "56m3b2rfbcquf5j6fejjuu3w", //cssandbox apikey: iwmji1d018b62e3fshc70qaj8
 	"offset": 0,
 	"limitReviews": 10,
 	"limitReviewComments": 2,
@@ -30,7 +30,7 @@ var apiDefaults = {
 };
 
 var bvUserDefaults = {
-	"bvUAS": "3130699631fd89ad48010ddf8851aee55573657249643d627674657374657231323326646174653d3230313330373031266d61786167653d333030", // encoded user string
+	"bvUAS": typeof userToken != 'undefined' ? userToken : (function(){console.log("userToken variable not declared");})(), // encoded user string, or userToken if set
 	"userId": "testuser",
 	"userEmail":"bvspambox@gmail.com", //User's email address
 	"userLocation":"austin, tx", //User location text

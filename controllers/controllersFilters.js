@@ -38,7 +38,7 @@ function loadFiltersOverallRating (content, options) {
 			// create ratings distribution to match other distribution objects from json repsonse
 			var ratingsDistribution = {
 				"Id":"rating",
-				"Label":"Overall Rating",
+				"Label":"Star rating...",
 				"Values":[]
 			};
 			$.each(settings["loadOrder"], function() {

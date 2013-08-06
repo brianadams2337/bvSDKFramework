@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$.when(
 		// global variables
-		$.getScript("models/varsGlobal.js")
+		$.getScript("http://localhost:8888/bvSDKFramework/models/varsGlobal.js")
 	).done(function(){
 		$.when(
 			/* LOAD JS FILES */
@@ -63,7 +63,7 @@ $(document).ready(function() {
 						"filter":{
 							//"isfeatured":true,
 							//"hasphotos":false,
-							//"hascomments":true,
+							// "hascomments":true,
 							//"contextdatavalue_Gender":"Male",
 							//"contextdatavalue_Age": "18to24",
 						},

@@ -110,5 +110,3 @@ function loadBadgeContent (content, options) {
 		}
 	});
 }
-
-
