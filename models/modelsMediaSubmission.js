@@ -6,6 +6,7 @@ function postPhotoSubmissionForm (productID, callBack, options) {
 		}
 	}, options);
 	var apiCall = photoSubmissionAPICall(settings);
+	// parameter for callback must be an API call object returned from the photoSubmissionAPICall model
 	callBack(apiCall);
 }
 

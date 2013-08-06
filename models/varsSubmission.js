@@ -42,6 +42,8 @@ var defaultEmailAlertWhenPublishedInputContainer = "._BVEmailAlertWhenPublishedC
 
 var defaultFormInputContainer = "._BVFormInput"; // form input container
 var defaultFormInputWrapperContainer = "._BVFormInputWrapper"; // form input wrapper container
+var defaultFormPhotoCaptionInputWrapperContainer = "._BVPhotoCaptionInputWrapper"; // form input wrapper container
+var defaultFormPhotoUrlInputWrapperContainer = "._BVPhotoUrlInputWrapper"; // form input wrapper container
 
 var defaultReviewVideoInputContainer = "._BVVideoUploadInputContainer"; // review video input
 var defaultReviewVideoCaptionInputContainer = "._BVVideoCaptionInputContainer"; // review video input

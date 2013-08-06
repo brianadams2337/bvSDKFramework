@@ -1279,15 +1279,10 @@ function loadPhotoUrlUploadInput (content, options) {
 			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
 			// hide photo preview container on load
 			$(defaultPhotoUploadPreviewToggleContainer).hide();
-			// set upload input attributes
-			$($container).find("._BVFormInput.BVFormInputUpload").andSelf().filter("._BVFormInput.BVFormInputUpload").attr({
-				"id":inputName,
-				"name":inputName
-			});
 			// load photo caption input
 			loadTextFieldInput (content["Data"]["Fields"][captionInputName], {
 				"parentContainer":$container,
-				"targetContainer":"._BVFormInputWrapper._BVPhotoCaptionContainer",
+				"targetContainer":defaultFormPhotoCaptionInputWrapperContainer,
 				"inputSettings":{
 					"inputLabel":"Add Caption",
 				}
@@ -1295,7 +1290,7 @@ function loadPhotoUrlUploadInput (content, options) {
 			// load photo url input (hidden)
 			loadTextFieldInput (content["Data"]["Fields"][urlInputName], {
 				"parentContainer":$container,
-				"targetContainer":"._BVFormInputWrapper._BVPhotoUrlContainer",
+				"targetContainer":defaultFormPhotoUrlInputWrapperContainer,
 				"viewContainer":"views/universal/submission/inputTextFieldHiddenContainer.html"
 			});
 		},

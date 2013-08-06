@@ -120,7 +120,7 @@ $(document).ready(function() {
 
 			/* MAGNIFIC LIGHTBOX POPIN */
 			// photos
-			$('#BVSubmissionContainer').on('click', '._BVPhotoThumbnail', function() {
+			$(defaultSubmissionContainer).on('click', defaultReviewPhotoThumbnailContainer, function() {
 				event.preventDefault();
 				$(this).magnificPopup({
 					type: 'image',
@@ -128,7 +128,7 @@ $(document).ready(function() {
 				}).click();
 			});
 			// videos
-			$('#BVSubmissionContainer').on('click', '._BVVideoThumbnail', function() {
+			$(defaultSubmissionContainer).on('click', defaultReviewVideoThumbnailContainer, function() {
 				event.preventDefault();
 				$(this).magnificPopup({
 					type: 'iframe',
