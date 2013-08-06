@@ -637,16 +637,16 @@ function loadTextFieldInput (content, options) {
 		"loadOrder":"",
 		"productId":"",
 		"inputSettings":{
-			"inputName":"",
-			"inputType":"",
-			"inputLabel":"",
+			"inputName":content["Id"],
+			"inputType":content["Type"],
+			"inputLabel":content["Label"],
 			"inputPlaceholder":"", // user defined
-			"inputValue":"",
-			"inputMinLength":"",
-			"inputMaxLength":"",
-			"inputRequired":"",
-			"inputDefault":"",
-			"inputOptionsArray":""
+			"inputValue":content["Value"],
+			"inputMinLength":content["MinLength"],
+			"inputMaxLength":content["MaxLength"],
+			"inputRequired":content["Required"],
+			"inputDefault":content["Default"],
+			"inputOptionsArray":content["Options"]
 		}
 	}, options);
 	$.ajax({
@@ -687,16 +687,16 @@ function loadTextAreaInput (content, options) {
 		"loadOrder":"",
 		"productId":"",
 		"inputSettings":{
-			"inputName":"",
-			"inputType":"",
-			"inputLabel":"",
+			"inputName":content["Id"],
+			"inputType":content["Type"],
+			"inputLabel":content["Label"],
 			"inputPlaceholder":"", // user defined
-			"inputValue":"",
-			"inputMinLength":"",
-			"inputMaxLength":"",
-			"inputRequired":"",
-			"inputDefault":"",
-			"inputOptionsArray":""
+			"inputValue":content["Value"],
+			"inputMinLength":content["MinLength"],
+			"inputMaxLength":content["MaxLength"],
+			"inputRequired":content["Required"],
+			"inputDefault":content["Default"],
+			"inputOptionsArray":content["Options"]
 		}
 	}, options);
 	$.ajax({
@@ -862,7 +862,7 @@ function loadSelectInput (content, options) {
 	});
 }
 
-// generic option inpute
+// generic option input
 function loadSelectOptionsInput (content, options) {
 	// content expected ["Data"]["Fields"][<contextdatavalue_Value>]["Options"]
 	var settings = $.extend(true, {
@@ -1000,6 +1000,8 @@ function loadCheckboxInputField (content, options) {
 
 
 
+
+
 /***** MEDIA UPLOAD *****/
 
 
@@ -1102,4 +1104,261 @@ function loadVideoCaptionInput (content, options) {
 	});
 }
 
+function loadPhotoGroupInput (content, options) {
+	var defaultLoadOrder = new Array();
+	$.each(content["Data"]["Groups"]["photo"]["SubElements"], function() {
+		defaultLoadOrder.push(this["Id"]);
+	});
+	var settings = $.extend(true, {
+		"parentContainer":defaultSubmissionFormContainer,
+		"targetContainer":defaultPhotoUploadGroupInputContainer,
+		"viewContainer":"views/universal/submission/inputUploadGroupContainer.html",
+		"loadOrder":defaultLoadOrder,
+		"productId":"",
+		"inputSettings":{
+			"inputName":content["Id"],
+			"inputType":content["Type"],
+			"inputLabel":content["Label"],
+			"inputRequired":content["Required"],
+			"inputSubElements":content["SubElements"]
+		},
+		"mediaSettings":{
+			"contentType":""
+		}
+	}, options);
+	$.ajax({
+		url: settings["viewContainer"],
+		type: 'GET',
+		dataType: 'html',
+		async: false,
+		success: function(container) {
+			var $container = $(container);
+			// set label
+			var inputLabel = settings["inputSettings"]["inputLabel"];
+			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(inputLabel);
+			// add input template
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
+			$.each(settings["loadOrder"], function(key, value) {
+				// set order to load inputs
+				var photoLoadOrder = new Array ();
+				$.each(content["Data"]["Groups"][value]["SubElements"], function() {
+					photoLoadOrder.push(this["Id"]);
+				});
+				// load upload input
+				loadPhotoFileUploadInput (content, {
+					"parentContainer":$container,
+					"loadOrder":photoLoadOrder,
+					"mediaSettings":{
+						"contentType":settings["mediaSettings"]["contentType"]
+					}
+				});
+			});
+		},
+		error: function(e) {
+			defaultAjaxErrorFunction(e);
+		}
+	});
+}
 
+function loadPhotoFileUploadInput (content, options) {
+	var settings = $.extend(true, {
+		"parentContainer":defaultSubmissionFormContainer,
+		"targetContainer":defaultUploadGroupInputContainer,
+		"viewContainer":"views/universal/submission/inputUploadIndividualContainer.html",
+		"loadOrder":"",
+		"productId":"",
+		"inputSettings":{
+			"inputName":content["Id"],
+			"inputType":content["Type"],
+			"inputLabel":content["Label"],
+			"inputRequired":content["Required"],
+			"inputSubElements":content["SubElements"]
+		},
+		"mediaSettings":{
+			"contentType":""
+		}
+	}, options);
+	$.ajax({
+		url: settings["viewContainer"],
+		type: 'GET',
+		dataType: 'html',
+		async: false,
+		success: function(container) {
+			var $container = $(container);
+			// set variables
+			var urlInputName = settings["loadOrder"][0];
+			var uploadInputName = "photo"; // DO NOT CHANGE - must be photo for upload to work
+			// set label
+			var inputLabel = settings["inputSettings"]["inputLabel"];
+			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(inputLabel);
+			// add photo template
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
+			// load file upload input (this returns the url needed to submit the photo)
+			loadUploadInput (content["Data"]["Fields"][urlInputName], {
+				"parentContainer":$container,
+				"inputSettings":{
+					"inputName":uploadInputName
+				}
+			});
+			// load photo url input (this is what actually submits the photo)
+			loadPhotoUrlUploadInput (content, {
+				"parentContainer":$container,
+				"loadOrder":settings["loadOrder"]
+			});
+			// set functionality for upload input
+			postPhotoSubmissionForm (settings["productId"], function(data) {
+				console.log("callback");
+				$($container).find("input[name='" + uploadInputName + "']").andSelf().filter("input[name='" + uploadInputName + "']").fileupload({
+					type: "POST",
+					enctype: 'multipart/form-data',
+					url: data["url"],
+					formData: data["params"],
+					dataType: "json",
+			        done: function (e, data) {
+						console.log("photo data", data.result);
+						// array to hold photo response in json. needed to replicate object sent on json repsone for display
+						var objPhoto = new Array ();
+						objPhoto.push(data["result"]["Photo"]);
+						// load photo thumbnail
+						loadReviewPhotosGroup (data["result"]["Photo"], {
+							"parentContainer":$container,
+							"loadOrder":objPhoto
+						});
+						// set value on photo url input
+						var urlPhotoNormal = data["result"]["Photo"]["Sizes"]["normal"]["Url"];
+						$($container).find("input[name='" + urlInputName + "']").andSelf().filter("input[name='" + urlInputName + "']").attr({
+							"value":urlPhotoNormal
+						});
+						// hide file upload input
+			        	$(this).hide();
+			        	// show uploaded image preview container
+			        	$($container).find(defaultPhotoUploadPreviewToggleContainer).andSelf().filter(defaultPhotoUploadPreviewToggleContainer).show();
+			        }
+			    });
+			}, {
+				"Parameters":{
+					"contenttype":settings["mediaSettings"]["contentType"],
+				}
+			});
+		},
+		error: function(e) {
+			defaultAjaxErrorFunction(e);
+		}
+	});
+}
+
+
+
+function loadPhotoUrlUploadInput (content, options) {
+	var settings = $.extend(true, {
+		"parentContainer":defaultSubmissionFormContainer,
+		"targetContainer":defaultPhotoUploadPreviewToggleContainer,
+		"viewContainer":"views/universal/submission/inputPhotoContainer.html",
+		"loadOrder":"",
+		"productId":"",
+		"inputSettings":{
+			"inputName":content["Id"],
+			"inputType":content["Type"],
+			"inputLabel":content["Label"],
+			"inputRequired":content["Required"],
+			"inputSubElements":content["SubElements"]
+		}
+	}, options);
+	$.ajax({
+		url: settings["viewContainer"],
+		type: 'GET',
+		dataType: 'html',
+		async: false,
+		success: function(container) {
+			var $container = $(container);
+			// set variables
+			var urlInputName = settings["loadOrder"][0];
+			var captionInputName = settings["loadOrder"][1];
+			var inputName = settings["inputSettings"]["inputName"];
+			// add photo template
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
+			// hide photo preview container on load
+			$(defaultPhotoUploadPreviewToggleContainer).hide();
+			// set upload input attributes
+			$($container).find("._BVFormInput.BVFormInputUpload").andSelf().filter("._BVFormInput.BVFormInputUpload").attr({
+				"id":inputName,
+				"name":inputName
+			});
+			// load photo caption input
+			loadTextFieldInput (content["Data"]["Fields"][captionInputName], {
+				"parentContainer":$container,
+				"targetContainer":"._BVFormInputWrapper._BVPhotoCaptionContainer",
+				"inputSettings":{
+					"inputLabel":"Add Caption",
+				}
+			});
+			// load photo url input (hidden)
+			loadTextFieldInput (content["Data"]["Fields"][urlInputName], {
+				"parentContainer":$container,
+				"targetContainer":"._BVFormInputWrapper._BVPhotoUrlContainer",
+				"viewContainer":"views/universal/submission/inputTextFieldHiddenContainer.html"
+			});
+		},
+		error: function(e) {
+			defaultAjaxErrorFunction(e);
+		}
+	});
+}
+
+// load an upload input
+function loadUploadInput (content, options) {
+	// content expected ["Data"]["Fields"][<fieldname>]
+	var settings = $.extend(true, {
+		"parentContainer":defaultSubmissionFormContainer, // needs to be given a more specific container if called more than once
+		"targetContainer":defaultUploadIndividualInputContainer,
+		"viewContainer":"views/universal/submission/inputUploadPhotoContainer.html",
+		"loadOrder":"", // this must be defined in the call
+		"productId":"",
+		"inputSettings":{
+			"inputName":content["Id"],
+			"inputType":content["Type"],
+			"inputLabel":content["Label"],
+			"inputPlaceholder":"", // user defined
+			"inputValue":content["Value"],
+			"inputMinLength":content["MinLength"],
+			"inputMaxLength":content["MaxLength"],
+			"inputRequired":content["Required"],
+			"inputDefault":content["Default"],
+			"inputOptionsArray":content["Options"]
+		}
+	}, options);
+	$.ajax({
+		url: settings["viewContainer"],
+		type: 'GET',
+		dataType: 'html',
+		async: false,
+		success: function(container) {
+			var $container = $(container);
+			// set variables
+			var inputLabel = settings["inputSettings"]["inputLabel"]; // input label text
+			var inputName = settings["inputSettings"]["inputName"]; // input name attribute
+			var inputId = settings["inputSettings"]["inputName"]; // id attribute
+			var inputRequired = settings["inputSettings"]["inputRequired"]; // required boolean
+			var inputType = settings["inputSettings"]["inputType"];
+			var inputPlaceholder = settings["inputSettings"]["inputPlaceholder"];
+			// set label
+			$container.find(defaultFormUploadLabelTextContainer).andSelf().filter(defaultFormUploadLabelTextContainer).text(inputLabel).attr({
+				"for":inputId
+			});
+			// set input attributes
+			$container.find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
+				"id":inputId,
+				"name":inputName,
+			});
+			// required
+			if (inputRequired == true) {
+				$container.find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass("required");
+			}
+			// add input template
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
+		},
+		error: function(e) {
+			defaultAjaxErrorFunction(e);
+		}
+	});
+}

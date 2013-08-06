@@ -30,6 +30,12 @@ var defaultAdditionalFieldIndividualInputContainer = "._BVAdditionalFieldIndivid
 
 var defaultTagGroupInputContainer = "._BVTagGroupInputContainer"; // tags container
 
+var defaultPhotoUploadGroupInputContainer = "._BVPhotoUploadContainer" // photo upload group container
+var defaultPhotoUploadPreviewToggleContainer = "._BVPhotoUploadPreviewToggleContainer" // photo upload preview toggle container
+var defaultPhotoUploadGroupInputContainer = "._BVPhotoUploadContainer" // photo upload group container
+var defaultPhotoUploadGroupInputContainer = "._BVPhotoUploadContainer" // photo upload group container
+
+
 var defaultTermsConditionsInputContainer = "._BVTermsConditionsContainer"; // terms and conditions container
 var defaultEmailAlertWhenCommentedInputContainer = "._BVEmailAlertWhenCommentedContainer"; // email alert when commented container
 var defaultEmailAlertWhenPublishedInputContainer = "._BVEmailAlertWhenPublishedContainer"; // email alert when published container
@@ -46,10 +52,13 @@ var defaultCheckboxGroupInputContainer = "._BVInputGroupContainer"; // checkbox 
 var defaultCheckboxIndividualInputContainer = "._BVCheckboxIndividualContainer"; // checkbox individual container
 var defaultFormSelectInputContainer = "._BVFormSelectInput"; // select input
 var defaultFormSelectOptionInputContainer = "._BVFormSelectOptionInput"; // option input
+var defaultUploadGroupInputContainer = "._BVInputGroupContainer"; // upload group container
+var defaultUploadIndividualInputContainer = "._BVUploadIndividualInputContainer"; // upload individual container
 
 var defaultFormLabelTextContainer = "._BVLabelText"; // text input label text
 var defaultFormRadioLabelTextContainer = "._BVRadioLabelText"; // radio input label text
 var defaultFormCheckboxLabelTextContainer = "._BVCheckboxLabelText"; // checkbox input label text
+var defaultFormUploadLabelTextContainer = "._BVUploadLabelText"; // upload input label text
 var defaultFormHelperTextContainer = "._BVHelperText"; // input helper text
 var defaultFormCharacterCounterTextContainer = "._BVCharacterCounter"; // character counter
 var defaultFormCharacterCounterTextContainerText = "._BVCharacterCounterText"; // character counter suffix
@@ -57,6 +66,7 @@ var defaultFormCharacterCounterTextContainerText = "._BVCharacterCounterText"; /
 var defaultSubmissionButtonsContainer = "._BVFieldButtonGroup"; //Submit, Preview, Edit and Cancel button container
 
 var defaultTypicalHoursToPostTextContainer = "._BVTypicalHoursToPostText"; // time till post text on thank you page
+
 
 
 /***** HEADERS *****/
