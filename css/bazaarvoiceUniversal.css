@@ -22,10 +22,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	z-index: -1;
 }
 
-._BVRatingValue, .BVRatingSeparator, ._BVRatingRange {
-	float: left;
-	margin: 0 3px;
-}
+._BVRatingValue, .BVRatingSeparator, ._BVRatingRange {float: left; margin-left: 4px;}
 
 /* CONTAINER STYLES */
 #BVRRContainer, #BVQAContainer, #BVSubmissionContainer {width: 960px; margin: 0 auto; font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #49494A; line-height: 1.5em;}
@@ -77,7 +74,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 			._BVQuickTakeContainer .BVOverallRatingContainer .BVRatingSeparator, ._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingRange {display: none;}
 	
 	/* Buy Again */
-	._BVQuickTakeContainer ._BVRecommendedContainerAverage {width: 320px; background: url(images/backgroundBuyAgain.gif) no-repeat; padding: 5px 0 12px 87px; position: absolute; left: 280px; top: 18px; font-size: 14px;}
+	._BVQuickTakeContainer ._BVRecommendedContainerAverage {width: 320px; background: url(images/backgroundBuyAgain.gif) no-repeat; padding: 7px 0 12px 87px; position: absolute; left: 280px; top: 18px; font-size: 14px;}
 		._BVQuickTakeContainer ._BVRecommendedContainerAverage .BVIsRecommended {margin: 0;}
 		._BVQuickTakeContainer ._BVRecommendedContainerAverage ._BVIsRecommendedValue span {font-weight: bold; font-size: 18px;}
 	
@@ -101,30 +98,50 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	._BVReviewContainer.BVlast, ._BVQuestionAnswerContainer.BVlast {}
 	._BVReviewContainer .BVUGCSpacerTop {height: 30px; margin-bottom: 40px; background: -moz-linear-gradient(center top , #E7E7E7 20%, #FFFFFF 100%) repeat scroll 0 0 transparent;}
 
-/* UGC Header - Rating, Title, Date */
-.BVUGCHeader {}
-	._BVOverallRatingContainer {}
-		.BVUGCHeader ._BVRatingLabelText {display: none;}
-		.BVUGCHeader .BVRatingOutOfContainer .BVRatingSeparator, .BVUGCHeader .BVRatingOutOfContainer ._BVRatingRange {display: none;}
-		.BVUGCHeader ._BVRatingStarsContainer {width: 118px; float: left;}
-		.BVUGCHeader .BVRatingOutOfContainer {font-weight: bold; line-height: 28px;}
-	._BVTitleContainer {clear: left;}
-		h3._BVTitleText {font-size: 18px; margin: 0;}
-	._BVDateContainer {}
 
-/* User Information */
-.BVUserDataContainer {background: url(images/backgroundShadowEdge.png) no-repeat bottom left; padding: 0 14px 8px; margin: 10px 0; clear: both; overflow: hidden;}
-	.BVAvatar {width: 46px; float: left;}
-	.BVUserInfo {margin-left: 56px;}
-		._BVUserNicknameContainer, ._BVUserLocationContainer, ._BVDateContainer {display: inline;}
-		._BVContextDataValueGroupContainer {display: inline;}
-			.BVContextDataValueContainer {float: left; margin-right: 15px;}
-				._BVContextDataValueLabelText {}
+/* UGC */
 
-/* Badges */
-._BVBadgesContainer {}
-	.BVBadgeContainer {display: inline;}
-		.BVBadgeContainer div {display: inline;}
+	/* Header - Rating, Title, Date */
+	.BVUGCHeader {}
+	.BVUGCHeader:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
+
+		/* Rating */
+		.BVUGCHeader ._BVOverallRatingContainer {height: 27px;}
+			.BVUGCHeader ._BVRatingLabelText {display: none;}
+			.BVUGCHeader .BVRatingOutOfContainer .BVRatingSeparator, .BVUGCHeader .BVRatingOutOfContainer ._BVRatingRange {display: none;}
+			.BVUGCHeader ._BVRatingStarsContainer {width: 118px; float: left;}
+			.BVUGCHeader .BVRatingOutOfContainer {font-weight: bold; line-height: 28px; padding-left: 4px;}
+		
+		/* Title */
+		._BVTitleContainer {clear: left;}
+			h3._BVTitleText {font-size: 18px; margin: 0 0 5px; padding: 0;}
+		
+		/* Date */
+		._BVDateContainer {}
+
+	/* User Information - Avatar, Nickname, Location, Context Data, Badges */
+	.BVUserDataContainer {background: url(images/backgroundShadowEdge.png) no-repeat bottom left; padding: 0 0 14px 14px; margin: 15px 0 30px; clear: both; overflow: hidden;}
+		
+		/* Avatar */
+		.BVAvatar {float: left; margin-right: 15px;}
+
+		/* Nickname, Location, Context Data */
+		.BVUserInfo {margin-left: 56px; color: #737474;}
+			._BVUserNicknameContainer, ._BVUserLocationContainer, ._BVDateContainer {display: inline;}
+			._BVContextDataValueGroupContainer {display: inline;}
+				.BVContextDataValueContainer {float: left; margin-right: 15px;}
+
+	/* Badges */
+	._BVBadgesContainer {}
+		.BVBadgeContainer {display: inline;}
+			.BVBadgeContainer div {display: inline;}
+			.BVBadgeItemText {text-transform: uppercase;}
+				.BVBadgeItemIcon {background: url(images/iconBadges.png) no-repeat; padding-left: 20px;}
+					
+					/* BBY-specific badges */
+					.BVBadgeItemIconVerifiedPurchaser {background-position: 0 -201px;}
+
+				.BVBadgeItemText strong {font-family: 'Arial Black','Arial Bold',sans-serif;}
 
 /* Primary UGC - Text, Tags, Recommendations */
 .BVUGCPrimaryContent {margin-right: 175px;}
