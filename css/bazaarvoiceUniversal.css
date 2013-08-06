@@ -259,14 +259,20 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 /* SUBMISSION FORM STYLES */
 
 	/* General - Titles, Labels, Values */
-	._BVLabelText {width: 150px; float: left; margin-right: 10px;}
+	._BVLabelText {width: 210px; float: left; margin-right: 10px; font-weight: bold;}
 	h1._BVPageHeaderText, h2._BVSectionHeaderText {margin: 0;}
 
 	/* Sections */
 	.BVSection {background: -moz-linear-gradient(center bottom , #EBEBEB 0%, #FFFFFF 20%) repeat scroll 0 0 transparent; margin-bottom: 40px; padding: 25px 0 15px;}
-		.BVSectionHeader {padding: 0 0 2px; margin: 0 0 20px 42px;}
-			._BVSectionHeaderText {font-size: 24px; font-weight: normal; line-height: 1.333; display: block;}
+		.BVSectionHeader {padding: 0 0 2px; margin: 0 0 20px;}
+			h2._BVSectionHeaderText {font-size: 24px; font-weight: normal; line-height: 1.333; display: block; margin-left: 42px;}
 		.BVSectionBody {padding: 30px 42px 0;}
+
+		/* Section Header Backgrounds */
+		._BVSectionHeaderRatingsContainer {background: url(images/backgroundRatingsSub.gif) no-repeat;}
+		._BVSectionHeaderReviewContainer {background: url(images/backgroundReviewSub.gif) no-repeat left 2px;}
+		._BVSectionHeaderMediaContainer {background: url(images/backgroundMediaSub.gif) no-repeat left 2px;}
+		._BVSectionHeaderUserContainer {background: url(images/backgroundUserSub.gif) no-repeat;}
 
 	/* Error Container */
 	.BVSectionErrorContainer {color: #F00;}
@@ -275,32 +281,44 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 
 	/* Fields */
 	.BVField {clear: left; overflow: hidden; margin-bottom: 30px;}
-		.BVFormInputText, .BVFormInputTextarea {padding: 7px 8px; outline: none; color: #333; background-color: #fff; background-repeat: no-repeat; background-position: right center; border: 1px solid #ccc; border-radius: 3px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.075); -moz-box-sizing: border-box; box-sizing: border-box; transition: all 0.15s ease-in; -webkit-transition: all 0.15s ease-in 0; vertical-align: middle;}
-		.BVFormInputText:focus, .BVFormInputTextarea:focus {border-color: #51a7e8; box-shadow: inset 0 1px 2px rgba(0,0,0,0.075),0 0 5px rgba(81,167,232,0.5);}
-		.BVFormInputText {width: 380px;}
-		.BVFormInputTextarea {width: 381px; height: 125px; resize: vertical;}
+		.BVFormInputText, .BVFormInputTextarea {padding: 7px 8px; color: #333; vertical-align: middle;}
+		.BVFormInputText:focus, .BVFormInputTextarea:focus {}
+		.BVFormInputText {width: 400px;}
+		.BVFormInputTextarea {width: 401px; height: 125px; resize: vertical;}
 		._BVCharacterCounter {display: inline;}
 		.BVCharacterCounterText {display: inline-block;}
 		._BVRadioButtonGroupContainer {float: left;}
 
+	/* Helper Text & Character Counter */
+	._BVHelperText, .BVCharacterCounterText {width: 400px; margin-left: 220px; padding: 5px 0 0; font-size: 11px; color: #737474;}
+
 	/* Rating Stars */
 	.BVFieldRating ._BVRadioLabelText {display: none;}
 	/* jQuery.Rating Plugin CSS - http://www.fyneworks.com/jquery/star-rating/ */
-	#BVSubmissionContainer div.rating-cancel, #BVSubmissionContainer div.star-rating {float: left; width: 23px; height: 19px; text-indent: -999em; cursor: pointer; display: block; background: transparent; overflow: hidden;}
+	#BVSubmissionContainer div.rating-cancel, #BVSubmissionContainer div.star-rating {float: left; width: 30px; height: 24px; text-indent: -999em; cursor: pointer; display: block; background: transparent; overflow: hidden;}
 	#BVSubmissionContainer div.rating-cancel {display: none !important;}
 	#BVSubmissionContainer div.rating-cancel, #BVSubmissionContainer div.rating-cancel a {background: url(../images/delete.gif) no-repeat 0 -16px;}
-	#BVSubmissionContainer div.star-rating, #BVSubmissionContainer div.star-rating a {background: url(../images/star.gif) no-repeat 0 0px;}
-	#BVSubmissionContainer div.rating-cancel a, #BVSubmissionContainer div.star-rating a {display: block; width: 20px; height: 100%; background-position: 0 0px; border: 0;}
-	#BVSubmissionContainer div.star-rating-on a {background-position: 0 -40px !important;}
-	#BVSubmissionContainer div.star-rating-hover a {background-position: 0 -20px;}
+	#BVSubmissionContainer div.star-rating, #BVSubmissionContainer div.star-rating a {background: url(images/ratingStars_star.gif) no-repeat 0 0px;}
+	#BVSubmissionContainer div.rating-cancel a, #BVSubmissionContainer div.star-rating a {display: block; width: 25px; height: 100%; background-position: 0 0px; border: 0;}
+	#BVSubmissionContainer div.star-rating-on a {background-position: 0 -52px !important;}
+	#BVSubmissionContainer div.star-rating-hover a {background-position: 0 -27px;}
 	/* Read Only CSS */
 	#BVSubmissionContainer div.star-rating-readonly a {cursor: default !important;}
 	/* Partial Star CSS */
 	#BVSubmissionContainer div.star-rating {background: transparent !important; overflow: hidden !important;}
 	/* END jQuery.Rating Plugin CSS */
 
+	/* Ratings */
+	._BVOverallRatingInputContainer ._BVLabelText {font-size: 14px;}
+
 	/* Buy Again */
-	._BVRecommendedInputContainer ._BVRadioButtonIndividualContainer {float: left; margin-right: 15px;}
+	._BVRecommendedInputContainer {}
+		._BVRecommendedInputContainer ._BVLabelText {font-size: 14px;}
+		._BVRecommendedInputContainer ._BVInputGroupContainer {float: left;}
+			._BVRecommendedInputContainer .BVRadioButtonIndividualContainer {width: 60px; float: left; margin-right: 15px;}
+
+	/* Title & Body Text */
+	._BVTitleInputContainer ._BVLabelText, ._BVBodyTextInputContainer ._BVLabelText {font-size: 14px;}
 
 	/* Tags */
 	._BVTagGroupInputContainer {margin-left: 160px;}
@@ -309,8 +327,14 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 			._BVCheckboxGroupContainer ._BVCheckboxIndividualContainer {padding-bottom: 4px;}
 				._BVCheckboxIndividualContainer .BVFormInputText {width: 150px;}
 
+	/* Media Upload */
+	.BVSectionMediaContainer ._BVInputGroupContainer {width: 400px; float: left;}
+		._BVUploadIndividualInputContainer {margin-bottom: 15px;}
+		.BVSectionMediaContainer ._BVHelperText {margin-left: 0;}
+
 	/* Footer */
 	.BVFooter {margin-left: 265px;}
+		.BVFooter .BVField {margin-bottom: 15px;}
 
 	/* Buttons */
 	.BVFieldButtonGroup {margin-left: 265px;}

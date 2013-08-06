@@ -79,19 +79,19 @@ function loadReviewSubmissionForm (content, options) {
 					"parentContainer":$container,
 					"targetContainer":defualtPageHeaderContainer
 				});
-				loadSectionHeader ("Your Rating", {
+				loadSectionHeader ("My Product Rating", {
 					"parentContainer":$container,
 					"targetContainer":defaultFormSectionHeaderRatingsContainer
 				});
-				loadSectionHeader ("Your Review", {
+				loadSectionHeader ("My Review", {
 					"parentContainer":$container,
 					"targetContainer":defaultFormSectionHeaderReviewContainer
 				});
-				loadSectionHeader ("Media Upload", {
+				loadSectionHeader ("Share Relevant Photos and Video", {
 					"parentContainer":$container,
 					"targetContainer":defaultFormSectionHeaderMediaContainer
 				});
-				loadSectionHeader ("User Info", {
+				loadSectionHeader ("My Information", {
 					"parentContainer":$container,
 					"targetContainer":defaultFormSectionHeaderUserContainer
 				});
@@ -109,14 +109,14 @@ function loadReviewSubmissionForm (content, options) {
 				loadIsRecommendedInput (content, {
 					"parentContainer":$container,
 					"inputSettings":{
-						"inputLabel":"Would you recommend this product?"
+						"inputLabel":"I would recommend this to a friend"
 					}
 				});
 				// review title
 				loadReviewTitleInput (content, {
 					"parentContainer":$container,
 					"inputSettings":{
-						"inputLabel":"Review Title"
+						"inputLabel":"Review Summary"
 					}
 				});
 				// review text
@@ -124,7 +124,7 @@ function loadReviewSubmissionForm (content, options) {
 					"parentContainer":$container,
 					"viewContainer":defaultInputTextAreaWithCharacterCounterContainerView,
 					"inputSettings":{
-						"inputLabel":"Review Text",
+						"inputLabel":"My Review",
 					}
 				});
 				// nickname
@@ -132,7 +132,7 @@ function loadReviewSubmissionForm (content, options) {
 					loadUserNicknameInput (content, {
 						"parentContainer":$container,
 						"inputSettings":{
-							"inputLabel":"User Nickname",
+							"inputLabel":"Choose a Nickname (no spaces)",
 						}
 					});
 				}
