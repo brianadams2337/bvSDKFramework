@@ -50,7 +50,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	._BVRatingStarsFilledImage, ._BVRatingStarsUnfilledImage {width: 100%; height: auto;}
 
 	/* Overall Star Rating */
-	.BVOverallRatingContainer ._BVRatingStarsContainer {width: 15%; min-width: 100px; height: auto; display: block; float: left;}
+	.BVOverallRatingContainer ._BVRatingStarsContainer {min-width: 100px; height: auto; display: block; float: left;}
 
 	/* Value, Out Of Separator & Range Text */
 	._BVRatingValue, .BVRatingSeparator, ._BVRatingRange {float: left; margin-left: 4px;}
@@ -134,12 +134,19 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		.BVBadgeContainer {display: inline;}
 			.BVBadgeContainer div {display: inline;}
 			.BVBadgeItemText {text-transform: uppercase;}
-				.BVBadgeItemIcon {background: url(images/iconBadges.png) no-repeat; padding-left: 20px;}
+				.BVBadgeItemIcon {background: url(images/iconBadges.png) no-repeat; padding-left: 22px;}
 				.BVBadgeItemText strong {font-family: 'Arial Black','Arial Bold',sans-serif;}
+
+					.BVBadgeItemIconTopContributor {background-position: 0 -41px;}
+					.BVBadgeItemIconVerifiedPurchaser {background-position: 0 -83px;}
+					.BVBadgeItemIconSocialAnsweringSubscriber {background-position: 0 -160px;}
+					.BVBadgeItemIconStaff {background-position: 0 -201px;}
 					
 					/* BBY-specific badges */
-					.BVBadgeItemIconVerifiedPurchaser {background-position: 0 -201px;}
-
+					.BVBadgeItemIconRewardZone {background-position: 0 -277px;}
+					.BVBadgeItemIconRewardZoneSilver {background-position: 0 -315px;}
+					.BVBadgeItemIconRewardZoneGamersUnlocked {background-position: 0 -360px;}
+					
 	
 	/* Primary UGC - Text, Tags, Recommendations */
 	.BVUGCPrimaryContent {margin-right: 250px; vertical-align: top;}
