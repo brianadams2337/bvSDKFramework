@@ -179,14 +179,14 @@ function loadIndividualReview (content, options) {
 				"parentContainer":$container
 			});
 			// load review badges
-			loadReviewBadges(content, {
+			loadBadges(content, {
 				"parentContainer":$container,
 				"targetContainer":defaultBadgesUserContainer,
 				"loadOrder":defaultBadgesUserOrder,
 			});
 
 			// load review badges
-			loadReviewBadges(content, {
+			loadBadges(content, {
 				"parentContainer":$container,
 				"targetContainer":defaultBadgesContentContainer,
 				"loadOrder":defaultBadgesContentOrder,
@@ -779,11 +779,9 @@ function loadReviewPhotosGroup (content, options) {
 				var cur = settings["loadOrder"][index];
 				// set variables
 				var id = cur["Id"];
-				var thumbnailId = cur["Sizes"]["thumbnail"]["Id"];
 				var thumbnailUrl = cur["Sizes"]["thumbnail"]["Url"];
 				var thumbnail = new Image; // thumbnail image
 				thumbnail.src = thumbnailUrl; // set thumbnail image src attr
-				var photoId = cur["Sizes"]["normal"]["Id"];
 				var photoUrl = cur["Sizes"]["normal"]["Url"];
 				var photo = new Image; // photo image
 				photo.src = photoUrl; // set photo image src attr

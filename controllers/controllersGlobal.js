@@ -17,7 +17,7 @@ function pathController (controller) {
 }
 
 function pathResource (relativeURI) {
-	var path = relativeURI.substr(0,4) == 'http' ? relativeURI : siteBaseURL+relativeURI;
+	var path = relativeURI.substr(0,4) == 'http' ? relativeURI : siteBaseURL + relativeURI;
 	return path;
 }
 

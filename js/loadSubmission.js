@@ -20,6 +20,7 @@ $(document).ready(function() {
 		$.when(
 			/* LOAD JS FILES */
 			$.getScript(siteBaseURL + "js/jquery.min.1.9.1.js"),
+			$.getScript(siteBaseURL + "js/jquery-ui.js"),
 			$.getScript(siteBaseURL + "js/createHTML5Elements.js"),
 			/* properties */
 			$.getScript(siteBaseURL + "models/properties/properties.js"),
@@ -32,6 +33,7 @@ $(document).ready(function() {
 			$.getScript(siteBaseURL + "models/modelsGlobal.js"),
 			$.getScript(siteBaseURL + "models/modelsReviewsSubmission.js"),
 			$.getScript(siteBaseURL + "models/modelsReviewCommentsSubmission.js"),
+			$.getScript(siteBaseURL + "models/modelsMediaSubmission.js"),
 			/* controllers */
 			$.getScript(siteBaseURL + "controllers/controllersGlobal.js"),
 			$.getScript(siteBaseURL + "controllers/controllersEventListeners.js"),
@@ -49,6 +51,8 @@ $(document).ready(function() {
 			$.getScript(siteBaseURL + "js/plugins/jquery.dateFormat.js"),
 			$.getScript(siteBaseURL + "js/plugins/jquery.magnific-popup.js"),
 			$.getScript(siteBaseURL + "js/plugins/jquery.rating.js"),
+			$.getScript(siteBaseURL + "js/plugins/jquery.fileupload.js"),
+			$.getScript(siteBaseURL + "js/plugins/jquery.iframe-transport.js"),
 			$.getScript(siteBaseURL + "js/plugins/Parsley.js-1.1.16/parsley.js"),
 			/* LOAD CSS FILES */
 			$("head").append("<link id='' href='" + siteBaseURL + "css/bazaarvoiceUniversal.css' type='text/css' rel='stylesheet' />"),
@@ -115,7 +119,24 @@ $(document).ready(function() {
 
 			}
 
-
+			/* MAGNIFIC LIGHTBOX POPIN */
+			// photos
+			$(defaultSubmissionContainer).on('click', defaultReviewPhotoThumbnailContainer, function() {
+				event.preventDefault();
+				$(this).magnificPopup({
+					type: 'image',
+					titleSrc: 'title'
+				}).click();
+			});
+			// videos
+			$(defaultSubmissionContainer).on('click', defaultReviewVideoThumbnailContainer, function() {
+				event.preventDefault();
+				$(this).magnificPopup({
+					type: 'iframe',
+					titleSrc: 'title'
+				}).click();
+			});
+			
 		});
 	});
 });

@@ -39,6 +39,17 @@ var settings = $.extend(true, {
 		"lastBtnLabel":"",
 		"totalPageBool":""
 	},
+	// helpfulness/inappropriate settings
+	"feedbackSettings":{
+		"contentType":"",
+		"feedbackType":"",
+		"vote":"",
+		"reasonText":""
+	},
+	// media submission settings
+	"mediaSettings":{
+		"contentType":""
+	},
 	// for pagination, filtering, sorting, etc
 	"viewReloadOptions":{
 		"model":"",

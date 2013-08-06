@@ -213,6 +213,7 @@ var defaultInputContainerView = siteBaseURL + "views/universal/submission/inputC
 
 // text inputs
 var defaultInputTextFieldContainerView = siteBaseURL + "views/universal/submission/inputTextFieldContainer.html"; // text field module
+var defaultInputTextFieldHiddenContainerView = siteBaseURL + "views/universal/submission/inputTextFieldHiddenContainer.html"; // text field module - hidden
 var defaultInputTextAreaContainerView = siteBaseURL + "views/universal/submission/inputTextAreaContainer.html"; // text area module
 var defaultInputTextAreaWithCharacterCounterContainerView = siteBaseURL + "views/universal/submission/inputTextAreaWithCharacterCounter.html" // text area module with character counter
 
@@ -230,6 +231,12 @@ var defaultInputRadioContainerView = siteBaseURL + "views/universal/submission/i
 var defaultInputSelectContainerView = siteBaseURL + "views/universal/submission/inputSelectContainer.html"; // select (dropdown) module
 var defaultInputSelectOptionContainerView = siteBaseURL + "views/universal/submission/inputSelectOptionContainer.html"; // option (dropdown) module
 
+// file inputs (upload)
+var defaultInputUploadGroupContainerView = siteBaseURL + "views/universal/submission/inputUploadGroupContainer.html"; // file upload group module
+var defaultInputUploadIndividualContainerView = siteBaseURL + "views/universal/submission/inputUploadIndividualContainer.html"; // file upload individual module
+var defaultInputUploadPhotoContainerView = siteBaseURL + "views/universal/submission/inputUploadPhotoContainer.html"; // file upload input module - photo
+
+var defaultInputUploadPhotoPreviewContainerView = siteBaseURL + "views/universal/submission/inputUploadPhotoPreviewContainer.html"
 
 
 /***** UNIVERSAL *****/
@@ -278,5 +285,11 @@ var defaultInputRadioSecondaryRatingContainerView = siteBaseURL + "views/reviews
 var defaultSubmissionReviewCommentWidgetContainerView = siteBaseURL + "views/review_comments/submission/reviewCommentSubmissionWidgetContainer.html"
 var defaultSubmissionReviewCommentPreviewWidgetContainerView = siteBaseURL + "views/review_comments/submission/reviewCommentSubmissionPreviewWidgetContainer.html";
 var defaultSubmissionReviewCommentThankYouWidgetContainerView = siteBaseURL + "views/review_comments/submission/reviewCommentSubmissionThankYouWidgetContainer.html";
+<<<<<<< HEAD
+=======
+
+var defaultSubmissionFormReviewCommentContainerView = siteBaseURL + "views/review_comments/submission/submissionFormReviewCommentContainer.html" // review comment submission form module
+
+>>>>>>> master
 
 var defaultSubmissionFormReviewCommentContainerView = siteBaseURL + "views/review_comments/submission/submissionFormReviewCommentContainer.html" // review comment submission form module

@@ -145,7 +145,7 @@ function loadReviewCommentSubmissionPreview (content, options) {
 
 				// load badges
 				if (content["BadgesOrder"]) {
-					loadCommentBadges(content, {
+					loadBadges(content, {
 						"parentContainer":$container
 					});
 				}
