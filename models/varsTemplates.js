@@ -285,11 +285,4 @@ var defaultInputRadioSecondaryRatingContainerView = siteBaseURL + "views/reviews
 var defaultSubmissionReviewCommentWidgetContainerView = siteBaseURL + "views/review_comments/submission/reviewCommentSubmissionWidgetContainer.html"
 var defaultSubmissionReviewCommentPreviewWidgetContainerView = siteBaseURL + "views/review_comments/submission/reviewCommentSubmissionPreviewWidgetContainer.html";
 var defaultSubmissionReviewCommentThankYouWidgetContainerView = siteBaseURL + "views/review_comments/submission/reviewCommentSubmissionThankYouWidgetContainer.html";
-<<<<<<< HEAD
-=======
-
-var defaultSubmissionFormReviewCommentContainerView = siteBaseURL + "views/review_comments/submission/submissionFormReviewCommentContainer.html" // review comment submission form module
-
->>>>>>> master
-
 var defaultSubmissionFormReviewCommentContainerView = siteBaseURL + "views/review_comments/submission/submissionFormReviewCommentContainer.html" // review comment submission form module
