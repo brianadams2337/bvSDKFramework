@@ -1112,7 +1112,7 @@ function loadPhotoGroupInput (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":defaultSubmissionFormContainer,
 		"targetContainer":defaultPhotoUploadGroupInputContainer,
-		"viewContainer":"views/universal/submission/inputUploadGroupContainer.html",
+		"viewContainer":defaultInputUploadGroupContainerView,
 		"loadOrder":defaultLoadOrder,
 		"productId":"",
 		"inputSettings":{
@@ -1164,7 +1164,7 @@ function loadPhotoFileUploadInput (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":defaultSubmissionFormContainer,
 		"targetContainer":defaultUploadGroupInputContainer,
-		"viewContainer":"views/universal/submission/inputUploadIndividualContainer.html",
+		"viewContainer":defaultInputUploadIndividualContainerView,
 		"loadOrder":"",
 		"productId":"",
 		"inputSettings":{
@@ -1253,7 +1253,7 @@ function loadPhotoUrlUploadInput (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":defaultSubmissionFormContainer,
 		"targetContainer":defaultPhotoUploadPreviewToggleContainer,
-		"viewContainer":"views/universal/submission/inputPhotoContainer.html",
+		"viewContainer":defaultInputUploadPhotoPreviewContainerView,
 		"loadOrder":"",
 		"productId":"",
 		"inputSettings":{
@@ -1291,7 +1291,7 @@ function loadPhotoUrlUploadInput (content, options) {
 			loadTextFieldInput (content["Data"]["Fields"][urlInputName], {
 				"parentContainer":$container,
 				"targetContainer":defaultFormPhotoUrlInputWrapperContainer,
-				"viewContainer":"views/universal/submission/inputTextFieldHiddenContainer.html"
+				"viewContainer":defaultInputTextFieldHiddenContainerView
 			});
 		},
 		error: function(e) {
@@ -1306,7 +1306,7 @@ function loadUploadInput (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":defaultSubmissionFormContainer, // needs to be given a more specific container if called more than once
 		"targetContainer":defaultUploadIndividualInputContainer,
-		"viewContainer":"views/universal/submission/inputUploadPhotoContainer.html",
+		"viewContainer":defaultInputUploadPhotoContainerView,
 		"loadOrder":"", // this must be defined in the call
 		"productId":"",
 		"inputSettings":{
