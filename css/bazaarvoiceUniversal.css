@@ -35,7 +35,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 ._BVContentLoadingContainer {background: url(../images/bvLoading.gif) no-repeat center transparent !important; min-height: 50px;}
 
 /* General - Titles, Labels, Values */
-.BVTitle {}
+.BVTitle {font-size: 18px; font-weight: bold; line-height: normal;}
 .BVLabel {font-weight: bold;}
 .BVValue {}
 
@@ -61,20 +61,39 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	.BVSecondaryRatingContainer .BVRatingOutOfContainer {font-weight: bold;}
 		.BVSecondaryRatingContainer .BVRatingOutOfContainer .BVRatingSeparator, .BVSecondaryRatingContainer .BVRatingOutOfContainer ._BVRatingRange {display: none;}
 
-/* QuickTake */
+
+/* QUICKTAKE DASHBOARD */
 ._BVQuickTakeContainer {overflow: hidden; position: relative;}
+	
+	/* Title */
+	._BVQuickTakeContainer ._BVQuickTakeSummaryTitle {padding: 0 0 12px;}
+	
+	/* Overall Rating */
 	._BVQuickTakeContainer ._BVOverallRatingContainer {}
+	._BVQuickTakeContainer ._BVOverallRatingContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
 		._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsContainer {float: left;}
 			._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsFilledImage, ._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsUnfilledImage {width: 170px !important;}
-		._BVQuickTakeContainer .BVOverallRatingContainer .BVRatingOutOfContainer {font-weight: bold; line-height: 33px; font-size: 36px; color: #085EB9; float: left;}
+		._BVQuickTakeContainer .BVOverallRatingContainer .BVRatingOutOfContainer {font-weight: bold; line-height: 33px; font-size: 34px; color: #085EB9; float: left;}
 			._BVQuickTakeContainer .BVOverallRatingContainer .BVRatingSeparator, ._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingRange {display: none;}
-	._BVQuickTakeContainer ._BVOverallRatingContainer, ._BVQuickTakeContainer ._BVRecommendedContainerAverage {}
-	._BVQuickTakeContainer ._BVRecommendedContainerAverage {background: url(images/backgroundBuyAgain.gif) no-repeat; padding: 25px 0 25px 76px; position: absolute; left: 306px;}
+	
+	/* Buy Again */
+	._BVQuickTakeContainer ._BVRecommendedContainerAverage {width: 320px; background: url(images/backgroundBuyAgain.gif) no-repeat; padding: 5px 0 12px 87px; position: absolute; left: 280px; top: 18px; font-size: 14px;}
 		._BVQuickTakeContainer ._BVRecommendedContainerAverage .BVIsRecommended {margin: 0;}
-	._BVQuickTakeContainer ._BVFilters {clear: both; padding: 30px 0;}
-		._BVFiltersTitle {font-weight: bold;}
-	._BVQuickTakeContainer ._BVButtonWriteReviewContainer {background: -moz-linear-gradient(center top , #E7E7E7 0%, #F2F2F2 20%) repeat scroll 0 0 transparent; padding: 7px 12px; overflow: hidden;}
+		._BVQuickTakeContainer ._BVRecommendedContainerAverage ._BVIsRecommendedValue span {font-weight: bold; font-size: 18px;}
+	
+	/* Filters */
+	._BVQuickTakeContainer ._BVFilters {border-top: 1px solid #E7E7E7; clear: both; margin-top: 30px; padding: 30px 0;}
+		._BVFiltersTitle {margin-bottom: 5px;}
+		.BVFilterGroupContainer {padding: 3px 0;}
+			._BVFilterLabelText {margin-bottom: 6px; font-size: 14px;}
+			._BVFilterText {width: 40px; color: #085EB9; margin-right: 5px;}
+			._BVFilterCountText {font-size: 11px; color: #737474;}
+			._BVFiltersFilteringStatement {font-size: 9px;}
+	
+	/* Write a Review & Sorting */
+	._BVQuickTakeContainer ._BVButtonWriteReviewContainer {background: -moz-linear-gradient(center top , #E7E7E7 0%, #F2F2F2 20%) repeat scroll 0 0 transparent; border-bottom: 1px solid #C4C4C4; padding: 7px 12px; overflow: hidden;}
 	._BVQuickTakeContainer .BVSortContainer {position: absolute; right: 12px; bottom: 14px;}
+
 
 /* Reviews Display */
 ._BVReviewBodyContainer, ._BVQuestionAnswerBodyContainer {}

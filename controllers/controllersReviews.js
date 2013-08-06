@@ -322,9 +322,9 @@ function loadReviewRecommendedAverage (content, options) {
 			var recommendedPercentage = (recommendedYesCount/recommendedTotalCount);
 			var recommendedPercentageFormatted = convertDecimalToPercentage(recommendedPercentage);
 			// set text variable_BVReviewContainer
-			var recommendedAverageText = recommendedPercentageFormatted + "% of reviewers would recommeded this product to a friend (" + recommendedYesCount + " out of " + recommendedTotalCount + ")";
+			var recommendedAverageText = "<span>" + recommendedPercentageFormatted + "%</span> of reviewers would recommeded this product to a friend (" + recommendedYesCount + " out of " + recommendedTotalCount + ")";
 			// set average recommended text
-			$container.find(defaultIsRecommendedValueContainer).andSelf().filter(defaultIsRecommendedValueContainer).text(recommendedAverageText);
+			$container.find(defaultIsRecommendedValueContainer).andSelf().filter(defaultIsRecommendedValueContainer).html(recommendedAverageText);
 			// add average recommended template
 			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
 		},
