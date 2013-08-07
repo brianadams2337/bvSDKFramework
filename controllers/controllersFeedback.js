@@ -392,7 +392,7 @@ function loadReportInappropriate (content, options) {
 				}
 			});
 			// load report inappropriate form
-			loadReportInappropriateForm(null, {
+			loadReportInappropriateForm(content, {
 				"parentContainer":$container,
 				"productId":productId,
 				"contentId":contentId,
@@ -495,7 +495,7 @@ function loadReportInappropriateForm (content, options) {
 				"targetContainer":defaultReportInappropriateSectionHeaderContainer
 			});
 			// load text field
-			loadReportInappropriateTextInput (null, {
+			loadReportInappropriateTextInput (content, {
 				"parentContainer":$container,
 				"inputSettings":{
 					"inputLabel":"What's wrong with it?"
@@ -570,7 +570,7 @@ function loadReportInappropriateTextInput (content, options) {
 			// add input template
 			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
 			// load input
-			loadTextAreaInput (null, {
+			loadTextAreaInput (content, {
 				"parentContainer":$container,
 				"inputSettings":settings["inputSettings"]
 			});

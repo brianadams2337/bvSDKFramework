@@ -111,9 +111,10 @@ function loadNumberedPagination (content, options) {
 						settings["viewReloadOptions"]["modelSettings"]["Parameters"]["limit"] = pageLimit;
 						
 						// load button
-						loadPaginationButton (i + "sel", {
+						loadPaginationButton (i, {
 							"parentContainer":$container,
 							"targetContainer":defaultPaginationBtnGroupContainer,
+							"viewContainer":defaultPaginationButtonSelectedContainerView,
 							"viewReloadOptions":settings["viewReloadOptions"]
 						});
 					} else {
@@ -197,20 +198,22 @@ function loadPaginationButton (content, options) {
 			var $container = $(container);
 			// set variables
 			$container.find(defaultPaginationBtnContainer).andSelf().filter(defaultPaginationBtnContainer).html(content);
-			$container.click(function(){
-				var refreshContainer = $(settings["viewReloadOptions"]["controllerSettings"]["parentContainer"]).find(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]).andSelf().filter(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]);
-				loadingContainerAnimation(refreshContainer, function() {
-					settings["viewReloadOptions"]["model"] (
-						settings["productId"],
-						function(content) {
-							// callback function
-							settings["viewReloadOptions"]["controller"](content, settings["viewReloadOptions"]["controllerSettings"]);
-						},
-						settings["viewReloadOptions"]["modelSettings"]
-					);
+			if (!$container.data("disabled")) {
+				$container.click(function(){
+					var refreshContainer = $(settings["viewReloadOptions"]["controllerSettings"]["parentContainer"]).find(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]).andSelf().filter(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]);
+					loadingContainerAnimation(refreshContainer, function() {
+						settings["viewReloadOptions"]["model"] (
+							settings["productId"],
+							function(content) {
+								// callback function
+								settings["viewReloadOptions"]["controller"](content, settings["viewReloadOptions"]["controllerSettings"]);
+							},
+							settings["viewReloadOptions"]["modelSettings"]
+						);
 
+					});
 				});
-			});
+			}
 			// add pagination button template
 			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
 		},
