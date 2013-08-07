@@ -76,9 +76,6 @@ function loadProductInfo (content, options) {
 
 }
 
-
-/* REVIEW TEXT DATA */
-
 function loadProductName (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":defaultReviewContainer,
@@ -132,8 +129,6 @@ function loadProductDescription (content, options) {
 		}
 	});
 }
-
-/* MEDIA - PHOTO & VIDEO */
 
 function loadProductImage (content, options) {
 	var settings = $.extend(true, {
