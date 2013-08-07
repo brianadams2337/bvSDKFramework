@@ -1000,8 +1000,6 @@ function loadCheckboxInputField (content, options) {
 
 
 
-
-
 /***** MEDIA UPLOAD *****/
 
 
@@ -1246,8 +1244,6 @@ function loadPhotoFileUploadInput (content, options) {
 		}
 	});
 }
-
-
 
 function loadPhotoUrlUploadInput (content, options) {
 	var settings = $.extend(true, {

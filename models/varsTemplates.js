@@ -39,6 +39,18 @@ var defaultFilterIndividualContainerView = siteBaseURL + "views/universal/filter
 
 
 
+/***** PRODUCT INFO *****/
+
+
+
+var defaultProductInfoWidgetContainerView = siteBaseURL + "views/reviews/display/productInfoWidgetContainer.html" // entire product info widget
+var defaultProductInfoContainerView = siteBaseURL + "views/reviews/display/productInfoContainer.html"; // individual product info module
+var defaultProductInfoNameContainerView = siteBaseURL + "views/reviews/display/productInfoNameContainer.html"; // product name module
+var defaultProductInfoDescriptionContainerView = siteBaseURL + "views/reviews/display/productInfoDescriptionContainer.html"; // product description module
+var defaultProductInfoImageContainerView = siteBaseURL + "views/reviews/display/productInfoImageContainer.html"; // product image module
+
+
+
 /***** REVIEWS *****/
 
 
