@@ -223,8 +223,5 @@ h1._BVPageHeaderText, h2._BVSectionHeaderText {margin: 0;}
 /* Pagination */
 ._BVPaginationContainer {text-align: center;}
 .BVPaginationBtn {padding: 0 10px; cursor: pointer;}
+.BVPaginationBtn.BVSelected {font-weight: bold; cursor: default;}
 
-
-
-template {display: none !important;}
-.testtempclass {font-size: 18px; color: #ff0000;}

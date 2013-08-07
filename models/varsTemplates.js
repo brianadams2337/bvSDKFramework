@@ -212,7 +212,7 @@ var defaultBadgesBestBuy = {
 
 var defaultPaginationContainerView = siteBaseURL + "views/universal/pagination/paginationContainer.html"; // entire pagination module
 var defaultPaginationButtonContainerView = siteBaseURL + "views/universal/pagination/paginationButtonContainer.html" // individual pagination button module
-
+var defaultPaginationButtonSelectedContainerView = siteBaseURL + "views/universal/pagination/paginationButtonSelectedContainer.html" // individual selected pagination button module
 
 
 /************************* SUBMISSION ******************************/
