@@ -54,8 +54,9 @@ $(document).ready(function() {
 					loadReviewWidget (content, {
 						"parentContainer":defaultReviewsParentContainer,
 						"productId":productId,
-						"modelLocalDefaultSettings":modelLocalDefaultSettings,
-						"viewContainer":siteBaseURL + "views/reviews/display/reviewWidgetContainer.html"
+						"modelLocalDefaultSettings":{
+							"Parameters":modelLocalDefaultSettings
+						}
 					});
 				}, {
 					// api parameters
@@ -80,7 +81,9 @@ $(document).ready(function() {
 				// callback function
 				loadQuestionAnswer (content, {
 					"productId":productId,
-					"modelLocalDefaultSettings":modelLocalDefaultSettings
+					"modelLocalDefaultSettings":{
+						"Parameters":modelLocalDefaultSettings
+					}
 				});
 			}, {
 				// api parameters
