@@ -96,6 +96,16 @@ function loadReviewSubmissionForm (content, options) {
 					"targetContainer":defaultFormSectionHeaderUserContainer
 				});
 				
+				/***** product info *****/
+
+				getSpecificProduct (settings["productId"], function(data) {
+					loadProductInfoWidget (data, {
+						"parentContainer":$container
+					});					
+				}, {
+
+				});
+
 				/***** inputs *****/
 
 				// overall rating
