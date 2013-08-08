@@ -73,6 +73,8 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		._BVQuickTakeContainer ._BVRecommendedContainerAverage .BVIsRecommended {margin: 0;}
 	._BVQuickTakeContainer ._BVFilters {clear: both; padding: 30px 0;}
 		._BVFiltersTitle {font-weight: bold;}
+		.BVFilter {cursor: pointer;}
+		.BVFilter.BVSelected {font-weight: bold; cursor: default;}
 	._BVQuickTakeContainer ._BVButtonWriteReviewContainer {background: -moz-linear-gradient(center top , #E7E7E7 0%, #F2F2F2 20%) repeat scroll 0 0 transparent; padding: 7px 12px; overflow: hidden;}
 	._BVQuickTakeContainer .BVSortContainer {position: absolute; right: 12px; bottom: 14px;}
 

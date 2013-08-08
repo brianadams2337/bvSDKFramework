@@ -9,14 +9,18 @@ function getSpecificProduct (reviewIDs, callBack, options) {
 			}
 		}
 	}, options);
-	var url = productCatalogAPICall(settings);
+	var apiCall = productCatalogAPICall(settings);
+	var urlString = apiCall["url"];
+	var paramObject = apiCall["params"];
+	var paramString = returnAPIParametersString(apiCall["params"]);
 	$.ajax({
 		type: "GET",
-		url: url,
+		url: urlString,
+		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			console.log(settings, data);
-			callBack(data, settings);
+			console.log(data, paramString, paramObject);
+			callBack(data, paramObject);
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
@@ -35,14 +39,18 @@ function getAllProducts (productID, callBack, options) {
 			}
 		}
 	}, options);
-	var url = productCatalogAPICall(settings);
+	var apiCall = productCatalogAPICall(settings);
+	var urlString = apiCall["url"];
+	var paramObject = apiCall["params"];
+	var paramString = returnAPIParametersString(apiCall["params"]);
 	$.ajax({
 		type: "GET",
-		url: url,
+		url: urlString,
+		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			console.log(data);
-			callBack(data, settings);
+			console.log(data, paramString, paramObject);
+			callBack(data, paramObject);
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
@@ -114,12 +122,15 @@ function productCatalogAPICall (options) {
 	}, options);
 
 	// set URL base for API call
-	var url = "http://" + defaultSettings["URL"]["baseurl"] + "data/" + "products." + defaultSettings["URL"]["format"] + "?";
-	
-	// add URL parameters for API call
-	url =  addAPIParameters(url, defaultSettings["Parameters"]);
+	var url = "http://" + defaultSettings["URL"]["baseurl"] + "data/" + "products." + defaultSettings["URL"]["format"];
+
+	// set URL parameters for API call
+	var params = defaultSettings["Parameters"];
+
+	// create array with url and parameters
+	var apiCall = {"url":url, "params":params};
 
 	// return the API call
-	return url;
+	return apiCall;
 
 };
