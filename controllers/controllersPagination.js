@@ -121,8 +121,7 @@ function loadNumberedPagination (content, options) {
 						// set offset and limit in api call for each button respectively
 						settings["viewReloadOptions"]["modelSettings"]["Parameters"]["offset"] = (pageLimit * (i - 1));
 						settings["viewReloadOptions"]["modelSettings"]["Parameters"]["limit"] = pageLimit;
-					//console.log(settings["viewReloadOptions"]["modelSettings"]["Parameters"]["offset"]);
-					//console.log(pageLimit, i);						
+
 						// load button
 						loadPaginationButton (i, {
 							"parentContainer":$container,
@@ -200,17 +199,23 @@ function loadPaginationButton (content, options) {
 			$container.find(defaultPaginationBtnContainer).andSelf().filter(defaultPaginationBtnContainer).html(content);
 			if (!$container.data("disabled")) {
 				$container.click(function(){
+					// container info to refresh
 					var refreshContainer = $(settings["viewReloadOptions"]["controllerSettings"]["parentContainer"]).find(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]).andSelf().filter(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]);
 					loadingContainerAnimation(refreshContainer, function() {
+						// make new api call
 						settings["viewReloadOptions"]["model"] (
+							// product id
 							settings["productId"],
-							function(content) {
+							// controller callback
+							function(content, modelLocalDefaultSettings) {
+								// update model settings to represent new data (needed for selcted/disabled states for filters, sorting, and pagination)
+								settings["viewReloadOptions"]["controllerSettings"]["modelLocalDefaultSettings"]["Parameters"] = modelLocalDefaultSettings;
 								// callback function
 								settings["viewReloadOptions"]["controller"](content, settings["viewReloadOptions"]["controllerSettings"]);
 							},
+							// api call parameters
 							settings["viewReloadOptions"]["modelSettings"]
 						);
-
 					});
 				});
 			}

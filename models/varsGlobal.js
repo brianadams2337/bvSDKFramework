@@ -79,7 +79,15 @@ var defaultToggleOptions = {
 	queue: true
 };
 
-
+/***** DECIMAL TRUNCATION OPTIONS *****/
+var defaultDecimalOptions = {
+	"overallAverage": 1,
+	"secondaryAverage": 1,
+	"overall": 1,
+	"secondary": 1,
+	"overallRange": 0,
+	"secondaryRange": 0
+};
 
 /***** SERVER SIDE URLS *****/
 

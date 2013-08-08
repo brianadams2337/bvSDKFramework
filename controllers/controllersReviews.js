@@ -209,7 +209,9 @@ function loadIndividualReview (content, options) {
 						"parentContainer":$container,
 						"productId":settings["productId"],
 						"contentId":contentId,
-						"modelLocalDefaultSettings":modelLocalDefaultSettings
+						"modelLocalDefaultSettings":{
+							"Parameters":modelLocalDefaultSettings
+						}
 					});
 				}, {
 					"Parameters":{
@@ -284,8 +286,8 @@ function loadReviewRatingAverage (content, options) {
 		success: function(container) {
 			var $container = $(container);
 			// set variables
-			var averageOverallRating = content['AverageOverallRating'];
-			var overallRatingRange = content['OverallRatingRange'];
+			var averageOverallRating = content['AverageOverallRating'].toFixed(defaultDecimalOptions["overallAverage"]);
+			var overallRatingRange = content['OverallRatingRange'].toFixed(defaultDecimalOptions["overallRange"]);
 			// set rating value
 			$container.find(defaultOverallRatingValueContainer).andSelf().filter(defaultOverallRatingValueContainer).text(averageOverallRating);
 			// set rating range value
@@ -352,8 +354,8 @@ function loadReviewRating (content, options) {
 			var $container = $(container);
 			// variables
 			var id = "Overall";				
-			var value = content['Rating'] + ".0";
-			var valueRange = content['RatingRange'];
+			var value = content['Rating'].toFixed(defaultDecimalOptions["overall"]);
+			var valueRange = content['RatingRange'].toFixed(defaultDecimalOptions["overallRange"]);
 			var labelText = "Overall Rating";
 			// set rating label (title)
 			$container.find(defaultOverallRatingLabelTextContainer).andSelf().filter(defaultOverallRatingLabelTextContainer).text(labelText);
@@ -392,8 +394,8 @@ function loadReviewSecondaryRatings (content, options) {
 				var cur = settings["loadOrder"][index];
 				// set text variables
 				var id = content["SecondaryRatings"][cur]["Id"];
-				var value = content["SecondaryRatings"][cur]["Value"] + ".0";
-				var valueRange = content["SecondaryRatings"][cur]["ValueRange"];
+				var value = content["SecondaryRatings"][cur]["Value"].toFixed(defaultDecimalOptions["secondary"]);
+				var valueRange = content["SecondaryRatings"][cur]["ValueRange"].toFixed(defaultDecimalOptions["secondaryRange"]);
 				var valueLabelText = content["SecondaryRatings"][cur]["ValueLabel"];
 				var labelText = content["SecondaryRatings"][cur]["Label"];
 				var labelMinText = content["SecondaryRatings"][cur]["MinLabel"];

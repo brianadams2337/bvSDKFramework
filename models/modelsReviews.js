@@ -7,13 +7,18 @@ function getSpecificReviews (reviewIDs, callBack, options) {
 			}
 		}
 	}, options);
-	var url = reviewsAPICall(settings);
+	var apiCall = reviewsAPICall(settings);
+	var urlString = apiCall["url"];
+	var paramObject = apiCall["params"];
+	var paramString = returnAPIParametersString(apiCall["params"]);
 	$.ajax({
 		type: "GET",
-		url: url,
+		url: urlString,
+		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			callBack(data, settings);
+			console.log(data, paramString, paramObject);
+			callBack(data, paramObject);
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
@@ -28,18 +33,22 @@ function getAllReviews (productID, callBack, options) {
 			"include":"products",
 			"stats":"reviews",
 			"filter":{
-				"productid":productID
+				"productid":productID,
 			}
 		}
 	}, options);
-	var url = reviewsAPICall(settings);
+	var apiCall = reviewsAPICall(settings);
+	var urlString = apiCall["url"];
+	var paramObject = apiCall["params"];
+	var paramString = returnAPIParametersString(apiCall["params"]);
 	$.ajax({
 		type: "GET",
-		url: url,
+		url: urlString,
+		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			console.log(data);
-			callBack(data, settings);
+			console.log(data, paramString, paramObject);
+			callBack(data, paramObject);
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
@@ -58,13 +67,18 @@ function getReviewsStats (productID, callBack, options) {
 			}
 		}
 	}, options);
-	var url = reviewsAPICall(settings);
+	var apiCall = reviewsAPICall(settings);
+	var urlString = apiCall["url"];
+	var paramObject = apiCall["params"];
+	var paramString = returnAPIParametersString(apiCall["params"]);
 	$.ajax({
 		type: "GET",
-		url: url,
+		url: urlString,
+		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			callBack(data, settings);
+			console.log(data, paramString, paramObject);
+			callBack(data, paramObject);
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
@@ -82,13 +96,18 @@ function getFeaturedReviews (productID, callBack, options) {
 			}
 		}
 	}, options);
-	var url = reviewsAPICall(settings);
+	var apiCall = reviewsAPICall(settings);
+	var urlString = apiCall["url"];
+	var paramObject = apiCall["params"];
+	var paramString = returnAPIParametersString(apiCall["params"]);
 	$.ajax({
 		type: "GET",
-		url: url,
+		url: urlString,
+		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			callBack(data, settings);
+			console.log(data, paramString, paramObject);
+			callBack(data, paramObject);
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
@@ -106,13 +125,18 @@ function getPhotoReviews (productID, callBack, options) {
 			}
 		}
 	}, options);
-	var url = reviewsAPICall(settings);
+	var apiCall = reviewsAPICall(settings);
+	var urlString = apiCall["url"];
+	var paramObject = apiCall["params"];
+	var paramString = returnAPIParametersString(apiCall["params"]);
 	$.ajax({
 		type: "GET",
-		url: url,
+		url: urlString,
+		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			callBack(data, settings);
+			console.log(data, paramString, paramObject);
+			callBack(data, paramObject);
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
@@ -131,13 +155,18 @@ function getFeaturedPhotoReviews (productID, callBack, options) {
 			}
 		}
 	}, options);
-	var url = reviewsAPICall(settings);
+	var apiCall = reviewsAPICall(settings);
+	var urlString = apiCall["url"];
+	var paramObject = apiCall["params"];
+	var paramString = returnAPIParametersString(apiCall["params"]);
 	$.ajax({
 		type: "GET",
-		url: url,
+		url: urlString,
+		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			callBack(data, settings);
+			console.log(data, paramString, paramObject);
+			callBack(data, paramObject);
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
@@ -154,13 +183,18 @@ function getReviewsCustom (productID, callBack, options) {
 			}
 		}
 	}, options);
-	var url = reviewsAPICall(settings);
+	var apiCall = reviewsAPICall(settings);
+	var urlString = apiCall["url"];
+	var paramObject = apiCall["params"];
+	var paramString = returnAPIParametersString(apiCall["params"]);
 	$.ajax({
 		type: "GET",
-		url: url,
+		url: urlString,
+		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			callBack(data, settings);
+			console.log(data, paramString, paramObject);
+			callBack(data, paramObject);
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
@@ -259,12 +293,15 @@ function reviewsAPICall (options) {
 	}, options);
 
 	// set URL base for API call
-	var url = "http://" + defaultSettings["URL"]["baseurl"] + "data/" + "reviews." + defaultSettings["URL"]["format"] + "?";
-	
-	// add URL parameters for API call
-	url =  addAPIParameters(url, defaultSettings["Parameters"]);
+	var url = "http://" + defaultSettings["URL"]["baseurl"] + "data/" + "reviews." + defaultSettings["URL"]["format"];
+
+	// set URL parameters for API call
+	var params = defaultSettings["Parameters"];
+
+	// create array with url and parameters
+	var apiCall = {"url":url, "params":params};
 
 	// return the API call
-	return url;
-
+	return apiCall;
+	
 };
