@@ -38,6 +38,6 @@ var labelsSortReviewOptions = {
 
 var labelsSubmissionOptIns = {
 	"termsAndConditions" : "I acknowledge that I have read and agree to the Terms & Conditions.",
-	"emailAlertWhenCommented" : "Yes, Please send me an email when a comment posts to my review.",
-	"emailAlertWhenPublished" : "Yes, Please send me an email when my review is published.",
+	"emailAlertWhenCommented" : "Please send me an email when my review is posted.",
+	"emailAlertWhenPublished" : "Please send me an email when someone comments on my review.",
 }

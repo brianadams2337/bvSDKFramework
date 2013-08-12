@@ -75,7 +75,7 @@ function loadReviewSubmissionForm (content, options) {
 				
 				/***** headers *****/
 
-				loadPageHeader ("Write Your Review", {
+				loadPageHeader ("", {
 					"parentContainer":$container,
 					"targetContainer":defualtPageHeaderContainer
 				});
@@ -151,7 +151,7 @@ function loadReviewSubmissionForm (content, options) {
 					loadUserEmailInput (content, {
 						"parentContainer":$container,
 						"inputSettings":{
-							"inputLabel":"User Email",
+							"inputLabel":"My Email",
 						}
 					});
 				}
@@ -170,7 +170,7 @@ function loadReviewSubmissionForm (content, options) {
 				loadUserLocationInput (content, {
 					"parentContainer":$container,
 					"inputSettings":{
-						"inputLabel":"User Location",
+						"inputLabel":"My Location",
 					}
 				});
 				// device fingerprint
@@ -205,7 +205,7 @@ function loadReviewSubmissionForm (content, options) {
 				loadPhotoGroupInput (content, {
 					"parentContainer":$container,
 					"inputSettings":{
-						"inputLabel":"Upload your photos"
+						"inputLabel":"Upload your images"
 					},
 					"mediaSettings":{
 						"contentType":"review"
@@ -215,7 +215,7 @@ function loadReviewSubmissionForm (content, options) {
 				loadYoutubeUrlInput (content, {
 					"parentContainer":$container,
 					"inputSettings":{
-						"inputLabel":"Youtube Link"
+						"inputLabel":"Video URL"
 					}
 				});
 				// video caption
