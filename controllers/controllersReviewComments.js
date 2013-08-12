@@ -26,7 +26,7 @@ function loadReviewCommentsWidget (content, options) {
 			// load comments if available
 			if (commentsToDisplay.length > 0) {
 				// add content id data param to content section
-				$container.find(reviewCommentsContainers["toggleContainer"]).andSelf().filter(reviewCommentsContainers["toggleContainer"]).attr({
+				$container.find(reviewCommentsContainers["toggleContainer"]).andSelf().addClass("BVReviewCommentsHasComments").filter(reviewCommentsContainers["toggleContainer"]).attr({
 					"data-contentid":contentId
 				});
 
