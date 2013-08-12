@@ -382,48 +382,44 @@ function loadReviewSecondaryRatings (content, options) {
 		"loadOrder":content["SecondaryRatingsOrder"],
 		"productId":""
 	}, options);
-	if (settings["loadOrder"].length != 0) {
-		$.each(settings["loadOrder"], function(index) {
-			$.ajax({
-				url: settings["viewContainer"],
-				type: 'GET',
-				dataType: 'html',
-				async: false,
-				success: function(container) {
-					var $container = $(container);
-					// current iteration of loop
-					var cur = settings["loadOrder"][index];
-					// set text variables
-					var id = content["SecondaryRatings"][cur]["Id"];
-					var value = content["SecondaryRatings"][cur]["Value"].toFixed(defaultDecimalOptions["secondary"]);
-					var valueRange = content["SecondaryRatings"][cur]["ValueRange"].toFixed(defaultDecimalOptions["secondaryRange"]);
-					var valueLabelText = content["SecondaryRatings"][cur]["ValueLabel"];
-					var labelText = content["SecondaryRatings"][cur]["Label"];
-					var labelMinText = content["SecondaryRatings"][cur]["MinLabel"];
-					var labelMaxText = content["SecondaryRatings"][cur]["MaxLabel"];
-					var displayType = content["SecondaryRatings"][cur]["DisplayType"];
-					// set class variables
-					var labelClass = "BVRating" + id;
-					var valueClass = "BVRating" + value;
-					// set rating label (title)
-					$container.find(defaultSecondaryRatingLabelTextContainer).andSelf().filter(defaultSecondaryRatingLabelTextContainer).text(labelText);
-					// set rating value
-					$container.find(defaultSecondaryRatingValueContainer).andSelf().filter(defaultSecondaryRatingValueContainer).text(value);
-					// set rating range value
-					$container.find(defaultSecondaryRatingRangeContainer).andSelf().filter(defaultSecondaryRatingRangeContainer).text(valueRange);
-					// add ratings container template
-					$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
-					// set star value
-					setStarRating ($container, value, valueRange);
-				},
-				error: function(e) {
-					defaultAjaxErrorFunction(e);
-				}
-			});
+	$.each(settings["loadOrder"], function(index) {
+		$.ajax({
+			url: settings["viewContainer"],
+			type: 'GET',
+			dataType: 'html',
+			async: false,
+			success: function(container) {
+				var $container = $(container);
+				// current iteration of loop
+				var cur = settings["loadOrder"][index];
+				// set text variables
+				var id = content["SecondaryRatings"][cur]["Id"];
+				var value = content["SecondaryRatings"][cur]["Value"].toFixed(defaultDecimalOptions["secondary"]);
+				var valueRange = content["SecondaryRatings"][cur]["ValueRange"].toFixed(defaultDecimalOptions["secondaryRange"]);
+				var valueLabelText = content["SecondaryRatings"][cur]["ValueLabel"];
+				var labelText = content["SecondaryRatings"][cur]["Label"];
+				var labelMinText = content["SecondaryRatings"][cur]["MinLabel"];
+				var labelMaxText = content["SecondaryRatings"][cur]["MaxLabel"];
+				var displayType = content["SecondaryRatings"][cur]["DisplayType"];
+				// set class variables
+				var labelClass = "BVRating" + id;
+				var valueClass = "BVRating" + value;
+				// set rating label (title)
+				$container.find(defaultSecondaryRatingLabelTextContainer).andSelf().filter(defaultSecondaryRatingLabelTextContainer).text(labelText);
+				// set rating value
+				$container.find(defaultSecondaryRatingValueContainer).andSelf().filter(defaultSecondaryRatingValueContainer).text(value);
+				// set rating range value
+				$container.find(defaultSecondaryRatingRangeContainer).andSelf().filter(defaultSecondaryRatingRangeContainer).text(valueRange);
+				// add ratings container template
+				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
+				// set star value
+				setStarRating ($container, value, valueRange);
+			},
+			error: function(e) {
+				defaultAjaxErrorFunction(e);
+			}
 		});
-	} else {
-		$(settings["targetContainer"]).remove();
-	}
+	});
 }
 
 /* REVIEW TEXT DATA */
