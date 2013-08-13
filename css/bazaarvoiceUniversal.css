@@ -271,9 +271,11 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	/* General - Titles, Labels, Values */
 	._BVLabelText {width: 210px; float: left; margin-right: 10px; font-weight: bold;}
 	h1._BVPageHeaderText, h2._BVSectionHeaderText {margin: 0;}
+	._BVPageHeaderContainer {display: none;}
 
 	/* Sections */
 	.BVSection {background-image: -moz-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -webkit-linear-gradient(bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: linear-gradient(bottom, #EBEBEB 0%, #FFFFFF 20%); background-repeat: repeat-x; margin-bottom: 40px; padding: 25px 0 15px;}
+	.BVSection:empty, .BVSection div:empty, .BVFooter:empty, .BVFooter div:empty {display: none;}
 		.BVSectionHeader {padding: 0 0 2px; margin: 0 0 20px;}
 			h2._BVSectionHeaderText {font-size: 24px; font-weight: normal; line-height: 1.333; display: block; margin-left: 42px;}
 		.BVSectionBody {padding: 30px 42px 0;}
@@ -281,7 +283,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 
 		/* Section Header Backgrounds */
 		._BVSectionHeaderRatingsContainer {background: url(images/backgroundRatingsSub.gif) no-repeat;}
-		._BVSectionHeaderReviewContainer {background: url(images/backgroundReviewSub.gif) no-repeat left 2px;}
+		._BVSectionHeaderReviewContainer, ._BVSectionHeaderReviewCommentContainer {background: url(images/backgroundReviewSub.gif) no-repeat left 2px;}
 		._BVSectionHeaderMediaContainer {background: url(images/backgroundMediaSub.gif) no-repeat left 2px;}
 		._BVSectionHeaderUserContainer {background: url(images/backgroundUserSub.gif) no-repeat;}
 

@@ -86,11 +86,11 @@ function loadReviewCommentSubmissionForm (content, options) {
 				"parentContainer":$container,
 				"targetContainer":defualtPageHeaderContainer
 			});
-			loadSectionHeader ("Your Comment", {
+			loadSectionHeader ("My Comment", {
 				"parentContainer":$container,
 				"targetContainer":defaultFormSectionHeaderReviewCommentContainer
 			});
-			loadSectionHeader ("User Info", {
+			loadSectionHeader ("My Information", {
 				"parentContainer":$container,
 				"targetContainer":defaultFormSectionHeaderUserContainer
 			});
@@ -101,14 +101,14 @@ function loadReviewCommentSubmissionForm (content, options) {
 			loadReviewCommentTextInput (content, {
 				"parentContainer":$container,
 				"inputSettings":{
-					"inputLabel":"Comment Text",
+					"inputLabel":"My Comment",
 				}
 			});
 			// nickname
 			loadUserNicknameInput (content, {
 				"parentContainer":$container,
 				"inputSettings":{
-					"inputLabel":"User Nickname",
+					"inputLabel":"Choose a Nickname (no spaces)",
 				}
 			});
 
