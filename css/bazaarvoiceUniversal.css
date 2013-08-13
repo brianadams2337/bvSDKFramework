@@ -358,8 +358,8 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	._BVUserNicknameInputContainer ._BVLabelText, ._BVUserEmailInputContainer ._BVLabelText {font-size: 14px;}
 
 	/* Additional Fields */
-	/*._BVAdditionalFieldGroupInputContainer {}
-		._BVAdditionalFieldGroupInputContainer #additionalfield_RewardZoneNumberWrapperID {display: none;}*/
+	._BVAdditionalFieldGroupInputContainer {}
+		._BVAdditionalFieldGroupInputContainer #additionalfield_RewardZoneNumberWrapperID {display: none;}
 
 	/* Email Subscription */
 	._BVEmailAlertWhenPublishedContainer, ._BVEmailAlertWhenCommentedContainer {margin: 0 0 0 215px;}
