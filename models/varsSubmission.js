@@ -31,10 +31,8 @@ var defaultAdditionalFieldIndividualInputContainer = "._BVAdditionalFieldIndivid
 var defaultTagGroupInputContainer = "._BVTagGroupInputContainer"; // tags container
 
 var defaultPhotoUploadGroupInputContainer = "._BVPhotoUploadContainer" // photo upload group container
-var defaultPhotoUploadPreviewToggleContainer = "._BVPhotoUploadPreviewToggleContainer" // photo upload preview toggle container
-var defaultPhotoUploadGroupInputContainer = "._BVPhotoUploadContainer" // photo upload group container
-var defaultPhotoUploadGroupInputContainer = "._BVPhotoUploadContainer" // photo upload group container
-
+var defaultPhotoUploadInputContainer = "._BVPhotoUploadInputContainer" // photo upload preview toggle container
+var defaultPhotoUploadPreviewContainer = "._BVPhotoUploadPreviewContainer" // photo upload preview toggle container
 
 var defaultTermsConditionsInputContainer = "._BVTermsConditionsContainer"; // terms and conditions container
 var defaultEmailAlertWhenCommentedInputContainer = "._BVEmailAlertWhenCommentedContainer"; // email alert when commented container
