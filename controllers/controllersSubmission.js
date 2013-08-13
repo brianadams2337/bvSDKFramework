@@ -454,22 +454,52 @@ function loadTagGroupInput (content, options) {
 			async: false,
 			success: function(container) {
 				var $container = $(container);
-				// set label
+				// set variables
 				var inputLabel = content["Data"]["Groups"][value]["Label"];
+				// set label
 				$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(inputLabel);
 				// add input template
 				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
 				// set order to load inputs
+				// pre-defined tags load order
 				var tagLoadOrder = new Array ();
+				// open text field tags load order
+				var tagOpenFieldLoadOrder = new Array ();
+				// sort tag into their respective load order arrays
 				$.each(content["Data"]["Groups"][value]["SubElements"], function() {
 					$.each(content["Data"]["Groups"][this["Id"]]["SubElements"], function() {
-						tagLoadOrder.push(this["Id"]);
+						// check if field type is TextInput (open text) or Boolean (pre-defined)
+						if (content["Data"]["Fields"][this["Id"]]["Type"] == "TextInput") {
+							tagOpenFieldLoadOrder.push(this["Id"]);
+						} else {
+							tagLoadOrder.push(this["Id"]);
+						}
 					})
 				});
-				// load inputs
-				loadTagIndividualInput (content, {
-					"parentContainer":$container,
-					"loadOrder":tagLoadOrder
+				// load pre-defined tags
+				$.each(tagLoadOrder, function() {
+					// load inputs
+					loadTagIndividualInput (content, {
+						"parentContainer":$container,
+						"loadOrder":this,
+					});
+				});
+				// load open text field tags
+				$.each(tagOpenFieldLoadOrder, function(key, value) {
+					// only show first open text feild tag
+					if ((key + 1) == 1) {
+						settings["inputSettings"]["inputHidden"] = false;
+					} else {
+						settings["inputSettings"]["inputHidden"] = true;
+					}
+					// load inputs
+					loadTagIndividualInput (content, {
+						"parentContainer":$container,
+						"loadOrder":this,
+						"inputSettings":{
+							"inputHidden":settings["inputSettings"]["inputHidden"],
+						},
+					});
 				});
 			},
 			error: function(e) {
@@ -489,30 +519,59 @@ function loadTagIndividualInput (content, options) {
 		"inputSettings":{
 			"inputName":content["Id"],
 			"inputType":content["Type"],
+			"inputHidden":false,
 			"inputLabel":content["Label"],
 			"inputRequired":content["Required"],
 			"inputSubElements":content["SubElements"]
 		}
 	}, options);
-	$.each(settings["loadOrder"], function(key, value) {
-		$.ajax({
-			url: settings["viewContainer"],
-			type: 'GET',
-			dataType: 'html',
-			async: false,
-			success: function(container) {
-				var $container = $(container);
-				// add tag template
-				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
-				// load checkbox
-				loadCheckboxInputField (content["Data"]["Fields"][value], {
-					"parentContainer":$container
-				});
-			},
-			error: function(e) {
-				defaultAjaxErrorFunction(e);
+	$.ajax({
+		url: settings["viewContainer"],
+		type: 'GET',
+		dataType: 'html',
+		async: false,
+		success: function(container) {
+			var $container = $(container);
+			// check if input should be hidden
+			if (settings["inputSettings"]["inputHidden"]) {
+				$container.hide();
 			}
-		});
+			// add tag template
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
+			// load checkbox
+			loadCheckboxInputField (content["Data"]["Fields"][settings["loadOrder"]], {
+				"parentContainer":$container,
+			});
+			if (content["Data"]["Fields"][settings["loadOrder"]]["Type"] == "TextInput") {
+				// run once user clicks outside of text field
+				$container.focusout( function() {
+					// check to see if this field has any text (no need to show a new field if this field can still be used)
+					if ($("input[type='text'][name='" + content["Data"]["Fields"][settings["loadOrder"]]["Id"] + "']").val().trim().length > 0) {
+						// array of open text tag values (used to see if a new empty field is needed)
+						var tagOpenTextValues = new Array();
+						$($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).find("input[type='text']").andSelf().filter("input[type='text']").not(":hidden").each(function() {
+							tagOpenTextValues.push($(this).val().trim());
+						});
+						// check to see if an empty text field tag is already showing
+						if ($.inArray("", tagOpenTextValues) == -1) {
+							// loop through all tags within this target container (use target to keep your search localized to this group)
+							$($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).children().each(function() {
+								// find the next hidden tag
+								if ($(this).is(":hidden")) {
+									// move element to last position and show
+									$(this).detach().appendTo($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).show();
+									// return to break loop after a hidden input was found
+									return false;
+								}
+							});
+						}
+					}
+				});
+			}
+		},
+		error: function(e) {
+			defaultAjaxErrorFunction(e);
+		}
 	});
 }
 
@@ -919,6 +978,7 @@ function loadCheckboxInputField (content, options) {
 			"inputType":content["Type"],
 			"inputLabel":content["Label"],
 			"inputPlaceholder":"", // user defined
+			"inputHidden":false, // user defined
 			"inputValue":content["Value"],
 			"inputMinLength":content["MinLength"],
 			"inputMaxLength":content["MaxLength"],
@@ -1116,12 +1176,13 @@ function loadPhotoGroupInput (content, options) {
 		"inputSettings":{
 			"inputName":content["Id"],
 			"inputType":content["Type"],
+			"inputHidden":false,
 			"inputLabel":content["Label"],
 			"inputRequired":content["Required"],
 			"inputSubElements":content["SubElements"]
 		},
 		"mediaSettings":{
-			"contentType":""
+			"contentType":"",
 		}
 	}, options);
 	$.ajax({
@@ -1131,23 +1192,33 @@ function loadPhotoGroupInput (content, options) {
 		async: false,
 		success: function(container) {
 			var $container = $(container);
-			// set label
+			// set variables
 			var inputLabel = settings["inputSettings"]["inputLabel"];
+			// set label
 			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(inputLabel);
 			// add input template
 			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
+			// load photo upload inputs
 			$.each(settings["loadOrder"], function(key, value) {
 				// set order to load inputs
 				var photoLoadOrder = new Array ();
 				$.each(content["Data"]["Groups"][value]["SubElements"], function() {
 					photoLoadOrder.push(this["Id"]);
 				});
-				// load upload input
+				if ((key + 1) == settings["loadOrder"].length) {
+					settings["inputSettings"]["inputHidden"] = false;
+				} else {
+					settings["inputSettings"]["inputHidden"] = true;
+				}
+				// load photo upload input
 				loadPhotoFileUploadInput (content, {
 					"parentContainer":$container,
 					"loadOrder":photoLoadOrder,
+					"inputSettings":{
+						"inputHidden":settings["inputSettings"]["inputHidden"],
+					},
 					"mediaSettings":{
-						"contentType":settings["mediaSettings"]["contentType"]
+						"contentType":settings["mediaSettings"]["contentType"],
 					}
 				});
 			});
@@ -1168,12 +1239,13 @@ function loadPhotoFileUploadInput (content, options) {
 		"inputSettings":{
 			"inputName":content["Id"],
 			"inputType":content["Type"],
+			"inputHidden":false,
 			"inputLabel":content["Label"],
 			"inputRequired":content["Required"],
 			"inputSubElements":content["SubElements"]
 		},
 		"mediaSettings":{
-			"contentType":""
+			"contentType":"",
 		}
 	}, options);
 	$.ajax({
@@ -1183,11 +1255,14 @@ function loadPhotoFileUploadInput (content, options) {
 		async: false,
 		success: function(container) {
 			var $container = $(container);
+			if (settings["inputSettings"]["inputHidden"]) {
+				$container.hide();
+			}
 			// set variables
 			var urlInputName = settings["loadOrder"][0];
 			var uploadInputName = "photo"; // DO NOT CHANGE - must be photo for upload to work
-			// set label
 			var inputLabel = settings["inputSettings"]["inputLabel"];
+			// set label
 			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(inputLabel);
 			// add photo template
 			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
@@ -1199,38 +1274,50 @@ function loadPhotoFileUploadInput (content, options) {
 				}
 			});
 			// load photo url input (this is what actually submits the photo)
-			loadPhotoUrlUploadInput (content, {
+			loadPhotoUploadPreviewInput (content, {
 				"parentContainer":$container,
 				"loadOrder":settings["loadOrder"]
 			});
 			// set functionality for upload input
 			postPhotoSubmissionForm (settings["productId"], function(data) {
-				console.log("callback");
-				$($container).find("input[name='" + uploadInputName + "']").andSelf().filter("input[name='" + uploadInputName + "']").fileupload({
+				// set variables
+				var uploadInput = "input[name='" + uploadInputName + "']";
+				// submit photo using the jquery.fileupload.js plugin to allow ajax submission without embedding a form
+				$($container).find(uploadInput).andSelf().filter(uploadInput).fileupload({
 					type: "POST",
 					enctype: 'multipart/form-data',
 					url: data["url"],
 					formData: data["params"],
 					dataType: "json",
 			        done: function (e, data) {
-						console.log("photo data", data.result);
-						// array to hold photo response in json. needed to replicate object sent on json repsone for display
-						var objPhoto = new Array ();
-						objPhoto.push(data["result"]["Photo"]);
+						// array to hold photo response in json. needed to replicate object sent on json response for display
+						var arrPhoto = new Array ();
+						arrPhoto.push(data["result"]["Photo"]);
 						// load photo thumbnail
 						loadReviewPhotosGroup (data["result"]["Photo"], {
 							"parentContainer":$container,
-							"loadOrder":objPhoto
+							"loadOrder":arrPhoto
 						});
 						// set value on photo url input
+						var urlInput = "input[name='" + urlInputName + "']";
 						var urlPhotoNormal = data["result"]["Photo"]["Sizes"]["normal"]["Url"];
-						$($container).find("input[name='" + urlInputName + "']").andSelf().filter("input[name='" + urlInputName + "']").attr({
+						$($container).find(urlInput).andSelf().filter(urlInput).attr({
 							"value":urlPhotoNormal
 						});
 						// hide file upload input
-			        	$(this).hide();
+						$container.find(defaultPhotoUploadInputContainer).andSelf().filter(defaultPhotoUploadInputContainer).hide();
+						// find next hidden upload input and show if available
+						$($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).children().each(function() {
+							// find the next hidden input
+							if ($(this).is(":hidden")) {
+								// move element to last position and show
+								$(this).detach().prependTo($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).show();
+								// return to break loop after a hidden input was found
+								return false;
+							}
+						})
 			        	// show uploaded image preview container
-			        	$($container).find(defaultPhotoUploadPreviewToggleContainer).andSelf().filter(defaultPhotoUploadPreviewToggleContainer).show();
+			        	$($container).find(defaultPhotoUploadPreviewContainer).andSelf().filter(defaultPhotoUploadPreviewContainer).show();
 			        }
 			    });
 			}, {
@@ -1245,10 +1332,10 @@ function loadPhotoFileUploadInput (content, options) {
 	});
 }
 
-function loadPhotoUrlUploadInput (content, options) {
+function loadPhotoUploadPreviewInput (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":defaultSubmissionFormContainer,
-		"targetContainer":defaultPhotoUploadPreviewToggleContainer,
+		"targetContainer":defaultPhotoUploadPreviewContainer,
 		"viewContainer":defaultInputUploadPhotoPreviewContainerView,
 		"loadOrder":"",
 		"productId":"",
@@ -1274,20 +1361,124 @@ function loadPhotoUrlUploadInput (content, options) {
 			// add photo template
 			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
 			// hide photo preview container on load
-			$(defaultPhotoUploadPreviewToggleContainer).hide();
+			$(defaultPhotoUploadPreviewContainer).hide();
 			// load photo caption input
-			loadTextFieldInput (content["Data"]["Fields"][captionInputName], {
+			loadPhotoCaptionInput (content["Data"]["Fields"][captionInputName], {
 				"parentContainer":$container,
-				"targetContainer":defaultFormPhotoCaptionInputWrapperContainer,
 				"inputSettings":{
 					"inputLabel":"Add Caption",
 				}
 			});
 			// load photo url input (hidden)
-			loadTextFieldInput (content["Data"]["Fields"][urlInputName], {
+			loadPhotoUrlInput (content["Data"]["Fields"][urlInputName], {
 				"parentContainer":$container,
-				"targetContainer":defaultFormPhotoUrlInputWrapperContainer,
-				"viewContainer":defaultInputTextFieldHiddenContainerView
+			});
+		},
+		error: function(e) {
+			defaultAjaxErrorFunction(e);
+		}
+	});
+}
+
+function loadPhotoCaptionInput (content, options) {
+	var settings = $.extend(true, {
+		"parentContainer":defaultSubmissionFormContainer,
+		"targetContainer":defaultFormPhotoCaptionInputWrapperContainer,
+		"viewContainer":defaultInputContainerView,
+		"loadOrder":"",
+		"productId":"",
+		"inputSettings":{
+			"inputName":content["Id"],
+			"inputType":content["Type"],
+			"inputLabel":content["Label"],
+			"inputPlaceholder":"", // user defined
+			"inputHelperText":"", // user defined
+			"inputValue":content["Value"],
+			"inputMinLength":content["MinLength"],
+			"inputMaxLength":content["MaxLength"],
+			"inputRequired":content["Required"],
+			"inputDefault":content["Default"],
+			"inputOptionsArray":content["Options"]
+		}
+	}, options);
+	$.ajax({
+		url: settings["viewContainer"],
+		type: 'GET',
+		dataType: 'html',
+		async: false,
+		success: function(container) {
+			var $container = $(container);
+			// set variables
+			inputLabel = settings["inputSettings"]["inputLabel"];
+			inputName = settings["inputSettings"]["inputName"];
+			inputHelperText = settings["inputSettings"]["inputHelperText"];
+			// set label
+			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(inputLabel).attr({
+				"for":inputName,
+			});
+			// set helper text
+			$container.find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(inputHelperText);
+			// add input template
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
+			// load input
+			loadTextFieldInput (content, {
+				"parentContainer":$container,
+				"inputSettings":settings["inputSettings"]
+			});
+		},
+		error: function(e) {
+			defaultAjaxErrorFunction(e);
+		}
+	});
+}
+
+function loadPhotoUrlInput (content, options) {
+	var settings = $.extend(true, {
+		"parentContainer":defaultSubmissionFormContainer,
+		"targetContainer":defaultFormPhotoUrlInputWrapperContainer,
+		"viewContainer":defaultInputContainerView,
+		"loadOrder":"",
+		"productId":"",
+		"inputSettings":{
+			"inputName":content["Id"],
+			"inputType":content["Type"],
+			"inputLabel":content["Label"],
+			"inputPlaceholder":"", // user defined
+			"inputHelperText":"", // user defined
+			"inputValue":content["Value"],
+			"inputMinLength":content["MinLength"],
+			"inputMaxLength":content["MaxLength"],
+			"inputRequired":content["Required"],
+			"inputDefault":content["Default"],
+			"inputOptionsArray":content["Options"]
+		}
+	}, options);
+	$.ajax({
+		url: settings["viewContainer"],
+		type: 'GET',
+		dataType: 'html',
+		async: false,
+		success: function(container) {
+			var $container = $(container);
+			// hide container
+			$container.hide();
+			// set variables
+			inputLabel = settings["inputSettings"]["inputLabel"];
+			inputName = settings["inputSettings"]["inputName"];
+			inputHelperText = settings["inputSettings"]["inputHelperText"];
+			// set label
+			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(inputLabel).attr({
+				"for":inputName,
+			});
+			// set helper text
+			$container.find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(inputHelperText);
+			// add input template
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
+			// load photo url input (hidden)
+			loadTextFieldInput (content, {
+				"parentContainer":$container,
+				"viewContainer":defaultInputTextFieldHiddenContainerView,
+				"inputSettings":settings["inputSettings"]
 			});
 		},
 		error: function(e) {
