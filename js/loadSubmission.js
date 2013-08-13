@@ -22,6 +22,7 @@ $(document).ready(function() {
 			$.getScript(siteBaseURL + "js/jquery.min.1.9.1.js"),
 			$.getScript(siteBaseURL + "js/jquery-ui.js"),
 			$.getScript(siteBaseURL + "js/createHTML5Elements.js"),
+			$.getScript(siteBaseURL + "js/custom.js"),
 			/* properties */
 			$.getScript(siteBaseURL + "models/properties/properties.js"),
 			/* models */
