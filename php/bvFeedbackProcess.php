@@ -1,21 +1,18 @@
 <?php
 
-	$url = "http://stg.api.bazaarvoice.com/data/submitfeedback.json";
-	$defaultParams = array();
-
+	$defaults = array();
 	$fields = array_keys($_POST);
 
 	foreach ($fields as $key => $value) {
-		$defaultParams[$value] = $_POST[$value];
+		$defaults[$value] = $_POST[$value];
 	}
 
-	$defaultParams = http_build_query($defaultParams);
+	$defaults = http_build_query($defaults);
 
 	$h = curl_init();
-
-	curl_setopt($h, CURLOPT_URL, $url);
+	curl_setopt($h, CURLOPT_URL, "http://stg.api.bazaarvoice.com/data/submitfeedback.json");
 	curl_setopt($h, CURLOPT_POST, true);
-	curl_setopt($h, CURLOPT_POSTFIELDS, $defaultParams);
+	curl_setopt($h, CURLOPT_POSTFIELDS, $defaults);
 	curl_setopt($h, CURLOPT_HEADER, false);
 	curl_setopt($h, CURLOPT_RETURNTRANSFER, 1);
 

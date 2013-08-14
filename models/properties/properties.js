@@ -21,6 +21,7 @@ var labelsFilterOverallRating = {
 
 
 var labelsSortReviewOptions = {
+	"default" : "Sort Reviews...",
 	"ratingAsc" : "Lowest Rating",
 	"ratingDesc" : "Highest Rating",
 	"submissiontimeAsc" : "Oldest",
@@ -36,8 +37,25 @@ var labelsSortReviewOptions = {
 
 /***** CHECKBOX LABELS *****/
 
+
+
 var labelsSubmissionOptIns = {
 	"termsAndConditions" : "I acknowledge that I have read and agree to the Terms & Conditions.",
 	"emailAlertWhenCommented" : "Yes, Please send me an email when a comment posts to my review.",
 	"emailAlertWhenPublished" : "Yes, Please send me an email when my review is published.",
 }
+
+
+
+/***** FEEDBACK STATUS MESSAGE *****/
+
+
+
+var statusMessages = {
+	"helpfullnessReceived" : "Thanks! Your feedback has been successfully submitted.",
+	"inappropriateReceived" : "Thanks! Your concern has been successfully submitted.",
+	"helpfullnessRemoved" : "Your feedback has been removed.",
+	"error" : "Sorry. There was an error submitting your feedback.",
+}
+
+

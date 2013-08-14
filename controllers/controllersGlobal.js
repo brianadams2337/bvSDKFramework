@@ -327,6 +327,36 @@ function loadReturnButton (content, options) {
 	});
 }
 
+// close button
+function loadCloseButton (content, options) {
+	var settings = $.extend(true, {
+		"parentContainer":"", // must be defined in call
+		"targetContainer":defaultButtonCloseContainer,
+		"viewContainer":defaultButtonContainerView,
+	}, options);
+	$.ajax({
+		url: settings["viewContainer"],
+		type: 'GET',
+		dataType: 'html',
+		async: false,
+		success: function(container) {
+			var $container = $(container);
+			// set attributes and text for button
+			$container.find("a").andSelf().filter("a").attr({
+				"id":"",
+				"title":"",
+				"onclick":"return false;",
+				"href":""
+			}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).text(content);
+			// add button template
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
+		},
+		error: function(e) {
+			defaultAjaxErrorFunction(e);
+		}
+	});
+}
+
 // write review button
 function loadWriteReviewButton (content, options) {
 	var settings = $.extend(true, {

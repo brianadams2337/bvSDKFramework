@@ -86,8 +86,11 @@ var defaultReviewFeedbackCountTotalContainer = "._BVFeedbackTotalCountValue";
 var defaultReviewFeedbackCountPercentageContainer = "._BVFeedbackCountContainer";
 var defaultReviewFeedbackVotingContainer = "._BVFeedbackVotingContainer"; // feedback voting container
 var defaultReviewFeedbackVotingButtonContainer = "._BVFeedbackVotingButtonContainer"; // feedback voting button container
-var defaultReviewFeedbackVotingButtonPositiveContainer = "._BVFeedbackPositiveButton";
-var defaultReviewFeedbackVotingButtonNegativeContainer = "._BVFeedbackNegativeButton";
+var defaultReviewFeedbackVotingButtonPositiveContainer = "._BVFeedbackPositiveButton"; // positive feedback button container
+var defaultReviewFeedbackVotingButtonNegativeContainer = "._BVFeedbackNegativeButton"; // negative feedback button container
+
+var defaultReviewFeedbackStatusMessageContainer = "._BVFeedbackVotingStatusMessageContainer"; // feedback status message container
+var defaultReviewFeedbackStatusMessageTextContainer = "._BVStatusMessageText"; // feedback status message text container
 
 /* REPORT INAPPROPRIATE */
 var defaultReviewReportInappropriateContainer = "._BVReportInappropriateContainer"; // inapropriate content container
@@ -99,6 +102,7 @@ var defaultButtonPreviewContainer = "._BVButtonPreviewContainer"; // preview but
 var defaultButtonEditContainer = "._BVButtonEditContainer"; // edit button
 var defaultButtonCancelContainer = "._BVButtonCancelContainer"; // cancel button
 var defaultButtonReturnContainer = "._BVButtonReturnContainer"; // return button
+var defaultButtonCloseContainer = "._BVButtonCloseContainer"; // return button
 var defaultButtonContainer = "._BVButton"; // button container
 var defaultButtonTextContainer = "._BVButtonText"; // button text
 

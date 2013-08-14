@@ -51,7 +51,16 @@ function loadFeedback (content, options) {
 					"contentType":settings["feedbackSettings"]["contentType"],
 				}
 			});
-			// update voting buttons for previous votes
+			// load status message area
+			loadFeedbackStatus(content, {
+				"parentContainer":$container,
+				"productId":settings["productId"],
+				"contentId":settings["contentId"],
+				"feedbackSettings":{
+					"contentType":settings["feedbackSettings"]["contentType"],
+				}
+			});
+			// update feedback to reflect any past votes based off of browser cookies
 			updateFeedback(cookieNameHelpfulness, {
 				"contentId":contentId,
 				"feedbackSettings":{
@@ -245,20 +254,29 @@ function processFeedbackVoting (cookieName, options) {
 	// set variables
 	var contentId = settings["contentId"];
 	var vote = settings["feedbackSettings"]["vote"];
+	var btnPositive = $("[data-feedbacktype='positive'][data-contentid='" + contentId + "']");
+	var btnNegative = $("[data-feedbacktype='negative'][data-contentid='" + contentId + "']");
 	// process feedback voting
 	if (!$.cookie(cookieName)) {
+		// disable buttons while processing
+		$(btnPositive).addClass("BVDisabled");
+		$(btnNegative).addClass("BVDisabled");
 		// if no cookie for this feedback (no previous feedback vote)
 		postFeedbackForm (
 			contentId,
-			function() {
+			function (content) {
 				// set cookie
 				$.cookie(cookieName, vote);
 				// update feedback voting for selected and disabled states
 				updateFeedback(cookieName, {
 					"contentId":contentId,
 					"feedbackSettings":{
-						"vote":vote
+						"vote":content["Feedback"]["Helpfulness"]["Vote"].toLowerCase(),
 					}
+				});
+				loadFeedbackStatusMessage(content, {
+					"contentId":contentId,
+					"productid":settings["productId"],
 				});
 			}, {
 				// feedback voting API parameters
@@ -271,18 +289,25 @@ function processFeedbackVoting (cookieName, options) {
 			}
 		);
 	} else if ($.cookie(cookieName) && $.cookie(cookieName) == vote) {
+		// disable buttons while processing
+		$(btnPositive).addClass("BVDisabled");
+		$(btnNegative).addClass("BVDisabled");
 		// if cookie exists for this feedback and matches vote value, then undo
 		postFeedbackForm (
 			contentId,
-			function() {
+			function (content) {
 				// set cookie
 				$.removeCookie(cookieName);
 				// update feedback voting
 				updateFeedback(cookieName, {
 					"contentId":contentId,
 					"feedbackSettings":{
-						"vote":vote
+						"vote":content["Feedback"]["Helpfulness"]["Vote"].toLowerCase(),
 					}
+				});
+				loadFeedbackStatusMessage(content, {
+					"contentId":contentId,
+					"productid":settings["productId"],
 				});
 			}, {
 				// feedback voting API parameters
@@ -311,7 +336,6 @@ function updateFeedback (cookieName, options) {
 	var btnPositive = $("[data-feedbacktype='positive'][data-contentid='" + contentId + "']");
 	var btnNegative = $("[data-feedbacktype='negative'][data-contentid='" + contentId + "']");
 	var vote = settings["feedbackSettings"]["vote"];
-
 	// update button classes to reflect vote
 	if (!$.cookie(cookieName)) {
 		// enable buttons
@@ -441,7 +465,7 @@ function loadReportInappropriateButton (content, options) {
 				var formContainer = $("form[data-feedbacktype='" + feedbackType + "'][data-contentid='" + contentId + "']");
 				// toggle form if enabled
 				if (!$(this).hasClass("BVDisabled")) {
-					$(formContainer).fadeToggle(defaultToggleOptions);
+					$(formContainer).fadeIn(defaultToggleOptions);
 				}
 			});
 			// add button template
@@ -523,7 +547,7 @@ function loadReportInappropriateForm (content, options) {
 				// set display toggle for form
 				var formContainer = $("form[data-feedbacktype='" + feedbackType + "'][data-contentid='" + contentId + "']");
 				// toggle form
-				$(formContainer).fadeToggle(defaultToggleOptions);
+				$(formContainer).fadeOut(defaultToggleOptions);
 			});
 			// initially hide form on load
 			$container.hide();
@@ -612,7 +636,7 @@ function processFeedbackReportInappropriate (cookieName, options) {
 		// if no cookie for this feedback (no previous reports)
 		postFeedbackForm (
 			contentId,
-			function() {
+			function (content) {
 				// set cookie
 				$.cookie(cookieName, true);
 				// update report button for selected and disabled states
@@ -624,7 +648,12 @@ function processFeedbackReportInappropriate (cookieName, options) {
 					}
 				});
 				// toggle form
-				$(formContainer).fadeToggle(defaultToggleOptions);
+				$(formContainer).fadeOut(defaultToggleOptions);
+				// update status message
+				loadFeedbackStatusMessage(content, {
+					"contentId":contentId,
+					"productid":settings["productId"],
+				});
 			}, {
 				// feedback voting API parameters
 				"Parameters":{
@@ -643,11 +672,6 @@ function updateReportInapproriate (cookieName, options) {
 	var settings = $.extend(true, {
 		"productId":"",
 		"contentId":"",
-		"feedbackSettings":{
-			"contentType":"",
-			"feedbackType":"",
-			"vote":""
-		}
 	}, options);
 	// set variables
 	var contentId = settings["contentId"];
@@ -659,3 +683,84 @@ function updateReportInapproriate (cookieName, options) {
 	}
 }
 
+
+
+/************************* STATUS MESSAGING *************************/
+
+
+
+function loadFeedbackStatus (content, options) {
+	var settings = $.extend(true, {
+		"parentContainer":"", // must be defined in call
+		"targetContainer":defaultReviewFeedbackStatusMessageContainer,
+		"viewContainer":defaultFeedbackStatusMessageContainerView,
+		"loadOrder":"",
+		"productId":"",
+		"feedbackSettings":{
+			"contentType":"",
+			"feedbackType":""
+		}
+	}, options);
+	$.ajax({
+		url: settings["viewContainer"],
+		type: 'GET',
+		dataType: 'html',
+		async: false,
+		success: function(container) {
+			var $container = $(container);
+			// set variables
+			var productId = settings["productId"];
+			var contentId = settings["contentId"];
+			// set attributes and hide container
+			$container.hide().attr({
+				"data-contentid":contentId,
+				"data-feedbacktype":"statusMessage",
+			});
+			// load close button
+			loadCloseButton ("close", {
+				"parentContainer":$container,
+			})
+			// close button functionality
+			$container.find(defaultButtonCloseContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonCloseContainer + " " + defaultButtonContainer).click(function() {
+				// close container
+				$container.fadeOut(defaultToggleOptions);
+			});
+			// add status message template
+			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
+		},
+		error: function(e) {
+			defaultAjaxErrorFunction(e);
+		}
+	});
+}
+
+function loadFeedbackStatusMessage (content, options) {
+	var settings = $.extend(true, {
+		"productId":"",
+		"contentId":"",
+		"feedbackSettings":{
+			"contentType":"",
+			"feedbackType":"",
+			"vote":""
+		}
+	}, options);
+	// set variables
+	var contentId = settings["contentId"];
+	var statusContainer = $("[data-feedbacktype='statusMessage'][data-contentid='" + contentId + "']");
+	// set status message text to load - check if feedback is for helpfulness or inappropriate
+	if (content["Feedback"]["Helpfulness"]) {
+		// check if feedback is casting or undoing a vote - set to lowercase for consistency
+		if (content["Feedback"]["Helpfulness"]["Vote"].toLowerCase() == "positive" || content["Feedback"]["Helpfulness"]["Vote"].toLowerCase() == "negative") {
+			content = statusMessages["helpfullnessReceived"];
+		} else if (content["Feedback"]["Helpfulness"]["Vote"].toLowerCase() == "undo") {
+			content = statusMessages["helpfullnessRemoved"];
+		}
+	} else if (content["Feedback"]["Inappropriate"]) {
+		content = statusMessages["inappropriateReceived"];
+	} else {
+		content = statusMessages["error"];
+	}
+	// set status message and show container
+	$(statusContainer).find(defaultReviewFeedbackStatusMessageTextContainer).andSelf().filter(defaultReviewFeedbackStatusMessageTextContainer).empty().text(content);
+	$(statusContainer).fadeIn(defaultToggleOptions);
+}
