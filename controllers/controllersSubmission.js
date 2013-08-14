@@ -555,14 +555,9 @@ function loadTagIndividualInput (content, options) {
 						// check to see if an empty text field tag is already showing
 						if ($.inArray("", tagOpenTextValues) == -1) {
 							// loop through all tags within this target container (use target to keep your search localized to this group)
-							$($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).children().each(function() {
-								// find the next hidden tag
-								if ($(this).is(":hidden")) {
-									// move element to last position and show
-									$(this).detach().appendTo($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).show();
-									// return to break loop after a hidden input was found
-									return false;
-								}
+							$($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).children(":hidden:first").each(function() {
+								// move element to last position and show
+								$(this).detach().appendTo($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).show();
 							});
 						}
 					}
@@ -1307,14 +1302,9 @@ function loadPhotoFileUploadInput (content, options) {
 						// hide file upload input
 						$container.find(defaultPhotoUploadInputContainer).andSelf().filter(defaultPhotoUploadInputContainer).hide();
 						// find next hidden upload input and show if available
-						$($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).children().each(function() {
-							// find the next hidden input
-							if ($(this).is(":hidden")) {
-								// move element to last position and show
-								$(this).detach().prependTo($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).show();
-								// return to break loop after a hidden input was found
-								return false;
-							}
+						$($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).children(":hidden:first").each(function() {
+							// move element to last position and show
+							$(this).detach().prependTo($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).show();
 						})
 			        	// show uploaded image preview container
 			        	$($container).find(defaultPhotoUploadPreviewContainer).andSelf().filter(defaultPhotoUploadPreviewContainer).show();
