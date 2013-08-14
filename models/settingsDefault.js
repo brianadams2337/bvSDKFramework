@@ -14,6 +14,7 @@ var settings = $.extend(true, {
 		"inputLabel":"",
 		"inputPlaceholder":"", // USER DEFINED
 		"inputHelperText":"", // USER DEFINED
+		"inputHidden":"", // USER DEFINED
 		"inputValue":"",
 		"inputSelected":"",
 		"inputMinLength":"",
