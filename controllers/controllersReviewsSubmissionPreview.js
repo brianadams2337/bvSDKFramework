@@ -1,164 +1,148 @@
 function loadReviewSubmissionPreviewWidget (content, options) {
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultSubmissionPreviewContainer,
 		"viewContainer":defaultSubmissionPreviewWidgetContainerView,
 		"loadOrder":"",
 		"productId":"",
 		"returnURL":"",
 	}, options);
-	console.log(content);
 	// get a new id for the submission container using product id - this will be needed for reference on form processing
 	var newID = "BVSubmissionContainerID_" + settings["productId"];
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'get',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// add submission container
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container));
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	// set variables
+	var productId = settings["productId"];
+	var contentId = settings["contentId"];
+	var returnURL = settings["returnURL"];
+	// add submission widget template
+	$container.append($template);
 
-			loadPageHeader ("Preview Your Review", {
-				"parentContainer":$container,
-				"targetContainer":defualtPageHeaderContainer
-			});
+	loadPageHeader ("Preview Your Review", {
+		"parentContainer":$template,
+		"targetContainer":defualtPageHeaderContainer
+	});
 
-			// load review submission form
-			loadReviewSubmissionPreview (content["Review"], {
-				"parentContainer":$container,
-				"productId":settings["productId"],
-			});
+	// load review submission form
+	loadReviewSubmissionPreview (content["Review"], {
+		"parentContainer":$template,
+		"productId":productId,
+	});
 
-			// buttons
-			// submit button
-			loadSubmitButton ("Submit", {
-				"parentContainer":$container
-			});
-			// submit button functionality
-			$container.find(defaultButtonSubmitContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonSubmitContainer + " " + defaultButtonContainer).click(function() {
-				// get form parameters
-				var params = returnFormParamaters("#" + newID, {
-					"action":"submit"
-				});
-				console.log(newID, params);
-				// POST form to server
-				loadingContainerAnimation($container, function() {
-					postReviewsSubmissionForm(settings["productId"], function (content) {
-							console.log("submitted");
-							loadReviewSubmissionThankYouWidget (content, {
-								"productId":settings["productId"],
-								"returnURL":settings["returnURL"],
-							});
-						}, {
-						"Parameters": params
+	// buttons
+	// submit button
+	loadSubmitButton ("Submit", {
+		"parentContainer":$template
+	});
+	// submit button functionality
+	$($template).find(defaultButtonSubmitContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonSubmitContainer + " " + defaultButtonContainer).click(function() {
+		// get form parameters
+		var params = returnFormParamaters("#" + newID, {
+			"action":"submit"
+		});
+		console.log(newID, params);
+		// POST form to server
+		loadingContainerAnimation($template, function() {
+			postReviewsSubmissionForm(productId, function (content) {
+					console.log("submitted");
+					loadReviewSubmissionThankYouWidget (content, {
+						"parentContainer":settings["parentContainer"],
+						"productId":productId,
+						"returnURL":returnURL,
 					});
-				});
+				}, {
+				"Parameters": params
 			});
+		});
+	});
 
-			// edit button
-			loadEditButton ("Edit", {
-				"parentContainer":$container,
-			});
-			// edit button functionality
-			$(settings["parentContainer"]).find(defaultButtonEditContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonEditContainer + " " + defaultButtonContainer).click(function() {
-				// show form and hide preview
-				$(defaultSubmissionFormContainer).show();
-				$($container).hide();
+	// edit button
+	loadEditButton ("Edit", {
+		"parentContainer":$template,
+	});
+	// edit button functionality
+	$(settings["parentContainer"]).find(defaultButtonEditContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonEditContainer + " " + defaultButtonContainer).click(function() {
+		// show form and hide preview
+		$(defaultSubmissionFormContainer).show();
+		$($($template)).hide();
 
-			});
+	});
 
-			// cancel button
-			loadCancelButton ("Cancel", {
-				"parentContainer":$container,
-			});
-			// cancel button functionality
-			$container.find(defaultButtonCancelContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonCancelContainer + " " + defaultButtonContainer).click(function() {
-				// load return page
-				returnToPage(settings["returnURL"]);
-			});
-
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
+	// cancel button
+	loadCancelButton ("Cancel", {
+		"parentContainer":$template,
+	});
+	// cancel button functionality
+	$($template).find(defaultButtonCancelContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonCancelContainer + " " + defaultButtonContainer).click(function() {
+		// load return page
+		returnToPage(returnURL);
 	});
 }
 
 function loadReviewSubmissionPreview (content, options) {
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionPreviewContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultSubmissionReviewBodyPreviewContainer,
 		"viewContainer":defaultReviewContainerView,
 		"loadOrder":"",
 		"productId":"",
 	}, options);
-	// inject review content
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-			success: function(container) {
-				var $container = $(container);
-				// add review template container
-				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).prepend($($container).attr("id", "BVReviewPreview"));
-				// load review rating
-				loadReviewRating (content, {
-					"parentContainer":$container
-				});
-				// load review secondary ratings
-				// loadReviewSecondaryRatings (content, {
-				// 	"parentContainer":$container
-				// });
-				// load review recommended
-				loadReviewRecommended (content, {
-					"parentContainer":$container
-				});
-				// load review date
-				loadReviewDate (content, {
-					"parentContainer":$container
-				});
-				// // load review title
-				loadReviewTitle (content, {
-					"parentContainer":$container
-				});
-				// load review text
-				loadReviewBody (content, {
-					"parentContainer":$container
-				});
-				// load review user nickname
-				loadReviewUserNickname (content, {
-					"parentContainer":$container
-				});
-				// // load review user location
-				// loadReviewUserLocation (content, {
-				// 	"parentContainer":$container
-				// });
-				// // load review cdvs
-				// loadReviewContextDataValuesGroup (content, {
-				// 	"parentContainer":$container
-				// });
-				// // load review tags
-				// loadReviewTagGroups(content, {
-				// 	"parentContainer":$container
-				// });
-				// // load review photos
-				// loadReviewPhotosGroup(content, {
-				// 	"parentContainer":$container
-				// });
-				// // load review videos
-				// loadReviewVideosGroup(content, {
-				// 	"parentContainer":$container
-				// });
-				// // load review badges
-				// loadBadges(content, {
-				// 	"parentContainer":$container
-				// });
-			},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	// add form template
+	$container.append($template);
+	// load review rating
+	loadReviewRating (content, {
+		"parentContainer":$template
 	});
+	// load review secondary ratings
+	// loadReviewSecondaryRatings (content, {
+	// 	"parentContainer":$template
+	// });
+	// load review recommended
+	loadReviewRecommended (content, {
+		"parentContainer":$template
+	});
+	// load review date
+	loadReviewDate (content, {
+		"parentContainer":$template
+	});
+	// // load review title
+	loadReviewTitle (content, {
+		"parentContainer":$template
+	});
+	// load review text
+	loadReviewBody (content, {
+		"parentContainer":$template
+	});
+	// load review user nickname
+	loadReviewUserNickname (content, {
+		"parentContainer":$template
+	});
+	// // load review user location
+	// loadReviewUserLocation (content, {
+	// 	"parentContainer":$template
+	// });
+	// // load review cdvs
+	// loadReviewContextDataValuesGroup (content, {
+	// 	"parentContainer":$template
+	// });
+	// // load review tags
+	// loadReviewTagGroups(content, {
+	// 	"parentContainer":$template
+	// });
+	// // load review photos
+	// loadReviewPhotosGroup(content, {
+	// 	"parentContainer":$template
+	// });
+	// // load review videos
+	// loadReviewVideosGroup(content, {
+	// 	"parentContainer":$template
+	// });
+	// // load review badges
+	// loadBadges(content, {
+	// 	"parentContainer":$template
+	// });
 }

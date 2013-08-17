@@ -76,7 +76,7 @@ var defaultStorySortLoadOrder = [];
 
 function loadSortDropdown (content, options) {
 	var settings = $.extend(true, {
-		"parentContainer":"",
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultSortInputWrapperContainer,
 		"viewContainer":defaultInputSelectContainerView,
 		"loadOrder":"",
@@ -88,33 +88,28 @@ function loadSortDropdown (content, options) {
 			"controllerSettings":""
 		}
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// set variables
-			var inputRequired = false; // required boolean
-			var inputOptions = settings["loadOrder"]; // options to be loaded in the dropdown
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	// set variables
+	var inputRequired = false; // required boolean
+	var inputOptions = settings["loadOrder"]; // options to be loaded in the dropdown
+	// add input template
+	$container.append($template);
 			// load select options
 			$.each(inputOptions, function(key, value) {
 				// add selected state
 				if (settings["viewReloadOptions"]["controllerSettings"]["modelLocalDefaultSettings"]["Parameters"]["sort"][value["SortParameter"]] == value["Value"]) {
-					//$container..addClass("BVSelected");
 					this["Selected"] = true;
 				}
 				// load sort option
 				loadSortSelectOptionsInput(this, {
-					"parentContainer":$container
+					"parentContainer":$template
 				});
 			});
 			// sort option functionality
-			if (!$container.data("disabled")) {
-				$container.change(function(){
+			if (!$($template).data("disabled")) {
+				$($template).change(function(){
 					// container info to refresh
 					var refreshContainer = $(settings["viewReloadOptions"]["controllerSettings"]["parentContainer"]).find(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]).andSelf().filter(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]);
 					var selected = $(this.options[this.selectedIndex]).attr("data-sort-parameter");
@@ -147,52 +142,36 @@ function loadSortDropdown (content, options) {
 					}
 				});
 			};
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
-	});
 }
 
 // generic option inpute
 function loadSortSelectOptionsInput (content, options) {
 	// content expected ["Data"]["Fields"][<contextdatavalue_Value>]["Options"]
 	var settings = $.extend(true, {
-		"parentContainer":"",
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultFormSelectInputContainer,
 		"viewContainer":defaultInputSelectOptionContainerView,
-		"loadOrder":"",
-		"productId":"",
 		"inputSettings":{
 			"inputValue":content["Value"],
 			"inputSelected":content["Selected"],
 			"inputLabel":content["Label"]
 		}
 	}, options);
-		$.ajax({
-			url: settings["viewContainer"],
-			type: 'GET',
-			dataType: 'html',
-			async: false,
-			success: function(container) {
-				var $container = $(container);
-				// set variables
-				var inputValue = settings["inputSettings"]["inputValue"]; // option value
-				var inputLabel = settings["inputSettings"]["inputLabel"]; // option label text
-				var inputSelected = settings["inputSettings"]["inputSelected"]; // option selected boolean
-				var sortParameter = content["SortParameter"]; // option selected boolean
-				// set input attributes
-				$container.find(defaultFormSelectOptionInputContainer).andSelf().filter(defaultFormSelectOptionInputContainer).html(inputLabel).attr({
-					"label":inputLabel,
-					"value":inputValue,
-					"selected":inputSelected,
-					"data-sort-parameter":sortParameter
-				});
-				// add input template
-				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
-			},
-			error: function(e) {
-				defaultAjaxErrorFunction(e);
-			}
-		});
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	// set variables
+	var inputValue = settings["inputSettings"]["inputValue"]; // option value
+	var inputLabel = settings["inputSettings"]["inputLabel"]; // option label text
+	var inputSelected = settings["inputSettings"]["inputSelected"]; // option selected boolean
+	var sortParameter = content["SortParameter"]; // option selected boolean
+	// add input template
+	$container.append($template);
+	// set input attributes
+	$($template).find(defaultFormSelectOptionInputContainer).andSelf().filter(defaultFormSelectOptionInputContainer).html(inputLabel).attr({
+		"label":inputLabel,
+		"value":inputValue,
+		"selected":inputSelected,
+		"data-sort-parameter":sortParameter
+	});
 }

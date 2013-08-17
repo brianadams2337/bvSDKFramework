@@ -1,52 +1,40 @@
 function loadReviewSubmissionThankYouWidget (content, options) {
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultSubmissionThankYouContainer,
 		"viewContainer":defaultSubmissionThankYouWidgetContainerView,
 		"loadOrder":"",
 		"productId":"",
 		"returnURL":"",
 	}, options);
-	console.log(content);
-	// get a new id for the submission container using product id - this will be needed for reference on child elements
-	//var newID = "BVSubmissionContainerID" + settings["productId"];
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'get',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	// set variables
+	var returnURL = settings["returnURL"];
+	// add submssion widget template
+	$container.append($template);
 
-			// empty and hide submission form and preview containers
-			$(defaultSubmissionFormContainer).empty().hide();
-			$(defaultSubmissionPreviewContainer).empty().hide();
+	// empty and hide submission form and preview containers
+	$(defaultSubmissionFormContainer).empty().hide();
+	$(defaultSubmissionPreviewContainer).empty().hide();
 
-			// add submission container
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container));
+	loadPageHeader ("Thank You For Your Review!", {
+		"parentContainer":$template,
+		"targetContainer":defualtPageHeaderContainer
+	});
 
-			loadPageHeader ("Thank You For Your Review!", {
-				"parentContainer":$container,
-				"targetContainer":defualtPageHeaderContainer
-			});
+	// add time to post
+	$($template).find(defaultTypicalHoursToPostTextContainer).andSelf().filter(defaultTypicalHoursToPostTextContainer).html(content["TypicalHoursToPost"]);
 
-			// add time to post
-			$container.find(defaultTypicalHoursToPostTextContainer).andSelf().filter(defaultTypicalHoursToPostTextContainer).text(content["TypicalHoursToPost"]);
-
-			// buttons
-			// return button
-			loadReturnButton ("Retun to the Product Page", {
-				"parentContainer":$container,
-			});
-			// return button functionality
-			$container.find(defaultButtonReturnContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonReturnContainer + " " + defaultButtonContainer).click(function() {
-				// load return page
-				returnToPage(settings["returnURL"]);
-			});
-
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
+	// buttons
+	// return button
+	loadReturnButton ("Retun to the Product Page", {
+		"parentContainer":$template,
+	});
+	// return button functionality
+	$($template).find(defaultButtonReturnContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonReturnContainer + " " + defaultButtonContainer).click(function() {
+		// load return page
+		returnToPage(returnURL);
 	});
 }

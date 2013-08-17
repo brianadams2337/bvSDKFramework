@@ -41,38 +41,27 @@ var defaultBadgesContentOrder = {
 
 function loadBadges (content, options) {
 	var settings = $.extend(true, {
-		"parentContainer":"",
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultBadgesContainer,
 		"viewContainer":defaultIndividualBadgeContainerView,
 		"loadOrder":content["BadgesOrder"],
-		"productId":""
 	}, options);
 	$.each(settings["loadOrder"], function(key, value) {
 		if (content["Badges"][key]) {
-			$.ajax({
-				url: settings["viewContainer"],
-				type: 'GET',
-				dataType: 'html',
-				async: false,
-				success: function(container) {
-					var $container = $(container);
-					// set text variables
-					var badgeId = content["Badges"][key]["Id"];
-					var badgeType = content["Badges"][key]["BadgeType"];
-					var contentType = content["Badges"][key]["ContentType"];
-					
-					// add badge container template
-					$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
+			// set container & template
+			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+			var $template = $.parseHTML($(settings["viewContainer"]).html());
+			// set text variables
+			var badgeId = content["Badges"][key]["Id"];
+			var badgeType = content["Badges"][key]["BadgeType"];
+			var contentType = content["Badges"][key]["ContentType"];
+			// add badge template
+			$container.append($template);
 
-					// load badge text			
-					loadBadgeContent (content["Badges"][key], {
-						"parentContainer":$container,
-						"viewContainer":value
-					});
-				},
-				error: function(e) {
-					defaultAjaxErrorFunction(e);
-				}
+			// load badge text			
+			loadBadgeContent (content["Badges"][key], {
+				"parentContainer":$template,
+				"viewContainer":value
 			});
 		}
 	});
@@ -80,33 +69,22 @@ function loadBadges (content, options) {
 
 function loadBadgeContent (content, options) {
 	var settings = $.extend(true, {
-		"parentContainer":"",
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultBadgeTextContainer,
 		"viewContainer":"",
-		"loadOrder":"",
-		"productId":""
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// set text variables
-			var badgeId = content["Id"];
-			var badgeType = content["BadgeType"];
-			var contentType = content["ContentType"];
-			// set class variables
-			var badgeClass = "BVBadge_" + badgeId;
-			var typeClass = "BVBadge_" + badgeType;
-			// set badge value
-			$container.find(defaultBadgeTextContainer).andSelf().filter(defaultBadgeTextContainer).addClass(badgeClass + " " + typeClass);
-			// add badge container template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
-	});
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	// set text variables
+	var badgeId = content["Id"];
+	var badgeType = content["BadgeType"];
+	var contentType = content["ContentType"];
+	// set class variables
+	var badgeClass = "BVBadge_" + badgeId;
+	var typeClass = "BVBadge_" + badgeType;
+	// add badge value template
+	$container.append($template);
+	// set badge class
+	$($template).find(defaultBadgeTextContainer).andSelf().filter(defaultBadgeTextContainer).addClass(badgeClass + " " + typeClass);
 }

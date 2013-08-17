@@ -22,6 +22,7 @@ $(document).ready(function() {
 			$.getScript(siteBaseURL + "js/jquery.min.1.9.1.js"),
 			$.getScript(siteBaseURL + "js/jquery-ui.js"),
 			$.getScript(siteBaseURL + "js/createHTML5Elements.js"),
+			$.getScript(siteBaseURL + "js/modernizr.js"),
 			/* properties */
 			$.getScript(siteBaseURL + "models/properties/properties.js"),
 			/* models */
@@ -60,6 +61,9 @@ $(document).ready(function() {
 			/* LOAD CSS FILES */
 			$("head").append("<link id='' href='" + siteBaseURL + "css/bazaarvoiceUniversal.css' type='text/css' rel='stylesheet' />"),
 			$("head").append("<link id='' href='" + siteBaseURL + "css/magnific-popup.css' type='text/css' rel='stylesheet' />"),
+			$.get(siteBaseURL + "views/viewsUniversal.html", function(data) {
+				$("body").append(data);
+			}),
 
 			$.Deferred(function(deferred){
 				$(deferred.resolve);

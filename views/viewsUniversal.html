@@ -1,0 +1,985 @@
+<div id="bvtemplates">
+
+<!-- ********** UNIVERSAL ********** -->
+
+<!-- CONTENT -->
+
+<!-- universal title template -->
+<script id="bvtemplate-title-universal" type="html">
+	<h3 class="BVTitle _BVTitleText"></h3>
+</script>
+
+<!-- universal body template -->
+<script id="bvtemplate-body-universal" type="html">
+	<p class="_BVBodyText"></p>
+</script>
+
+<!-- universal date template -->
+<script id="bvtemplate-date-universal" type="html">
+	<span class="_BVDateTextPrefix"> on </span><span class="_BVDateText"></span>
+</script>
+
+
+<!-- TAGS -->
+
+<!-- universal tag group template -->
+<script id="bvtemplate-tag-group-universal" type="html">
+	<div class="BVTagContainer">
+		<div class="BVLabel _BVTagLabelText"></div>
+		<div class="_BVTagIndividualContainer"></div>
+	</div>
+</script>
+
+<!-- universal tag individual template -->
+<script id="bvtemplate-tag-individual-universal" type="html">
+	<div class="BVTag">
+		<span class="BVPrefix BVTagTextPrefix"></span>
+		<span class="BVValue _BVTagText"></span>
+		<span class="BVSuffix BVTagTextSuffix"></span>
+	</div>
+</script>
+
+
+<!-- USER INFO -->
+
+<!-- universal nickname template -->
+<script id="bvtemplate-nickname-universal" type="html">
+	<span class="_BVUserNicknameText"></span>
+</script>
+
+<!-- universal location template -->
+<script id="bvtemplate-location-universal" type="html">
+	<span class="_BVUserLocationPrefix">from </span><span class="_BVUserLocationText"></span>
+</script>
+
+
+<!-- CONTEXT DATA VALUES -->
+
+<!-- universal context data value template -->
+<script id="bvtemplate-context-data-value-universal" type="html">
+	<div class="BVContextDataValueContainer">
+		<span class="_BVContextDataValueLabel">
+			<span class="BVLabel _BVContextDataValueLabelText"></span>
+		</span>
+		<span class="BVContextDataValue">
+			<span class="BVPrefix BVContextDataValueTextPrefix"></span>
+			<span class="BVValue _BVContextDataValueText"></span>
+			<span class="BVSuffix BVContextDataValueTextSuffix"></span>
+		</span>
+	</div>
+</script>
+
+
+<!-- ADDITIONAL FIELDS -->
+
+<!-- universal additional field template -->
+<script id="bvtemplate-additional-field-universal" type="html">
+	<div class="_BVAdditionalFieldLabel">
+		<div class="_BVAdditionalFieldLabelText"></div>
+	</div>
+	<div class="BVAdditionalFieldValue">
+		<div class="BVAdditionalFieldValueTextPrefix"></div>
+		<div class="_BVAdditionalFieldsValueText"></div>
+		<div class="BVAdditionalFieldValueTextSuffix"></div>
+	</div>
+</script>
+
+<!-- MEDIA -->
+
+<!-- universal photo template -->
+<script id="bvtemplate-photo-thumbnail-universal" type="html">
+	<a class="_BVPhotoThumbnail"></a>
+	<div class="BVPhotoNormalContainer">
+		<div class="_BVPhotoNormal"></div>
+		<div class="_BVPhotoCaption"></div>
+	</div>
+</script>
+
+<!-- universal video template -->
+<script id="bvtemplate-video-thumbnail-universal" type="html">
+	<a class="_BVVideoThumbnail"></a>
+	<div class="BVVideoNormalContainer">
+		<div class="_BVVideoNormal"></div>
+		<div class="_BVVideoCaption"></div>
+	</div>
+</script>
+
+<!-- ********** QUICK TAKE ********** -->
+
+<!-- QUICK TAKE -->
+
+<!-- universal quick take template -->
+<script id="bvtemplate-quick-take-universal" type="html">
+	<div class="_BVQuickTakeSummary">
+		<div class="_BVOverallRatingContainer"></div>
+		<div class="_BVRecommendedContainerAverage"></div>
+	    <div class="_BVFilters">
+	        <div class="_BVFiltersTitle">Filter Reviews By:</div>
+	        <div class="_BVFiltersContainer"></div>
+	    </div>
+		<div class="_BVButtonWriteReviewContainer"></div>
+		<div class="BVSortContainer">
+			<div class="_BVSortInputWrapper"></div>
+		</div>
+	</div>
+</script>
+
+
+<!-- ********** REVIEWS ********** -->
+
+<!-- GENERAL -->
+
+<!-- review widget template -->
+<script id="bvtemplate-review-widget-universal" type="html">
+	<div class="BVReviewsWidgetContainer">
+		<div class="_BVQuickTakeContainer"></div>
+		<div class="_BVReviewBodyContainer"></div>
+		<div class="_BVReviewPaginationContainer"></div>
+	</div>
+</script>
+
+<!-- review individual template -->
+<script id="bvtemplate-review-individual-universal" type="html">
+	<article id="" class="_BVReviewContainer">
+		<div class="BVUGCSpacerTop"></div>
+		<div class="_BVBadgesContentContainer"></div>
+		<div class="BVUGCHeader">
+			<div class="_BVTitleContainer"></div>
+			<div class="_BVOverallRatingContainer"></div>
+		</div>
+		<div class="BVUserDataContainer">
+			<div class="BVAvatar">
+				<img src="bvSDKFramework/images/noAvatar.gif" onerror="this.onerror=null; this.src=pathResource('images/noAvatar.gif');" width="40" height="41" alt="" border="0" />
+			</div>
+			<div class="BVUserInfo">
+				<div class="_BVUserNicknameContainer"></div>
+				<div class="_BVUserLocationContainer"></div>
+				<div class="_BVDateContainer"></div>
+				<div class="_BVContextDataValueGroupContainer"></div>
+				<div class="_BVBadgesUserContainer"></div>
+			</div>
+		</div>
+		<div class="BVUGCSecondaryContent">
+			<div class="_BVSecondaryRatingsContainer"></div>
+			<div class="BVUGCMediaContent">
+				<div class="_BVPhotoGroupContainer"></div>
+				<div class="_BVVideoGroupContainer"></div>
+			</div>
+		</div>
+		<div class="BVUGCPrimaryContent">
+			<div class="_BVBodyTextContainer"></div>
+			<div class="_BVTagGroupContainer"></div>
+			<div class="_BVAdditionalFieldGroupContainer"></div>
+			<div class="_BVRecommendedContainer"></div>
+		</div>
+		<div class="_BVFeedbackContainer"></div>
+		<div class="BVUGCCommentContent">
+			<div class="_BVReviewCommentsWidgetContainer"></div>
+		</div>
+	</article>
+</script>
+
+<!-- RATINGS -->
+
+<!-- review overall rating template -->
+<script id="bvtemplate-rating-overall-universal" type="html">
+	<div class="BVOverallRatingContainer">
+		<div class="_BVRatingLabelText"></div>
+		<div class="_BVRatingStarsContainer">
+			<div class="_BVRatingStarsFilled"><img class="_BVRatingStarsFilledImage" src="bvSDKFramework/images/filled.svg" /></div>
+			<div class="_BVRatingStarsUnfilled"><img class="_BVRatingStarsUnfilledImage" src="bvSDKFramework/images/unfilled.svg" /></div>
+			<div class="_BVRatingStarsText"></div>
+		</div>
+		<div class="BVRatingOutOfContainer">
+			<span class="_BVRatingValue"></span>
+			<span class="BVRatingSeparator"> out of </span>
+			<span class="_BVRatingRange"></span>
+		</div>
+	</div>
+</script>
+
+<!-- review secondary rating template -->
+<script id="bvtemplate-rating-secondary-universal" type="html">
+	<div class="BVSecondaryRatingContainer">
+		<div class="_BVRatingLabelText"></div>
+		<div class="_BVRatingStarsContainer">
+			<div class="_BVRatingStarsFilled"><img class="_BVRatingStarsFilledImage" src="bvSDKFramework/images/filledSecondary.svg" /></div>
+			<div class="_BVRatingStarsUnfilled"><img class="_BVRatingStarsUnfilledImage" src="bvSDKFramework/images/unfilledSecondary.svg" /></div>
+			<div class="_BVRatingStarsText"></div>
+		</div>
+	    <div class="BVRatingOutOfContainer">
+	    	<span class="_BVRatingValue"></span>
+	    	<span class="BVRatingSeparator"> out of </span>
+	    	<span class="_BVRatingRange"></span>
+	    </div>
+	</div>
+</script>
+
+
+<!-- RECOMMENDED -->
+
+<!-- review recommended template -->
+<script id="bvtemplate-recommended-universal" type="html">
+	<div class="BVIsRecommended">
+		<div class="BVIsRecommendedValuePrefix"></div>
+		<div class="_BVIsRecommendedValue"></div>
+		<div class="BVIsRecommendedValueSuffix"></div>
+	</div>
+</script>
+
+<!-- ********** REVIEW COMMENTSS ********** -->
+
+<!-- GENERAL -->
+
+<!-- review comment widget template -->
+<script id="bvtemplate-review-comments-widget-universal" type="html">
+	<div class="BVReviewComments">
+		<div class="_BVButtonToggleReviewCommentsContainer"></div>
+		<div class="_BVButtonWriteReviewCommentContainer"></div>
+		<div class="_BVReviewCommentsToggleContainer">
+			<div class="BVSectionHeader _BVSectionHeaderReviewCommentsContainer"></div>
+			<div class="_BVReviewCommentBodyContainer"></div>
+			<div class="_BVReviewCommentsPaginationContainer"></div>
+		</div>
+	</div>
+</script>
+
+<!-- review individual template -->
+<script id="bvtemplate-review-comments-individual-universal" type="html">
+	<aside id="" class="_BVReviewCommentContainer">
+		<div class="BVUGCHeader">
+			<div class="_BVTitleContainer"></div>
+			<div class="_BVDateContainer"></div>
+		</div>
+		<div class="_BVBadgesContainer"></div>
+		<div class="BVUserDataContainer">
+			<div class="BVAvatar">
+				<img src="images/noAvatar.gif" onerror="this.onerror=null; this.src=pathResource('images/noAvatar.gif');" width="40" height="41" alt="" border="0" />
+			</div>
+			<div class="BVUserInfo">
+				<div class="_BVUserNicknameContainer"></div>
+				<div class="_BVUserLocationContainer"></div>			
+				<div class="_BVContextDataValueGroupContainer"></div>
+			</div>
+		</div>
+		<div class="BVUGCSecondaryContent">
+			<div class="BVUGCMediaContent">
+				<div class="_BVPhotoGroupContainer"></div>
+				<div class="_BVVideoGroupContainer"></div>
+			</div>
+		</div>
+		<div class="BVUGCPrimaryContent">
+			<div class="_BVBodyTextContainer"></div>
+			<div class="_BVRecommendedContainer"></div>
+		</div>
+		<div class="_BVFeedbackContainer"></div>
+	</aside>
+</script>
+
+<!-- ********** BUTTONS ********** -->
+
+<!-- GENERAL -->
+
+<!-- default button template -->
+<script id="bvtemplate-button-default-universal" type="html">
+	<div id="" class="BVButtonWrapper">
+		<a id="" class="_BVButton" title="" name="" onclick="" href="">
+			<span id="" class="_BVButtonText"></span>
+		</a>
+	</div>
+</script>
+
+<!-- ********** HEADERS ********** -->
+
+<!-- GENERAL -->
+
+<!-- page header template -->
+<script id="bvtemplate-header-page-universal" type="html">
+	<h1 class="_BVPageHeaderText"></h1>
+</script>
+
+<!-- section header template -->
+<script id="bvtemplate-header-section-universal" type="html">
+	<h2 class="_BVSectionHeaderText"></h2>
+</script>
+
+<!-- ********** FEEDBACK ********** -->
+
+<!-- GENERAL -->
+
+<!-- feedback widget template -->
+<script id="bvtemplate-feedback-widget-universal" type="html">
+	<div class="_BVFeedbackCountContainer"></div>
+	<div class="_BVFeedbackVotingContainer"></div>
+	<div class="_BVReportInappropriateContainer"></div>
+	<div class="_BVFeedbackVotingStatusMessageContainer"></div>
+</script>
+
+<!-- feedback count template -->
+<script id="bvtemplate-feedback-count-universal" type="html">
+	<span class="BVFeedbackPrefix"></span>
+	<span class="_BVFeedbackPositiveCountValue"></span>
+	<span class="BVFeedbackSeparatorText"> out of </span>
+	<span class="_BVFeedbackTotalCountValue"></span>
+	<span class="_BVFeedbackPercentageValue"></span>
+	<span class="BVFeedbackSuffix"> found this review helpful.</span>
+</script>
+
+<!-- feedback voting template -->
+<script id="bvtemplate-feedback-voting-universal" type="html">
+	<div class="BVFeedbackVotingPrefix">Was this review helpful?</div>
+	<div class="_BVFeedbackPositiveButton"></div>
+	<div class="_BVFeedbackNegativeButton"></div>
+</script>
+
+<!-- feedback report inappropriate template -->
+<script id="bvtemplate-feedback-report-inappropriate-universal" type="html">
+	<div class="_BVReportInappropriateButtonContainer"></div>
+	<div class="_BVReportInappropriateFormContainer"></div>
+</script>
+
+<!-- feedback status template -->
+<script id="bvtemplate-feedback-status-message-universal" type="html">
+	<div class="BVStatusMessageWrapper">
+		<div class="_BVButtonCloseContainer"></div>
+		<div class="_BVStatusMessageText"></div>
+	</div>
+</script>
+
+<!-- feedback report inappropriate form template -->
+<script id="bvtemplate-feedback-report-inappropriate-form-universal" type="html">
+	<form id="" name="" action="" method="" data-validate="parsley" class="_BVReportInappropriateForm">
+		<div class="BVSectionHeader _BVSectionHeaderReportInappropriateContainer"></div>
+		<div class="BVField _BVReportInappropriateTextInputContainer"></div>
+		<div class="BVFooter">
+			<div class="BVField BVFieldGroup BVFieldButtonGroup">
+				<div class="BVField _BVButtonSubmitContainer"></div>
+				<div class="BVField _BVButtonCancelContainer"></div>
+			</div>
+		</div>	
+	</form>
+</script>
+
+<!-- ********** PAGINATION ********** -->
+
+<!-- GENERAL -->
+
+<!-- pagination widget template -->
+<script id="bvtemplate-pagination-widget-universal" type="html">
+	<div class="_BVPaginationContainer">
+		<span class="_BVPaginationBtnPrev"></span>
+		<span class="_BVPaginationBtnFirst"></span>
+		<span class="_BVPaginationBtnGroupContainer"></span>
+		<span class="BVPaginationBtnOutOfContainer">
+			<!-- <span class="BVPaginationBtnOutOfSeparatorText"> out of </span> -->
+			<span class="_BVPaginationBtnOutOfText"></span>
+		</span>
+		<span class="_BVPaginationBtnLast"></span>
+		<span class="_BVPaginationBtnNext"></span>
+	</div>
+</script>
+
+<!-- pagination button template -->
+<script id="bvtemplate-pagination-button-universal" type="html">
+	<span class="_BVPaginationBtnContainer BVPaginationBtn"></span>
+</script>
+
+<!-- pagination selected button voting template -->
+<script id="bvtemplate-pagination-button-selected-universal" type="html">
+	<span class="_BVPaginationBtnContainer BVPaginationBtn BVSelected" data-disabled="true"></span>
+</script>
+
+<!-- ********** FILTERS ********** -->
+
+<!-- GENERAL -->
+
+<!-- filter group template -->
+<script id="bvtemplate-filter-group-universal" type="html">
+	<div class="BVFilterGroupContainer">
+		<div class="BVLabel _BVFilterLabelText"></div>
+		<div class="_BVFilterIndividualContainer"></div>
+	</div>
+</script>
+
+<!-- filter individual template -->
+<script id="bvtemplate-filter-individual-universal" type="html">
+	<div class="BVFilter">
+		<span class="BVPrefix BVFilterTextPrefix"></span>
+		<span class="BVValue _BVFilterText"></span>
+		<span class="BVSuffix BVFilterTextSuffix"></span>
+		<span class="BVFilterCountTextPrefix">(</span><span class="BVCount _BVFilterCountText"></span><span class="BVFilterCountTextSuffix">)</span>
+	</div>
+</script>
+
+<!-- ********** BADGES ********** -->
+
+<!-- GENERAL -->
+
+<!-- badge template -->
+<script id="bvtemplate-badge-individual-universal" type="html">
+	<div class="BVBadgeContainer">
+		<div class="_BVBadgeText"></div>
+	</div>
+</script>
+
+<!-- badge default template -->
+<script id="bvtemplate-badge-default-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">BADGE!</div>
+</script>
+
+<!-- badge 1 template -->
+<script id="bvtemplate-badge-1-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Number One Contributor</div>
+</script>
+
+<!-- badge 10 template -->
+<script id="bvtemplate-badge-10-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Top 10 Contributor</div>
+</script>
+
+<!-- badge 25 template -->
+<script id="bvtemplate-badge-25-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Top 25 Contributor</div>
+</script>
+
+<!-- badge 50 template -->
+<script id="bvtemplate-badge-50-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Top 50 Contributor</div>
+</script>
+
+<!-- badge 100 template -->
+<script id="bvtemplate-badge-100-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Top 100 Contributor</div>
+</script>
+
+<!-- badge 250 template -->
+<script id="bvtemplate-badge-250-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Top 250 Contributor</div>
+</script>
+
+<!-- badge 500 template -->
+<script id="bvtemplate-badge-500-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Top 500 Contributor</div>
+</script>
+
+<!-- badge 1000 template -->
+<script id="bvtemplate-badge-1000-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Top 1000 Contributor</div>
+</script>
+
+<!-- badge expert template -->
+<script id="bvtemplate-badge-expert-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Expert</div>
+</script>
+
+<!-- badge featured template -->
+<script id="bvtemplate-badge-featured-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Featured</div>
+</script>
+
+<!-- badge social answering subscriber template -->
+<script id="bvtemplate-badge-social-answering-subscriber-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Social Answering Subscriber</div>
+</script>
+
+<!-- badge staff template -->
+<script id="bvtemplate-badge-staff-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Staff</div>
+</script>
+
+<!-- badge verified purchaser template -->
+<script id="bvtemplate-badge-verified-purchaser-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Verified Purchaser</div>
+</script>
+
+
+<!-- badge template -->
+<script id="bvtemplate-badge-blog-her-reviewer-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Inspiration to Fitness</div>
+</script>
+<!-- badge template -->
+<script id="bvtemplate-badge-business-user-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Business User</div>
+</script>
+<!-- badge template -->
+<script id="bvtemplate-badge-dell-support-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Dell Support</div>
+</script>
+<!-- badge template -->
+<script id="bvtemplate-badge-ec-product-review-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">EC Product Review</div>
+</script>
+<!-- badge template -->
+<script id="bvtemplate-badge-elite-reviewer-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Elite Reviewer</div>
+</script>
+<!-- badge template -->
+<script id="bvtemplate-badge-elite-contributor-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Elite Contributor</div>
+</script>
+<!-- badge template -->
+<script id="bvtemplate-badge-ec-reviewer-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Elite Reviewer</div>
+</script>
+<!-- badge template -->
+<script id="bvtemplate-badge-reward-zone-member-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Reward Zone Gamers Club Member</div>
+</script>
+<!-- badge template -->
+<script id="bvtemplate-badge-reward-zone-member-unlocked-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Reward Zone Gamers Club Unlocked Member</div>
+</script>
+<!-- badge template -->
+<script id="bvtemplate-badge-reward-zone-number-silver-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Reward Zone Premier Silver Member</div>
+</script>
+<!-- badge template -->
+<script id="bvtemplate-badge-reward-zone-number-v3-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Reward Zone Premier Silver Member</div>
+</script>
+<!-- badge template -->
+<script id="bvtemplate-badge-reward-zone-number-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Reward Zone Member</div>
+</script>
+<!-- badge template -->
+<script id="bvtemplate-badge-reward-zone-number-silver-v3-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Reward Zone Member</div>
+</script>
+<!-- badge template -->
+<script id="bvtemplate-badge-reward-zone-premier-silver-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Best Buy Reward Zone Premier Silver Member</div>
+</script>
+<!-- badge template -->
+<script id="bvtemplate-badge-reward-zone-silver-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Best Buy Reward Zone Premier Silver Member</div>
+</script>
+<!-- badge template -->
+<script id="bvtemplate-badge-reward-zone-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Reward Zone Member</div>
+</script>
+<!-- badge template -->
+<script id="bvtemplate-badge-sennheiser-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Sennheiser Sound Guy</div>
+</script>
+<!-- badge template -->
+<script id="bvtemplate-badge-sling-media-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Sling Media</div>
+</script>
+<!-- badge template -->
+<script id="bvtemplate-badge-top-contributor-archived-universal" type="html">
+	<div class="BVBadgeItemIcon"></div>
+	<div class="BVBadgeItemText">Top Contributor</div>
+</script>
+
+<!-- ********** PRODUCT INFO ********** -->
+
+<!-- GENERAL -->
+
+<!-- product image template -->
+<script id="bvtemplate-product-individual-universal" type="html">
+	<div class="_BVProductInfoIndividualContainer"></div>
+</script>
+
+<!-- product image template -->
+<script id="bvtemplate-product-info-universal" type="html">
+	<div class="BVProductInfoWrapper">
+		<div class="_BVProductInfoNameContainer"></div>
+		<div class="_BVProductInfoDescriptionContainer"></div>
+		<div class="_BVProductInfoImageContainer"></div>
+	</div>
+</script>
+
+<!-- product name template -->
+<script id="bvtemplate-product-name-universal" type="html">
+	<div class="_BVProductInfoNameText"></div>
+</script>
+
+<!-- product description template -->
+<script id="bvtemplate-product-description-universal" type="html">
+	<div class="_BVProductInfoDescriptionText"></div>
+</script>
+
+<!-- product image template -->
+<script id="bvtemplate-product-image-universal" type="html">
+	<img class="_BVProductInfoImage" src="" />
+</script>
+
+<!-- ********** SUBMISSION ********** -->
+
+<!-- GENERAL -->
+
+<!-- input default template -->
+<script id="bvtemplate-input-default-universal" type="html">
+	<label class="_BVLabelText" for=""></label>
+	<div class="_BVFormInputWrapper"></div>
+	<div class="_BVHelperText"></div>
+</script>
+<!-- input character counter template -->
+<script id="bvtemplate-input-text-universal" type="html">
+	<label class="_BVLabelText" for=""></label>
+	<div class="_BVFormInputWrapper"></div>
+	<div class="_BVHelperText"></div>
+	<div class="BVCharacterCounterText">Character(s) needed to meet minimum length: </div>
+	<div class="_BVCharacterCounter"></div>
+</script>
+
+<!-- input image template -->
+<script id="bvtemplate-input-text-field-universal" type="html">
+	<input class="_BVFormInput BVFormInputText" id="" type="text" name="" value="" placeholder=""/>
+</script>
+<!-- input image template -->
+<script id="bvtemplate-input-text-field-hidden-universal" type="html">
+	<input class="_BVFormInput BVFormInputText" id="" type="hidden" name="" value="" placeholder=""/>
+</script>
+<!-- input image template -->
+<script id="bvtemplate-input-text-area-universal" type="html">
+	<textarea class="_BVFormInput BVFormInputTextarea" id="" type="textarea" name="" value="" placeholder=""></textarea>
+</script>
+
+<!-- input image template -->
+<script id="bvtemplate-input-checkbox-group-universal" type="html">
+	<div class="_BVLabelText"></div>
+	<div class="_BVCheckboxGroupContainer"></div>
+</script>
+<!-- input image template -->
+<script id="bvtemplate-input-checkbox-individual-universal" type="html">
+	<input class="_BVFormInput BVFormInputCheckbox" id="" type="checkbox" name="" value="" />
+	<label class="_BVCheckboxLabelText" for=""></label>
+	<div class="_BVHelperText"></div>
+</script>
+<!-- input image template -->
+<script id="bvtemplate-input-checkbox-universal" type="html">
+	<input class="_BVFormInput BVFormInputCheckbox" id="" type="checkbox" name="" value="" />
+	<label class="_BVCheckboxLabelText" for=""></label>
+	<div class="_BVHelperText"></div>
+</script>
+
+<!-- input image template -->
+<script id="bvtemplate-input-radio-group-universal" type="html">
+	<div class="_BVLabelText"></div>
+	<div class="_BVRadioButtonGroupContainer"></div>
+</script>
+<!-- input image template -->
+<script id="bvtemplate-input-radio-individual-universal" type="html">
+	<div class="_BVLabelText"></div>
+	<div class="_BVInputGroupContainer"></div>
+</script>
+<!-- input image template -->
+<script id="bvtemplate-input-radio-universal" type="html">
+	<div class="BVRadioButtonIndividualContainer">
+		<input class="_BVFormInput" id="" type="radio" name="" value="" />
+		<label class="_BVRadioLabelText" for=""></label>
+		<div class="_BVHelperText"></div>
+	</div>
+</script>
+
+<!-- input image template -->
+<script id="bvtemplate-input-select-universal" type="html">
+	<select class="_BVFormSelectInput" id="" name=""></select>
+</script>
+<!-- input image template -->
+<script id="bvtemplate-input-select-option-universal" type="html">
+	<option class="_BVFormSelectOptionInput" label="" value=""></option>
+</script>
+
+<!-- input image template -->
+<script id="bvtemplate-input-upload-group-universal" type="html">
+	<div class="_BVLabelText"></div>
+	<div class="_BVInputGroupContainer"></div>
+</script>
+<!-- input image template -->
+<script id="bvtemplate-input-upload-individual-universal" type="html">
+	<div class="BVUploadInput">
+		<div class="_BVUploadIndividualInputContainer"></div>
+	</div>
+</script>
+<!-- input image template -->
+<script id="bvtemplate-input-upload-photo-universal" type="html">
+	<div class="_BVPhotoUploadInputContainer">
+		<input class="_BVFormInput BVFormInputUpload" id="" type="file" name="photo" value="" />
+		<label class="_BVUploadLabelText" for=""></label>
+		<div class="_BVHelperText">5mb max per image</div>
+	</div>
+	<div class="_BVPhotoUploadPreviewContainer"></div>
+</script>
+<!-- input image template -->
+<script id="bvtemplate-input-upload-preview-universal" type="html">
+	<div class="BVPhotoUploadPreviewWrapper">
+		<div class="_BVPhotoGroupContainer"></div>
+		<div class="_BVFormInputWrapper _BVPhotoCaptionInputWrapper"></div>
+		<div class="_BVFormInputWrapper _BVPhotoUrlInputWrapper"></div>
+	</div>
+</script>
+
+<!-- input image template -->
+<script id="bvtemplate-input-context-data-value-universal" type="html">
+	<div class="BVField _BVContextDataValueIndividualInputContainer"></div>
+</script>
+
+<!-- input image template -->
+<script id="bvtemplate-input-additional-field-universal" type="html">
+	<div class="_BVAdditionalFieldIndividualInputContainer"></div>
+</script>
+
+<!-- input image template -->
+<script id="bvtemplate-input-tag-group-universal" type="html">
+	<div class="BVTagIndividualInputContainer">
+		<div class="_BVLabelText"></div>
+		<div class="_BVInputGroupContainer"></div>
+	</div>
+</script>
+<!-- input image template -->
+<script id="bvtemplate-input-tag-individual-universal" type="html">
+	<div class="BVTagInput">
+		<div class="_BVCheckboxIndividualContainer"></div>
+	</div>
+</script>
+
+<!-- input image template -->
+<script id="bvtemplate-input-terms-conditions-universal" type="html">
+	<div class="BVTermsConditionsWrapper">
+		<div class="_BVCheckboxIndividualContainer"></div>
+	</div>
+</script>
+<!-- input image template -->
+<script id="bvtemplate-input-email-alert-commented-universal" type="html">
+	<div class="BVEmailWhenCommentedWrapper">
+		<div class="_BVCheckboxIndividualContainer"></div>
+	</div>
+</script>
+<!-- input image template -->
+<script id="bvtemplate-input-email-alert-published-universal" type="html">
+	<div class="BVEmailWhenPublishedWrapper">
+		<div class="_BVCheckboxIndividualContainer"></div>
+	</div>
+</script>
+
+<!-- REVIEWS -->
+
+<!-- input image template -->
+<script id="bvtemplate-submission-widget-review-universal" type="html">
+	<div class="BVReviewSubmissionWidgetContainer">
+		<div class="_BVSubmissionFormContainer"></div>
+		<div class="_BVSubmissionPreviewContainer"></div>
+		<div class="_BVSubmissionThankYouContainer"></div>
+	</div>
+</script>
+<!-- input image template -->
+<script id="bvtemplate-submission-form-review-universal" type="html">
+	<form id="" name="" action="" method="" data-validate="parsley">
+		<div class="_BVPageHeaderContainer"></div>
+		<div class="BVPageBody">
+			<div class="BVSection BVSectionProductContainer">
+				<div class="_BVProductInfoWidgetContainer"></div>
+			</div>
+			<div class="BVSection BVSectionErrorContainer">
+				<div class="BVSectionHeader _BVSectionHeaderErrorsContainer"></div>
+				<div class="_BVFormErrorsContainer"></div>
+			</div>
+			<div class="BVSection BVSectionRatingsContainer">
+				<div class="BVSectionHeader _BVSectionHeaderRatingsContainer"></div>
+				<div class="BVField BVFieldRating _BVOverallRatingInputContainer"></div>
+				<div class="BVField BVFieldGroup _BVSecondaryRatingGroupInputContainer"></div>
+				<div class="BVField _BVRecommendedInputContainer"></div>
+			</div>
+			<div class="BVSection BVSectionReviewContainer">
+				<div class="BVSectionHeader _BVSectionHeaderReviewContainer"></div>
+				<div class="BVField _BVTitleInputContainer"></div>
+				<div class="BVField _BVBodyTextInputContainer"></div>
+				<div class="BVField BVFieldGroup _BVTagGroupInputContainer"></div>
+			</div>
+			<div class="BVSection BVSectionMediaContainer">
+				<div class="BVSectionHeader _BVSectionHeaderMediaContainer"></div>
+				<div class="BVField _BVPhotoUploadContainer"></div>
+				<div class="BVField _BVVideoUploadInputContainer"></div>
+				<div class="BVField _BVVideoCaptionInputContainer"></div>
+			</div>
+			<div class="BVSection BVSectionUserContainer">
+				<div class="BVSectionHeader _BVSectionHeaderUserContainer"></div>
+				<div class="BVField _BVUserNicknameInputContainer"></div>
+				<div class="BVField _BVUserIdInputContainer"></div>
+				<div class="BVField _BVUserEmailInputContainer"></div>
+				<div class="BVField _BVUserLocationInputContainer"></div>
+				<div class="BVField BVFieldGroup _BVContextDataValueGroupInputContainer"></div>
+				<div class="BVField BVFieldGroup _BVAdditionalFieldGroupInputContainer"></div>
+			</div>
+		</div>
+		<div class="BVFooter">
+			<div class="BVField _BVTermsConditionsContainer"></div>
+			<div class="BVField _BVEmailAlertWhenPublishedContainer"></div>
+			<div class="BVField _BVEmailAlertWhenCommentedContainer"></div>
+		</div>
+	</form>
+	<div class="BVField BVFieldGroup BVFieldButtonGroup">
+		<div class="BVField _BVButtonSubmitContainer"></div>
+		<div class="BVField _BVButtonPreviewContainer"></div>
+		<div class="BVField _BVButtonCancelContainer"></div>
+	</div>
+</script>
+
+<!-- input image template -->
+<script id="bvtemplate-input-rating-overall-universal" type="html">
+	<input class="_BVFormInput star" id="" type="radio" name="" value="" />
+	<label class="_BVRadioLabelText" for=""></label>
+	<div class="_BVHelperText"></div>
+</script>
+<!-- input image template -->
+<script id="bvtemplate-input-rating-secondary-universal" type="html">
+	<div class="BVField BVFieldRating _BVSecondaryRatingIndividualInputContainer">
+		<div class="_BVLabelText"></div>
+		<div class="_BVInputGroupContainer"></div>
+	</div>
+</script>
+<!-- input image template -->
+<script id="bvtemplate-input-rating-secondary-universal" type="html">
+	<input class="_BVFormInput star" id="" type="radio" name="" value="" />
+	<label class="_BVRadioLabelText" for=""></label>
+	<div class="_BVHelperText"></div>
+</script>
+
+<!-- input image template -->
+<script id="bvtemplate-submission-form-review-preview-universal" type="html">
+	<div class="_BVPageHeaderContainer"></div>
+	<div class="BVSection BVPreviewSection">
+		<div class="_BVReviewPreviewBodyContainer"></div>
+	</div>
+	<div class="BVFooter">
+		<div class="BVField _BVTermsConditionsContainer"></div>
+		<div class="BVField _BVEmailAlertWhenPublishedContainer"></div>
+		<div class="BVField _BVEmailAlertWhenCommentedContainer"></div>
+	</div>
+	<div class="BVField BVFieldGroup BVFieldButtonGroup">
+		<div class="BVField _BVButtonSubmitContainer"></div>
+		<div class="BVField _BVButtonEditContainer"></div>
+		<div class="BVField _BVButtonCancelContainer"></div>
+	</div>
+</script>
+<!-- input image template -->
+<script id="bvtemplate-submission-form-review-thank-you-universal" type="html">
+	<div class="_BVPageHeaderContainer"></div>
+	<div class="BVSection BVThankYouSection">
+		<div class="BVThankYouText">Thank you for your review!</div>
+		<div class="BVProcessingTimeText">Your review will post in the next</div>
+		<div class="_BVTypicalHoursToPostText"></div>
+		<div class="BVProcessingTimeText">hours</div>
+	</div>
+	<div class="BVField BVFieldGroup BVFieldButtonGroup">
+		<div class="BVField _BVButtonReturnContainer"></div>
+	</div>
+</script>
+
+<!-- REVIEW COMMENTS -->
+
+<!-- input image template -->
+<script id="bvtemplate-submission-widget-review-comments-universal" type="html">
+	<div class="BVReviewCommentSubmissionWidgetContainer">
+		<div class="_BVSubmissionFormContainer"></div>
+		<div class="_BVSubmissionPreviewContainer"></div>
+		<div class="_BVSubmissionThankYouContainer"></div>
+	</div>
+</script>
+<!-- input image template -->
+<script id="bvtemplate-submission-form-review-comments-universal" type="html">
+	<form id="" name="" action="" method="" data-validate="parsley">
+		<div class="_BVPageHeaderContainer"></div>
+		<div class="BVPageBody">
+			<div class="BVSection BVSectionProductContainer"></div>
+			<div class="BVSection BVSectionErrorContainer">
+				<div class="BVSectionHeader _BVSectionHeaderErrorsContainer"></div>
+				<div class="_BVFormErrorsContainer"></div>
+			</div>
+			<div class="BVSection BVSectionReviewContainer">
+				<div class="BVSectionHeader _BVSectionHeaderReviewCommentContainer"></div>
+				<div class="BVField _BVTitleInputContainer"></div>
+				<div class="BVField _BVBodyTextInputContainer"></div>
+			</div>
+			<div class="BVSection BVSectionMediaContainer">
+				<div class="BVSectionHeader _BVSectionHeaderMediaContainer"></div>
+				<div class="BVField _BVPhotoUploadContainer"></div>
+				<div class="BVField _BVVideoUploadInputContainer"></div>
+			</div>
+			<div class="BVSection BVSectionUserContainer">
+				<div class="BVSectionHeader _BVSectionHeaderUserContainer"></div>
+				<div class="BVField _BVUserNicknameInputContainer"></div>
+				<div class="BVField _BVUserEmailInputContainer"></div>
+				<div class="BVField _BVUserLocationInputContainer"></div>
+				<div class="BVField BVFieldGroup _BVContextDataValueGroupInputContainer"></div>
+			</div>
+		</div>
+		<div class="BVFooter">
+			<div class="BVField _BVTermsConditionsContainer"></div>
+			<div class="BVField _BVEmailAlertWhenPublishedContainer"></div>
+			<div class="BVField _BVEmailAlertWhenCommentedContainer"></div>
+		</div>
+	</form>
+	<div class="BVField BVFieldGroup BVFieldButtonGroup">
+		<div class="BVField _BVButtonSubmitContainer"></div>
+		<div class="BVField _BVButtonPreviewContainer"></div>
+		<div class="BVField _BVButtonCancelContainer"></div>
+	</div>
+</script>
+
+<!-- input image template -->
+<script id="bvtemplate-submission-form-review-comments-preview-universal" type="html">
+	<div class="_BVPageHeaderContainer"></div>
+	<div class="BVSection BVPreviewSection">
+		<div class="_BVReviewCommentPreviewBodyContainer"></div>
+	</div>
+	<div class="BVFooter">
+		<div class="BVField _BVTermsConditionsContainer"></div>
+		<div class="BVField _BVEmailAlertWhenPublishedContainer"></div>
+		<div class="BVField _BVEmailAlertWhenCommentedContainer"></div>
+	</div>
+	<div class="BVField BVFieldGroup BVFieldButtonGroup">
+		<div class="BVField _BVButtonSubmitContainer"></div>
+		<div class="BVField _BVButtonEditContainer"></div>
+		<div class="BVField _BVButtonCancelContainer"></div>
+	</div>
+</script>
+<!-- input image template -->
+<script id="bvtemplate-submission-form-review-comments-thank-you-universal" type="html">
+	<div class="_BVPageHeaderContainer"></div>
+	<div class="BVSection BVThankYouSection">
+		<div class="BVThankYouText">Thank you for your comment!</div>
+		<div class="BVProcessingTimeText">Your comment will post in the next</div>
+		<div class="_BVTypicalHoursToPostText"></div>
+		<div class="BVProcessingTimeText">hours</div>
+	</div>
+	<div class="BVField BVFieldGroup BVFieldButtonGroup">
+		<div class="BVField _BVButtonReturnContainer"></div>
+	</div>
+</script>
+
+</div>

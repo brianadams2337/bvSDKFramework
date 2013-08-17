@@ -9,8 +9,8 @@
 
 
 
-var defaultPageHeaderContainerView = siteBaseURL + "views/universal/headers/headerPageContainer.html"; // page header
-var defaultSectionHeaderContainerView = siteBaseURL + "views/universal/headers/headerSectionContainer.html"; // section header
+var defaultPageHeaderContainerView = "#bvtemplate-header-page-universal"; // page header
+var defaultSectionHeaderContainerView = "#bvtemplate-header-section-universal"; // section header
 
 
 
@@ -18,7 +18,7 @@ var defaultSectionHeaderContainerView = siteBaseURL + "views/universal/headers/h
 
 
 
-var defaultButtonContainerView = siteBaseURL + "views/universal/general/buttonContainer.html"; // generic button module
+var defaultButtonContainerView = "#bvtemplate-button-default-universal"; // generic button module
 
 
 
@@ -26,7 +26,7 @@ var defaultButtonContainerView = siteBaseURL + "views/universal/general/buttonCo
 
 
 
-var defaultQuickTakeContainerView = siteBaseURL + "views/universal/quicktake/quickTakeContainer.html"; // quick take module
+var defaultQuickTakeContainerView = "#bvtemplate-quick-take-universal"; // quick take module
 
 
 
@@ -34,8 +34,8 @@ var defaultQuickTakeContainerView = siteBaseURL + "views/universal/quicktake/qui
 
 
 
-var defaultFilterGroupContainerView = siteBaseURL + "views/universal/filters/filterGroupContainer.html"; // filter group module
-var defaultFilterIndividualContainerView = siteBaseURL + "views/universal/filters/filterIndividualContainer.html"; // filter group module
+var defaultFilterGroupContainerView = "#bvtemplate-filter-group-universal"; // filter group module
+var defaultFilterIndividualContainerView = "#bvtemplate-filter-individual-universal"; // filter group module
 
 
 
@@ -43,11 +43,11 @@ var defaultFilterIndividualContainerView = siteBaseURL + "views/universal/filter
 
 
 
-var defaultProductInfoWidgetContainerView = siteBaseURL + "views/reviews/display/productInfoWidgetContainer.html" // entire product info widget
-var defaultProductInfoContainerView = siteBaseURL + "views/reviews/display/productInfoContainer.html"; // individual product info module
-var defaultProductInfoNameContainerView = siteBaseURL + "views/reviews/display/productInfoNameContainer.html"; // product name module
-var defaultProductInfoDescriptionContainerView = siteBaseURL + "views/reviews/display/productInfoDescriptionContainer.html"; // product description module
-var defaultProductInfoImageContainerView = siteBaseURL + "views/reviews/display/productInfoImageContainer.html"; // product image module
+var defaultProductInfoWidgetContainerView = "#bvtemplate-product-individual-universal" // entire product info widget
+var defaultProductInfoContainerView = "#bvtemplate-product-info-universal"; // individual product info module
+var defaultProductInfoNameContainerView = "#bvtemplate-product-name-universal"; // product name module
+var defaultProductInfoDescriptionContainerView = "#bvtemplate-product-description-universal"; // product description module
+var defaultProductInfoImageContainerView = "#bvtemplate-product-image-universal"; // product image module
 
 
 
@@ -56,36 +56,36 @@ var defaultProductInfoImageContainerView = siteBaseURL + "views/reviews/display/
 
 
 // main templates
-var defaultReviewWidgetContainerView = siteBaseURL + "views/reviews/display/reviewWidgetContainer.html" // entire review widget
-var defaultReviewContainerView = siteBaseURL + "views/reviews/display/reviewContainer.html"; // individual review module
+var defaultReviewWidgetContainerView = "#bvtemplate-review-widget-universal" // entire review widget
+var defaultReviewContainerView = "#bvtemplate-review-individual-universal"; // individual review module
 
 // ratings templates
-var defaultOverallRatingContainerView = siteBaseURL + "views/reviews/display/overallRatingContainer.html"; // overall rating module
-var defaultSecondaryRatingIndividualContainerView = siteBaseURL + "views/reviews/display/secondaryRatingIndividualContainer.html"; // secondary rating module
+var defaultOverallRatingContainerView = "#bvtemplate-rating-overall-universal"; // overall rating module
+var defaultSecondaryRatingIndividualContainerView = "#bvtemplate-rating-secondary-universal"; // secondary rating module
 
 // review content templates
-var defaultReviewTitleContainerView = siteBaseURL + "views/universal/display/titleContainer.html"; // review title module
-var defaultReviewBodyTextContainerView = siteBaseURL + "views/universal/display/bodyTextContainer.html"; // review text module
-var defaultReviewDateContainerView = siteBaseURL + "views/universal/display/dateContainer.html"; // date module
-var defaultReviewRecommededContainerView = siteBaseURL + "views/reviews/display/recommendedContainer.html"; // is recommended module
+var defaultReviewTitleContainerView = "#bvtemplate-title-universal"; // review title module
+var defaultReviewBodyTextContainerView = "#bvtemplate-body-universal"; // review text module
+var defaultReviewDateContainerView = "#bvtemplate-date-universal"; // date module
+var defaultReviewRecommededContainerView = "#bvtemplate-recommended-universal"; // is recommended module
 
 // tags templates
-var defaultReviewTagsContainerView = siteBaseURL + "views/universal/display/tagGroupContainer.html"; // all tags module
-var defaultReviewTagContainerView = siteBaseURL + "views/universal/display/tagIndividualContainer.html"; // individual tag module
+var defaultReviewTagsContainerView = "#bvtemplate-tag-group-universal"; // all tags module
+var defaultReviewTagContainerView = "#bvtemplate-tag-individual-universal"; // individual tag module
 
 // user info templates
-var defaultReviewUserNicknameContainerView = siteBaseURL + "views/universal/display/nicknameContainer.html"; // nickname module
-var defaultReviewUserLocationContainerView = siteBaseURL + "views/universal/display/locationContainer.html"; // location module
+var defaultReviewUserNicknameContainerView = "#bvtemplate-nickname-universal"; // nickname module
+var defaultReviewUserLocationContainerView = "#bvtemplate-location-universal"; // location module
 
 // context data value templates
-var defaultReviewContextDataValueContainerView = siteBaseURL + "views/universal/display/contextDataValueIndividualContainer.html"; // context data values module
+var defaultReviewContextDataValueContainerView = "#bvtemplate-context-data-value-universal"; // context data values module
 
 // additional fields templates
-var defaultReviewAdditionalFieldContainerView = siteBaseURL + "views/universal/display/additionalFieldIndividualContainer.html"; // additional fields module
+var defaultReviewAdditionalFieldContainerView = "#bvtemplate-additional-field-universal"; // additional fields module
 
 // media templates
-var defaultReviewPhotoContainerView = siteBaseURL + "views/universal/media/photoThumbnailContainer.html"; // photos module
-var defaultReviewVideoContainerView = siteBaseURL + "views/universal/media/videoThumbnailContainer.html"; // videos module
+var defaultReviewPhotoContainerView = "#bvtemplate-photo-thumbnail-universal"; // photos module
+var defaultReviewVideoContainerView = "#bvtemplate-video-thumbnail-universal"; // videos module
 
 
 
@@ -94,22 +94,22 @@ var defaultReviewVideoContainerView = siteBaseURL + "views/universal/media/video
 
 
 // main templates
-var defaultReviewCommentWidgetContainerView = siteBaseURL + "views/review_comments/display/reviewCommentsWidgetContainer.html"
-var defaultReviewCommentContainerView = siteBaseURL + "views/review_comments/display/reviewCommentContainer.html"; // individual review module
+var defaultReviewCommentWidgetContainerView = "#bvtemplate-review-comments-widget-universal" // entire comment widget
+var defaultReviewCommentContainerView = "#bvtemplate-review-comments-individual-universal"; // individual review module
 
 // review comment content templates
-var defaultReviewCommentTitleContainerView = siteBaseURL + "views/universal/display/titleContainer.html"; // review title module
-var defaultReviewCommentBodyTextContainerView = siteBaseURL + "views/universal/display/bodyTextContainer.html"; // review text module
-var defaultReviewCommentDateContainerView = siteBaseURL + "views/universal/display/dateContainer.html"; // date module
+var defaultReviewCommentTitleContainerView = "#bvtemplate-title-universal"; // review title module
+var defaultReviewCommentBodyTextContainerView = "#bvtemplate-body-universal"; // review text module
+var defaultReviewCommentDateContainerView = "#bvtemplate-date-universal"; // date module
 
 // user info templates
-var defaultReviewCommentUserNicknameContainerView = siteBaseURL + "views/universal/display/nicknameContainer.html"; // nickname module
-var defaultReviewCommentUserLocationContainerView = siteBaseURL + "views/universal/display/locationContainer.html"; // location module
-var defaultReviewCommentContextDataValueContainerView = siteBaseURL + "views/universal/display/contextDataValueIndividualContainer.html"; // context data values module
+var defaultReviewCommentUserNicknameContainerView = "#bvtemplate-nickname-universal"; // nickname module
+var defaultReviewCommentUserLocationContainerView = "#bvtemplate-location-universal"; // location module
+var defaultReviewCommentContextDataValueContainerView = "#bvtemplate-context-data-value-universal"; // context data values module
 
 // media templates
-var defaultReviewCommentPhotoContainerView = siteBaseURL + "views/universal/media/photoThumbnailContainer.html"; // photos module
-var defaultReviewCommentVideoContainerView = siteBaseURL + "views/universal/media/videoThumbnailContainer.html"; // videos module
+var defaultReviewCommentPhotoContainerView = "#bvtemplate-photo-thumbnail-universal"; // photos module
+var defaultReviewCommentVideoContainerView = "#bvtemplate-video-thumbnail-universal"; // videos module
 
 
 
@@ -149,59 +149,61 @@ var defaultQuestionVideoContainerView = siteBaseURL + "views/universal/media/vid
 
 
 
-var defaultFeedbackContainerView = siteBaseURL + "views/universal/feedback/feedbackContainer.html"; // all feedback (count and voting) module
-var defaultFeedbackCountContainerView = siteBaseURL + "views/universal/feedback/feedbackCountContainer.html"; // feedback count module
-var defaultFeedbackVotingContainerView = siteBaseURL + "views/universal/feedback/feedbackVotingContainer.html"; // feedback voting module
+var defaultFeedbackContainerView = "#bvtemplate-feedback-widget-universal"; // all feedback (count and voting) module
+var defaultFeedbackCountContainerView = "#bvtemplate-feedback-count-universal"; // feedback count module
+var defaultFeedbackVotingContainerView = "#bvtemplate-feedback-voting-universal"; // feedback voting module
 
-var defaultReportInappropriateContainerView = siteBaseURL + "views/universal/feedback/reportInappropriateContainer.html"; // report inappropriate module
-var defaultReportInappropriateFormContainerView = siteBaseURL + "views/universal/feedback/submissionFormFeedback.html" // report inappropriate form module
+var defaultReportInappropriateContainerView = "#bvtemplate-feedback-report-inappropriate-universal"; // report inappropriate module
+var defaultReportInappropriateFormContainerView = "#bvtemplate-feedback-report-inappropriate-form-universal" // report inappropriate form module
 
-var defaultFeedbackStatusMessageContainerView = siteBaseURL + "views/universal/feedback/statusMessageContainer.html" // status message module
+var defaultFeedbackStatusMessageContainerView = "#bvtemplate-feedback-status-message-universal" // status message module
+
+
 
 /***** BADGES *****/
 
 
 
-var defaultIndividualBadgeContainerView = siteBaseURL + "views/universal/display/badgeIndividualContainer.html"; // generic individual badge module
+var defaultIndividualBadgeContainerView = "#bvtemplate-badge-individual-universal"; // generic individual badge module
 
 var defaultBadgesUniversal = {
-	"top1Contributor" : siteBaseURL + "views/universal/badges/badgeContributor1TextContainer.html",
-	"top10Contributor" : siteBaseURL + "views/universal/badges/badgeContributor10TextContainer.html",
-	"top25Contributor" : siteBaseURL + "views/universal/badges/badgeContributor25TextContainer.html",
-	"top50Contributor" : siteBaseURL + "views/universal/badges/badgeContributor50TextContainer.html",
-	"top100Contributor" : siteBaseURL + "views/universal/badges/badgeContributor100TextContainer.html",
-	"top250Contributor" : siteBaseURL + "views/universal/badges/badgeContributor250TextContainer.html",
-	"top500Contributor" : siteBaseURL + "views/universal/badges/badgeContributor500TextContainer.html",
-	"top1000Contributor" : siteBaseURL + "views/universal/badges/badgeContributor1000TextContainer.html",
-	"featured" : siteBaseURL + "views/universal/badges/badgeFeaturedTextContainer.html",
-	"expert" : siteBaseURL + "views/universal/badges/badgeExpertTextContainer.html",
-	"staff" : siteBaseURL + "views/universal/badges/badgeStaffTextContainer.html",
-	"verifiedPurchaser" : siteBaseURL + "views/universal/badges/badgeVerifiedPurchaserTextContainer.html",
-	"socialAnsweringSubscriber" : siteBaseURL + "views/universal/badges/badgeSocialAnsweringSubscriberTextContainer.html",
-	"default" : siteBaseURL + "views/universal/badges/badgeDefaultTextContainer.html",
+	"top1Contributor" : "#bvtemplate-badge-1-universal",
+	"top10Contributor" : "#bvtemplate-badge-10-universal",
+	"top25Contributor" : "#bvtemplate-badge-25-universal",
+	"top50Contributor" : "#bvtemplate-badge-50-universal",
+	"top100Contributor" : "#bvtemplate-badge-100-universal",
+	"top250Contributor" : "#bvtemplate-badge-250-universal",
+	"top500Contributor" : "#bvtemplate-badge-500-universal",
+	"top1000Contributor" : "#bvtemplate-badge-1000-universal",
+    "expert" : "#bvtemplate-badge-featured-universal",
+	"featured" : "#bvtemplate-badge-expert-universal",
+    "socialAnsweringSubscriber" : "#bvtemplate-badge-social-answering-subscriber-universal",
+	"staff" : "#bvtemplate-badge-staff-universal",
+	"verifiedPurchaser" : "#bvtemplate-badge-verified-purchaser-universal",
+	"default" : "#bvtemplate-badge-default-universal",
 }
 
 var defaultBadgesBestBuy = {
     /* BBY SPECIFIC */
-    "EliteContributor" : siteBaseURL + "views/universal/badges/badgeEliteContributorTextContainer.html",
-    "TopContributorsArchived" : siteBaseURL + "views/universal/badges/badgeTopContributorsArchivedTextContainer.html",
-    "EliteReviewer" : siteBaseURL + "views/universal/badges/badgeEliteReviewerTextContainer.html",
-    "BlogHerReviewer" : siteBaseURL + "views/universal/badges/badgeBlogHerReviewerTextContainer.html",
-    "BusinessUser" : siteBaseURL + "views/universal/badges/badgeBusinessUserTextContainer.html",
-    "RewardZone" : siteBaseURL + "views/universal/badges/badgeRewardZoneTextContainer.html",
-    "RewardZoneSilver" : siteBaseURL + "views/universal/badges/badgeRewardZoneSilverTextContainer.html",
-    "RewardZoneNumber" : siteBaseURL + "views/universal/badges/badgeRewardZoneNumberTextContainer.html",
-    "RewardZoneNumberSilver" : siteBaseURL + "views/universal/badges/badgeRewardZoneNumberSilverTextContainer.html",
-    "RewardZoneNumberV3" : siteBaseURL + "views/universal/badges/badgeRewardZoneNumberV3TextContainer.html",
-    "RewardZoneNumberSilverV3" : siteBaseURL + "views/universal/badges/badgeRewardZoneNumberSilverV3TextContainer.html",
-    "RewardZoneMember" : siteBaseURL + "views/universal/badges/badgeRewardZoneMemberTextContainer.html",
-    "RewardZoneMemberUnlocked" : siteBaseURL + "views/universal/badges/badgeRewardZoneMemberUnlockedTextContainer.html",
-    "RewardZonePremierSilverReview" : siteBaseURL + "views/universal/badges/badgeRewardZonePremierSilverReviewTextContainer.html",
-    "DellSupport" : siteBaseURL + "views/universal/badges/badgeDellSupportTextContainer.html",
-    "SlingMedia" : siteBaseURL + "views/universal/badges/badgeSlingMediaTextContainer.html",
-    "Sennheiser" : siteBaseURL + "views/universal/badges/badgeSennheiserTextContainer.html",
-    "EcReviewer" : siteBaseURL + "views/universal/badges/badgeEcReviewerTextContainer.html",
-    "EcProductReview" : siteBaseURL + "views/universal/badges/badgeEcProductReviewTextContainer.html",
+    "EliteContributor" : "#bvtemplate-badge-elite-contributor-universal",
+    "TopContributorsArchived" : "#bvtemplate-badge-top-contributor-archived-universal",
+    "EliteReviewer" : "#bvtemplate-badge-elite-reviewer-universal",
+    "BlogHerReviewer" : "#bvtemplate-badge-blog-her-reviewer-universal",
+    "BusinessUser" : "#bvtemplate-badge-business-user-universal",
+    "RewardZone" : "#bvtemplate-badge-reward-zone-universal",
+    "RewardZoneSilver" : "#bvtemplate-badge-reward-zone-silver-universal",
+    "RewardZoneNumber" : "#bvtemplate-badge-reward-zone-number-universal",
+    "RewardZoneNumberSilver" : "#bvtemplate-badge-reward-zone-number-silver-universal",
+    "RewardZoneNumberV3" : "#bvtemplate-badge-reward-zone-number-v3-universal",
+    "RewardZoneNumberSilverV3" : "#bvtemplate-badge-reward-zone-number-silver-v3-universal",
+    "RewardZoneMember" : "#bvtemplate-badge-reward-zone-member-universal",
+    "RewardZoneMemberUnlocked" : "#bvtemplate-badge-reward-zone-member-unlocked-universal",
+    "RewardZonePremierSilverReview" : "#bvtemplate-badge-reward-zone-premier-silver-universal",
+    "DellSupport" : "#bvtemplate-badge-dell-support-universal",
+    "SlingMedia" : "#bvtemplate-badge-sling-media-universal",
+    "Sennheiser" : "#bvtemplate-badge-sennheiser-universal",
+    "EcReviewer" : "#bvtemplate-badge-ec-reviewer-universal",
+    "EcProductReview" : "#bvtemplate-badge-ec-product-review-universal",
 }
 
 
@@ -210,9 +212,9 @@ var defaultBadgesBestBuy = {
 
 
 
-var defaultPaginationContainerView = siteBaseURL + "views/universal/pagination/paginationContainer.html"; // entire pagination module
-var defaultPaginationButtonContainerView = siteBaseURL + "views/universal/pagination/paginationButtonContainer.html" // individual pagination button module
-var defaultPaginationButtonSelectedContainerView = siteBaseURL + "views/universal/pagination/paginationButtonSelectedContainer.html" // individual selected pagination button module
+var defaultPaginationContainerView = "#bvtemplate-pagination-widget-universal"; // entire pagination module
+var defaultPaginationButtonContainerView = "#bvtemplate-pagination-button-universal" // individual pagination button module
+var defaultPaginationButtonSelectedContainerView = "#bvtemplate-pagination-button-selected-universal" // individual selected pagination button module
 
 
 /************************* SUBMISSION ******************************/
@@ -224,34 +226,35 @@ var defaultPaginationButtonSelectedContainerView = siteBaseURL + "views/universa
 
 
 // generic
-var defaultInputContainerView = siteBaseURL + "views/universal/submission/inputContainer.html"; // generic input module
+var defaultInputContainerView = "#bvtemplate-input-default-universal"; // generic input module
 
 // text inputs
-var defaultInputTextFieldContainerView = siteBaseURL + "views/universal/submission/inputTextFieldContainer.html"; // text field module
-var defaultInputTextFieldHiddenContainerView = siteBaseURL + "views/universal/submission/inputTextFieldHiddenContainer.html"; // text field module - hidden
-var defaultInputTextAreaContainerView = siteBaseURL + "views/universal/submission/inputTextAreaContainer.html"; // text area module
-var defaultInputTextAreaWithCharacterCounterContainerView = siteBaseURL + "views/universal/submission/inputTextAreaWithCharacterCounter.html" // text area module with character counter
+var defaultInputTextFieldContainerView = "#bvtemplate-input-text-field-universal"; // text field module
+var defaultInputTextFieldHiddenContainerView = "#bvtemplate-input-text-field-hidden-universal"; // text field module - hidden
+var defaultInputTextAreaContainerView = "#bvtemplate-input-text-area-universal"; // text area module
+var defaultInputTextAreaWithCharacterCounterContainerView = "#bvtemplate-input-text-universal" // text area module with character counter
 
 // checkboxes
-var defaultInputCheckboxGroupContainerView = siteBaseURL + "views/universal/submission/inputCheckboxGroupContainer.html"; // checkbox group module
-var defaultInputCheckboxIndividualContainerView = siteBaseURL + "views/universal/submission/inputCheckboxIndividualContainer.html"; // checkbox individual module
-var defaultInputCheckboxContainerView = siteBaseURL + "views/universal/submission/inputCheckboxContainer.html"; // checkbox input module
+var defaultInputCheckboxGroupContainerView = "#bvtemplate-input-checkbox-group-universal"; // checkbox group module
+var defaultInputCheckboxIndividualContainerView = "#bvtemplate-input-checkbox-individual-universal"; // checkbox individual module
+var defaultInputCheckboxContainerView = "#bvtemplate-input-checkbox-universal"; // checkbox input module
 
 // radio buttons
-var defaultInputRadioGroupContainerView = siteBaseURL + "views/universal/submission/inputRadioGroupContainer.html"; // radio group module
-var defaultInputRadioIndividualContainerView = siteBaseURL + "views/universal/submission/inputRadioIndividualContainer.html"; // radio individual module
-var defaultInputRadioContainerView = siteBaseURL + "views/universal/submission/inputRadioContainer.html"; // radio input module
+var defaultInputRadioGroupContainerView = "#bvtemplate-input-radio-group-universal"; // radio group module
+var defaultInputRadioIndividualContainerView = "#bvtemplate-input-radio-individual-universal"; // radio individual module
+var defaultInputRadioContainerView = "#bvtemplate-input-radio-universal"; // radio input module
 
 // select/option (dropdown)
-var defaultInputSelectContainerView = siteBaseURL + "views/universal/submission/inputSelectContainer.html"; // select (dropdown) module
-var defaultInputSelectOptionContainerView = siteBaseURL + "views/universal/submission/inputSelectOptionContainer.html"; // option (dropdown) module
+var defaultInputSelectContainerView = "#bvtemplate-input-select-universal"; // select (dropdown) module
+var defaultInputSelectOptionContainerView = "#bvtemplate-input-select-option-universal"; // option (dropdown) module
 
 // file inputs (upload)
-var defaultInputUploadGroupContainerView = siteBaseURL + "views/universal/submission/inputUploadGroupContainer.html"; // file upload group module
-var defaultInputUploadIndividualContainerView = siteBaseURL + "views/universal/submission/inputUploadIndividualContainer.html"; // file upload individual module
-var defaultInputUploadPhotoContainerView = siteBaseURL + "views/universal/submission/inputUploadPhotoContainer.html"; // file upload input module - photo
+var defaultInputUploadGroupContainerView = "#bvtemplate-input-upload-group-universal"; // file upload group module
+var defaultInputUploadIndividualContainerView = "#bvtemplate-input-upload-individual-universal"; // file upload individual module
+var defaultInputUploadPhotoContainerView = "#bvtemplate-input-upload-photo-universal"; // file upload input module - photo
 
-var defaultInputUploadPhotoPreviewContainerView = siteBaseURL + "views/universal/submission/inputUploadPhotoPreviewContainer.html"
+var defaultInputUploadPhotoPreviewContainerView = "#bvtemplate-input-upload-preview-universal"
+
 
 
 /***** UNIVERSAL *****/
@@ -259,37 +262,36 @@ var defaultInputUploadPhotoPreviewContainerView = siteBaseURL + "views/universal
 
 
 // context data value templates
-var defaultContextDataValueContainerView = siteBaseURL + "views/universal/submission/inputContextDataValueContainer.html"; // context data value module
+var defaultContextDataValueContainerView = "#bvtemplate-input-context-data-value-universal"; // context data value module
 
 // additional field templates
-var defaultAdditionalFieldContainerView = siteBaseURL + "views/universal/submission/inputAdditionalFieldsContainer.html"; // additional field module
+var defaultAdditionalFieldContainerView = "#bvtemplate-input-additional-field-universal"; // additional field module
 
 // tag templates
-var defaultTagIndividualGroupContainerView = siteBaseURL + "views/universal/submission/inputTagIndividualContainer.html"; // tag individual group module
-var defaultTagIndividualContainerView = siteBaseURL + "views/universal/submission/inputTagContainer.html"; // tag individual input module
+var defaultTagIndividualGroupContainerView = "#bvtemplate-input-tag-group-universal"; // tag individual group module
+var defaultTagIndividualContainerView = "#bvtemplate-input-tag-individual-universal"; // tag individual input module
 
 // checkbox templates
-var defaultTermsConditionsContainerView = siteBaseURL + "views/universal/submission/inputTermsConditionsContainer.html"; // tag individual input module
-var defaultEmailWhenCommentedContainerView = siteBaseURL + "views/universal/submission/inputEmailWhenCommentedContainer.html"; // tag individual input module
-var defaultEmailAlertWhenPublishedContainerView = siteBaseURL + "views/universal/submission/inputEmailWhenPublishedContainer.html"; // tag individual input module
-
+var defaultTermsConditionsContainerView = "#bvtemplate-input-terms-conditions-universal"; // tag individual input module
+var defaultEmailWhenCommentedContainerView = "#bvtemplate-input-email-alert-commented-universal"; // tag individual input module
+var defaultEmailAlertWhenPublishedContainerView = "#bvtemplate-input-email-alert-published-universal"; // tag individual input module
 
 
 /***** REVIEW SPECIFIC *****/
 
 
 // main templates
-var defaultSubmissionWidgetContainerView = siteBaseURL + "views/reviews/submission/reviewSubmissionWidgetContainer.html"
-var defaultSubmissionPreviewWidgetContainerView = siteBaseURL + "views/reviews/submission/reviewSubmissionPreviewWidgetContainer.html";
-var defaultSubmissionThankYouWidgetContainerView = siteBaseURL + "views/reviews/submission/reviewSubmissionThankYouWidgetContainer.html";
+var defaultSubmissionWidgetContainerView = "#bvtemplate-submission-widget-review-universal";
+var defaultSubmissionPreviewWidgetContainerView = "#bvtemplate-submission-form-review-preview-universal";
+var defaultSubmissionThankYouWidgetContainerView = "#bvtemplate-submission-form-review-thank-you-universal";
 
-var defaultSubmissionFormContainerView = siteBaseURL + "views/reviews/submission/submissionFormReviewContainer.html";
+var defaultSubmissionFormContainerView = "#bvtemplate-submission-form-review-universal";
 
 
 // ratings templates
-var defaultSecondaryRatingContainerView = siteBaseURL + "views/reviews/submission/inputSecondaryRatingContainer.html"; // secondary rating module
-var defaultInputRadioOverallRatingContainerView = siteBaseURL + "views/reviews/submission/inputRadioOverallRatingContainer.html"; // overall rating radio input module
-var defaultInputRadioSecondaryRatingContainerView = siteBaseURL + "views/reviews/submission/inputRadioSecondaryRatingContainer.html"; // secondary rating radio input module
+var defaultSecondaryRatingContainerView = "#bvtemplate-input-rating-secondary-universal"; // secondary rating module
+var defaultInputRadioOverallRatingContainerView = "#bvtemplate-input-rating-overall-universal"; // overall rating radio input module
+var defaultInputRadioSecondaryRatingContainerView = "#bvtemplate-input-rating-secondary-universal"; // secondary rating radio input module
 
 
 
@@ -297,10 +299,10 @@ var defaultInputRadioSecondaryRatingContainerView = siteBaseURL + "views/reviews
 
 
 // main templates
-var defaultSubmissionReviewCommentWidgetContainerView = siteBaseURL + "views/review_comments/submission/reviewCommentSubmissionWidgetContainer.html"
-var defaultSubmissionReviewCommentPreviewWidgetContainerView = siteBaseURL + "views/review_comments/submission/reviewCommentSubmissionPreviewWidgetContainer.html";
-var defaultSubmissionReviewCommentThankYouWidgetContainerView = siteBaseURL + "views/review_comments/submission/reviewCommentSubmissionThankYouWidgetContainer.html";
+var defaultSubmissionReviewCommentWidgetContainerView = "#bvtemplate-submission-widget-review-comments-universal";
+var defaultSubmissionReviewCommentPreviewWidgetContainerView = "#bvtemplate-submission-form-review-comments-preview-universal";
+var defaultSubmissionReviewCommentThankYouWidgetContainerView = "#bvtemplate-submission-form-review-comments-thank-you-universal";
 
-var defaultSubmissionFormReviewCommentContainerView = siteBaseURL + "views/review_comments/submission/submissionFormReviewCommentContainer.html" // review comment submission form module
+var defaultSubmissionFormReviewCommentContainerView = "#bvtemplate-submission-form-review-comments-universal" // review comment submission form module
 
 

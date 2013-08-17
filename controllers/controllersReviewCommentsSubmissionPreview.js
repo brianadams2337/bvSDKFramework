@@ -1,157 +1,140 @@
 function loadReviewCommentSubmissionPreviewWidget (content, options) {
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultSubmissionPreviewContainer,
 		"viewContainer":defaultSubmissionReviewCommentPreviewWidgetContainerView,
 		"loadOrder":"",
 		"productId":"",
 		"returnURL":"",
 	}, options);
-	console.log(content);
-	// get a new id for the submission container using product id - this will be needed for reference on form processing
+	// set variables
 	var newID = "BVSubmissionContainerID_" + settings["productId"];
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'get',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// add submission container
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container));
+	var productId = settings["productId"];
+	var contentId = settings["contentId"];
+	var returnURL = settings["returnURL"];
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	// add submission widget template
+	$container.append($template);
 
-			loadPageHeader ("Preview Your Comment", {
-				"parentContainer":$container,
-				"targetContainer":defualtPageHeaderContainer
-			});
+	loadPageHeader ("Preview Your Comment", {
+		"parentContainer":$template,
+		"targetContainer":defualtPageHeaderContainer
+	});
 
-			// load review submission form
-			loadReviewCommentSubmissionPreview (content["Comment"], {
-				"parentContainer":$container,
-				"productId":settings["productId"],
-			});
+	// load review submission form
+	loadReviewCommentSubmissionPreview (content["Comment"], {
+		"parentContainer":$template,
+		"productId":productId,
+	});
 
-			// buttons
-			// submit button
-			loadSubmitButton ("Submit", {
-				"parentContainer":$container
-			});
-			// submit button functionality
-			$container.find(defaultButtonSubmitContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonSubmitContainer + " " + defaultButtonContainer).click(function() {
-				// get form parameters
-				var params = returnFormParamaters("#" + newID, {
-					"action":"submit"
-				});
-				console.log(newID, params);
-				// POST form to server
-				loadingContainerAnimation($container, function() {
-					postReviewCommentsSubmissionForm(settings["contentId"], function (content) {
-							console.log("submitted");
-							loadReviewCommentSubmissionThankYouWidget (content, {
-								"productId":settings["productId"],
-								"returnURL":settings["returnURL"],
-							});
-						}, {
-						"Parameters": params
+	// buttons
+	// submit button
+	loadSubmitButton ("Submit", {
+		"parentContainer":$template
+	});
+	// submit button functionality
+	$($template).find(defaultButtonSubmitContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonSubmitContainer + " " + defaultButtonContainer).click(function() {
+		// get form parameters
+		var params = returnFormParamaters("#" + newID, {
+			"action":"submit"
+		});
+		// POST form to server
+		loadingContainerAnimation($template, function() {
+			postReviewCommentsSubmissionForm(contentId, function (content) {
+					console.log("submitted");
+					loadReviewCommentSubmissionThankYouWidget (content, {
+						"parentContainer":settings["parentContainer"],
+						"productId":productId,
+						"returnURL":returnURL,
 					});
-				});
+				}, {
+				"Parameters": params
 			});
+		});
+	});
 
-			// edit button
-			loadEditButton ("Edit", {
-				"parentContainer":$container,
-			});
-			// edit button functionality
-			$(settings["parentContainer"]).find(defaultButtonEditContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonEditContainer + " " + defaultButtonContainer).click(function() {
-				// show form and hide preview
-				$(defaultSubmissionFormContainer).show();
-				$($container).hide();
+	// edit button
+	loadEditButton ("Edit", {
+		"parentContainer":$template,
+	});
+	// edit button functionality
+	$(settings["parentContainer"]).find(defaultButtonEditContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonEditContainer + " " + defaultButtonContainer).click(function() {
+		// show form and hide preview
+		$(defaultSubmissionFormContainer).show();
+		$($($template)).hide();
 
-			});
+	});
 
-			// cancel button
-			loadCancelButton ("Cancel", {
-				"parentContainer":$container,
-			});
-			// cancel button functionality
-			$container.find(defaultButtonCancelContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonCancelContainer + " " + defaultButtonContainer).click(function() {
-				// load return page
-				returnToPage(settings["returnURL"]);
-			});
-
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
-	})
+	// cancel button
+	loadCancelButton ("Cancel", {
+		"parentContainer":$template,
+	});
+	// cancel button functionality
+	$($template).find(defaultButtonCancelContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonCancelContainer + " " + defaultButtonContainer).click(function() {
+		// load return page
+		returnToPage(returnURL);
+	});
 }
 
 function loadReviewCommentSubmissionPreview (content, options) {
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionPreviewContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultSubmissionReviewCommentBodyPreviewContainer,
 		"viewContainer":defaultReviewCommentContainerView,
 		"loadOrder":"",
 		"productId":"",
 	}, options);
-	// inject review content
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-			success: function(container) {
-				var $container = $(container);
-				// add comment template container
-				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container));
-				// load comment title
-				loadCommentTitle (content, {
-					"parentContainer":$container
-				});
-				// load comment text
-				loadCommentBody (content, {
-					"parentContainer":$container
-				});
-				// load comment date
-				loadCommentDate (content, {
-					"parentContainer":$container
-				});
-				// load comment user nickname
-				loadCommentUserNickname (content, {
-					"parentContainer":$container
-				});
-				// load comment user location
-				loadCommentUserLocation (content, {
-					"parentContainer":$container
-				});
-				// load comment cdvs
-				if (content["ContextDataValuesOrder"]) {
-					loadCommentContextDataValuesGroup (content, {
-						"parentContainer":$container
-					});
-				}
-				// load comment photos
-				if (content["Photos"]) {
-					loadCommentPhotosGroup(content, {
-						"parentContainer":$container
-					});
-				}
-				// load comment videos
-				if (content["Videos"]) {
-					loadCommentVideosGroup(content, {
-						"parentContainer":$container
-					});
-				}
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	// add form template
+	$container.append($template);
 
-				// load badges
-				if (content["BadgesOrder"]) {
-					loadBadges(content, {
-						"parentContainer":$container
-					});
-				}
-			},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
+	// load comment title
+	loadCommentTitle (content, {
+		"parentContainer":$template
 	});
+	// load comment text
+	loadCommentBody (content, {
+		"parentContainer":$template
+	});
+	// load comment date
+	loadCommentDate (content, {
+		"parentContainer":$template
+	});
+	// load comment user nickname
+	loadCommentUserNickname (content, {
+		"parentContainer":$template
+	});
+	// load comment user location
+	loadCommentUserLocation (content, {
+		"parentContainer":$template
+	});
+	// load comment cdvs
+	if (content["ContextDataValuesOrder"]) {
+		loadCommentContextDataValuesGroup (content, {
+			"parentContainer":$template
+		});
+	}
+	// load comment photos
+	if (content["Photos"]) {
+		loadCommentPhotosGroup(content, {
+			"parentContainer":$template
+		});
+	}
+	// load comment videos
+	if (content["Videos"]) {
+		loadCommentVideosGroup(content, {
+			"parentContainer":$template
+		});
+	}
+
+	// load badges
+	if (content["BadgesOrder"]) {
+		loadBadges(content, {
+			"parentContainer":$template
+		});
+	}
 }
