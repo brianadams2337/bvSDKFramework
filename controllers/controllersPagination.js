@@ -31,7 +31,7 @@ function loadNumberedPagination (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var pageOffset = settings["paginationSettings"]["offset"];
 	var pageLimit = settings["paginationSettings"]["limit"];
@@ -177,7 +177,7 @@ function loadPaginationButton (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// add button template
 	$container.append($template);
 	// set button text

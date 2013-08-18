@@ -11,7 +11,7 @@ function loadReviewCommentSubmissionWidget (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var productId = settings["productId"];
 	var contentId = settings["contentId"];
@@ -53,7 +53,7 @@ function loadReviewCommentSubmissionForm (content, options) {
 	var newID = "BVSubmissionContainerID_" + settings["productId"];
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// add form template
 	$container.append($template);
 	// set form attributes (just fallbacks, not needed since we are using ajax submission)
@@ -215,7 +215,7 @@ function loadReviewCommentTitleInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var inputName = settings["inputSettings"]["inputName"];
 	var inputLabel = settings["inputSettings"]["inputLabel"];
@@ -262,7 +262,7 @@ function loadReviewCommentTextInput (content, options) {
 	console.log("test");
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var inputName = settings["inputSettings"]["inputName"];
 	var inputLabel = settings["inputSettings"]["inputLabel"];

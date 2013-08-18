@@ -11,7 +11,7 @@ function loadReviewCommentsWidget (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var commentsToDisplay = content["Results"]; // review comments to display
 	var contentId = settings["contentId"];
@@ -40,12 +40,14 @@ function loadReviewCommentsWidget (content, options) {
 		});
 
 		// comments
-		$.each (commentsToDisplay, function(key) {
-			loadIndividualReviewComment(commentsToDisplay[key], {
-				"parentContainer":$template,
-				"productId":productId,
+		if (commentsToDisplay != undefined) {
+			$.each (commentsToDisplay, function(key) {
+				loadIndividualReviewComment(commentsToDisplay[key], {
+					"parentContainer":$template,
+					"productId":productId,
+				});
 			});
-		});
+		}
 
 		// pagination
 		loadNumberedPagination (content, {
@@ -83,7 +85,7 @@ function loadIndividualReviewComment (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var contentId = content["Id"]
 	var newID = "BVCommentContainer" + contentId;
@@ -159,7 +161,7 @@ function loadCommentTitle (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var commentTitleValue = content['Title'];
 	// load title if available
@@ -179,7 +181,7 @@ function loadCommentBody (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var bodyTextValue = content['CommentText'];
 	// add body template
@@ -196,7 +198,7 @@ function loadCommentDate (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// format date
 	var dateTextValue = $.format.date(content['SubmissionTime'], "MMMM dd, yyyy");
 	// add date template
@@ -219,7 +221,7 @@ function loadCommentUserNickname (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var userNicknameText = content['UserNickname'];
 	// add nickname template
@@ -236,7 +238,7 @@ function loadCommentUserLocation (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var userLocationText = content['UserLocation'];
 	// add location template
@@ -258,27 +260,29 @@ function loadCommentContextDataValuesGroup (content, options) {
 		"viewContainer":defaultReviewCommentContextDataValueContainerView,
 		"loadOrder":content["ContextDataValuesOrder"],
 	}, options);
-	$.each(settings["loadOrder"], function(index) {
-		// set container & template
-		var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-		var $template = $.parseHTML($(settings["viewContainer"]).html());
-		// current iteration of loop
-		var cur = settings["loadOrder"][index];
-		// set variables
-		var id = content["ContextDataValues"][cur]["Id"];
-		var value = content["ContextDataValues"][cur]["Value"];
-		var valueText = content["ContextDataValues"][cur]["ValueLabel"];
-		var labelText = content["ContextDataValues"][cur]["DimensionLabel"];
-		// set class variables
-		var labelClass = "BVContextDataValue" + id;
-		var valueClass = "BVContextDataValue" + value;
-		// add cdv template
-		$container.append($template);
-		// set cdv label (title)
-		$($template).find(defaultReviewCommentContextDataValueLabelTextContainer).andSelf().filter(defaultReviewCommentContextDataValueLabelTextContainer).html(labelText);
-		// set cdv value
-		$($template).find(defaultReviewCommentContextDataValueTextContainer).andSelf().filter(defaultReviewCommentContextDataValueTextContainer).html(valueText);
-	});
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(index) {
+			// set container & template
+			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+			var $template = returnTemplate(settings["viewContainer"]);
+			// current iteration of loop
+			var cur = settings["loadOrder"][index];
+			// set variables
+			var id = content["ContextDataValues"][cur]["Id"];
+			var value = content["ContextDataValues"][cur]["Value"];
+			var valueText = content["ContextDataValues"][cur]["ValueLabel"];
+			var labelText = content["ContextDataValues"][cur]["DimensionLabel"];
+			// set class variables
+			var labelClass = "BVContextDataValue" + id;
+			var valueClass = "BVContextDataValue" + value;
+			// add cdv template
+			$container.append($template);
+			// set cdv label (title)
+			$($template).find(defaultReviewCommentContextDataValueLabelTextContainer).andSelf().filter(defaultReviewCommentContextDataValueLabelTextContainer).html(labelText);
+			// set cdv value
+			$($template).find(defaultReviewCommentContextDataValueTextContainer).andSelf().filter(defaultReviewCommentContextDataValueTextContainer).html(valueText);
+		});
+	}
 }
 
 
@@ -294,33 +298,35 @@ function loadCommentPhotosGroup (content, options) {
 		"viewContainer":defaultReviewCommentPhotoContainerView,
 		"loadOrder":content["Photos"],
 	}, options);
-	$.each(settings["loadOrder"], function(index) {
-		// set container & template
-		var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-		var $template = $.parseHTML($(settings["viewContainer"]).html());
-		// current iteration of loop
-		var cur = settings["loadOrder"][index];
-		// set variables
-		var id = cur["Id"];
-		var thumbnailUrl = cur["Sizes"]["thumbnail"]["Url"];
-		var thumbnail = new Image; // thumbnail image
-		thumbnail.src = thumbnailUrl; // set thumbnail image src attr
-		var photoUrl = cur["Sizes"]["normal"]["Url"];
-		var photo = new Image; // photo image
-		photo.src = photoUrl; // set photo image src attr
-		var captionText = cur["Caption"];
-		var SizesOrderArray = cur["SizesOrder"];
-		// set class variables
-		var labelClass = "BVPhoto" + id;
-		// add photo template
-		$container.append($template);
-		// set thumbnail
-		$($template).find(defaultReviewCommentPhotoThumbnailContainer).andSelf().filter(defaultReviewCommentPhotoThumbnailContainer).html(thumbnail).attr({"href":photoUrl,"title":captionText});
-		// set photo
-		//$($template).find(defaultReviewPhotoIndividualContainer).andSelf().filter(defaultReviewPhotoIndividualContainer).html(photo);
-		// set caption
-		//$($template).find(defaultReviewPhotoCaptionContainer).andSelf().filter(defaultReviewPhotoCaptionContainer).html(captionText);
-	});
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(index) {
+			// set container & template
+			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+			var $template = returnTemplate(settings["viewContainer"]);
+			// current iteration of loop
+			var cur = settings["loadOrder"][index];
+			// set variables
+			var id = cur["Id"];
+			var thumbnailUrl = cur["Sizes"]["thumbnail"]["Url"];
+			var thumbnail = new Image; // thumbnail image
+			thumbnail.src = thumbnailUrl; // set thumbnail image src attr
+			var photoUrl = cur["Sizes"]["normal"]["Url"];
+			var photo = new Image; // photo image
+			photo.src = photoUrl; // set photo image src attr
+			var captionText = cur["Caption"];
+			var SizesOrderArray = cur["SizesOrder"];
+			// set class variables
+			var labelClass = "BVPhoto" + id;
+			// add photo template
+			$container.append($template);
+			// set thumbnail
+			$($template).find(defaultReviewCommentPhotoThumbnailContainer).andSelf().filter(defaultReviewCommentPhotoThumbnailContainer).html(thumbnail).attr({"href":photoUrl,"title":captionText});
+			// set photo
+			//$($template).find(defaultReviewPhotoIndividualContainer).andSelf().filter(defaultReviewPhotoIndividualContainer).html(photo);
+			// set caption
+			//$($template).find(defaultReviewPhotoCaptionContainer).andSelf().filter(defaultReviewPhotoCaptionContainer).html(captionText);
+		});
+	}
 }
 
 function loadCommentVideosGroup (content, options) {
@@ -330,34 +336,36 @@ function loadCommentVideosGroup (content, options) {
 		"viewContainer":defaultReviewCommentVideoContainerView,
 		"loadOrder":content["Videos"],
 	}, options);
-	$.each(settings["loadOrder"], function(index) {
-		// set container & template
-		var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-		var $template = $.parseHTML($(settings["viewContainer"]).html());
-		// current iteration of loop
-		var cur = settings["loadOrder"][index];
-		// set text variables
-		var id = cur["VideoId"];
-		var videoHost = cur["VideoHost"];
-		var thumbnailUrl = cur["VideoThumbnailUrl"];
-		var videoUrl = cur["VideoUrl"];
-		var videoiFrameUrl = cur["VideoIframeUrl"];
-		var captionText = cur["Caption"];
-		var thumbnail = new Image;
-		thumbnail.src = thumbnailUrl;
-		var video = $("<iframe />");
-		video.attr({"src":videoUrl});
-		// set class variables
-		var labelClass = "BVVideo" + id;
-		// add video template
-		$container.append($template);
-		// set thumbnail
-		$($template).find(defaultReviewCommentVideoThumbnailContainer).andSelf().filter(defaultReviewCommentVideoThumbnailContainer).html(thumbnail).attr({"href":videoUrl,"title":captionText});
-		// set video
-		//$($template).find(defaultReviewVideoIndividualContainer).andSelf().filter(defaultReviewVideoIndividualContainer).html(video);
-		// set caption
-		//$($template).find(defaultReviewVideoCaptionContainer).andSelf().filter(defaultReviewVideoCaptionContainer).html(captionText);
-	});
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(index) {
+			// set container & template
+			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+			var $template = returnTemplate(settings["viewContainer"]);
+			// current iteration of loop
+			var cur = settings["loadOrder"][index];
+			// set text variables
+			var id = cur["VideoId"];
+			var videoHost = cur["VideoHost"];
+			var thumbnailUrl = cur["VideoThumbnailUrl"];
+			var videoUrl = cur["VideoUrl"];
+			var videoiFrameUrl = cur["VideoIframeUrl"];
+			var captionText = cur["Caption"];
+			var thumbnail = new Image;
+			thumbnail.src = thumbnailUrl;
+			var video = $("<iframe />");
+			video.attr({"src":videoUrl});
+			// set class variables
+			var labelClass = "BVVideo" + id;
+			// add video template
+			$container.append($template);
+			// set thumbnail
+			$($template).find(defaultReviewCommentVideoThumbnailContainer).andSelf().filter(defaultReviewCommentVideoThumbnailContainer).html(thumbnail).attr({"href":videoUrl,"title":captionText});
+			// set video
+			//$($template).find(defaultReviewVideoIndividualContainer).andSelf().filter(defaultReviewVideoIndividualContainer).html(video);
+			// set caption
+			//$($template).find(defaultReviewVideoCaptionContainer).andSelf().filter(defaultReviewVideoCaptionContainer).html(captionText);
+		});
+	}
 }
 
 
@@ -375,7 +383,7 @@ function loadWriteReviewCommentButton (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var productId = settings["productId"]
 	var reviewId = settings["contentId"]
@@ -415,7 +423,7 @@ function loadToggleReviewCommentsButton (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var contentId = settings["contentId"];
 	// add button template

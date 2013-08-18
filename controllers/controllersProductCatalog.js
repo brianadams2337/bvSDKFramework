@@ -8,17 +8,19 @@ function loadProductInfoWidget (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var productsToLoad = content["Results"]; // products
 	// add product info widget template
 	$container.append($template);
 	// load products
-	$.each (productsToLoad, function(key) {
-		loadProductInfo (productsToLoad[key], {
-			"parentContainer":$template,
+	if (productsToLoad != undefined) {
+		$.each (productsToLoad, function(key) {
+			loadProductInfo (productsToLoad[key], {
+				"parentContainer":$template,
+			});
 		});
-	});
+	}
 	// set classes
 	addOddEvenClasses (defaultReviewContainer);
 	addFirstLastClasses (defaultReviewContainer);
@@ -32,7 +34,7 @@ function loadProductInfo (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// add body template
 	$container.append($template);
 	// load product name
@@ -57,7 +59,7 @@ function loadProductName (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var productNameValue = content['Name'];
 	// add name template
@@ -74,7 +76,7 @@ function loadProductDescription (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var productDescriptionValue = content['Description'];
 	// add description template
@@ -91,7 +93,7 @@ function loadProductImage (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var productImageUrlValue = content['ImageUrl'];
 	// add image template

@@ -90,58 +90,60 @@ function loadSortDropdown (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var inputRequired = false; // required boolean
 	var inputOptions = settings["loadOrder"]; // options to be loaded in the dropdown
 	// add input template
 	$container.append($template);
-			// load select options
-			$.each(inputOptions, function(key, value) {
-				// add selected state
-				if (settings["viewReloadOptions"]["controllerSettings"]["modelLocalDefaultSettings"]["Parameters"]["sort"][value["SortParameter"]] == value["Value"]) {
-					this["Selected"] = true;
-				}
-				// load sort option
-				loadSortSelectOptionsInput(this, {
-					"parentContainer":$template
-				});
+	// load select options
+	if (inputOptions != undefined) {
+		$.each(inputOptions, function(key, value) {
+			// add selected state
+			if (settings["viewReloadOptions"]["controllerSettings"]["modelLocalDefaultSettings"]["Parameters"]["sort"][value["SortParameter"]] == value["Value"]) {
+				this["Selected"] = true;
+			}
+			// load sort option
+			loadSortSelectOptionsInput(this, {
+				"parentContainer":$template
 			});
-			// sort option functionality
-			if (!$($template).data("disabled")) {
-				$($template).change(function(){
-					// container info to refresh
-					var refreshContainer = $(settings["viewReloadOptions"]["controllerSettings"]["parentContainer"]).find(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]).andSelf().filter(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]);
-					var selected = $(this.options[this.selectedIndex]).attr("data-sort-parameter");
-					var selectedValue = this.options[this.selectedIndex].value;
-					// check to make sure selected option has a sorting parameter and value
-					if (selected && selectedValue) {
-						// load new content based off of sorting selection and current settings
-						loadingContainerAnimation(refreshContainer, function() {
-							// update parameters for new api call
-							// reset and add selected sort
-							settings["viewReloadOptions"]["modelSettings"]["Parameters"]["sort"] = {};
-							settings["viewReloadOptions"]["modelSettings"]["Parameters"]["sort"][selected] = selectedValue;
-							// reset offset to start from the beginning - 
-							settings["viewReloadOptions"]["modelSettings"]["Parameters"]["offset"] = 0;
-							// make new api call
-							settings["viewReloadOptions"]["model"] (
-								// product id
-								settings["productId"],
-								// controller callback
-								function(content, modelLocalDefaultSettings) {
-									// update model settings to represent new data (needed for selcted/disabled states for filters, sorting, and pagination)
-									settings["viewReloadOptions"]["controllerSettings"]["modelLocalDefaultSettings"]["Parameters"] = modelLocalDefaultSettings;
-									// callback function
-									settings["viewReloadOptions"]["controller"](content, settings["viewReloadOptions"]["controllerSettings"]);
-								},
-								// api call parameters
-								settings["viewReloadOptions"]["modelSettings"]
-							);
-						});
-					}
+		});
+	}
+	// sort option functionality
+	if (!$($template).data("disabled")) {
+		$($template).change(function(){
+			// container info to refresh
+			var refreshContainer = $(settings["viewReloadOptions"]["controllerSettings"]["parentContainer"]).find(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]).andSelf().filter(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]);
+			var selected = $(this.options[this.selectedIndex]).attr("data-sort-parameter");
+			var selectedValue = this.options[this.selectedIndex].value;
+			// check to make sure selected option has a sorting parameter and value
+			if (selected && selectedValue) {
+				// load new content based off of sorting selection and current settings
+				loadingContainerAnimation(refreshContainer, function() {
+					// update parameters for new api call
+					// reset and add selected sort
+					settings["viewReloadOptions"]["modelSettings"]["Parameters"]["sort"] = {};
+					settings["viewReloadOptions"]["modelSettings"]["Parameters"]["sort"][selected] = selectedValue;
+					// reset offset to start from the beginning - 
+					settings["viewReloadOptions"]["modelSettings"]["Parameters"]["offset"] = 0;
+					// make new api call
+					settings["viewReloadOptions"]["model"] (
+						// product id
+						settings["productId"],
+						// controller callback
+						function(content, modelLocalDefaultSettings) {
+							// update model settings to represent new data (needed for selcted/disabled states for filters, sorting, and pagination)
+							settings["viewReloadOptions"]["controllerSettings"]["modelLocalDefaultSettings"]["Parameters"] = modelLocalDefaultSettings;
+							// callback function
+							settings["viewReloadOptions"]["controller"](content, settings["viewReloadOptions"]["controllerSettings"]);
+						},
+						// api call parameters
+						settings["viewReloadOptions"]["modelSettings"]
+					);
 				});
-			};
+			}
+		});
+	};
 }
 
 // generic option inpute
@@ -159,7 +161,7 @@ function loadSortSelectOptionsInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var inputValue = settings["inputSettings"]["inputValue"]; // option value
 	var inputLabel = settings["inputSettings"]["inputLabel"]; // option label text

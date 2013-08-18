@@ -14,7 +14,7 @@ function loadReviewCommentSubmissionPreviewWidget (content, options) {
 	var returnURL = settings["returnURL"];
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// add submission widget template
 	$container.append($template);
 
@@ -88,7 +88,7 @@ function loadReviewCommentSubmissionPreview (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// add form template
 	$container.append($template);
 

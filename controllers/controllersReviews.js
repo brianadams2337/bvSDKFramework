@@ -24,12 +24,14 @@ function loadReviewWidget (content, options) {
 		"productId":settings["productId"]
 	});
 	// load reviews
-	$.each (reviewsToLoad, function(key) {
-		loadIndividualReview (reviewsToLoad[key], {
-			"parentContainer":$template,
-			"productId":settings["productId"]
+	if (reviewsToLoad != undefined) {
+		$.each (reviewsToLoad, function(key) {
+			loadIndividualReview (reviewsToLoad[key], {
+				"parentContainer":$template,
+				"productId":settings["productId"]
+			});
 		});
-	});
+	}
 	// pagination
 	loadNumberedPagination (content, {
 		"parentContainer":$template,
@@ -202,7 +204,11 @@ function loadIndividualReview (content, options) {
 				}
 			}
 		});
-	} 
+	}
+	// // add site base url to create absolute paths for images
+	// $($template).find("img").andSelf().filter("img").each(function() {
+	// 	$(this).attr("src", pathResource($(this).attr("src")));
+	// });
 }
 
 /* DEFAULT QUICKTAKE FUNCTION */
@@ -247,7 +253,7 @@ function loadReviewRatingAverage (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var averageOverallRating = content['AverageOverallRating'].toFixed(defaultDecimalOptions["overallAverage"]);
 	var overallRatingRange = content['OverallRatingRange'].toFixed(defaultDecimalOptions["overallRange"]);
@@ -293,7 +299,7 @@ function loadReviewRating (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var value = content['Rating'].toFixed(defaultDecimalOptions["overall"]);
 	var valueRange = content['RatingRange'].toFixed(defaultDecimalOptions["overallRange"]);
@@ -317,35 +323,37 @@ function loadReviewSecondaryRatings (content, options) {
 		"viewContainer":defaultSecondaryRatingIndividualContainerView,
 		"loadOrder":content["SecondaryRatingsOrder"],
 	}, options);
-	$.each(settings["loadOrder"], function(index) {
-		// set container & template
-		var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-		var $template = $.parseHTML($(settings["viewContainer"]).html());
-		// current iteration of loop
-		var cur = settings["loadOrder"][index];
-		// set text variables
-		var id = content["SecondaryRatings"][cur]["Id"];
-		var value = content["SecondaryRatings"][cur]["Value"].toFixed(defaultDecimalOptions["secondary"]);
-		var valueRange = content["SecondaryRatings"][cur]["ValueRange"].toFixed(defaultDecimalOptions["secondaryRange"]);
-		var valueLabelText = content["SecondaryRatings"][cur]["ValueLabel"];
-		var labelText = content["SecondaryRatings"][cur]["Label"];
-		var labelMinText = content["SecondaryRatings"][cur]["MinLabel"];
-		var labelMaxText = content["SecondaryRatings"][cur]["MaxLabel"];
-		var displayType = content["SecondaryRatings"][cur]["DisplayType"];
-		// set class variables
-		var labelClass = "BVRating" + id;
-		var valueClass = "BVRating" + value;
-		// add rating template
-		$container.append($template);
-		// set star value
-		setStarRating ($template, value, valueRange);
-		// set rating label (title)
-		$($template).find(defaultSecondaryRatingLabelTextContainer).andSelf().filter(defaultSecondaryRatingLabelTextContainer).html(labelText);
-		// set rating value
-		$($template).find(defaultSecondaryRatingValueContainer).andSelf().filter(defaultSecondaryRatingValueContainer).html(value);
-		// set rating range value
-		$($template).find(defaultSecondaryRatingRangeContainer).andSelf().filter(defaultSecondaryRatingRangeContainer).html(valueRange);
-	});
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(index) {
+			// set container & template
+			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+			var $template = returnTemplate(settings["viewContainer"]);
+			// current iteration of loop
+			var cur = settings["loadOrder"][index];
+			// set text variables
+			var id = content["SecondaryRatings"][cur]["Id"];
+			var value = content["SecondaryRatings"][cur]["Value"].toFixed(defaultDecimalOptions["secondary"]);
+			var valueRange = content["SecondaryRatings"][cur]["ValueRange"].toFixed(defaultDecimalOptions["secondaryRange"]);
+			var valueLabelText = content["SecondaryRatings"][cur]["ValueLabel"];
+			var labelText = content["SecondaryRatings"][cur]["Label"];
+			var labelMinText = content["SecondaryRatings"][cur]["MinLabel"];
+			var labelMaxText = content["SecondaryRatings"][cur]["MaxLabel"];
+			var displayType = content["SecondaryRatings"][cur]["DisplayType"];
+			// set class variables
+			var labelClass = "BVRating" + id;
+			var valueClass = "BVRating" + value;
+			// add rating template
+			$container.append($template);
+			// set star value
+			setStarRating ($template, value, valueRange);
+			// set rating label (title)
+			$($template).find(defaultSecondaryRatingLabelTextContainer).andSelf().filter(defaultSecondaryRatingLabelTextContainer).html(labelText);
+			// set rating value
+			$($template).find(defaultSecondaryRatingValueContainer).andSelf().filter(defaultSecondaryRatingValueContainer).html(value);
+			// set rating range value
+			$($template).find(defaultSecondaryRatingRangeContainer).andSelf().filter(defaultSecondaryRatingRangeContainer).html(valueRange);
+		});
+	}
 }
 
 /* REVIEW TEXT DATA */
@@ -436,29 +444,31 @@ function loadReviewTagGroups (content, options) {
 		"viewContainer":defaultReviewTagsContainerView,
 		"loadOrder":content["TagDimensionsOrder"],
 	}, options);
-	$.each(settings["loadOrder"], function(index) {
-		// set container & template
-		var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-		var $template = $.parseHTML($(settings["viewContainer"]).html());
-		// current iteration of loop
-		var cur = settings["loadOrder"][index];
-		// set variables
-		var id = content["TagDimensions"][cur]["Id"];
-		var labelText = content["TagDimensions"][cur]["Label"];
-		var valuesArray = content["TagDimensions"][cur]["Values"];
-		// set class variables
-		var labelClass = "BVTags" + id;
-		// add tag group template
-		$container.append($template);
-		// set tag label (title)
-		$($template).find(defaultReviewTagLabelTextContainer).andSelf().filter(defaultReviewTagLabelTextContainer).html(labelText);
-		// load tags
-		$.each(valuesArray, function() {
-			loadReviewTagIndividual (this, {
-				"parentContainer":$template,
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(index) {
+			// set container & template
+			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+			var $template = $.parseHTML($(settings["viewContainer"]).html());
+			// current iteration of loop
+			var cur = settings["loadOrder"][index];
+			// set variables
+			var id = content["TagDimensions"][cur]["Id"];
+			var labelText = content["TagDimensions"][cur]["Label"];
+			var valuesArray = content["TagDimensions"][cur]["Values"];
+			// set class variables
+			var labelClass = "BVTags" + id;
+			// add tag group template
+			$container.append($template);
+			// set tag label (title)
+			$($template).find(defaultReviewTagLabelTextContainer).andSelf().filter(defaultReviewTagLabelTextContainer).html(labelText);
+			// load tags
+			$.each(valuesArray, function() {
+				loadReviewTagIndividual (this, {
+					"parentContainer":$template,
+				});
 			});
 		});
-	});
+	}
 }
 
 function loadReviewTagIndividual (content, options) {
@@ -524,7 +534,7 @@ function loadReviewContextDataValuesGroup (content, options) {
 		"viewContainer":defaultReviewContextDataValueContainerView,
 		"loadOrder":content["ContextDataValuesOrder"],
 	}, options);
-	if (settings["loadOrder"].length != 0) {
+	if (settings["loadOrder"] != undefined) {
 		$.each(settings["loadOrder"], function(index) {
 			// set container & template
 			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
@@ -560,27 +570,29 @@ function loadReviewAdditionalFieldsGroups (content, options) {
 		"viewContainer":defaultReviewAdditionalFieldContainerView,
 		"loadOrder":content["AdditionalFieldsOrder"],
 	}, options);
-	$.each(settings["loadOrder"], function(index) {
-		// set container & template
-		var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-		var $template = $.parseHTML($(settings["viewContainer"]).html());
-		// current iteration of loop
-		var cur = settings["loadOrder"][index];
-		// set variables
-		var id = content["AdditionalFields"][cur]["Id"];
-		var value = content["AdditionalFields"][cur]["Value"];
-		var valueText = content["AdditionalFields"][cur]["ValueLabel"];
-		var labelText = content["AdditionalFields"][cur]["DimensionLabel"];
-		// set class variables
-		var labelClass = "BVAdditionalFields" + id;
-		var valueClass = "BVAdditionalFields" + value;
-		// add additional field template
-		$container.append($template);
-		// set additional field label (title)
-		$($template).find(defaultReviewAdditionalFieldLabelTextContainer).andSelf().filter(defaultReviewAdditionalFieldLabelTextContainer).html(labelText);
-		// set additional field value
-		$($template).find(defaultReviewAdditionalFieldTextContainer).andSelf().filter(defaultReviewAdditionalFieldTextContainer).html(valueText);
-	});
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(index) {
+			// set container & template
+			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+			var $template = $.parseHTML($(settings["viewContainer"]).html());
+			// current iteration of loop
+			var cur = settings["loadOrder"][index];
+			// set variables
+			var id = content["AdditionalFields"][cur]["Id"];
+			var value = content["AdditionalFields"][cur]["Value"];
+			var valueText = content["AdditionalFields"][cur]["ValueLabel"];
+			var labelText = content["AdditionalFields"][cur]["DimensionLabel"];
+			// set class variables
+			var labelClass = "BVAdditionalFields" + id;
+			var valueClass = "BVAdditionalFields" + value;
+			// add additional field template
+			$container.append($template);
+			// set additional field label (title)
+			$($template).find(defaultReviewAdditionalFieldLabelTextContainer).andSelf().filter(defaultReviewAdditionalFieldLabelTextContainer).html(labelText);
+			// set additional field value
+			$($template).find(defaultReviewAdditionalFieldTextContainer).andSelf().filter(defaultReviewAdditionalFieldTextContainer).html(valueText);
+		});
+	}
 }
 
 /* MEDIA - PHOTO & VIDEO */
@@ -592,33 +604,35 @@ function loadReviewPhotosGroup (content, options) {
 		"viewContainer":defaultReviewPhotoContainerView,
 		"loadOrder":content["Photos"],
 	}, options);
-	$.each(settings["loadOrder"], function(index) {
-		// set container & template
-		var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-		var $template = $.parseHTML($(settings["viewContainer"]).html());
-		// current iteration of loop
-		var cur = settings["loadOrder"][index];
-		// set variables
-		var id = cur["Id"];
-		var thumbnailUrl = cur["Sizes"]["thumbnail"]["Url"];
-		var thumbnail = new Image; // thumbnail image
-		thumbnail.src = thumbnailUrl; // set thumbnail image src attr
-		var photoUrl = cur["Sizes"]["normal"]["Url"];
-		var photo = new Image; // photo image
-		photo.src = photoUrl; // set photo image src attr
-		var captionText = cur["Caption"];
-		var SizesOrderArray = cur["SizesOrder"];
-		// set class variables
-		var labelClass = "BVPhoto" + id;
-		// add photo template
-		$container.append($template);
-		// set thumbnail
-		$($template).find(defaultReviewPhotoThumbnailContainer).andSelf().filter(defaultReviewPhotoThumbnailContainer).html(thumbnail).attr({"href":photoUrl,"title":captionText});
-		// set photo
-		//$($template).find(defaultReviewPhotoIndividualContainer).andSelf().filter(defaultReviewPhotoIndividualContainer).html(photo);
-		// set caption
-		//$($template).find(defaultReviewPhotoCaptionContainer).andSelf().filter(defaultReviewPhotoCaptionContainer).html(captionText);
-	});
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(index) {
+			// set container & template
+			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+			var $template = $.parseHTML($(settings["viewContainer"]).html());
+			// current iteration of loop
+			var cur = settings["loadOrder"][index];
+			// set variables
+			var id = cur["Id"];
+			var thumbnailUrl = cur["Sizes"]["thumbnail"]["Url"];
+			var thumbnail = new Image; // thumbnail image
+			thumbnail.src = thumbnailUrl; // set thumbnail image src attr
+			var photoUrl = cur["Sizes"]["normal"]["Url"];
+			var photo = new Image; // photo image
+			photo.src = photoUrl; // set photo image src attr
+			var captionText = cur["Caption"];
+			var SizesOrderArray = cur["SizesOrder"];
+			// set class variables
+			var labelClass = "BVPhoto" + id;
+			// add photo template
+			$container.append($template);
+			// set thumbnail
+			$($template).find(defaultReviewPhotoThumbnailContainer).andSelf().filter(defaultReviewPhotoThumbnailContainer).html(thumbnail).attr({"href":photoUrl,"title":captionText});
+			// set photo
+			//$($template).find(defaultReviewPhotoIndividualContainer).andSelf().filter(defaultReviewPhotoIndividualContainer).html(photo);
+			// set caption
+			//$($template).find(defaultReviewPhotoCaptionContainer).andSelf().filter(defaultReviewPhotoCaptionContainer).html(captionText);
+		});
+	}
 }
 
 function loadReviewVideosGroup (content, options) {
@@ -628,34 +642,36 @@ function loadReviewVideosGroup (content, options) {
 		"viewContainer":defaultReviewVideoContainerView,
 		"loadOrder":content["Videos"],
 	}, options);
-	$.each(settings["loadOrder"], function(index) {
-		// set container & template
-		var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-		var $template = $.parseHTML($(settings["viewContainer"]).html());
-		// current iteration of loop
-		var cur = settings["loadOrder"][index];
-		// set text variables
-		var id = cur["VideoId"];
-		var videoHost = cur["VideoHost"];
-		var thumbnailUrl = cur["VideoThumbnailUrl"];
-		var videoUrl = cur["VideoUrl"];
-		var videoiFrameUrl = cur["VideoIframeUrl"];
-		var captionText = cur["Caption"];
-		var thumbnail = new Image;
-		thumbnail.src = thumbnailUrl;
-		var video = $("<iframe />");
-		video.attr({"src":videoUrl});
-		// set class variables
-		var labelClass = "BVVideo" + id;
-		// add video template
-		$container.append($template);
-		// set thumbnail
-		$($template).find(defaultReviewVideoThumbnailContainer).andSelf().filter(defaultReviewVideoThumbnailContainer).html(thumbnail).attr({"href":videoUrl,"title":captionText});
-		// set video
-		//$($template).find(defaultReviewVideoIndividualContainer).andSelf().filter(defaultReviewVideoIndividualContainer).html(video);
-		// set caption
-		//$($template).find(defaultReviewVideoCaptionContainer).andSelf().filter(defaultReviewVideoCaptionContainer).html(captionText);
-	});
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(index) {
+			// set container & template
+			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+			var $template = $.parseHTML($(settings["viewContainer"]).html());
+			// current iteration of loop
+			var cur = settings["loadOrder"][index];
+			// set text variables
+			var id = cur["VideoId"];
+			var videoHost = cur["VideoHost"];
+			var thumbnailUrl = cur["VideoThumbnailUrl"];
+			var videoUrl = cur["VideoUrl"];
+			var videoiFrameUrl = cur["VideoIframeUrl"];
+			var captionText = cur["Caption"];
+			var thumbnail = new Image;
+			thumbnail.src = thumbnailUrl;
+			var video = $("<iframe />");
+			video.attr({"src":videoUrl});
+			// set class variables
+			var labelClass = "BVVideo" + id;
+			// add video template
+			$container.append($template);
+			// set thumbnail
+			$($template).find(defaultReviewVideoThumbnailContainer).andSelf().filter(defaultReviewVideoThumbnailContainer).html(thumbnail).attr({"href":videoUrl,"title":captionText});
+			// set video
+			//$($template).find(defaultReviewVideoIndividualContainer).andSelf().filter(defaultReviewVideoIndividualContainer).html(video);
+			// set caption
+			//$($template).find(defaultReviewVideoCaptionContainer).andSelf().filter(defaultReviewVideoCaptionContainer).html(captionText);
+		});
+	}
 }
 
 

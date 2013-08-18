@@ -25,7 +25,7 @@ function loadUserNicknameInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var inputName = settings["inputSettings"]["inputName"];
 	var inputLabel = settings["inputSettings"]["inputLabel"];
@@ -68,7 +68,7 @@ function loadUserEmailInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var inputName = settings["inputSettings"]["inputName"];
 	var inputLabel = settings["inputSettings"]["inputLabel"];
@@ -111,7 +111,7 @@ function loadUserLocationInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var inputName = settings["inputSettings"]["inputName"];
 	var inputLabel = settings["inputSettings"]["inputLabel"];
@@ -154,7 +154,7 @@ function loadUserIDInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var inputName = settings["inputSettings"]["inputName"];
 	var inputLabel = settings["inputSettings"]["inputLabel"];
@@ -183,9 +183,11 @@ function loadUserIDInput (content, options) {
 // additional fields group container
 function loadAdditionalFieldGroupInput (content, options) {
 	var defaultLoadOrder = new Array();
-	$.each(content["Data"]["Groups"]["additionalfield"]["SubElements"], function() {
-		defaultLoadOrder.push(this["Id"]);
-	});
+	if (content["Data"]["Groups"]["additionalfield"] != undefined) {
+		$.each(content["Data"]["Groups"]["additionalfield"]["SubElements"], function() {
+			defaultLoadOrder.push(this["Id"]);
+		});
+	}
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultAdditionalFieldGroupInputContainer,
@@ -197,18 +199,20 @@ function loadAdditionalFieldGroupInput (content, options) {
 			"inputSubElements":content["SubElements"]
 		}
 	}, options);
-	$.each(settings["loadOrder"], function(key) {
-		var fieldContent = content["Data"]["Fields"][this];
-		// set container & template
-		var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-		var $template = $.parseHTML($(settings["viewContainer"]).html());
-		// add individual additional field template
-		$container.append($template);
-		// load additional field input container
-		loadAdditionalFieldIndividualInput(fieldContent, {
-			"parentContainer":$template
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(key) {
+			var fieldContent = content["Data"]["Fields"][this];
+			// set container & template
+			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+			var $template = returnTemplate(settings["viewContainer"]);
+			// add individual additional field template
+			$container.append($template);
+			// load additional field input container
+			loadAdditionalFieldIndividualInput(fieldContent, {
+				"parentContainer":$template
+			});
 		});
-	});
+	}
 }
 
 // additional field individual container
@@ -234,7 +238,7 @@ function loadAdditionalFieldIndividualInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var inputId = settings["inputSettings"]["inputName"] + "WrapperID"; // id attribute
 	var inputName = settings["inputSettings"]["inputName"]; // name of input
@@ -262,9 +266,11 @@ function loadAdditionalFieldIndividualInput (content, options) {
 // cdv group container
 function loadContextDataValueGroupInput (content, options) {
 	var defaultLoadOrder = new Array();
-	$.each(content["Data"]["Groups"]["contextdatavalue"]["SubElements"], function() {
-		defaultLoadOrder.push(this["Id"]);
-	});
+	if (content["Data"]["Groups"]["contextdatavalue"] != undefined) {
+		$.each(content["Data"]["Groups"]["contextdatavalue"]["SubElements"], function() {
+			defaultLoadOrder.push(this["Id"]);
+		});
+	}
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultContextDataValueGroupInputContainer,
@@ -276,18 +282,20 @@ function loadContextDataValueGroupInput (content, options) {
 			"inputSubElements":content["SubElements"]
 		}
 	}, options);
-	$.each(settings["loadOrder"], function(key) {
-		var fieldContent = content["Data"]["Fields"][this];
-		// set container & template
-		var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-		var $template = $.parseHTML($(settings["viewContainer"]).html());
-		// add individual context data value template
-		$container.append($template);
-		// load context data value input container
-		loadContextDataValueIndividualInput(fieldContent, {
-			"parentContainer":$template
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(key) {
+			var fieldContent = content["Data"]["Fields"][this];
+			// set container & template
+			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+			var $template = returnTemplate(settings["viewContainer"]);
+			// add individual context data value template
+			$container.append($template);
+			// load context data value input container
+			loadContextDataValueIndividualInput(fieldContent, {
+				"parentContainer":$template
+			});
 		});
-	});
+	}
 }
 
 // cdv individual container
@@ -313,7 +321,7 @@ function loadContextDataValueIndividualInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var inputId = settings["inputSettings"]["inputName"] + "WrapperID"; // id attribute
 	var inputName = settings["inputSettings"]["inputName"]; // name of input
@@ -335,13 +343,15 @@ function loadContextDataValueIndividualInput (content, options) {
 	} else {
 		// set radio button load order
 		var defaultLoadOrder = new Array();
-		$.each(content["Options"], function(index) {
-			if (this["Label"]) {
-				var obj = {};
-				obj[this["Value"]] = this["Label"];
-				defaultLoadOrder[index] = obj;
-			};
-		});
+		if (content["Options"] != undefined) {
+			$.each(content["Options"], function(index) {
+				if (this["Label"]) {
+					var obj = {};
+					obj[this["Value"]] = this["Label"];
+					defaultLoadOrder[index] = obj;
+				};
+			});
+		}
 		// load radio buttons
 		loadRadioInputIndividual (content, {
 			"parentContainer":$template,
@@ -359,9 +369,11 @@ function loadContextDataValueIndividualInput (content, options) {
 
 function loadTagGroupInput (content, options) {
 	var defaultLoadOrder = new Array();
-	$.each(content["Data"]["Groups"]["tag"]["SubElements"], function() {
-		defaultLoadOrder.push(this["Id"]);
-	});
+	if (content["Data"]["Groups"]["tag"] != undefined) {
+		$.each(content["Data"]["Groups"]["tag"]["SubElements"], function() {
+			defaultLoadOrder.push(this["Id"]);
+		});
+	}
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultTagGroupInputContainer,
@@ -375,58 +387,68 @@ function loadTagGroupInput (content, options) {
 			"inputSubElements":content["SubElements"]
 		}
 	}, options);
-	$.each(settings["loadOrder"], function(key, value) {
-		// set container & template
-		var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-		var $template = $.parseHTML($(settings["viewContainer"]).html());
-		// set variables
-		var inputLabel = content["Data"]["Groups"][value]["Label"];
-		// add input template
-		$container.append($template);
-		// set label
-		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
-		// set order to load inputs
-		// pre-defined tags load order
-		var tagLoadOrder = new Array ();
-		// open text field tags load order
-		var tagOpenFieldLoadOrder = new Array ();
-		// sort tag into their respective load order arrays
-		$.each(content["Data"]["Groups"][value]["SubElements"], function() {
-			$.each(content["Data"]["Groups"][this["Id"]]["SubElements"], function() {
-				// check if field type is TextInput (open text) or Boolean (pre-defined)
-				if (content["Data"]["Fields"][this["Id"]]["Type"] == "TextInput") {
-					tagOpenFieldLoadOrder.push(this["Id"]);
-				} else {
-					tagLoadOrder.push(this["Id"]);
-				}
-			})
-		});
-		// load pre-defined tags
-		$.each(tagLoadOrder, function() {
-			// load inputs
-			loadTagIndividualInput (content, {
-				"parentContainer":$template,
-				"loadOrder":this,
-			});
-		});
-		// load open text field tags
-		$.each(tagOpenFieldLoadOrder, function(key, value) {
-			// only show first open text feild tag
-			if ((key + 1) == 1) {
-				settings["inputSettings"]["inputHidden"] = false;
-			} else {
-				settings["inputSettings"]["inputHidden"] = true;
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(key, value) {
+			// set container & template
+			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+			var $template = returnTemplate(settings["viewContainer"]);
+			// set variables
+			var inputLabel = content["Data"]["Groups"][value]["Label"];
+			// add input template
+			$container.append($template);
+			// set label
+			$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
+			// set order to load inputs
+			// pre-defined tags load order
+			var tagLoadOrder = new Array ();
+			// open text field tags load order
+			var tagOpenFieldLoadOrder = new Array ();
+			// sort tag into their respective load order arrays
+			if (content["Data"]["Groups"][value] != undefined) {
+				$.each(content["Data"]["Groups"][value]["SubElements"], function() {
+					if (content["Data"]["Groups"][this["Id"]] != undefined) {
+						$.each(content["Data"]["Groups"][this["Id"]]["SubElements"], function() {
+							// check if field type is TextInput (open text) or Boolean (pre-defined)
+							if (content["Data"]["Fields"][this["Id"]]["Type"] == "TextInput") {
+								tagOpenFieldLoadOrder.push(this["Id"]);
+							} else {
+								tagLoadOrder.push(this["Id"]);
+							}
+						});
+					}
+				});
 			}
-			// load inputs
-			loadTagIndividualInput (content, {
-				"parentContainer":$template,
-				"loadOrder":this,
-				"inputSettings":{
-					"inputHidden":settings["inputSettings"]["inputHidden"],
-				},
-			});
+			// load pre-defined tags
+			if (tagLoadOrder != undefined) {
+				$.each(tagLoadOrder, function() {
+					// load inputs
+					loadTagIndividualInput (content, {
+						"parentContainer":$template,
+						"loadOrder":this,
+					});
+				});
+			}
+			// load open text field tags
+			if (tagOpenFieldLoadOrder != undefined) {
+				$.each(tagOpenFieldLoadOrder, function(key, value) {
+					// only show first open text feild tag
+					if ((key + 1) == 1) {
+						settings["inputSettings"]["inputHidden"] = false;
+					} else {
+						settings["inputSettings"]["inputHidden"] = true;
+					}
+					// load inputs
+					loadTagIndividualInput (content, {
+						"parentContainer":$template,
+						"loadOrder":this,
+						"inputSettings":{
+							"inputHidden":settings["inputSettings"]["inputHidden"],
+						},
+					});
+				});
+			}
 		});
-	});
+	}
 }
 
 function loadTagIndividualInput (content, options) {
@@ -445,7 +467,7 @@ function loadTagIndividualInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// add tag template
 	$container.append($template);
 	// check if input should be hidden
@@ -494,7 +516,7 @@ function loadTermsAndConditionsInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// add input template
 	$container.append($template);
 	// load checkbox
@@ -516,7 +538,7 @@ function loadSendEmailAlertWhenCommentedInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// add input template
 	$container.append($template);
 	// load checkbox
@@ -538,7 +560,7 @@ function loadSendEmailAlertWhenPublishedInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// add input template
 	$container.append($template);
 	// load checkbox
@@ -579,7 +601,7 @@ function loadTextFieldInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var inputId = settings["inputSettings"]["inputName"];
 	// add input template
@@ -619,7 +641,7 @@ function loadTextAreaInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var inputId = settings["inputSettings"]["inputName"];
 	// add title template
@@ -665,40 +687,42 @@ function loadRadioInputIndividual (content, options) {
 			"inputOptionsArray":content["Options"]
 		}
 	}, options);
-	$.each (settings["loadOrder"], function(key, value) {
-		// set container & template
-		var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-		var $template = $.parseHTML($(settings["viewContainer"]).html());
-		// set variables
-		var inputValue = key; // radio value
-		var inputLabel = value; // radio label text
-		var inputName = settings["inputSettings"]["inputName"]; // input name attribute
-		var inputId = inputName + inputValue; // id attribute
-		var inputRequired = settings["inputSettings"]["inputRequired"]; // required boolean
-		var inputSelected = settings["inputSettings"]["inputValue"]; // selected value
-		// add input template
-		$container.append($template);
-		// set label
-		$($template).find(defaultFormRadioLabelTextContainer).andSelf().filter(defaultFormRadioLabelTextContainer).html(inputLabel).attr({
-			"for":inputId
-		});
-		// set input attributes
-		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
-			"id":inputId,
-			"name":inputName,
-			"value":inputValue
-		});
-		// selected value
-		if (inputValue == inputSelected) {
-			$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
-				"checked":"checked",
+	if (settings["loadOrder"] != undefined) {
+		$.each (settings["loadOrder"], function(key, value) {
+			// set container & template
+			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+			var $template = returnTemplate(settings["viewContainer"]);
+			// set variables
+			var inputValue = key; // radio value
+			var inputLabel = value; // radio label text
+			var inputName = settings["inputSettings"]["inputName"]; // input name attribute
+			var inputId = inputName + inputValue; // id attribute
+			var inputRequired = settings["inputSettings"]["inputRequired"]; // required boolean
+			var inputSelected = settings["inputSettings"]["inputValue"]; // selected value
+			// add input template
+			$container.append($template);
+			// set label
+			$($template).find(defaultFormRadioLabelTextContainer).andSelf().filter(defaultFormRadioLabelTextContainer).html(inputLabel).attr({
+				"for":inputId
 			});
-		}
-		// required
-		if (inputRequired == true) {
-			$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass("required");
-		}
-	});
+			// set input attributes
+			$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
+				"id":inputId,
+				"name":inputName,
+				"value":inputValue
+			});
+			// selected value
+			if (inputValue == inputSelected) {
+				$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
+					"checked":"checked",
+				});
+			}
+			// required
+			if (inputRequired == true) {
+				$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass("required");
+			}
+		});
+	}
 }
 
 
@@ -730,7 +754,7 @@ function loadSelectInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var inputId = settings["inputSettings"]["inputName"] + "ID"; // id attribute
 	var inputName = settings["inputSettings"]["inputName"]; // name of select input
@@ -763,24 +787,26 @@ function loadSelectOptionsInput (content, options) {
 			"inputLabel":content["Label"]
 		}
 	}, options);
-	$.each(settings["loadOrder"], function(key) {
-		// set container & template
-		var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-		var $template = $.parseHTML($(settings["viewContainer"]).html());
-		// set variables
-		var inputValue = settings["loadOrder"][key]["Value"]; // option value
-		var inputLabel = settings["loadOrder"][key]["Label"]; // option label text
-		var inputSelected = settings["loadOrder"][key]["Selected"]; // option selected boolean
-		// add title template
-		$container.append($template);
-		// set input attributes
-		$($template).find(defaultFormSelectOptionInputContainer).andSelf().filter(defaultFormSelectOptionInputContainer).html(inputLabel).attr({
-			"label":"",
-			"value":inputValue,
-			"selected":inputSelected,
-			"disabled":false
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(key) {
+			// set container & template
+			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+			var $template = returnTemplate(settings["viewContainer"]);
+			// set variables
+			var inputValue = settings["loadOrder"][key]["Value"]; // option value
+			var inputLabel = settings["loadOrder"][key]["Label"]; // option label text
+			var inputSelected = settings["loadOrder"][key]["Selected"]; // option selected boolean
+			// add title template
+			$container.append($template);
+			// set input attributes
+			$($template).find(defaultFormSelectOptionInputContainer).andSelf().filter(defaultFormSelectOptionInputContainer).html(inputLabel).attr({
+				"label":"",
+				"value":inputValue,
+				"selected":inputSelected,
+				"disabled":false
+			});
 		});
-	});
+	}
 }
 
 function loadCheckboxInputField (content, options) {
@@ -806,7 +832,7 @@ function loadCheckboxInputField (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var inputValue = settings["inputSettings"]["inputValue"]; // checkbox value
 	var inputLabel = settings["inputSettings"]["inputLabel"]; // checkbox label text
@@ -894,7 +920,7 @@ function loadYoutubeUrlInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var inputName = settings["inputSettings"]["inputName"];
 	var inputLabel = settings["inputSettings"]["inputLabel"];
@@ -937,7 +963,7 @@ function loadVideoCaptionInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var inputName = settings["inputSettings"]["inputName"];
 	var inputLabel = settings["inputSettings"]["inputLabel"];
@@ -960,9 +986,11 @@ function loadVideoCaptionInput (content, options) {
 
 function loadPhotoGroupInput (content, options) {
 	var defaultLoadOrder = new Array();
-	$.each(content["Data"]["Groups"]["photo"]["SubElements"], function() {
-		defaultLoadOrder.push(this["Id"]);
-	});
+	if (content["Data"]["Groups"]["photo"] != undefined) {
+		$.each(content["Data"]["Groups"]["photo"]["SubElements"], function() {
+			defaultLoadOrder.push(this["Id"]);
+		});
+	}
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultPhotoUploadGroupInputContainer,
@@ -982,7 +1010,7 @@ function loadPhotoGroupInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var inputLabel = settings["inputSettings"]["inputLabel"];
 	// add input template
@@ -990,29 +1018,33 @@ function loadPhotoGroupInput (content, options) {
 	// set label
 	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
 	// load photo upload inputs
-	$.each(settings["loadOrder"], function(key, value) {
-		// set order to load inputs
-		var photoLoadOrder = new Array ();
-		$.each(content["Data"]["Groups"][value]["SubElements"], function() {
-			photoLoadOrder.push(this["Id"]);
-		});
-		if ((key + 1) == settings["loadOrder"].length) {
-			settings["inputSettings"]["inputHidden"] = false;
-		} else {
-			settings["inputSettings"]["inputHidden"] = true;
-		}
-		// load photo upload input
-		loadPhotoFileUploadInput (content, {
-			"parentContainer":$template,
-			"loadOrder":photoLoadOrder,
-			"inputSettings":{
-				"inputHidden":settings["inputSettings"]["inputHidden"],
-			},
-			"mediaSettings":{
-				"contentType":settings["mediaSettings"]["contentType"],
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(key, value) {
+			// set order to load inputs
+			var photoLoadOrder = new Array ();
+			if (content["Data"]["Groups"][value] != undefined) {
+				$.each(content["Data"]["Groups"][value]["SubElements"], function() {
+					photoLoadOrder.push(this["Id"]);
+				});
 			}
+			if ((key + 1) == settings["loadOrder"].length) {
+				settings["inputSettings"]["inputHidden"] = false;
+			} else {
+				settings["inputSettings"]["inputHidden"] = true;
+			}
+			// load photo upload input
+			loadPhotoFileUploadInput (content, {
+				"parentContainer":$template,
+				"loadOrder":photoLoadOrder,
+				"inputSettings":{
+					"inputHidden":settings["inputSettings"]["inputHidden"],
+				},
+				"mediaSettings":{
+					"contentType":settings["mediaSettings"]["contentType"],
+				}
+			});
 		});
-	});
+	}
 }
 
 function loadPhotoFileUploadInput (content, options) {
@@ -1034,7 +1066,7 @@ function loadPhotoFileUploadInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	if (settings["inputSettings"]["inputHidden"]) {
 		$($template).hide();
 	}
@@ -1117,7 +1149,7 @@ function loadPhotoUploadPreviewInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var urlInputName = settings["loadOrder"][0];
 	var captionInputName = settings["loadOrder"][1];
@@ -1160,7 +1192,7 @@ function loadPhotoCaptionInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	inputLabel = settings["inputSettings"]["inputLabel"];
 	inputName = settings["inputSettings"]["inputName"];
@@ -1201,7 +1233,7 @@ function loadPhotoUrlInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	inputLabel = settings["inputSettings"]["inputLabel"];
 	inputName = settings["inputSettings"]["inputName"];
@@ -1246,7 +1278,7 @@ function loadUploadInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var inputLabel = settings["inputSettings"]["inputLabel"]; // input label text
 	var inputName = settings["inputSettings"]["inputName"]; // input name attribute

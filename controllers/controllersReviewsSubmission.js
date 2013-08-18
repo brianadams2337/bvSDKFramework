@@ -11,7 +11,7 @@ function loadReviewSubmissionWidget (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var productId = settings["productId"];
 	var returnURL = settings["returnURL"];
@@ -46,7 +46,7 @@ function loadReviewSubmissionForm (content, options) {
 	var returnURL = settings["returnURL"];
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// add form template
 	$container.append($template);
 
@@ -347,7 +347,7 @@ function loadOverallRatingInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var inputLabel = settings["inputSettings"]["inputLabel"];
 	// add input template
@@ -355,20 +355,24 @@ function loadOverallRatingInput (content, options) {
 	// set label
 	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
 	// load radio buttons
-	$.each(settings["loadOrder"], function(key) {
-		loadRadioInputIndividual (content, {
-			"parentContainer":$template,
-			"viewContainer":defaultInputRadioOverallRatingContainerView,
-			"loadOrder":settings["loadOrder"][key]
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(key) {
+			loadRadioInputIndividual (content, {
+				"parentContainer":$template,
+				"viewContainer":defaultInputRadioOverallRatingContainerView,
+				"loadOrder":settings["loadOrder"][key]
+			});
 		});
-	});
+	}
 }
 
 function loadSecondaryRatingGroup (content, options) {
 	var defaultLoadOrder = new Array();
-	$.each(content["Data"]["Groups"]["rating"]["SubElements"], function() {
-		defaultLoadOrder.push(this["Id"]);
-	});
+	if (content["Data"]["Groups"]["rating"] != undefined) {
+		$.each(content["Data"]["Groups"]["rating"]["SubElements"], function() {
+			defaultLoadOrder.push(this["Id"]);
+		});
+	}
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultSecondaryRatingGroupInputContainer,
@@ -381,22 +385,24 @@ function loadSecondaryRatingGroup (content, options) {
 			"inputSubElements":content["SubElements"]
 		}
 	}, options);
-	$.each(settings["loadOrder"], function(key) {
-		var fieldContent = content["Data"]["Fields"][this];
-		// set container & template
-		var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-		var $template = $.parseHTML($(settings["viewContainer"]).html());
-		// set variables
-		var inputLabel = fieldContent["Label"];
-		// add secondary rating template
-		$container.append($template);
-		// set label
-		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
-		// load secondary rating input container
-		loadSecondaryRatingIndividual(fieldContent, {
-			"parentContainer":$template
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(key) {
+			var fieldContent = content["Data"]["Fields"][this];
+			// set container & template
+			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+			var $template = returnTemplate(settings["viewContainer"]);
+			// set variables
+			var inputLabel = fieldContent["Label"];
+			// add secondary rating template
+			$container.append($template);
+			// set label
+			$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
+			// load secondary rating input container
+			loadSecondaryRatingIndividual(fieldContent, {
+				"parentContainer":$template
+			});
 		});
-	});
+	}
 }
 
 function loadSecondaryRatingIndividual (content, options) {
@@ -428,17 +434,19 @@ function loadSecondaryRatingIndividual (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// add input template
 	$container.append($template);
 	// load radio buttons
-	$.each(settings["loadOrder"], function(key) {
-		loadRadioInputIndividual (content, {
-			"parentContainer":$template,
-			"viewContainer":defaultInputRadioOverallRatingContainerView,
-			"loadOrder":settings["loadOrder"][key]
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(key) {
+			loadRadioInputIndividual (content, {
+				"parentContainer":$template,
+				"viewContainer":defaultInputRadioOverallRatingContainerView,
+				"loadOrder":settings["loadOrder"][key]
+			});
 		});
-	});
+	}
 }
 
 
@@ -473,7 +481,7 @@ function loadIsRecommendedInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var inputLabel = settings["inputSettings"]["inputLabel"];
 	// add input template
@@ -481,12 +489,14 @@ function loadIsRecommendedInput (content, options) {
 	// set label
 	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
 	// load radio buttons
-	$.each(settings["loadOrder"], function(key) {
-		loadRadioInputIndividual (content, {
-			"parentContainer":$template,
-			"loadOrder":settings["loadOrder"][key]
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(key) {
+			loadRadioInputIndividual (content, {
+				"parentContainer":$template,
+				"loadOrder":settings["loadOrder"][key]
+			});
 		});
-	});
+	}
 }
 
 
@@ -520,7 +530,7 @@ function loadReviewTitleInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var inputName = settings["inputSettings"]["inputName"];
 	var inputLabel = settings["inputSettings"]["inputLabel"];
@@ -566,7 +576,7 @@ function loadReviewTextInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var inputName = settings["inputSettings"]["inputName"];
 	var inputLabel = settings["inputSettings"]["inputLabel"];

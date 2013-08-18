@@ -88,21 +88,30 @@ function returnFormParamaters (form, options) {
 	var formData = $(form).serializeArray();
 	var params = options;
 	// add form data to params object
-	$.each(formData, function(key) {
-		params[this["name"]] = this["value"];
-	});
+	if (formData != undefined) {
+		$.each(formData, function(key) {
+			params[this["name"]] = this["value"];
+		});
+	}
 	// return updated parameters
 	return params;
 }
 
+function returnTemplate (template) {
+	var temp = $.parseHTML($(template).html());
+	$(temp).find("img[data-img-url]").andSelf().filter("img[data-img-url]").each(function() {
+		$(this).attr("src", pathResource($(this).attr("data-img-url")));
+	});
+	return temp;
+}
+
 function loadingContainerAnimation (container, callback) {
-	$(container).empty().hide().addClass("_BVContentLoadingContainer");
-	$.when(
-		callback()
-	).done(function() {
+	$(container).empty().addClass("_BVContentLoadingContainer");
+	callback()
+	$("#lfkjlasfjdlkfs").promise().done(function() {
 		console.log("done");
-		$(container).removeClass("_BVContentLoadingContainer").show();
-	})
+		$(container).removeClass("_BVContentLoadingContainer").show();		
+	});
 }
 
 
@@ -120,7 +129,7 @@ function loadPageHeader (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// add header template
 	$container.append($template);
 	// set text
@@ -138,7 +147,7 @@ function loadSectionHeader (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// add header template
 	$container.append($template);
 	// set text
@@ -158,7 +167,7 @@ function loadSubmitButton (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// add button template
 	$container.append($template);
 	// set attributes and text for button
@@ -179,7 +188,7 @@ function loadPreviewButton (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// add button template
 	$container.append($template);
 	// set attributes and text for button
@@ -200,7 +209,7 @@ function loadEditButton (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// add button template
 	$container.append($template);
 	// set attributes and text for button
@@ -221,7 +230,7 @@ function loadCancelButton (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// add button template
 	$container.append($template);
 	// set attributes and text for button
@@ -242,7 +251,7 @@ function loadReturnButton (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// add button template
 	$container.append($template);
 	// set attributes and text for button
@@ -263,7 +272,7 @@ function loadCloseButton (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// add button template
 	$container.append($template);
 	// set attributes and text for button
@@ -284,7 +293,7 @@ function loadWriteReviewButton (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var productId = settings["productId"]
 	var returnURL = $(location).attr("href") + "";

@@ -46,25 +46,27 @@ function loadBadges (content, options) {
 		"viewContainer":defaultIndividualBadgeContainerView,
 		"loadOrder":content["BadgesOrder"],
 	}, options);
-	$.each(settings["loadOrder"], function(key, value) {
-		if (content["Badges"][key]) {
-			// set container & template
-			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-			var $template = $.parseHTML($(settings["viewContainer"]).html());
-			// set text variables
-			var badgeId = content["Badges"][key]["Id"];
-			var badgeType = content["Badges"][key]["BadgeType"];
-			var contentType = content["Badges"][key]["ContentType"];
-			// add badge template
-			$container.append($template);
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(key, value) {
+			if (content["Badges"][key]) {
+				// set container & template
+				var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+				var $template = returnTemplate(settings["viewContainer"]);
+				// set text variables
+				var badgeId = content["Badges"][key]["Id"];
+				var badgeType = content["Badges"][key]["BadgeType"];
+				var contentType = content["Badges"][key]["ContentType"];
+				// add badge template
+				$container.append($template);
 
-			// load badge text			
-			loadBadgeContent (content["Badges"][key], {
-				"parentContainer":$template,
-				"viewContainer":value
-			});
-		}
-	});
+				// load badge text			
+				loadBadgeContent (content["Badges"][key], {
+					"parentContainer":$template,
+					"viewContainer":value
+				});
+			}
+		});
+	}
 }
 
 function loadBadgeContent (content, options) {
@@ -75,7 +77,7 @@ function loadBadgeContent (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set text variables
 	var badgeId = content["Id"];
 	var badgeType = content["BadgeType"];

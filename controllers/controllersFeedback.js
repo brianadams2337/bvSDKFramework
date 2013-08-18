@@ -17,7 +17,7 @@ function loadFeedback (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var contentId = settings["contentId"];
 	var cookieNameHelpfulness = "helpfulness" + contentId;
@@ -85,7 +85,7 @@ function loadFeedbackCount (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var feedbackPositive = content["TotalPositiveFeedbackCount"];
 	var feedbackNegative = content["TotalNegativeFeedbackCount"];
@@ -121,7 +121,7 @@ function loadFeedbackVoting (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var feedbackCountPositive = content["TotalPositiveFeedbackCount"];
 	var feedbackCountNegative = content["TotalNegativeFeedbackCount"];
@@ -171,7 +171,7 @@ function loadFeedbackVotingButton (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var contentId = settings["contentId"];
 	var feedbackType = settings["feedbackSettings"]["feedbackType"];
@@ -359,7 +359,7 @@ function loadReportInappropriate (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var productId = settings["productId"];
 	var contentId = settings["contentId"];
@@ -400,7 +400,7 @@ function loadReportInappropriateButton (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var contentId = settings["contentId"];
 	var feedbackType = settings["feedbackSettings"]["feedbackType"];
@@ -437,7 +437,7 @@ function loadReportInappropriateForm (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var contentId = settings["contentId"];
 	var contentType = settings["feedbackSettings"]["contentType"];
@@ -521,7 +521,7 @@ function loadReportInappropriateTextInput (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// add input template
 	$container.append($template);
 	// set label
@@ -635,7 +635,7 @@ function loadFeedbackStatus (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var productId = settings["productId"];
 	var contentId = settings["contentId"];
