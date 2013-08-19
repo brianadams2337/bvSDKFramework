@@ -41,17 +41,15 @@ function loadReviewCommentSubmissionPreviewWidget (content, options) {
 			"action":"submit"
 		});
 		// POST form to server
-		loadingContainerAnimation($template, function() {
-			postReviewCommentsSubmissionForm(contentId, function (content) {
-					console.log("submitted");
-					loadReviewCommentSubmissionThankYouWidget (content, {
-						"parentContainer":settings["parentContainer"],
-						"productId":productId,
-						"returnURL":returnURL,
-					});
-				}, {
-				"Parameters": params
-			});
+		postReviewCommentsSubmissionForm(contentId, $template, function (content) {
+				console.log("submitted");
+				loadReviewCommentSubmissionThankYouWidget (content, {
+					"parentContainer":settings["parentContainer"],
+					"productId":productId,
+					"returnURL":returnURL,
+				});
+			}, {
+			"Parameters": params
 		});
 	});
 

@@ -49,8 +49,7 @@ $(document).ready(function() {
 			})
 		).done(function(){
 			// load reviews
-			loadingContainerAnimation(defaultReviewsParentContainer, function() {
-				getAllReviews (productId, function(content, modelLocalDefaultSettings) {
+				getAllReviews (productId, defaultReviewsParentContainer, function(content, modelLocalDefaultSettings) {
 					// callback function
 					loadReviewWidget (content, {
 						"parentContainer":defaultReviewsParentContainer,
@@ -75,7 +74,6 @@ $(document).ready(function() {
 						}
 					}
 				});
-			});
 			/* MAGNIFIC LIGHTBOX POPIN */
 			// photos
 			$(defaultReviewsParentContainer).on('click', defaultReviewPhotoThumbnailContainer, function() {

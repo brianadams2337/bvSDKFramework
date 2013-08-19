@@ -249,6 +249,7 @@ function loadFiltersTags (content, options) {
 			"controllerSettings":""
 		}
 	}, options);
+	console.log("tags", content);
 	if (settings["loadOrder"] != undefined) {
 		$.each (settings["loadOrder"], function(key) {
 			// set container & template
@@ -305,7 +306,12 @@ function loadIndividualFilters (content, options) {
 			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
 			var $template = returnTemplate(settings["viewContainer"]);
 			// set variables
-			var filterText = content["Values"][key]["Label"];
+			var filterText = new String();
+			if (content["Values"][key]["Label"]) {
+				var filterText = content["Values"][key]["Label"];
+			} else {
+				var filterText = content["Values"][key]["Value"];
+			}
 			var filterCountText = content["Values"][key]["Count"];
 			// add filter template
 			$container.append($template);
@@ -331,27 +337,27 @@ function loadIndividualFilters (content, options) {
 					var selected = $(this).attr("data-filter-parameter");
 					var selectedValue = $(this).attr("data-filter-value");
 					// load new content based off of filter selection and current settings
-					loadingContainerAnimation(refreshContainer, function() {
-						// update parameters for new api call
-						// add selected filter
-						settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected] = selectedValue;
-						// reset offset to start from the beginning - 
-						settings["viewReloadOptions"]["modelSettings"]["Parameters"]["offset"] = 0;
-						// make new api call
-						settings["viewReloadOptions"]["model"] (
-							// product id
-							settings["productId"],
-							// controller callback
-							function(content, modelLocalDefaultSettings) {
-								// update model settings to represent new data (needed for selcted/disabled states for filters, sorting, and pagination)
-								settings["viewReloadOptions"]["controllerSettings"]["modelLocalDefaultSettings"]["Parameters"] = modelLocalDefaultSettings;
-								// callback function
-								settings["viewReloadOptions"]["controller"](content, settings["viewReloadOptions"]["controllerSettings"]);
-							},
-							// api call parameters
-							settings["viewReloadOptions"]["modelSettings"]
-						);
-					});
+					// update parameters for new api call
+					// add selected filter
+					settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected] = selectedValue;
+					// reset offset to start from the beginning - 
+					settings["viewReloadOptions"]["modelSettings"]["Parameters"]["offset"] = 0;
+					// make new api call
+					settings["viewReloadOptions"]["model"] (
+						// product id
+						settings["productId"],
+						// container to load
+						refreshContainer,
+						// controller callback
+						function(content, modelLocalDefaultSettings) {
+							// update model settings to represent new data (needed for selcted/disabled states for filters, sorting, and pagination)
+							settings["viewReloadOptions"]["controllerSettings"]["modelLocalDefaultSettings"]["Parameters"] = modelLocalDefaultSettings;
+							// callback function
+							settings["viewReloadOptions"]["controller"](content, settings["viewReloadOptions"]["controllerSettings"]);
+						},
+						// api call parameters
+						settings["viewReloadOptions"]["modelSettings"]
+					);
 				});
 			};
 		});

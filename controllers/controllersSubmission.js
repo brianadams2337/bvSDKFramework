@@ -1116,15 +1116,23 @@ function loadPhotoFileUploadInput (content, options) {
 				$($($template)).find(urlInput).andSelf().filter(urlInput).attr({
 					"value":urlPhotoNormal
 				});
-				// hide file upload input
-				$($template).find(defaultPhotoUploadInputContainer).andSelf().filter(defaultPhotoUploadInputContainer).hide();
 				// find next hidden upload input and show if available
 				$($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).children(":hidden:first").each(function() {
 					// move element to last position and show
 					$(this).detach().prependTo($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).show();
 				})
 	        	// show uploaded image preview container
-	        	$($($template)).find(defaultPhotoUploadPreviewContainer).andSelf().filter(defaultPhotoUploadPreviewContainer).show();
+	        	$($($template).removeClass("_BVContentLoadingContainer")).find(defaultPhotoUploadPreviewContainer).andSelf().filter(defaultPhotoUploadPreviewContainer).show();
+	        },
+			error: function(e) {
+				console.log("there was an error. please try again.")
+	        	// show uploaded image preview container
+	        	$($($template).removeClass("_BVContentLoadingContainer")).find(defaultPhotoUploadInputContainer).andSelf().filter(defaultPhotoUploadInputContainer).show();
+				defaultAjaxErrorFunction(e);
+			},
+			beforeSend: function() {
+				// hide file upload input
+				$($template).addClass("_BVContentLoadingContainer").find(defaultPhotoUploadInputContainer).andSelf().filter(defaultPhotoUploadInputContainer).hide();
 	        }
 	    });
 	}, {

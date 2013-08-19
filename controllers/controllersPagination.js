@@ -187,22 +187,22 @@ function loadPaginationButton (content, options) {
 		$($template).click(function(){
 			// container info to refresh
 			var refreshContainer = $(settings["viewReloadOptions"]["controllerSettings"]["parentContainer"]).find(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]).andSelf().filter(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]);
-			loadingContainerAnimation(refreshContainer, function() {
-				// make new api call
-				settings["viewReloadOptions"]["model"] (
-					// product id
-					settings["productId"],
-					// controller callback
-					function(content, modelLocalDefaultSettings) {
-						// update model settings to represent new data (needed for selcted/disabled states for filters, sorting, and pagination)
-						settings["viewReloadOptions"]["controllerSettings"]["modelLocalDefaultSettings"]["Parameters"] = modelLocalDefaultSettings;
-						// callback function
-						settings["viewReloadOptions"]["controller"](content, settings["viewReloadOptions"]["controllerSettings"]);
-					},
-					// api call parameters
-					settings["viewReloadOptions"]["modelSettings"]
-				);
-			});
+			// make new api call
+			settings["viewReloadOptions"]["model"] (
+				// product id
+				settings["productId"],
+				// container to load
+				refreshContainer,
+				// controller callback
+				function(content, modelLocalDefaultSettings) {
+					// update model settings to represent new data (needed for selcted/disabled states for filters, sorting, and pagination)
+					settings["viewReloadOptions"]["controllerSettings"]["modelLocalDefaultSettings"]["Parameters"] = modelLocalDefaultSettings;
+					// callback function
+					settings["viewReloadOptions"]["controller"](content, settings["viewReloadOptions"]["controllerSettings"]);
+				},
+				// api call parameters
+				settings["viewReloadOptions"]["modelSettings"]
+			);
 		});
 	}
 }

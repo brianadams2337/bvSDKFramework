@@ -74,14 +74,12 @@ $(document).ready(function() {
 				case "review": 
 					console.log("review");
 					// load review submission container
-					loadingContainerAnimation(defaultSubmissionContainer, function() {
-						getReviewsSubmissionForm(urlParameters["productId"], function(content) {
-							console.log(parseUAS(bvUserDefaults['bvUAS']));
-							loadReviewSubmissionWidget(content, {
-								"parentContainer":defaultSubmissionContainer,
-								"productId":urlParameters["productId"],
-								"returnURL":urlParameters["returnURL"]
-							});
+					getReviewsSubmissionForm(urlParameters["productId"], defaultSubmissionContainer, function(content) {
+						console.log(parseUAS(bvUserDefaults['bvUAS']));
+						loadReviewSubmissionWidget(content, {
+							"parentContainer":defaultSubmissionContainer,
+							"productId":urlParameters["productId"],
+							"returnURL":urlParameters["returnURL"]
 						});
 					});
 
@@ -90,15 +88,13 @@ $(document).ready(function() {
 				case "review_comment": 
 					console.log("review comment");
 					// load review submission container
-					loadingContainerAnimation(defaultSubmissionContainer, function() {
-						getReviewCommentsSubmissionForm(urlParameters["reviewId"], function(content) {
-							console.log(urlParameters["reviewId"]);
-							loadReviewCommentSubmissionWidget(content, {
-								"parentContainer":defaultSubmissionContainer,
-								"productId":urlParameters["productId"],
-								"contentId":urlParameters["reviewId"],
-								"returnURL":urlParameters["returnURL"]
-							});
+					getReviewCommentsSubmissionForm(urlParameters["reviewId"], defaultSubmissionContainer, function(content) {
+						console.log(urlParameters["reviewId"]);
+						loadReviewCommentSubmissionWidget(content, {
+							"parentContainer":defaultSubmissionContainer,
+							"productId":urlParameters["productId"],
+							"contentId":urlParameters["reviewId"],
+							"returnURL":urlParameters["returnURL"]
 						});
 					});
 

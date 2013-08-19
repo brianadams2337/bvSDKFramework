@@ -255,17 +255,15 @@ function loadReviewSubmissionForm (content, options) {
 		});
 		// POST form to server
 		$(defaultSubmissionFormContainer).hide();
-		loadingContainerAnimation(defaultSubmissionThankYouContainer, function() {
-			postReviewsSubmissionForm(productId, function (content) {
-					console.log("submitted");
-					loadReviewSubmissionThankYouWidget (content, {
-						"parentContainer":settings["parentContainer"],
-						"productId":productId,
-						"returnURL":returnURL,
-					});
-				}, {
-				"Parameters": params
-			});
+		postReviewsSubmissionForm(productId, defaultSubmissionThankYouContainer, function (content) {
+				console.log("submitted");
+				loadReviewSubmissionThankYouWidget (content, {
+					"parentContainer":settings["parentContainer"],
+					"productId":productId,
+					"returnURL":returnURL,
+				});
+			}, {
+			"Parameters": params
 		});
 	});
 
@@ -281,18 +279,16 @@ function loadReviewSubmissionForm (content, options) {
 		});
 		// POST form to server
 		$(defaultSubmissionFormContainer).hide();
-		loadingContainerAnimation(defaultSubmissionPreviewContainer, function() {
-			postReviewsSubmissionForm(productId, function (content) {
-					console.log("preview");
-					content["Review"]["RatingRange"] = 5; //default to 5 since API doesn't include this for preview
-					loadReviewSubmissionPreviewWidget (content, {
-						"parentContainer":settings["parentContainer"],
-						"productId":productId,
-						"returnURL":returnURL,
-					});
-				}, {
-				"Parameters": params
-			});
+		postReviewsSubmissionForm(productId, defaultSubmissionPreviewContainer, function (content) {
+				console.log("preview");
+				content["Review"]["RatingRange"] = 5; //default to 5 since API doesn't include this for preview
+				loadReviewSubmissionPreviewWidget (content, {
+					"parentContainer":settings["parentContainer"],
+					"productId":productId,
+					"returnURL":returnURL,
+				});
+			}, {
+			"Parameters": params
 		});
 	});
 

@@ -11,7 +11,7 @@ function loadReviewWidget (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var reviewsStatisticsToLoad = content["Includes"]["Products"][settings["productId"]]['ReviewStatistics']; // review stats
 	var reviewsToLoad = content["Results"]; // reviews
@@ -69,7 +69,7 @@ function loadReviewWidget (content, options) {
 	// 	"viewReloadOptions":{
 	// 		"model":getAllReviews,
 	// 		"modelSettings":settings["modelLocalDefaultSettings"],
-	// 		"controller":loadReviews,
+	// 		"controller":loadReviewWidget,
 	// 		"controllerSettings":settings
 	// 	}
 	// });
@@ -78,19 +78,19 @@ function loadReviewWidget (content, options) {
 	// 	"viewReloadOptions":{
 	// 		"model":getAllReviews,
 	// 		"modelSettings":settings["modelLocalDefaultSettings"],
-	// 		"controller":loadReviews,
+	// 		"controller":loadReviewWidget,
 	// 		"controllerSettings":settings
 	// 	}
 	// });
-	// loadFiltersTags (content["Includes"]["Products"][settings["productId"]]['ReviewStatistics'], {
-	// 	"parentContainer":$template,
-	// 	"viewReloadOptions":{
-	// 		"model":getAllReviews,
-	// 		"modelSettings":settings["modelLocalDefaultSettings"],
-	// 		"controller":loadReviews,
-	// 		"controllerSettings":settings
-	// 	}
-	// });
+	loadFiltersTags (content["Includes"]["Products"][settings["productId"]]['ReviewStatistics'], {
+		"parentContainer":$template,
+		"viewReloadOptions":{
+			"model":getAllReviews,
+			"modelSettings":settings["modelLocalDefaultSettings"],
+			"controller":loadReviewWidget,
+			"controllerSettings":settings
+		}
+	});
 	// set classes
 	addOddEvenClasses (defaultReviewContainer);
 	addFirstLastClasses (defaultReviewContainer);
@@ -107,7 +107,7 @@ function loadIndividualReview (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var contentId = content["Id"]
 	var newID = "BVReviewContainer" + contentId;
@@ -188,7 +188,7 @@ function loadIndividualReview (content, options) {
 
 	// load comments if available
 	if (content["TotalCommentCount"] != undefined) {
-		getAllReviewComments (contentId, function(content, modelLocalDefaultSettings) {
+		getAllReviewComments (contentId, defaultReviewCommentsWidgetContainer, function(content, modelLocalDefaultSettings) {
 			loadReviewCommentsWidget (content, {
 				"parentContainer":$template,
 				"productId":settings["productId"],
@@ -205,10 +205,6 @@ function loadIndividualReview (content, options) {
 			}
 		});
 	}
-	// // add site base url to create absolute paths for images
-	// $($template).find("img").andSelf().filter("img").each(function() {
-	// 	$(this).attr("src", pathResource($(this).attr("src")));
-	// });
 }
 
 /* DEFAULT QUICKTAKE FUNCTION */
@@ -222,7 +218,7 @@ function loadQuickTake (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// add quick take template
 	$container.append($template);
 			
@@ -275,7 +271,7 @@ function loadReviewRecommendedAverage (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var recommendedYesCount = content['RecommendedCount'];
 	var recommendedNoCount = content['NotRecommendedCount'];
@@ -366,7 +362,7 @@ function loadReviewTitle (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var reviewTitleValue = content['Title'];
 	// add title template
@@ -383,7 +379,7 @@ function loadReviewBody (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var bodyTextValue = content['ReviewText'];
 	// add body template
@@ -400,7 +396,7 @@ function loadReviewDate (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// format date
 	var dateTextValue = $.format.date(content['SubmissionTime'], "MMMM dd, yyyy");
 	// add date template
@@ -418,7 +414,7 @@ function loadReviewRecommended (content, options) {
 	if (content['IsRecommended']) {
 		// set container & template
 		var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-		var $template = $.parseHTML($(settings["viewContainer"]).html());
+		var $template = returnTemplate(settings["viewContainer"]);
 		// set variables
 		var isRecommendedValue = "I would recommend this to a friend!";
 		var isNotRecommendedValue = "No, I do not recommend this product.";
@@ -448,7 +444,7 @@ function loadReviewTagGroups (content, options) {
 		$.each(settings["loadOrder"], function(index) {
 			// set container & template
 			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-			var $template = $.parseHTML($(settings["viewContainer"]).html());
+			var $template = returnTemplate(settings["viewContainer"]);
 			// current iteration of loop
 			var cur = settings["loadOrder"][index];
 			// set variables
@@ -462,10 +458,18 @@ function loadReviewTagGroups (content, options) {
 			// set tag label (title)
 			$($template).find(defaultReviewTagLabelTextContainer).andSelf().filter(defaultReviewTagLabelTextContainer).html(labelText);
 			// load tags
-			$.each(valuesArray, function() {
-				loadReviewTagIndividual (this, {
-					"parentContainer":$template,
-				});
+			$.each(valuesArray, function(index) {
+				if ((index + 1) == valuesArray.length) {
+					loadReviewTagIndividual (this, {
+						"parentContainer":$template,
+						"viewContainer":"#bvtemplate-tag-individual-last-universal",
+					});
+				} else {
+					loadReviewTagIndividual (this, {
+						"parentContainer":$template,
+					});
+
+				}
 			});
 		});
 	}
@@ -480,7 +484,7 @@ function loadReviewTagIndividual (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var tagText = content;
 	// add tag template
@@ -499,7 +503,7 @@ function loadReviewUserNickname (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var userNicknameText = content['UserNickname'];
 	// add nickname template
@@ -516,7 +520,7 @@ function loadReviewUserLocation (content, options) {
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-	var $template = $.parseHTML($(settings["viewContainer"]).html());
+	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var userLocationText = content['UserLocation'];
 	// add location template
@@ -538,7 +542,7 @@ function loadReviewContextDataValuesGroup (content, options) {
 		$.each(settings["loadOrder"], function(index) {
 			// set container & template
 			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-			var $template = $.parseHTML($(settings["viewContainer"]).html());
+			var $template = returnTemplate(settings["viewContainer"]);
 			// current iteration of loop
 			var cur = settings["loadOrder"][index];
 			// set variables
@@ -574,7 +578,7 @@ function loadReviewAdditionalFieldsGroups (content, options) {
 		$.each(settings["loadOrder"], function(index) {
 			// set container & template
 			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-			var $template = $.parseHTML($(settings["viewContainer"]).html());
+			var $template = returnTemplate(settings["viewContainer"]);
 			// current iteration of loop
 			var cur = settings["loadOrder"][index];
 			// set variables
@@ -608,7 +612,7 @@ function loadReviewPhotosGroup (content, options) {
 		$.each(settings["loadOrder"], function(index) {
 			// set container & template
 			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-			var $template = $.parseHTML($(settings["viewContainer"]).html());
+			var $template = returnTemplate(settings["viewContainer"]);
 			// current iteration of loop
 			var cur = settings["loadOrder"][index];
 			// set variables
@@ -646,7 +650,7 @@ function loadReviewVideosGroup (content, options) {
 		$.each(settings["loadOrder"], function(index) {
 			// set container & template
 			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
-			var $template = $.parseHTML($(settings["viewContainer"]).html());
+			var $template = returnTemplate(settings["viewContainer"]);
 			// current iteration of loop
 			var cur = settings["loadOrder"][index];
 			// set text variables

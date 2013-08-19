@@ -50,7 +50,10 @@ function loadReviewCommentSubmissionForm (content, options) {
 		}
 	}, options);
 	// get a new id for the submission container using product id - this will be needed for reference on child elements
-	var newID = "BVSubmissionContainerID_" + settings["productId"];
+	var productId = settings["productId"];
+	var contentId = settings["contentId"];
+	var returnURL = settings["returnURL"];
+	var newID = "BVSubmissionContainerID_" + productId;
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
 	var $template = returnTemplate(settings["viewContainer"]);
@@ -137,18 +140,16 @@ function loadReviewCommentSubmissionForm (content, options) {
 		});
 		// POST form to server
 		$(defaultSubmissionFormContainer).hide();
-		loadingContainerAnimation(defaultSubmissionThankYouContainer, function() {
-			postReviewCommentsSubmissionForm(contentId, function (content) {
-					console.log("submitted");
-					loadReviewCommentSubmissionThankYouWidget (content, {
-						"parentContainer":settings["parentContainer"],
-						"productId":productId,
-						"contentId":contentId,
-						"returnURL":returnURL,
-					});
-				}, {
-				"Parameters": params
-			});
+		postReviewCommentsSubmissionForm(contentId, defaultSubmissionThankYouContainer, function (content) {
+				console.log("submitted");
+				loadReviewCommentSubmissionThankYouWidget (content, {
+					"parentContainer":settings["parentContainer"],
+					"productId":productId,
+					"contentId":contentId,
+					"returnURL":returnURL,
+				});
+			}, {
+			"Parameters": params
 		});
 	});
 
@@ -164,18 +165,16 @@ function loadReviewCommentSubmissionForm (content, options) {
 		});
 		// POST form to server
 		$(defaultSubmissionFormContainer).hide();
-		loadingContainerAnimation(defaultSubmissionPreviewContainer, function() {
-			postReviewCommentsSubmissionForm(settings["contentId"], function (content) {
-					console.log("preview");
-					loadReviewCommentSubmissionPreviewWidget (content, {
-						"parentContainer":settings["parentContainer"],
-						"productId":productId,
-						"contentId":contentId,
-						"returnURL":returnURL,
-					});
-				}, {
-				"Parameters": params
-			});
+		postReviewCommentsSubmissionForm(contentId, defaultSubmissionPreviewContainer, function (content) {
+				console.log("preview");
+				loadReviewCommentSubmissionPreviewWidget (content, {
+					"parentContainer":settings["parentContainer"],
+					"productId":productId,
+					"contentId":contentId,
+					"returnURL":returnURL,
+				});
+			}, {
+			"Parameters": params
 		});
 	});
 

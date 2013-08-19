@@ -43,17 +43,15 @@ function loadReviewSubmissionPreviewWidget (content, options) {
 		});
 		console.log(newID, params);
 		// POST form to server
-		loadingContainerAnimation($template, function() {
-			postReviewsSubmissionForm(productId, function (content) {
-					console.log("submitted");
-					loadReviewSubmissionThankYouWidget (content, {
-						"parentContainer":settings["parentContainer"],
-						"productId":productId,
-						"returnURL":returnURL,
-					});
-				}, {
-				"Parameters": params
-			});
+		postReviewsSubmissionForm(productId, $template, function (content) {
+				console.log("submitted");
+				loadReviewSubmissionThankYouWidget (content, {
+					"parentContainer":settings["parentContainer"],
+					"productId":productId,
+					"returnURL":returnURL,
+				});
+			}, {
+			"Parameters": params
 		});
 	});
 
@@ -66,7 +64,6 @@ function loadReviewSubmissionPreviewWidget (content, options) {
 		// show form and hide preview
 		$(defaultSubmissionFormContainer).show();
 		$($($template)).hide();
-
 	});
 
 	// cancel button

@@ -119,28 +119,28 @@ function loadSortDropdown (content, options) {
 			// check to make sure selected option has a sorting parameter and value
 			if (selected && selectedValue) {
 				// load new content based off of sorting selection and current settings
-				loadingContainerAnimation(refreshContainer, function() {
-					// update parameters for new api call
-					// reset and add selected sort
-					settings["viewReloadOptions"]["modelSettings"]["Parameters"]["sort"] = {};
-					settings["viewReloadOptions"]["modelSettings"]["Parameters"]["sort"][selected] = selectedValue;
-					// reset offset to start from the beginning - 
-					settings["viewReloadOptions"]["modelSettings"]["Parameters"]["offset"] = 0;
-					// make new api call
-					settings["viewReloadOptions"]["model"] (
-						// product id
-						settings["productId"],
-						// controller callback
-						function(content, modelLocalDefaultSettings) {
-							// update model settings to represent new data (needed for selcted/disabled states for filters, sorting, and pagination)
-							settings["viewReloadOptions"]["controllerSettings"]["modelLocalDefaultSettings"]["Parameters"] = modelLocalDefaultSettings;
-							// callback function
-							settings["viewReloadOptions"]["controller"](content, settings["viewReloadOptions"]["controllerSettings"]);
-						},
-						// api call parameters
-						settings["viewReloadOptions"]["modelSettings"]
-					);
-				});
+				// update parameters for new api call
+				// reset and add selected sort
+				settings["viewReloadOptions"]["modelSettings"]["Parameters"]["sort"] = {};
+				settings["viewReloadOptions"]["modelSettings"]["Parameters"]["sort"][selected] = selectedValue;
+				// reset offset to start from the beginning - 
+				settings["viewReloadOptions"]["modelSettings"]["Parameters"]["offset"] = 0;
+				// make new api call
+				settings["viewReloadOptions"]["model"] (
+					// product id
+					settings["productId"],
+					// container to load
+					refreshContainer,
+					// controller callback
+					function(content, modelLocalDefaultSettings) {
+						// update model settings to represent new data (needed for selcted/disabled states for filters, sorting, and pagination)
+						settings["viewReloadOptions"]["controllerSettings"]["modelLocalDefaultSettings"]["Parameters"] = modelLocalDefaultSettings;
+						// callback function
+						settings["viewReloadOptions"]["controller"](content, settings["viewReloadOptions"]["controllerSettings"]);
+					},
+					// api call parameters
+					settings["viewReloadOptions"]["modelSettings"]
+				);
 			}
 		});
 	};

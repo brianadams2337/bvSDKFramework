@@ -1,5 +1,5 @@
 // gets review comment submission form
-function getReviewCommentsSubmissionForm (reviewid, callBack, options) {
+function getReviewCommentsSubmissionForm (reviewid, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"reviewid":reviewid,
@@ -17,15 +17,19 @@ function getReviewCommentsSubmissionForm (reviewid, callBack, options) {
 		success: function(data) {
 			console.log(data);
 			callBack(data, settings);
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).addClass("_BVContentLoadingContainer");
 		}
 	});
 }
 
 // posts review comment submission form
-function postReviewCommentsSubmissionForm (reviewid, callBack, options) {
+function postReviewCommentsSubmissionForm (reviewid, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"reviewid":reviewid,
@@ -50,13 +54,18 @@ function postReviewCommentsSubmissionForm (reviewid, callBack, options) {
 					$('*[name="' + k + '"]').parent().parent().addClass('BVErrorText');
 					$('*[name="' + k + '"]').addClass('BVErrorBorder');
 					$(defaultFormErrorsContainer).append(v["Message"] + '<br/>');
+					$(defaultSubmissionFormContainer).show();
 				});
+			} else {
+				callBack(data, settings);
 			}
-
-			callBack(data, settings);
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).addClass("_BVContentLoadingContainer");
 		}
 	});
 }
