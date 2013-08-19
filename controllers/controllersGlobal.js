@@ -1,21 +1,6 @@
 /***** FILE PATHS *****/
 
 
-function pathView (view) {
-	var path = siteBaseURL + "views/" + view;
-	return path;
-}
-
-function pathModel (model) {
-	var path = siteBaseURL + "models/" + model;
-	return path;
-}
-
-function pathController (controller) {
-	var path = siteBaseURL + "controllers/" + controller;
-	return path;
-}
-
 function pathResource (relativeURI) {
 	var path = relativeURI.substr(0,4) == 'http' ? relativeURI : siteBaseURL + relativeURI;
 	return path;
@@ -103,21 +88,30 @@ function returnFormParamaters (form, options) {
 	var formData = $(form).serializeArray();
 	var params = options;
 	// add form data to params object
-	$.each(formData, function(key) {
-		params[this["name"]] = this["value"];
-	});
+	if (formData != undefined) {
+		$.each(formData, function(key) {
+			params[this["name"]] = this["value"];
+		});
+	}
 	// return updated parameters
 	return params;
 }
 
+function returnTemplate (template) {
+	var temp = $.parseHTML($(template).html());
+	$(temp).find("img[data-img-url]").andSelf().filter("img[data-img-url]").each(function() {
+		$(this).attr("src", pathResource($(this).attr("data-img-url")));
+	});
+	return temp;
+}
+
 function loadingContainerAnimation (container, callback) {
-	$(container).empty().hide().addClass("_BVContentLoadingContainer");
-	$.when(
-		callback()
-	).done(function() {
+	$(container).empty().addClass("_BVContentLoadingContainer");
+	callback()
+	$("#lfkjlasfjdlkfs").promise().done(function() {
 		console.log("done");
-		$(container).removeClass("_BVContentLoadingContainer").show();
-	})
+		$(container).removeClass("_BVContentLoadingContainer").show();		
+	});
 }
 
 
@@ -133,21 +127,13 @@ function loadPageHeader (content, options) {
 		"loadOrder":"",
 		"productId":""
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		success: function(container) {
-			var $container = $(container);
-			// set text
-			$container.find(defualtPageHeaderTextContainer).andSelf().filter(defualtPageHeaderTextContainer).text(content);
-			// add header template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
-	});
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// add header template
+	$container.append($template);
+	// set text
+	$($template).find(defualtPageHeaderTextContainer).andSelf().filter(defualtPageHeaderTextContainer).html(content);
 }
 
 // section headers
@@ -159,21 +145,13 @@ function loadSectionHeader (content, options) {
 		"loadOrder":"",
 		"productId":""
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		success: function(container) {
-			var $container = $(container);
-			// set text
-			$container.find(defualtSectionHeaderTextContainer).andSelf().filter(defualtSectionHeaderTextContainer).text(content);
-			// add header template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
-	});
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// add header template
+	$container.append($template);
+	// set text
+	$($template).find(defualtSectionHeaderTextContainer).andSelf().filter(defualtSectionHeaderTextContainer).html(content);
 }
 
 
@@ -183,148 +161,106 @@ function loadSectionHeader (content, options) {
 // submit button
 function loadSubmitButton (content, options) {
 	var settings = $.extend(true, {
-		"parentContainer":"",
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultButtonSubmitContainer,
 		"viewContainer":defaultButtonContainerView,
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// set attributes and text for button
-			$container.find("a").andSelf().filter("a").attr({
-				"id":"",
-				"title":"",
-				"onclick":"return false;",
-				"href":""
-			}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).text(content);
-			// add button template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
-	});
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// add button template
+	$container.append($template);
+	// set attributes and text for button
+	$($template).find("a").andSelf().filter("a").attr({
+		"id":"",
+		"title":"",
+		"onclick":"return false;",
+		"href":""
+	}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).html(content);
 }
 
 // preview button
 function loadPreviewButton (content, options) {
 	var settings = $.extend(true, {
-		"parentContainer":"",
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultButtonPreviewContainer,
 		"viewContainer":defaultButtonContainerView,
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// set attributes and text for button
-			$container.find("a").andSelf().filter("a").attr({
-				"id":"",
-				"title":"",
-				"onclick":"return false;",
-				"href":""
-			}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).text(content);
-			// add button template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
-	});
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// add button template
+	$container.append($template);
+	// set attributes and text for button
+	$($template).find("a").andSelf().filter("a").attr({
+		"id":"",
+		"title":"",
+		"onclick":"return false;",
+		"href":""
+	}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).html(content);
 }
 
 // edit button
 function loadEditButton (content, options) {
 	var settings = $.extend(true, {
-		"parentContainer":"",
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultButtonEditContainer,
 		"viewContainer":defaultButtonContainerView,
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			$container.find("a").andSelf().filter("a").attr({
-				"id":"",
-				"title":"",
-				"onclick":"return false;",
-				"href":""
-			}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).text(content);
-			// add button template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
-	});
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// add button template
+	$container.append($template);
+	// set attributes and text for button
+	$($template).find("a").andSelf().filter("a").attr({
+		"id":"",
+		"title":"",
+		"onclick":"return false;",
+		"href":""
+	}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).html(content);
 }
 
 // cancel button
 function loadCancelButton (content, options) {
 	var settings = $.extend(true, {
-		"parentContainer":"",
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultButtonCancelContainer,
 		"viewContainer":defaultButtonContainerView,
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			$container.find("a").andSelf().filter("a").attr({
-				"id":"",
-				"title":"",
-				"onclick":"return false;",
-				"href":""
-			}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).text(content);
-			// add button template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
-	});
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// add button template
+	$container.append($template);
+	// set attributes and text for button
+	$($template).find("a").andSelf().filter("a").attr({
+		"id":"",
+		"title":"",
+		"onclick":"return false;",
+		"href":""
+	}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).html(content);
 }
 
 // return button
 function loadReturnButton (content, options) {
 	var settings = $.extend(true, {
-		"parentContainer":"",
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultButtonReturnContainer,
 		"viewContainer":defaultButtonContainerView,
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			$container.find("a").andSelf().filter("a").attr({
-				"id":"",
-				"title":"",
-				"onclick":"return false;",
-				"href":""
-			}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).text(content);
-			// add button template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
-	});
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// add button template
+	$container.append($template);
+	// set attributes and text for button
+	$($template).find("a").andSelf().filter("a").attr({
+		"id":"",
+		"title":"",
+		"onclick":"return false;",
+		"href":""
+	}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).html(content);
 }
 
 // close button
@@ -334,27 +270,18 @@ function loadCloseButton (content, options) {
 		"targetContainer":defaultButtonCloseContainer,
 		"viewContainer":defaultButtonContainerView,
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// set attributes and text for button
-			$container.find("a").andSelf().filter("a").attr({
-				"id":"",
-				"title":"",
-				"onclick":"return false;",
-				"href":""
-			}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).text(content);
-			// add button template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
-	});
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// add button template
+	$container.append($template);
+	// set attributes and text for button
+	$($template).find("a").andSelf().filter("a").attr({
+		"id":"",
+		"title":"",
+		"onclick":"return false;",
+		"href":""
+	}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).html(content);
 }
 
 // write review button
@@ -364,40 +291,32 @@ function loadWriteReviewButton (content, options) {
 		"targetContainer":defaultButtonWriteReviewContainer,
 		"viewContainer":defaultButtonContainerView,
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// set attributes
-			$container.find(defaultButtonContainer).andSelf().filter(defaultButtonContainer).attr({
-				"id":"",
-				"title":"",
-				"onclick":"return false;",
-				"href":""
-			}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).text(content);
-			// write review button functionality
-			$container.find(defaultButtonContainer).andSelf().filter(defaultButtonContainer).click(function() {
-				console.log("click");
-				// set attributes and text for button
-				var returnURL = $(location).attr("href") + "";
-				var submissionParams = $.param({
-					"productId":settings["productId"],
-					"contentType":"review",
-					"returnURL":returnURL
-				});
-				console.log(submissionParams);
-				var url = siteBaseSubmissionURL + submissionParams;
-
-				loadSubmissionPage(url);
-			});
-			// add button template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var productId = settings["productId"]
+	var returnURL = $(location).attr("href") + "";
+	// add button template
+	$container.append($template);
+	// set attributes
+	$($template).find(defaultButtonContainer).andSelf().filter(defaultButtonContainer).attr({
+		"id":"",
+		"title":"",
+		"onclick":"return false;",
+		"href":""
+	}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).html(content);
+	// write review button functionality
+	$($template).find(defaultButtonContainer).andSelf().filter(defaultButtonContainer).click(function() {
+		// set attributes and text for button
+		var submissionParams = $.param({
+			"productId":productId,
+			"contentType":"review",
+			"returnURL":returnURL
+		});
+		console.log(submissionParams);
+		var url = siteBaseSubmissionURL + submissionParams;
+		// load submission container
+		loadSubmissionPage(url);
 	});
 }

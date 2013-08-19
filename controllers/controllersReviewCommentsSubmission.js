@@ -2,42 +2,35 @@
 
 function loadReviewCommentSubmissionWidget (content, options) {
 	var settings = $.extend(true, {
-		"parentContainer":"body",
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultSubmissionContainer,
 		"viewContainer":defaultSubmissionWidgetContainerView,
 		"loadOrder":"",
 		"productId":"",
 		"returnURL":"",
 	}, options);
-	console.log(content);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'get',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// add submission container
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container));
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var productId = settings["productId"];
+	var contentId = settings["contentId"];
+	var returnURL = settings["returnURL"];
+	// add submssion widget template
+	$container.append($template);
 
-			// load review submission form
-			loadReviewCommentSubmissionForm (content, {
-				"parentContainer":$container,
-				"productId":settings["productId"],
-				"contentId":settings["contentId"],
-				"returnURL":settings["returnURL"]
-			});
-			
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
+	// load review submission form
+	loadReviewCommentSubmissionForm (content, {
+		"parentContainer":$template,
+		"productId":productId,
+		"contentId":contentId,
+		"returnURL":returnURL
 	});
 }
 
 function loadReviewCommentSubmissionForm (content, options) {
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultSubmissionFormContainer,
 		"viewContainer":defaultSubmissionFormReviewCommentContainerView,
 		"loadOrder":"",
@@ -56,153 +49,143 @@ function loadReviewCommentSubmissionForm (content, options) {
 			"inputOptionsArray":content["Options"]
 		}
 	}, options);
-	console.log(content);
 	// get a new id for the submission container using product id - this will be needed for reference on child elements
-	var newID = "BVSubmissionContainerID_" + settings["productId"];
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'get',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// add submission container
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container).attr("id", newID));
-			// set form attributes (just fallbacks, not needed since we are using ajax submission)
-			$container.find("form").andSelf().filter("form").attr({
-				"id":newID,
-				"name":newID,
-				//"action":"formprocess.php?productId=" + settings["productId"],
-				"method":"POST",
-				"enctype":"application/x-www-form-urlencoded",
-				"autocomplete":"on",
-				"accept-charset":"UTF-8",
-				"target":""
-			});
-			
-			/***** headers *****/
+	var productId = settings["productId"];
+	var contentId = settings["contentId"];
+	var returnURL = settings["returnURL"];
+	var newID = "BVSubmissionContainerID_" + productId;
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// add form template
+	$container.append($template);
+	// set form attributes (just fallbacks, not needed since we are using ajax submission)
+	$($template).find("form").andSelf().filter("form").attr({
+		"id":newID,
+		"name":newID,
+		"action":"",
+		"method":"POST",
+		"enctype":"application/x-www-form-urlencoded",
+		"autocomplete":"on",
+		"accept-charset":"UTF-8",
+		"target":""
+	});
+	
+	/***** headers *****/
 
-			loadPageHeader ("Write Your Comment", {
-				"parentContainer":$container,
-				"targetContainer":defualtPageHeaderContainer
-			});
-			loadSectionHeader ("Your Comment", {
-				"parentContainer":$container,
-				"targetContainer":defaultFormSectionHeaderReviewCommentContainer
-			});
-			loadSectionHeader ("User Info", {
-				"parentContainer":$container,
-				"targetContainer":defaultFormSectionHeaderUserContainer
-			});
-			
-			/***** inputs *****/
+	loadPageHeader ("Write Your Comment", {
+		"parentContainer":$template,
+		"targetContainer":defualtPageHeaderContainer
+	});
+	loadSectionHeader ("Your Comment", {
+		"parentContainer":$template,
+		"targetContainer":defaultFormSectionHeaderReviewCommentContainer
+	});
+	loadSectionHeader ("User Info", {
+		"parentContainer":$template,
+		"targetContainer":defaultFormSectionHeaderUserContainer
+	});
+	
+	/***** inputs *****/
 
-			// comment text
-			loadReviewCommentTextInput (content, {
-				"parentContainer":$container,
-				"inputSettings":{
-					"inputLabel":"Comment Text",
-				}
-			});
-			// nickname
-			loadUserNicknameInput (content, {
-				"parentContainer":$container,
-				"inputSettings":{
-					"inputLabel":"User Nickname",
-				}
-			});
-
-			// device fingerprint
-			console.log("devicefingerprint");
-			// product id
-			console.log("productid");
-			// submission id
-			console.log("submissionid");
-			// auth source type
-			console.log("authsourcetype");
-			// is ratings only
-			console.log("isratingsonly");
-			// net promoter score
-			console.log("netpromoterscore");
-			// net promoter comment
-			console.log("netpromotercomment");
-			// photo upload
-			console.log("photoupload");
-			// video upload
-			console.log("videoupload");
-			// product recommendations
-			console.log("productrecommendations");
-			// user location geocode
-			console.log("userlocationgeocode");
-			// hosted authentication
-			console.log("hostedauthentication");
-
-			// submit button
-			loadSubmitButton ("Submit", {
-				"parentContainer":$container
-			});
-			// submit button functionality
-			$container.find(defaultButtonSubmitContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonSubmitContainer + " " + defaultButtonContainer).click(function() {
-				// get form parameters
-				var params = returnFormParamaters("#" + newID, {
-					"action":"submit"
-				});
-				// POST form to server
-				$(defaultSubmissionFormContainer).hide();
-				loadingContainerAnimation(defaultSubmissionThankYouContainer, function() {
-					postReviewCommentsSubmissionForm(settings["contentId"], function (content) {
-							console.log("submitted");
-							loadReviewCommentSubmissionThankYouWidget (content, {
-								"productId":settings["productId"],
-								"contentId":settings["contentId"],
-								"returnURL":settings["returnURL"],
-							});
-						}, {
-						"Parameters": params
-					});
-				});
-			});
-
-			// preview button
-			loadPreviewButton ("Preview", {
-				"parentContainer":$container
-			});
-			// preview button functionality
-			$container.find(defaultButtonPreviewContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonPreviewContainer + " " + defaultButtonContainer).click(function() {
-				// get form parameters
-				var params = returnFormParamaters("#" + newID, {
-					"action":"preview",
-				});
-				// POST form to server
-				$(defaultSubmissionFormContainer).hide();
-				loadingContainerAnimation(defaultSubmissionPreviewContainer, function() {
-					postReviewCommentsSubmissionForm(settings["contentId"], function (content) {
-							console.log("preview");
-							loadReviewCommentSubmissionPreviewWidget (content, {
-								"productId":settings["productId"],
-								"contentId":settings["contentId"],
-								"returnURL":settings["returnURL"],
-							});
-						}, {
-						"Parameters": params
-					});
-				});
-			});
-
-			// cancel button
-			loadCancelButton ("Cancel", {
-				"parentContainer":$container
-			});
-			// cancel button functionality
-			$container.find(defaultButtonCancelContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonCancelContainer + " " + defaultButtonContainer).click(function() {
-				// load return page
-				returnToPage(settings["returnURL"]);
-			});
-
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
+	// comment text
+	loadReviewCommentTextInput (content, {
+		"parentContainer":$template,
+		"inputSettings":{
+			"inputLabel":"Comment Text",
 		}
+	});
+	// nickname
+	loadUserNicknameInput (content, {
+		"parentContainer":$template,
+		"inputSettings":{
+			"inputLabel":"User Nickname",
+		}
+	});
+
+	// device fingerprint
+	console.log("devicefingerprint");
+	// product id
+	console.log("productid");
+	// submission id
+	console.log("submissionid");
+	// auth source type
+	console.log("authsourcetype");
+	// is ratings only
+	console.log("isratingsonly");
+	// net promoter score
+	console.log("netpromoterscore");
+	// net promoter comment
+	console.log("netpromotercomment");
+	// photo upload
+	console.log("photoupload");
+	// video upload
+	console.log("videoupload");
+	// product recommendations
+	console.log("productrecommendations");
+	// user location geocode
+	console.log("userlocationgeocode");
+	// hosted authentication
+	console.log("hostedauthentication");
+
+	// submit button
+	loadSubmitButton ("Submit", {
+		"parentContainer":$template
+	});
+	// submit button functionality
+	$($template).find(defaultButtonSubmitContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonSubmitContainer + " " + defaultButtonContainer).click(function() {
+		// get form parameters
+		var params = returnFormParamaters("#" + newID, {
+			"action":"submit"
+		});
+		// POST form to server
+		$(defaultSubmissionFormContainer).hide();
+		postReviewCommentsSubmissionForm(contentId, defaultSubmissionThankYouContainer, function (content) {
+				console.log("submitted");
+				loadReviewCommentSubmissionThankYouWidget (content, {
+					"parentContainer":settings["parentContainer"],
+					"productId":productId,
+					"contentId":contentId,
+					"returnURL":returnURL,
+				});
+			}, {
+			"Parameters": params
+		});
+	});
+
+	// preview button
+	loadPreviewButton ("Preview", {
+		"parentContainer":$template
+	});
+	// preview button functionality
+	$($template).find(defaultButtonPreviewContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonPreviewContainer + " " + defaultButtonContainer).click(function() {
+		// get form parameters
+		var params = returnFormParamaters("#" + newID, {
+			"action":"preview",
+		});
+		// POST form to server
+		$(defaultSubmissionFormContainer).hide();
+		postReviewCommentsSubmissionForm(contentId, defaultSubmissionPreviewContainer, function (content) {
+				console.log("preview");
+				loadReviewCommentSubmissionPreviewWidget (content, {
+					"parentContainer":settings["parentContainer"],
+					"productId":productId,
+					"contentId":contentId,
+					"returnURL":returnURL,
+				});
+			}, {
+			"Parameters": params
+		});
+	});
+
+	// cancel button
+	loadCancelButton ("Cancel", {
+		"parentContainer":$template
+	});
+	// cancel button functionality
+	$($template).find(defaultButtonCancelContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonCancelContainer + " " + defaultButtonContainer).click(function() {
+		// load return page
+		returnToPage(returnURL);
 	});
 }
 
@@ -210,7 +193,7 @@ function loadReviewCommentSubmissionForm (content, options) {
 function loadReviewCommentTitleInput (content, options) {
 	var content = content["Data"]["Fields"]["title"];
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultReviewTitleInputContainer,
 		"viewContainer":defaultInputContainerView,
 		"loadOrder":"",
@@ -229,30 +212,26 @@ function loadReviewCommentTitleInput (content, options) {
 			"inputOptionsArray":content["Options"]
 		}
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		success: function(container) {
-			var $container = $(container);
-			// set label
-			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(settings["inputSettings"]["inputLabel"]).attr({
-				"for":settings["inputSettings"]["inputName"]
-			});
-			// set helper text
-			$container.find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(settings["inputSettings"]["inputHelperText"]);
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-			// load input
-			loadTextFieldInput (content, {
-				"parentContainer":$container,
-				"targetContainer":defaultFormInputWrapperContainer,
-				"inputSettings":settings["inputSettings"]
-			});
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var inputName = settings["inputSettings"]["inputName"];
+	var inputLabel = settings["inputSettings"]["inputLabel"];
+	var inputHelperText = settings["inputSettings"]["inputHelperText"];
+	// add input template
+	$container.append($template);
+	// set label
+	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel).attr({
+		"for":inputName
+	});
+	// set helper text
+	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).html(inputHelperText);
+	// load input
+	loadTextFieldInput (content, {
+		"parentContainer":$template,
+		"targetContainer":defaultFormInputWrapperContainer,
+		"inputSettings":settings["inputSettings"]
 	});
 }
 
@@ -260,7 +239,7 @@ function loadReviewCommentTitleInput (content, options) {
 function loadReviewCommentTextInput (content, options) {
 	var content = content["Data"]["Fields"]["commenttext"];
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultReviewTextInputContainer,
 		"viewContainer":defaultInputContainerView,
 		"loadOrder":"",
@@ -279,31 +258,26 @@ function loadReviewCommentTextInput (content, options) {
 			"inputOptionsArray":content["Options"]
 		}
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// set label
-			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(settings["inputSettings"]["inputLabel"]).attr({
-				"for":settings["inputSettings"]["inputName"]
-			});
-			// set helper text
-			$container.find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(settings["inputSettings"]["inputHelperText"]);
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-			// load input
-			loadTextAreaInput (content, {
-				"parentContainer":$container,
-				"inputSettings":settings["inputSettings"]
-			});
-
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
+	console.log("test");
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var inputName = settings["inputSettings"]["inputName"];
+	var inputLabel = settings["inputSettings"]["inputLabel"];
+	var inputHelperText = settings["inputSettings"]["inputHelperText"];
+	// add input template
+	$container.append($template);
+	// set label
+	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel).attr({
+		"for":inputName
+	});
+	// set helper text
+	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).html(inputHelperText);
+	// load input
+	loadTextAreaInput (content, {
+		"parentContainer":$template,
+		"inputSettings":settings["inputSettings"]
 	});
 }
 

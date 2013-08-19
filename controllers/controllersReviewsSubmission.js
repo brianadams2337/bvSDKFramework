@@ -2,328 +2,309 @@
 
 function loadReviewSubmissionWidget (content, options) {
 	var settings = $.extend(true, {
-		"parentContainer":"body",
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultSubmissionContainer,
 		"viewContainer":defaultSubmissionWidgetContainerView,
 		"loadOrder":"",
 		"productId":"",
 		"returnURL":"",
 	}, options);
-	console.log(content);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'get',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// add submission container
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container));
-
-			// load review submission form
-			loadReviewSubmissionForm (content, {
-				"parentContainer":$container,
-				"productId":settings["productId"],
-				"returnURL":settings["returnURL"],
-			});
-			
-			loadEventListeners("Listener", {
-				"textFieldCounter": {
-					"textField": ".BVFormInputTextarea",
-				}
-			});
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var productId = settings["productId"];
+	var returnURL = settings["returnURL"];
+	// add submission widget template
+	$container.append($template);
+	// load review submission form
+	loadReviewSubmissionForm (content, {
+		"parentContainer":$template,
+		"productId":productId,
+		"returnURL":returnURL,
+	});
+	// laod event listeners
+	loadEventListeners("Listener", {
+		"textFieldCounter": {
+			"textField": ".BVFormInputTextarea",
 		}
 	});
 }
 
 function loadReviewSubmissionForm (content, options) {
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultSubmissionFormContainer,
 		"viewContainer":defaultSubmissionFormContainerView,
 		"loadOrder":"",
 		"productId":"",
 		"returnURL":"",
 	}, options);
-	console.log(content);
-	// get a new id for the submission container using product id - this will be needed for reference on form processing
+	// set variables
 	var newID = "BVSubmissionContainerID_" + settings["productId"];
-	$.when(
-		$.ajax({
-			url: settings["viewContainer"],
-			type: 'get',
-			dataType: 'html',
-			async: false,
-			success: function(container) {
-				var $container = $(container);
-				// add submission container
-				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($($container).attr("id", newID));
-				// set form attributes (just fallbacks, not needed since we are using ajax submission)
-				$container.find("form").andSelf().filter("form").attr({
-					"id":newID,
-					"name":newID,
-					"action":"",
-					"method":"POST",
-					"enctype":"application/x-www-form-urlencoded",
-					"autocomplete":"on",
-					"accept-charset":"UTF-8",
-					"target":""
-				});
-				
-				/***** headers *****/
+	var productId = settings["productId"];
+	var returnURL = settings["returnURL"];
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// add form template
+	$container.append($template);
 
-				loadPageHeader ("Write Your Review", {
-					"parentContainer":$container,
-					"targetContainer":defualtPageHeaderContainer
-				});
-				loadSectionHeader ("Your Rating", {
-					"parentContainer":$container,
-					"targetContainer":defaultFormSectionHeaderRatingsContainer
-				});
-				loadSectionHeader ("Your Review", {
-					"parentContainer":$container,
-					"targetContainer":defaultFormSectionHeaderReviewContainer
-				});
-				loadSectionHeader ("Media Upload", {
-					"parentContainer":$container,
-					"targetContainer":defaultFormSectionHeaderMediaContainer
-				});
-				loadSectionHeader ("User Info", {
-					"parentContainer":$container,
-					"targetContainer":defaultFormSectionHeaderUserContainer
-				});
-				
-				/***** product info *****/
+	// set form attributes (just fallbacks, not needed since we are using ajax submission)
+	$($template).find("form").andSelf().filter("form").attr({
+		"id":newID,
+		"name":newID,
+		"action":"",
+		"method":"POST",
+		"enctype":"application/x-www-form-urlencoded",
+		"autocomplete":"on",
+		"accept-charset":"UTF-8",
+		"target":""
+	});
+	
+	/***** headers *****/
 
-				getSpecificProduct (settings["productId"], function(data) {
-					loadProductInfoWidget (data, {
-						"parentContainer":$container
-					});					
-				}, {
+	loadPageHeader ("Write Your Review", {
+		"parentContainer":$template,
+		"targetContainer":defualtPageHeaderContainer
+	});
+	loadSectionHeader ("Your Rating", {
+		"parentContainer":$template,
+		"targetContainer":defaultFormSectionHeaderRatingsContainer
+	});
+	loadSectionHeader ("Your Review", {
+		"parentContainer":$template,
+		"targetContainer":defaultFormSectionHeaderReviewContainer
+	});
+	loadSectionHeader ("Media Upload", {
+		"parentContainer":$template,
+		"targetContainer":defaultFormSectionHeaderMediaContainer
+	});
+	loadSectionHeader ("User Info", {
+		"parentContainer":$template,
+		"targetContainer":defaultFormSectionHeaderUserContainer
+	});
+	
+	/***** product info *****/
 
-				});
+	getSpecificProduct (productId, function(data) {
+		loadProductInfoWidget (data, {
+			"parentContainer":$template
+		});					
+	}, {
 
-				/***** inputs *****/
+	});
 
-				// overall rating
-				loadOverallRatingInput (content, {
-					"parentContainer":$container,
-					"inputSettings":{
-						"inputLabel":"Overall Rating"
-					}
-				});
-				// is recommended
-				loadIsRecommendedInput (content, {
-					"parentContainer":$container,
-					"inputSettings":{
-						"inputLabel":"Would you recommend this product?"
-					}
-				});
-				// review title
-				loadReviewTitleInput (content, {
-					"parentContainer":$container,
-					"inputSettings":{
-						"inputLabel":"Review Title"
-					}
-				});
-				// review text
-				loadReviewTextInput (content, {
-					"parentContainer":$container,
-					"viewContainer":defaultInputTextAreaWithCharacterCounterContainerView,
-					"inputSettings":{
-						"inputLabel":"Review Text",
-					}
-				});
-				// nickname
-				if (content["Data"]["Fields"]["usernickname"]) {
-					loadUserNicknameInput (content, {
-						"parentContainer":$container,
-						"inputSettings":{
-							"inputLabel":"User Nickname",
-						}
-					});
-				}
-				// email
-				if (content["Data"]["Fields"]["useremail"]) {
-					loadUserEmailInput (content, {
-						"parentContainer":$container,
-						"inputSettings":{
-							"inputLabel":"User Email",
-						}
-					});
-				}
-				/*
-				// user id
-				loadUserIDInput (content, {
-					"parentContainer":$container,
-					"inputSettings":{
-						"inputLabel":"User Id",
-						"inputName":"userid"
-					}
-				});
-				*/
+	/***** inputs *****/
 
-				// location
-				loadUserLocationInput (content, {
-					"parentContainer":$container,
-					"inputSettings":{
-						"inputLabel":"User Location",
-					}
-				});
-				// device fingerprint
-				console.log("devicefingerprint");
-				// product id
-				console.log("productid");
-				// submission id
-				console.log("submissionid");
-				// auth source type
-				console.log("authsourcetype");
-				// is ratings only
-				console.log("isratingsonly");
-				// net promoter score
-				console.log("netpromoterscore");
-				// net promoter comment
-				console.log("netpromotercomment");
-
-				// context data values
-				loadContextDataValueGroupInput (content, {
-					"parentContainer":$container
-				});
-				// additional fields
-				loadAdditionalFieldGroupInput (content, {
-					"parentContainer":$container
-				});
-				// secondary ratings
-				loadSecondaryRatingGroup (content, {
-					"parentContainer":$container
-				});
-
-				// photo upload
-				loadPhotoGroupInput (content, {
-					"parentContainer":$container,
-					"inputSettings":{
-						"inputLabel":"Upload your photos"
-					},
-					"mediaSettings":{
-						"contentType":"review"
-					}
-				});
-				// video link
-				loadYoutubeUrlInput (content, {
-					"parentContainer":$container,
-					"inputSettings":{
-						"inputLabel":"Youtube Link"
-					}
-				});
-				// video caption
-				loadVideoCaptionInput (content, {
-					"parentContainer":$container,
-					"inputSettings":{
-						"inputLabel":"Video Caption"
-					}
-				});
-
-				// product recommendations
-				console.log("productrecommendations");
-				// tags
-				loadTagGroupInput (content, {
-					"parentContainer":$container
-				});
-				// user location geocode
-				console.log("userlocationgeocode");
-				// hosted authentication
-				console.log("hostedauthentication");
-
-				// opt in checkboxes
-				if (content["Data"]["Fields"]["agreedtotermsandconditions"]) {
-					loadTermsAndConditionsInput (content, {
-						"parentContainer":$container
-					});
-				}
-				if (content["Data"]["Fields"]["sendemailalertwhencommented"]) {
-					loadSendEmailAlertWhenCommentedInput (content, {
-						"parentContainer":$container
-					});				};
-				if (content["Data"]["Fields"]["sendemailalertwhenpublished"]) {
-					loadSendEmailAlertWhenPublishedInput (content, {
-						"parentContainer":$container
-					});
-				};
-
-				// buttons
-				// submit button
-				loadSubmitButton ("Submit", {
-					"parentContainer":$container
-				});
-				// submit button functionality
-				$container.find(defaultButtonSubmitContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonSubmitContainer + " " + defaultButtonContainer).click(function() {
-					// get form parameters
-					var params = returnFormParamaters("#" + newID, {
-						"action":"submit"
-					});
-					// POST form to server
-					$(defaultSubmissionFormContainer).hide();
-					loadingContainerAnimation(defaultSubmissionThankYouContainer, function() {
-						postReviewsSubmissionForm(settings["productId"], function (content) {
-								console.log("submitted");
-								loadReviewSubmissionThankYouWidget (content, {
-									"productId":settings["productId"],
-									"returnURL":settings["returnURL"],
-								});
-							}, {
-							"Parameters": params
-						});
-					});
-				});
-
-				// preview button
-				loadPreviewButton ("Preview", {
-					"parentContainer":$container
-				});
-				// preview button functionality
-				$container.find(defaultButtonPreviewContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonPreviewContainer + " " + defaultButtonContainer).click(function() {
-					// get form parameters
-					var params = returnFormParamaters("#" + newID, {
-						"action":"preview"
-					});
-					// POST form to server
-					$(defaultSubmissionFormContainer).hide();
-					loadingContainerAnimation(defaultSubmissionPreviewContainer, function() {
-						postReviewsSubmissionForm(settings["productId"], function (content) {
-								console.log("preview");
-								content["Review"]["RatingRange"] = 5; //default to 5 since API doesn't include this for preview
-								loadReviewSubmissionPreviewWidget (content, {
-									"productId":settings["productId"],
-									"returnURL":settings["returnURL"],
-								});
-							}, {
-							"Parameters": params
-						});
-					});
-				});
-
-				// cancel button
-				loadCancelButton ("Cancel", {
-					"parentContainer":$container
-				});
-				// cancel button functionality
-				$container.find(defaultButtonCancelContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonCancelContainer + " " + defaultButtonContainer).click(function() {
-					// load return page
-					returnToPage(settings["returnURL"]);
-				});
-
-			},
-			error: function(e) {
-				defaultAjaxErrorFunction(e);
+	// overall rating
+	loadOverallRatingInput (content, {
+		"parentContainer":$template,
+		"inputSettings":{
+			"inputLabel":"Overall Rating"
+		}
+	});
+	// is recommended
+	loadIsRecommendedInput (content, {
+		"parentContainer":$template,
+		"inputSettings":{
+			"inputLabel":"Would you recommend this product?"
+		}
+	});
+	// review title
+	loadReviewTitleInput (content, {
+		"parentContainer":$template,
+		"inputSettings":{
+			"inputLabel":"Review Title"
+		}
+	});
+	// review text
+	loadReviewTextInput (content, {
+		"parentContainer":$template,
+		"viewContainer":defaultInputTextAreaWithCharacterCounterContainerView,
+		"inputSettings":{
+			"inputLabel":"Review Text",
+		}
+	});
+	// nickname
+	if (content["Data"]["Fields"]["usernickname"]) {
+		loadUserNicknameInput (content, {
+			"parentContainer":$template,
+			"inputSettings":{
+				"inputLabel":"User Nickname",
 			}
-		})
-	).done(function(){
-		$(function(){
-			$('input[type=radio].star').rating();
 		});
+	}
+	// email
+	if (content["Data"]["Fields"]["useremail"]) {
+		loadUserEmailInput (content, {
+			"parentContainer":$template,
+			"inputSettings":{
+				"inputLabel":"User Email",
+			}
+		});
+	}
+	/*
+	// user id
+	loadUserIDInput (content, {
+		"parentContainer":$template,
+		"inputSettings":{
+			"inputLabel":"User Id",
+			"inputName":"userid"
+		}
+	});
+	*/
+
+	// location
+	loadUserLocationInput (content, {
+		"parentContainer":$template,
+		"inputSettings":{
+			"inputLabel":"User Location",
+		}
+	});
+	// device fingerprint
+	console.log("devicefingerprint");
+	// product id
+	console.log("productid");
+	// submission id
+	console.log("submissionid");
+	// auth source type
+	console.log("authsourcetype");
+	// is ratings only
+	console.log("isratingsonly");
+	// net promoter score
+	console.log("netpromoterscore");
+	// net promoter comment
+	console.log("netpromotercomment");
+
+	// context data values
+	loadContextDataValueGroupInput (content, {
+		"parentContainer":$template
+	});
+	// additional fields
+	loadAdditionalFieldGroupInput (content, {
+		"parentContainer":$template
+	});
+	// secondary ratings
+	loadSecondaryRatingGroup (content, {
+		"parentContainer":$template
+	});
+
+	// photo upload
+	loadPhotoGroupInput (content, {
+		"parentContainer":$template,
+		"inputSettings":{
+			"inputLabel":"Upload your photos"
+		},
+		"mediaSettings":{
+			"contentType":"review"
+		}
+	});
+	// video link
+	loadYoutubeUrlInput (content, {
+		"parentContainer":$template,
+		"inputSettings":{
+			"inputLabel":"Youtube Link"
+		}
+	});
+	// video caption
+	loadVideoCaptionInput (content, {
+		"parentContainer":$template,
+		"inputSettings":{
+			"inputLabel":"Video Caption"
+		}
+	});
+
+	// product recommendations
+	console.log("productrecommendations");
+	// tags
+	loadTagGroupInput (content, {
+		"parentContainer":$template
+	});
+	// user location geocode
+	console.log("userlocationgeocode");
+	// hosted authentication
+	console.log("hostedauthentication");
+
+	// opt in checkboxes
+	if (content["Data"]["Fields"]["agreedtotermsandconditions"]) {
+		loadTermsAndConditionsInput (content, {
+			"parentContainer":$template
+		});
+	}
+	if (content["Data"]["Fields"]["sendemailalertwhencommented"]) {
+		loadSendEmailAlertWhenCommentedInput (content, {
+			"parentContainer":$template
+		});				};
+	if (content["Data"]["Fields"]["sendemailalertwhenpublished"]) {
+		loadSendEmailAlertWhenPublishedInput (content, {
+			"parentContainer":$template
+		});
+	};
+
+	// buttons
+	// submit button
+	loadSubmitButton ("Submit", {
+		"parentContainer":$template
+	});
+	// submit button functionality
+	$($template).find(defaultButtonSubmitContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonSubmitContainer + " " + defaultButtonContainer).click(function() {
+		// get form parameters
+		var params = returnFormParamaters("#" + newID, {
+			"action":"submit"
+		});
+		// POST form to server
+		$(defaultSubmissionFormContainer).hide();
+		postReviewsSubmissionForm(productId, defaultSubmissionThankYouContainer, function (content) {
+				console.log("submitted");
+				loadReviewSubmissionThankYouWidget (content, {
+					"parentContainer":settings["parentContainer"],
+					"productId":productId,
+					"returnURL":returnURL,
+				});
+			}, {
+			"Parameters": params
+		});
+	});
+
+	// preview button
+	loadPreviewButton ("Preview", {
+		"parentContainer":$template
+	});
+	// preview button functionality
+	$($template).find(defaultButtonPreviewContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonPreviewContainer + " " + defaultButtonContainer).click(function() {
+		// get form parameters
+		var params = returnFormParamaters("#" + newID, {
+			"action":"preview"
+		});
+		// POST form to server
+		$(defaultSubmissionFormContainer).hide();
+		postReviewsSubmissionForm(productId, defaultSubmissionPreviewContainer, function (content) {
+				console.log("preview");
+				content["Review"]["RatingRange"] = 5; //default to 5 since API doesn't include this for preview
+				loadReviewSubmissionPreviewWidget (content, {
+					"parentContainer":settings["parentContainer"],
+					"productId":productId,
+					"returnURL":returnURL,
+				});
+			}, {
+			"Parameters": params
+		});
+	});
+
+	// cancel button
+	loadCancelButton ("Cancel", {
+		"parentContainer":$template
+	});
+	// cancel button functionality
+	$($template).find(defaultButtonCancelContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonCancelContainer + " " + defaultButtonContainer).click(function() {
+		// load return page
+		returnToPage(returnURL);
+	});
+
+	// set stars using jquery.rating plugin
+	$(function(){
+		$('input[type=radio].star').rating();
 	});
 }
 
@@ -336,7 +317,7 @@ function loadReviewSubmissionForm (content, options) {
 function loadOverallRatingInput (content, options) {
 	var content = content["Data"]["Fields"]["rating"];
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultOverallRatingInputContainer,
 		"viewContainer":defaultInputRadioIndividualContainerView,
 		"loadOrder":[
@@ -360,39 +341,36 @@ function loadOverallRatingInput (content, options) {
 			"inputOptionsArray":content["Options"]
 		}
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// set label
-			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(settings["inputSettings"]["inputLabel"]);
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
-			// load radio buttons
-			$.each(settings["loadOrder"], function(key) {
-				loadRadioInputIndividual (content, {
-					"parentContainer":$container,
-					"viewContainer":defaultInputRadioOverallRatingContainerView,
-					"loadOrder":settings["loadOrder"][key]
-				});
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var inputLabel = settings["inputSettings"]["inputLabel"];
+	// add input template
+	$container.append($template);
+	// set label
+	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
+	// load radio buttons
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(key) {
+			loadRadioInputIndividual (content, {
+				"parentContainer":$template,
+				"viewContainer":defaultInputRadioOverallRatingContainerView,
+				"loadOrder":settings["loadOrder"][key]
 			});
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
-	});
+		});
+	}
 }
 
 function loadSecondaryRatingGroup (content, options) {
 	var defaultLoadOrder = new Array();
-	$.each(content["Data"]["Groups"]["rating"]["SubElements"], function() {
-		defaultLoadOrder.push(this["Id"]);
-	});
+	if (content["Data"]["Groups"]["rating"] != undefined) {
+		$.each(content["Data"]["Groups"]["rating"]["SubElements"], function() {
+			defaultLoadOrder.push(this["Id"]);
+		});
+	}
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultSecondaryRatingGroupInputContainer,
 		"viewContainer":defaultSecondaryRatingContainerView,
 		"loadOrder":defaultLoadOrder,
@@ -403,35 +381,30 @@ function loadSecondaryRatingGroup (content, options) {
 			"inputSubElements":content["SubElements"]
 		}
 	}, options);
-	$.each(settings["loadOrder"], function(key) {
-		var fieldContent = content["Data"]["Fields"][this];
-		$.ajax({
-			url: settings["viewContainer"],
-			type: 'GET',
-			dataType: 'html',
-			async: false,
-			success: function(container) {
-				var $container = $(container);
-				// set label
-				$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(fieldContent["Label"]);
-				// add secondary rating template
-				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
-				// load secondary rating input container
-				loadSecondaryRatingIndividual(fieldContent, {
-					"parentContainer":$container
-				});
-			},
-			error: function(e) {
-				defaultAjaxErrorFunction(e);
-			}
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(key) {
+			var fieldContent = content["Data"]["Fields"][this];
+			// set container & template
+			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+			var $template = returnTemplate(settings["viewContainer"]);
+			// set variables
+			var inputLabel = fieldContent["Label"];
+			// add secondary rating template
+			$container.append($template);
+			// set label
+			$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
+			// load secondary rating input container
+			loadSecondaryRatingIndividual(fieldContent, {
+				"parentContainer":$template
+			});
 		});
-	});
+	}
 }
 
 function loadSecondaryRatingIndividual (content, options) {
 	// content expected ["Data"]["Fields"][<fieldname>]
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultRadioButtonGroupInputContainer,
 		"viewContainer":defaultInputRadioIndividualContainerView,
 		"loadOrder":[
@@ -455,28 +428,21 @@ function loadSecondaryRatingIndividual (content, options) {
 			"inputOptionsArray":content["Options"]
 		}
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
-			// load radio buttons
-			$.each(settings["loadOrder"], function(key) {
-				loadRadioInputIndividual (content, {
-					"parentContainer":$container,
-					"viewContainer":defaultInputRadioOverallRatingContainerView,
-					"loadOrder":settings["loadOrder"][key]
-				});
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// add input template
+	$container.append($template);
+	// load radio buttons
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(key) {
+			loadRadioInputIndividual (content, {
+				"parentContainer":$template,
+				"viewContainer":defaultInputRadioOverallRatingContainerView,
+				"loadOrder":settings["loadOrder"][key]
 			});
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
-	});
+		});
+	}
 }
 
 
@@ -488,7 +454,7 @@ function loadSecondaryRatingIndividual (content, options) {
 function loadIsRecommendedInput (content, options) {
 	var content = content["Data"]["Fields"]["isrecommended"];
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultIsRecommendedInputContainer,
 		"viewContainer":defaultInputRadioIndividualContainerView,
 		"loadOrder":[
@@ -509,29 +475,24 @@ function loadIsRecommendedInput (content, options) {
 			"inputOptionsArray":content["Options"]
 		}
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// set label
-			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(settings["inputSettings"]["inputLabel"]);
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
-			// load radio buttons
-			$.each(settings["loadOrder"], function(key) {
-				loadRadioInputIndividual (content, {
-					"parentContainer":$container,
-					"loadOrder":settings["loadOrder"][key]
-				});
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var inputLabel = settings["inputSettings"]["inputLabel"];
+	// add input template
+	$container.append($template);
+	// set label
+	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
+	// load radio buttons
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(key) {
+			loadRadioInputIndividual (content, {
+				"parentContainer":$template,
+				"loadOrder":settings["loadOrder"][key]
 			});
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
-	});
+		});
+	}
 }
 
 
@@ -544,7 +505,7 @@ function loadIsRecommendedInput (content, options) {
 function loadReviewTitleInput (content, options) {
 	var content = content["Data"]["Fields"]["title"];
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultReviewTitleInputContainer,
 		"viewContainer":defaultInputContainerView,
 		"loadOrder":"",
@@ -563,30 +524,26 @@ function loadReviewTitleInput (content, options) {
 			"inputOptionsArray":content["Options"]
 		}
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		success: function(container) {
-			var $container = $(container);
-			// set label
-			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(settings["inputSettings"]["inputLabel"]).attr({
-				"for":settings["inputSettings"]["inputName"]
-			});
-			// set helper text
-			$container.find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(settings["inputSettings"]["inputHelperText"]);
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-			// load input
-			loadTextFieldInput (content, {
-				"parentContainer":$container,
-				"targetContainer":defaultFormInputWrapperContainer,
-				"inputSettings":settings["inputSettings"]
-			});
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var inputName = settings["inputSettings"]["inputName"];
+	var inputLabel = settings["inputSettings"]["inputLabel"];
+	var inputHelperText = settings["inputSettings"]["inputHelperText"];
+	// add input template
+	$container.append($template);
+	// set label
+	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel).attr({
+		"for":inputName
+	});
+	// set helper text
+	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).html(inputHelperText);
+	// load input
+	loadTextFieldInput (content, {
+		"parentContainer":$template,
+		"targetContainer":defaultFormInputWrapperContainer,
+		"inputSettings":settings["inputSettings"]
 	});
 }
 
@@ -594,7 +551,7 @@ function loadReviewTitleInput (content, options) {
 function loadReviewTextInput (content, options) {
 	var content = content["Data"]["Fields"]["reviewtext"];
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultReviewTextInputContainer,
 		"viewContainer":defaultInputContainerView,
 		"loadOrder":"",
@@ -613,30 +570,24 @@ function loadReviewTextInput (content, options) {
 			"inputOptionsArray":content["Options"]
 		}
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// set label
-			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(settings["inputSettings"]["inputLabel"]).attr({
-				"for":settings["inputSettings"]["inputName"]
-			});
-			// set helper text
-			$container.find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(settings["inputSettings"]["inputHelperText"]);
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-			// load input
-			loadTextAreaInput (content, {
-				"parentContainer":$container,
-				"inputSettings":settings["inputSettings"]
-			});
-
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var inputName = settings["inputSettings"]["inputName"];
+	var inputLabel = settings["inputSettings"]["inputLabel"];
+	var inputHelperText = settings["inputSettings"]["inputHelperText"];
+	// add input template
+	$container.append($template);
+	// set label
+	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel).attr({
+		"for":inputName
+	});
+	// set helper text
+	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).html(inputHelperText);
+	// load input
+	loadTextAreaInput (content, {
+		"parentContainer":$template,
+		"inputSettings":settings["inputSettings"]
 	});
 }

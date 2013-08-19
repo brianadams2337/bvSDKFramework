@@ -1,5 +1,5 @@
 // gets a single review by ID (no filter, sorts, etc)
-function getSpecificReviews (reviewIDs, callBack, options) {
+function getSpecificReviews (reviewIDs, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"filter":{
@@ -19,15 +19,19 @@ function getSpecificReviews (reviewIDs, callBack, options) {
 		success: function(data) {
 			console.log(data, paramString, paramObject);
 			callBack(data, paramObject);
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).empty().addClass("_BVContentLoadingContainer");
 		}
 	});
 }
 
 // gets all reviews with statistics - set productID to null to return all reviews
-function getAllReviews (productID, callBack, options) {
+function getAllReviews (productID, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"include":"products",
@@ -49,15 +53,19 @@ function getAllReviews (productID, callBack, options) {
 		success: function(data) {
 			console.log(data, paramString, paramObject);
 			callBack(data, paramObject);
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).empty().addClass("_BVContentLoadingContainer");
 		}
 	});
 }
 
 // gets all reviews with statistics - set productID to null to return all reviews
-function getReviewsStats (productID, callBack, options) {
+function getReviewsStats (productID, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"include":"products",
@@ -79,15 +87,19 @@ function getReviewsStats (productID, callBack, options) {
 		success: function(data) {
 			console.log(data, paramString, paramObject);
 			callBack(data, paramObject);
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).empty().addClass("_BVContentLoadingContainer");
 		}
 	});
 }
 
 // gets all featured reviews - if no productID, all reviews will return
-function getFeaturedReviews (productID, callBack, options) {
+function getFeaturedReviews (productID, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"filter":{
@@ -108,15 +120,19 @@ function getFeaturedReviews (productID, callBack, options) {
 		success: function(data) {
 			console.log(data, paramString, paramObject);
 			callBack(data, paramObject);
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).empty().addClass("_BVContentLoadingContainer");
 		}
 	});
 }
 
 // gets all reviews with photos - if no productID, all reviews will return
-function getPhotoReviews (productID, callBack, options) {
+function getPhotoReviews (productID, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"filter":{
@@ -137,15 +153,19 @@ function getPhotoReviews (productID, callBack, options) {
 		success: function(data) {
 			console.log(data, paramString, paramObject);
 			callBack(data, paramObject);
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).empty().addClass("_BVContentLoadingContainer");
 		}
 	});
 }
 
 // gets all featured reviews with photos - if no productID, all reviews will return
-function getFeaturedPhotoReviews (productID, callBack, options) {
+function getFeaturedPhotoReviews (productID, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"filter":{
@@ -167,15 +187,19 @@ function getFeaturedPhotoReviews (productID, callBack, options) {
 		success: function(data) {
 			console.log(data, paramString, paramObject);
 			callBack(data, paramObject);
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).empty().addClass("_BVContentLoadingContainer");
 		}
 	});
 }
 
 // create your own api call
-function getReviewsCustom (productID, callBack, options) {
+function getReviewsCustom (productID, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"filter":{
@@ -195,9 +219,13 @@ function getReviewsCustom (productID, callBack, options) {
 		success: function(data) {
 			console.log(data, paramString, paramObject);
 			callBack(data, paramObject);
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).empty().addClass("_BVContentLoadingContainer");
 		}
 	});
 }

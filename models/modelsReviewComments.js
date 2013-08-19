@@ -1,5 +1,5 @@
 // gets a single comment by ID (no filter, sorts, etc)
-function getSpecificReviewComments (reviewIDs, callBack, options) {
+function getSpecificReviewComments (reviewIDs, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"filter":{
@@ -18,15 +18,19 @@ function getSpecificReviewComments (reviewIDs, callBack, options) {
 		dataType: "jsonp",
 		success: function(data) {
 			callBack(data, paramObject);
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).empty().addClass("_BVContentLoadingContainer");
 		}
 	});
 }
 
 // gets all comments - set productID to null to return all reviews
-function getAllReviewComments (reviewID, callBack, options) {
+function getAllReviewComments (reviewID, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"filter":{
@@ -45,9 +49,13 @@ function getAllReviewComments (reviewID, callBack, options) {
 		dataType: "jsonp",
 		success: function(data) {
 			callBack(data, paramObject);
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).empty().addClass("_BVContentLoadingContainer");
 		}
 	});
 }

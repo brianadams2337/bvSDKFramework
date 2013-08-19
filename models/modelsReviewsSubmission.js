@@ -1,5 +1,5 @@
 // gets review submission form
-function getReviewsSubmissionForm (productID, callBack, options) {
+function getReviewsSubmissionForm (productID, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"productid":productID,
@@ -17,15 +17,19 @@ function getReviewsSubmissionForm (productID, callBack, options) {
 		success: function(data) {
 			console.log(data);
 			callBack(data, settings);
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).addClass("_BVContentLoadingContainer");
 		}
 	});
 }
 
 // posts review submission form
-function postReviewsSubmissionForm (productID, callBack, options) {
+function postReviewsSubmissionForm (productID, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"productid":productID
@@ -49,13 +53,18 @@ function postReviewsSubmissionForm (productID, callBack, options) {
 					$('*[name="' + k + '"]').parent().parent().addClass('BVErrorText');
 					$('*[name="' + k + '"]').addClass('BVErrorBorder');
 					$(defaultFormErrorsContainer).append(v["Message"] + '<br/>');
+					$(defaultSubmissionFormContainer).show();
 				});
 			} else {
 				callBack(data, settings);
 			}
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).addClass("_BVContentLoadingContainer");
 		}
 	});
 }
