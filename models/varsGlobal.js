@@ -2,10 +2,10 @@
 
 // url path for staging site
 var stagingURL = "http://localhost:8888/bvSDKFramework/";
-var stagingSubmissionURL = "http://localhost:8888/bvSDKFramework/submission.html?";
+var stagingSubmissionURL = "http://localhost:8888/submission.html?";
 // url pate for production site
 var productionURL = "http://localhost:8888/bvSDKFramework/";
-var productionSubmissionURL = "http://localhost:8888/bvSDKFramework/submission.html?";
+var productionSubmissionURL = "http://localhost:8888/submission.html?";
 
 // api parameter deautls
 var apiDefaults = {
@@ -93,17 +93,17 @@ var defaultDecimalOptions = {
 
 var defaultServerSideLanguage = "php";
 
-var defaultReviewSubmissionFormProcessingFile = defaultServerSideLanguage + "/" + "bvReviewSubmissionProcess" + "." + defaultServerSideLanguage;
-var defaultReviewCommentSubmissionFormProcessingFile = defaultServerSideLanguage + "/" + "bvReviewCommentSubmissionProcess" + "." + defaultServerSideLanguage;
-var defaultQuestionSubmissionFormProcessingFile = defaultServerSideLanguage + "/" + "bvQuestionSubmissionProcess" + "." + defaultServerSideLanguage;
-var defaultAnswerSubmissionFormProcessingFile = defaultServerSideLanguage + "/" + "bvAnswerSubmissionProcess" + "." + defaultServerSideLanguage;
-var defaultStorySubmissionFormProcessingFile = defaultServerSideLanguage + "/" + "bvStorySubmissionProcess" + "." + defaultServerSideLanguage;
-var defaultStoryCommentSubmissionFormProcessingFile = defaultServerSideLanguage + "/" + "bvStoryCommentSubmissionProcess" + "." + defaultServerSideLanguage;
+var defaultReviewSubmissionFormProcessingFile = siteBaseURL + "php/bvReviewSubmissionProcess.php";
+var defaultReviewCommentSubmissionFormProcessingFile = siteBaseURL + "php/bvReviewCommentSubmissionProcess.php";
+var defaultQuestionSubmissionFormProcessingFile = siteBaseURL + "php/bvQuestionSubmissionProcess.php";
+var defaultAnswerSubmissionFormProcessingFile = siteBaseURL + "php/bvAnswerSubmissionProcess.php";
+var defaultStorySubmissionFormProcessingFile = siteBaseURL + "php/bvStorySubmissionProcess.php";
+var defaultStoryCommentSubmissionFormProcessingFile = siteBaseURL + "php/bvStoryCommentSubmissionProcess.php";
 
-var defaultFeedbackFormProcessingFile = defaultServerSideLanguage + "/" + "bvFeedbackProcess" + "." + defaultServerSideLanguage;
+var defaultFeedbackFormProcessingFile = siteBaseURL + "php/bvFeedbackProcess.php";
 
-var defaultPhotoUploadProcessingFile = defaultServerSideLanguage + "/" + "bvPhotoUploadProcess" + "." + defaultServerSideLanguage;
-var defaultVideoUploadFormProcessingFile = defaultServerSideLanguage + "/" + "bvVideoUploadProcess" + "." + defaultServerSideLanguage;
+var defaultPhotoUploadProcessingFile = siteBaseURL + "php/bvPhotoUploadProcess.php";
+var defaultVideoUploadFormProcessingFile = siteBaseURL + "php/bvVideoUploadProcess.php";
 
 
 
