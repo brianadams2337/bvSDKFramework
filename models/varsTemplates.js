@@ -153,7 +153,7 @@ var defaultFeedbackVotingContainerView = siteBaseURL + "views/universal/feedback
 var defaultReportInappropriateContainerView = siteBaseURL + "views/universal/feedback/reportInappropriateContainer.html"; // report inappropriate module
 var defaultReportInappropriateFormContainerView = siteBaseURL + "views/universal/feedback/submissionFormFeedback.html" // report inappropriate form module
 
-
+var defaultFeedbackStatusMessageContainerView = siteBaseURL + "views/universal/feedback/statusMessageContainer.html" // status message module
 
 /***** BADGES *****/
 
