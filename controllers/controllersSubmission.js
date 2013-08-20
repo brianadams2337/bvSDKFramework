@@ -38,7 +38,7 @@ function loadUserNicknameInput (content, options) {
 	});
 	// if required field
 	if (settings["inputSettings"]["inputRequired"]) {
-		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass("required");
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// set helper text
 	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).html(inputHelperText);
@@ -85,7 +85,7 @@ function loadUserEmailInput (content, options) {
 	});
 	// if required field
 	if (settings["inputSettings"]["inputRequired"]) {
-		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass("required");
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// set helper text
 	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).html(inputHelperText);
@@ -132,7 +132,7 @@ function loadUserLocationInput (content, options) {
 	});
 	// if required field
 	if (settings["inputSettings"]["inputRequired"]) {
-		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass("required");
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// set helper text
 	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).html(inputHelperText);
@@ -179,7 +179,7 @@ function loadUserIDInput (content, options) {
 	});
 	// if required field
 	if (settings["inputSettings"]["inputRequired"]) {
-		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass("required");
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// set helper text
 	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).html(inputHelperText);
@@ -269,7 +269,7 @@ function loadAdditionalFieldIndividualInput (content, options) {
 	});
 	// if required field
 	if (settings["inputSettings"]["inputRequired"]) {
-		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass("required");
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// load text field
 	loadTextFieldInput(content, {
@@ -356,7 +356,7 @@ function loadContextDataValueIndividualInput (content, options) {
 	});
 	// if required field
 	if (settings["inputSettings"]["inputRequired"]) {
-		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass("required");
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// load select/radio input
 	if (inputType == "SelectInput") {
@@ -424,7 +424,7 @@ function loadTagGroupInput (content, options) {
 			$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
 			// if required field
 			if (settings["inputSettings"]["inputRequired"]) {
-				$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass("required");
+				$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 			}
 			// set order to load inputs
 			// pre-defined tags load order
@@ -692,7 +692,7 @@ function loadTextAreaInput (content, options) {
 	});
 	// if required field
 	if (settings["inputSettings"]["inputRequired"]) {
-		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass("required");
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// set input attributes
 	$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
@@ -765,7 +765,7 @@ function loadRadioInputIndividual (content, options) {
 			}
 			// required
 			if (inputRequired == true) {
-				$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass("required");
+				$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass);
 			}
 		});
 	}
@@ -934,7 +934,7 @@ function loadCheckboxInputField (content, options) {
 	});
 	// required
 	if (inputRequired == true) {
-		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass("required");
+		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass);
 	}
 }
 
@@ -979,7 +979,7 @@ function loadYoutubeUrlInput (content, options) {
 	});
 	// if required field
 	if (settings["inputSettings"]["inputRequired"]) {
-		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass("required");
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// set helper text
 	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).html(inputHelperText);
@@ -1025,7 +1025,7 @@ function loadVideoCaptionInput (content, options) {
 	});
 	// if required field
 	if (settings["inputSettings"]["inputRequired"]) {
-		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass("required");
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// set helper text
 	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).html(inputHelperText);
@@ -1072,7 +1072,7 @@ function loadPhotoGroupInput (content, options) {
 	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
 	// if required field
 	if (settings["inputSettings"]["inputRequired"]) {
-		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass("required");
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// load photo upload inputs
 	if (settings["loadOrder"] != undefined) {
@@ -1137,7 +1137,7 @@ function loadPhotoFileUploadInput (content, options) {
 	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
 	// if required field
 	if (settings["inputSettings"]["inputRequired"]) {
-		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass("required");
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// load file upload input (this returns the url needed to submit the photo)
 	loadUploadInput (content["Data"]["Fields"][urlInputName], {
@@ -1276,7 +1276,7 @@ function loadPhotoCaptionInput (content, options) {
 	});
 	// if required field
 	if (settings["inputSettings"]["inputRequired"]) {
-		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass("required");
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// set helper text
 	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(inputHelperText);
@@ -1323,7 +1323,7 @@ function loadPhotoUrlInput (content, options) {
 	});
 	// if required field
 	if (settings["inputSettings"]["inputRequired"]) {
-		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass("required");
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// set helper text
 	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(inputHelperText);
@@ -1378,7 +1378,7 @@ function loadUploadInput (content, options) {
 	});
 	// required
 	if (inputRequired == true) {
-		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass("required");
+		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass);
 	}
 }
 

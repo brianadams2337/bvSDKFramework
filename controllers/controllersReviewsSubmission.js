@@ -370,7 +370,7 @@ function loadOverallRatingInput (content, options) {
 	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
 	// if required field
 	if (settings["inputSettings"]["inputRequired"]) {
-		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass("required");
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// load radio buttons
 	if (settings["loadOrder"] != undefined) {
@@ -417,7 +417,7 @@ function loadSecondaryRatingGroup (content, options) {
 			$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
 			// if required field
 			if (settings["inputSettings"]["inputRequired"]) {
-				$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass("required");
+				$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 			}
 			// load secondary rating input container
 			loadSecondaryRatingIndividual(fieldContent, {
@@ -512,7 +512,7 @@ function loadIsRecommendedInput (content, options) {
 	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
 	// if required field
 	if (settings["inputSettings"]["inputRequired"]) {
-		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass("required");
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// load radio buttons
 	if (settings["loadOrder"] != undefined) {
@@ -569,7 +569,7 @@ function loadReviewTitleInput (content, options) {
 	});
 	// if required field
 	if (settings["inputSettings"]["inputRequired"]) {
-		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass("required");
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// set helper text
 	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).html(inputHelperText);
@@ -619,7 +619,7 @@ function loadReviewTextInput (content, options) {
 	});
 	// if required field
 	if (settings["inputSettings"]["inputRequired"]) {
-		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass("required");
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// set helper text
 	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).html(inputHelperText);

@@ -2,10 +2,10 @@
 
 // url path for staging site
 var stagingURL = "http://localhost:8888/bvSDKFramework/";
-var stagingSubmissionURL = "http://localhost:8888/submission.html?";
+var stagingSubmissionURL = "http://localhost:8888/bvSDKFramework/submission.html?";
 // url pate for production site
 var productionURL = "http://localhost:8888/bvSDKFramework/";
-var productionSubmissionURL = "http://localhost:8888/submission.html?";
+var productionSubmissionURL = "http://localhost:8888/bvSDKFramework/submission.html?";
 
 // api parameter deautls
 var apiDefaults = {
@@ -95,34 +95,7 @@ var defaultInlineValidationOption = {
 	}
 };
 
-// {
-//   // basic data-api overridable properties here..
-//   inputs: 'input, textarea, select'
-//   , excluded: 'input[type=hidden]'
-//   , trigger: false
-//   , focus: 'first'
-//   , validationMinlength: 3
-//   , successClass: 'parsley-success'
-//   , errorClass: 'parsley-error'
-//   , validators: {}
-//   , showErrors: true
-//   , messages: {}
-
-//   //some quite advanced configuration here..
-//   , validateIfUnchanged: false
-//   , errors: {                     // specify where parsley error-success classes are set
-//     classHandler: function ( elem, isRadioOrCheckbox ) {}
-//   , container: function ( elem, isRadioOrCheckbox ) {}
-//   , errorsWrapper: '<ul></ul>'
-//   , errorElem: '<li></li>'
-//   }
-//   , listeners: {
-//       onFieldValidate: function ( elem, ParsleyField ) { return false; }
-//     , onFormSubmit: function ( isFormValid, event, ParsleyForm ) {}
-//     , onFieldError: function ( elem, constraints, ParsleyField ) {}
-//     , onFieldSuccess: function ( elem, constraints, ParsleyField ) {}
-//   }
-// }
+var requiredClass = "BVRequired";
 
 /***** DECIMAL TRUNCATION OPTIONS *****/
 var defaultDecimalOptions = {
