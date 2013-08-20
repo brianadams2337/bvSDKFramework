@@ -40,17 +40,21 @@ function loadReviewCommentSubmissionPreviewWidget (content, options) {
 		var params = returnFormParamaters("#" + newID, {
 			"action":"submit"
 		});
-		// POST form to server
-		postReviewCommentsSubmissionForm(contentId, $template, function (content) {
-				console.log("submitted");
-				loadReviewCommentSubmissionThankYouWidget (content, {
-					"parentContainer":settings["parentContainer"],
-					"productId":productId,
-					"returnURL":returnURL,
-				});
-			}, {
-			"Parameters": params
-		});
+		// validate form using parsly.js plugin
+		var validated = $("#" + newID).parsley('validate');
+		// POST form to server if no errors
+		if (validated) {
+			postReviewCommentsSubmissionForm(contentId, $template, function (content) {
+					console.log("submitted");
+					loadReviewCommentSubmissionThankYouWidget (content, {
+						"parentContainer":settings["parentContainer"],
+						"productId":productId,
+						"returnURL":returnURL,
+					});
+				}, {
+				"Parameters": params
+			});
+		}
 	});
 
 	// edit button
