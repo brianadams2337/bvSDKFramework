@@ -56,6 +56,7 @@ var defaultUploadGroupInputContainer = "._BVInputGroupContainer"; // upload grou
 var defaultUploadIndividualInputContainer = "._BVUploadIndividualInputContainer"; // upload individual container
 
 var defaultFormLabelTextContainer = "._BVLabelText"; // text input label text
+var defaultFormRequiredLabelTextContainer = "._BVLabelText.required"; // text input required label text
 var defaultFormRadioLabelTextContainer = "._BVRadioLabelText"; // radio input label text
 var defaultFormCheckboxLabelTextContainer = "._BVCheckboxLabelText"; // checkbox input label text
 var defaultFormUploadLabelTextContainer = "._BVUploadLabelText"; // upload input label text

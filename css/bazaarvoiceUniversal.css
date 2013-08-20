@@ -1,229 +1,381 @@
+/* CSS3 PIE Implementation */
 behavior: url(includes/PIE-1.0.0/PIE.htc);
 
-/* STAR RATINGS */
 
-.BVOverallRatingContainer ._BVRatingStarsContainer {
-	display: block;
-	float: left;
-	width: 15%;
-	min-width: 100px;
-	height: auto;
-}
-
-._BVRatingStarsFilledImage, ._BVRatingStarsUnfilledImage {
-	width: 100%;
-	height: auto;
-}
-
-._BVRatingStarsText {
-	display: block;
-	position: absolute;
-	text-indent: -9999px;
-	z-index: -1;
-}
-
-._BVRatingValue, .BVRatingSeparator, ._BVRatingRange {
-	float: left;
-	margin: 0 3px;
-}
 
 /* CONTAINER STYLES */
-#BVRRContainer, #BVQAContainer, #BVSubmissionContainer {width: 960px; margin: 0 auto; font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #49494A; line-height: 1.5em;}
-#BVRRContainer a, #BVQAContainer a, #BVSubmissionContainer a, #BVRRContainer a:visited, #BVQAContainer a:visited, #BVSubmissionContainer a:visited {color: #085EB9;}
-#BVRRContainer a:hover, #BVQAContainer a:hover, #BVSubmissionContainer a:hover, #BVRRContainer a:focus, #BVQAContainer a:focus, #BVSubmissionContainer a:focus, #BVRRContainer a:active, #BVQAContainer a:active, #BVSubmissionContainer a:active {color: #085EB9;}
-#BVRRContainer, #BVQAContainer {}
-._BVContentLoadingContainer {background: url(../images/bvLoading.gif) no-repeat center transparent !important; min-height: 50px;}
+	
+	/* RR, AA, SY Containers */
+	#BVRRContainer, #BVQAContainer, #BVSubmissionContainer {width: 960px; margin: 0 auto;}
 
-/* General - Titles, Labels, Values */
-.BVTitle {}
-.BVLabel {font-weight: bold;}
-.BVValue {}
+	/* Loading Graphic */
+	._BVContentLoadingContainer {background: url(../images/bvLoading.gif) no-repeat center transparent !important; min-height: 50px;}
 
-/* Buttons */
-.BVButtonWrapper {}
+
+
+/* GENERAL */
+
+	/* Font Styles */
+	#BVRRContainer, #BVQAContainer, #BVSubmissionContainer {font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #49494A; line-height: 1.5em;}
+
+	/* Titles, Labels, Values */
+	.BVTitle {font-size: 18px; font-weight: bold; line-height: normal;}
+	.BVLabel {font-weight: bold;}
+	.BVValue {}
+
+	/* Links */
+	#BVRRContainer a, #BVQAContainer a, #BVSubmissionContainer a, #BVRRContainer a:visited, #BVQAContainer a:visited, #BVSubmissionContainer a:visited {color: #085EB9; text-decoration: none;}
+	#BVRRContainer a:hover, #BVQAContainer a:hover, #BVSubmissionContainer a:hover, #BVRRContainer a:focus, #BVQAContainer a:focus, #BVSubmissionContainer a:focus, #BVRRContainer a:active, #BVQAContainer a:active, #BVSubmissionContainer a:active {color: #085EB9; text-decoration: none;}
+
+
+
+/* BUTTONS */
 
 	/* Generic */
-	a._BVButton, a._BVButton:active, a._BVButton:focus, a._BVButton:hover, a._BVButton:visited {display: inline-block; padding: 7px 12px; font-size: 13px; font-weight: bold; line-height: 19px; color: #085EB9; text-shadow: 0 1px 0 rgba(255,255,255,0.9); white-space: nowrap; background-color: #F6F6F6; background-image: -moz-linear-gradient(#F6F6F6, #E8E8E8); background-image: -webkit-linear-gradient(#F6F6F6, #E8E8E8); background-image: linear-gradient(#F6F6F6, #E8E8E8); background-repeat: repeat-x; border-radius: 4px; border: 1px solid #C3C4C4; vertical-align: middle; cursor: pointer; text-decoration: none;}
+	a._BVButton, a._BVButton:visited {display: inline-block; padding: 7px 12px; font-size: 13px; font-weight: bold; line-height: 19px; color: #085EB9; text-shadow: 0 1px 0 rgba(255,255,255,0.9); white-space: nowrap; background-color: #F6F6F6; background-image: -moz-linear-gradient(#F6F6F6, #E8E8E8); background-image: -webkit-linear-gradient(#F6F6F6, #E8E8E8); background-image: -ms-linear-gradient(#F6F6F6, #E8E8E8); background-image: -o-linear-gradient(#F6F6F6, #E8E8E8); background-image: linear-gradient(#F6F6F6, #E8E8E8); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#F6F6F6, endColorstr=#E8E8E8, GradientType=0); background-repeat: repeat-x; border-radius: 4px; border: 1px solid #C3C4C4; vertical-align: middle; cursor: pointer; text-decoration: none;}
+	a._BVButton:active, a._BVButton:focus, a._BVButton:hover {background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F6F6F6)); background-image: -webkit-linear-gradient(#FFFFFF, #F6F6F6); background-image: -moz-linear-gradient(#FFFFFF, #F6F6F6); background-image: -ms-linear-gradient(#FFFFFF, #F6F6F6); background-image: -o-linear-gradient(#FFFFFF, #F6F6F6); background-image: linear-gradient(#FFFFFF, #F6F6F6); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F6F6F6, GradientType=0);}
 
 	/* Submit */
-	._BVButtonSubmitContainer a._BVButton, ._BVButtonSubmitContainer a._BVButton:active, ._BVButtonSubmitContainer a._BVButton:focus, ._BVButtonSubmitContainer a._BVButton:hover, ._BVButtonSubmitContainer a._BVButton:visited {background-color: #F7CF00; background-image: -moz-linear-gradient(#FFF200, #F7CF00); background-image: -webkit-linear-gradient(#FFF200, #F7CF00); background-image: linear-gradient(#FFF200, #F7CF00); border: 1px solid #F9C500;}
+	._BVButtonSubmitContainer a._BVButton, ._BVButtonSubmitContainer a._BVButton:visited {background-color: #F7CF00; background-image: -moz-linear-gradient(#FFF200, #F7CF00); background-image: -webkit-linear-gradient(#FFF200, #F7CF00); background-image: -ms-linear-gradient(#FFF200, #F7CF00); background-image: -o-linear-gradient(#FFF200, #F7CF00); background-image: linear-gradient(#FFF200, #F7CF00); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFF200, endColorstr=#F7CF00, GradientType=0); border: 1px solid #F9C500;}
 		._BVButtonSubmitContainer a._BVButton ._BVButtonText {color: #003B64; text-shadow: 0 1px 1px rgba(255,255,255,0.75);}
+	._BVButtonSubmitContainer a._BVButton:active, ._BVButtonSubmitContainer a._BVButton:focus, ._BVButtonSubmitContainer a._BVButton:hover {background-image: -webkit-gradient(linear, left top, left bottom, from(#FFF86E), to(#FFF200)); background-image: -webkit-linear-gradient(#FFF86E, #FFF200); background-image: -moz-linear-gradient(#FFF86E, #FFF200); background-image: -ms-linear-gradient(#FFF86E, #FFF200); background-image: -o-linear-gradient(#FFF86E, #FFF200); background-image: linear-gradient(#FFF86E, #FFF200); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFF86E, endColorstr=#FFF200, GradientType=0);}
 
-	/* Write a Review */
-	._BVButtonWriteReviewContainer a._BVButton, ._BVButtonWriteReviewContainer a._BVButton:active, ._BVButtonWriteReviewContainer a._BVButton:focus, ._BVButtonWriteReviewContainer a._BVButton:hover, ._BVButtonWriteReviewContainer a._BVButton:visited {background-color: #006CBC; background-image: -moz-linear-gradient(#006CBC, #00449E); background-image: -webkit-linear-gradient(#006CBC, #00449E); background-image: linear-gradient(#006CBC, #00449E); border: 1px solid #003865;}
-		._BVButtonWriteReviewContainer a._BVButton ._BVButtonText {color: #fff; text-shadow: 0 -1px 1px rgba(0,0,0,0.75);}
-
-/* Ratings */
-.BVSecondaryRatingContainer {width: 195px;}
-.BVSecondaryRatingContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
-	.BVSecondaryRatingContainer ._BVRatingLabelText {font-weight: bold; display: block;}
-	.BVSecondaryRatingContainer ._BVRatingStarsContainer, .BVSecondaryRatingContainer .BVRatingOutOfContainer {display: block; float: left;}
-	.BVSecondaryRatingContainer .BVRatingOutOfContainer {font-weight: bold;}
-		.BVSecondaryRatingContainer .BVRatingOutOfContainer .BVRatingSeparator, .BVSecondaryRatingContainer .BVRatingOutOfContainer ._BVRatingRange {display: none;}
-
-/* QuickTake */
-._BVQuickTakeContainer {overflow: hidden; position: relative;}
-	._BVQuickTakeContainer ._BVOverallRatingContainer {}
-		._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsContainer {float: left;}
-			._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsFilledImage, ._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsUnfilledImage {width: 170px !important;}
-		._BVQuickTakeContainer .BVOverallRatingContainer .BVRatingOutOfContainer {font-weight: bold; line-height: 33px; font-size: 36px; color: #085EB9; float: left;}
-			._BVQuickTakeContainer .BVOverallRatingContainer .BVRatingSeparator, ._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingRange {display: none;}
-	._BVQuickTakeContainer ._BVOverallRatingContainer, ._BVQuickTakeContainer ._BVRecommendedContainerAverage {}
-	._BVQuickTakeContainer ._BVRecommendedContainerAverage {background: url(images/backgroundBuyAgain.gif) no-repeat; padding: 25px 0 25px 76px; position: absolute; left: 306px;}
-		._BVQuickTakeContainer ._BVRecommendedContainerAverage .BVIsRecommended {margin: 0;}
-	._BVQuickTakeContainer ._BVFilters {clear: both; padding: 30px 0;}
-		._BVFiltersTitle {font-weight: bold;}
-		.BVFilter {cursor: pointer;}
-		.BVFilter.BVSelected {font-weight: bold; cursor: default;}
-	._BVQuickTakeContainer ._BVButtonWriteReviewContainer {background: -moz-linear-gradient(center top , #E7E7E7 0%, #F2F2F2 20%) repeat scroll 0 0 transparent; padding: 7px 12px; overflow: hidden;}
-	._BVQuickTakeContainer .BVSortContainer {position: absolute; right: 12px; bottom: 14px;}
-
-/* Reviews Display */
-._BVReviewBodyContainer, ._BVQuestionAnswerBodyContainer {}
-	._BVReviewContainer, ._BVQuestionAnswerContainer {}
-	._BVReviewContainer.BVlast, ._BVQuestionAnswerContainer.BVlast {}
-	._BVReviewContainer .BVUGCSpacerTop {height: 30px; margin-bottom: 40px; background: -moz-linear-gradient(center top , #E7E7E7 20%, #FFFFFF 100%) repeat scroll 0 0 transparent;}
-
-/* UGC Header - Rating, Title, Date */
-.BVUGCHeader {}
-	._BVOverallRatingContainer {}
-		.BVUGCHeader ._BVRatingLabelText {display: none;}
-		.BVUGCHeader .BVRatingOutOfContainer .BVRatingSeparator, .BVUGCHeader .BVRatingOutOfContainer ._BVRatingRange {display: none;}
-		.BVUGCHeader ._BVRatingStarsContainer {width: 118px; float: left;}
-		.BVUGCHeader .BVRatingOutOfContainer {font-weight: bold; line-height: 28px;}
-	._BVTitleContainer {clear: left;}
-		h3._BVTitleText {font-size: 18px; margin: 0;}
-	._BVDateContainer {}
-
-/* User Information */
-.BVUserDataContainer {background: url(images/backgroundShadowEdge.png) no-repeat bottom left; padding: 0 14px 8px; margin: 10px 0; clear: both; overflow: hidden;}
-	.BVAvatar {width: 46px; float: left;}
-	.BVUserInfo {margin-left: 56px;}
-		._BVUserNicknameContainer, ._BVUserLocationContainer, ._BVDateContainer {display: inline;}
-		._BVContextDataValueGroupContainer {}
-			.BVContextDataValueContainer {float: left; margin-right: 15px;}
-				._BVContextDataValueLabelText {}
-
-/* Badges */
-._BVBadgesContainer {}
-	.BVBadgeContainer {display: inline;}
-		.BVBadgeContainer div {display: inline;}
-
-/* Primary UGC - Text, Tags, Recommendations */
-.BVUGCPrimaryContent {margin-right: 175px;}
-	._BVTagGroupContainer {margin: 10px 0;}
-	._BVTagGroupContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
-		.BVTagContainer {}
-			.BVTagContainer ._BVTagLabelText, .BVTagContainer .BVTag, ._BVTagIndividualContainer {display: inline;}
-	._BVRecommendedContainer {font-weight: bold; clear: both;}
-		.BVIsRecommended {margin: 10px 0;}
-
-/* Secondary UGC - Secondary Ratings */
-.BVUGCSecondaryContent {float: right;}
-	.BVUGCSecondaryContent ._BVSecondaryRatingsContainer, .BVUGCSecondaryContent .BVUGCMediaContent {width: 200px; clear: left; margin: 10px 0;}
-
-/* Media UGC */
-._BVPhotoGroupContainer {}
-	._BVPhotoThumbnail, ._BVVideoThumbnail {width: 50px; height: 50px; display: block; overflow: hidden; float: left; clear: none; margin: 0 10px 10px 0;}
-		._BVPhotoThumbnail img, ._BVVideoThumbnail img {width: 125px; margin-left: -25px; display: block;}
-
-/* Helpfulness Voting */
-._BVFeedbackContainer {background: -moz-linear-gradient(center top , #E7E7E7 0%, #F2F2F2 20%) repeat scroll 0 0 transparent; padding: 12px; margin-top: 30px; clear: both;}
-._BVFeedbackContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
-	._BVFeedbackCountContainer {color: #666; margin-bottom: 10px; display: none;}
-	.BVFeedbackVotingPrefix {float: left; line-height: 33px; margin-right: 10px;}
-		._BVFeedbackVotingContainer .BVButtonWrapper {float: left; margin-right: 10px;}
-		._BVFeedbackVotingContainer .BVButtonWrapper.selected {opacity: 1;}
-		._BVFeedbackVotingContainer ._BVButton.BVDisabled {opacity: 0.5; cursor: default;}
-	._BVFeedbackPositiveButton ._BVButtonText {background: url(images/votingThumbUpSprite.gif) no-repeat; padding-left: 22px;}
-	._BVFeedbackNegativeButton ._BVButtonText {background: url(images/votingThumbDownSprite.gif) no-repeat; padding-left: 22px;}
-
-/* Inappropriate Reporting */
-._BVReportInappropriateContainer {position: relative;}
-	._BVReportInappropriateForm .BVFooter {margin-left: 0;}
-
-	/* Button */
-	._BVReportInappropriateForm .BVFieldButtonGroup, ._BVReportInappropriateForm .BVFieldButtonGroup .BVField {margin-bottom: 0;}
-	._BVReportInappropriateButtonContainer a._BVButton.BVDisabled {opacity: 0.5; cursor: default;}
-		._BVReportInappropriateButtonContainer a._BVButton, ._BVReportInappropriateButtonContainer a._BVButton:hover, ._BVReportInappropriateButtonContainer a._BVButton:active, ._BVReportInappropriateButtonContainer a._BVButton:focus, ._BVReportInappropriateButtonContainer a._BVButton:visited {padding: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px;}
-
-	/* Form */
-	._BVReportInappropriateFormContainer {position: absolute; top: 30px; left: 270px;}
-		._BVReportInappropriateFormContainer ._BVReportInappropriateForm {background-color: #fff; border: 1px solid #C3C4C4; border-radius: 4px; padding: 10px; box-shadow: 0px 0px 3px rgba(0,0,0,0.3);}
-
-/* Comments */
-._BVReviewCommentsWidgetContainer {position: relative;}
-
-	/* Write Button */
-	._BVButtonWriteReviewCommentContainer {position: absolute; right: 0; top: 0;}
-		._BVButtonWriteReviewCommentContainer a._BVButton, ._BVButtonWriteReviewCommentContainer a._BVButton:hover, ._BVButtonWriteReviewCommentContainer a._BVButton:active, ._BVButtonWriteReviewCommentContainer a._BVButton:focus, ._BVButtonWriteReviewCommentContainer a._BVButton:visited {padding: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px;}
-	._BVButtonToggleReviewCommentsContainer {}
-		._BVButtonToggleReviewCommentsContainer a._BVButton, ._BVButtonToggleReviewCommentsContainer a._BVButton:hover, ._BVButtonToggleReviewCommentsContainer a._BVButton:active, ._BVButtonToggleReviewCommentsContainer a._BVButton:focus, ._BVButtonToggleReviewCommentsContainer a._BVButton:visited {padding: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px;}
-
-	/* Comments Display */
-	._BVReviewCommentContainer ._BVFeedbackContainer {background: none transparent; padding: 0;}
-
-/* Submission Form */
-
-/* General - Titles, Labels, Values */
-._BVLabelText {width: 150px; float: left; margin-right: 10px;}
-h1._BVPageHeaderText, h2._BVSectionHeaderText {margin: 0;}
-
-/* Sections */
-.BVSection {border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 30px;}
-.BVSectionHeader {margin-bottom: 15px;}
-
-/* Error Container */
-.BVSectionErrorContainer {color: #F00;}
-.BVErrorText {color: #F00 !important;}
-.BVErrorBorder {border: 1px solid #F00 !important;}
-
-/* Fields */
-.BVField {clear: left; overflow: hidden; margin-bottom: 10px;}
-	.BVFormInputText, .BVFormInputTextarea {padding: 7px 8px; outline: none; color: #333; background-color: #fff; background-repeat: no-repeat; background-position: right center; border: 1px solid #ccc; border-radius: 3px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.075); -moz-box-sizing: border-box; box-sizing: border-box; transition: all 0.15s ease-in; -webkit-transition: all 0.15s ease-in 0; vertical-align: middle;}
-	.BVFormInputText:focus, .BVFormInputTextarea:focus {border-color: #51a7e8; box-shadow: inset 0 1px 2px rgba(0,0,0,0.075),0 0 5px rgba(81,167,232,0.5);}
-	.BVFormInputText {width: 380px;}
-	.BVFormInputTextarea {width: 381px; height: 125px; resize: vertical;}
-	._BVCharacterCounter {display: inline;}
-	.BVCharacterCounterText {display: inline-block;}
-	._BVRadioButtonGroupContainer {float: left;}
-
-/* Rating Stars */
-.BVFieldRating ._BVRadioLabelText {display: none;}
-/* jQuery.Rating Plugin CSS - http://www.fyneworks.com/jquery/star-rating/ */
-#BVSubmissionContainer div.rating-cancel, #BVSubmissionContainer div.star-rating {float: left; width: 23px; height: 19px; text-indent: -999em; cursor: pointer; display: block; background: transparent; overflow: hidden;}
-#BVSubmissionContainer div.rating-cancel {display: none !important;}
-#BVSubmissionContainer div.rating-cancel, #BVSubmissionContainer div.rating-cancel a {background: url(../images/delete.gif) no-repeat 0 -16px;}
-#BVSubmissionContainer div.star-rating, #BVSubmissionContainer div.star-rating a {background: url(../images/star.gif) no-repeat 0 0px;}
-#BVSubmissionContainer div.rating-cancel a, #BVSubmissionContainer div.star-rating a {display: block; width: 20px; height: 100%; background-position: 0 0px; border: 0;}
-#BVSubmissionContainer div.star-rating-on a {background-position: 0 -40px !important;}
-#BVSubmissionContainer div.star-rating-hover a {background-position: 0 -20px;}
-/* Read Only CSS */
-#BVSubmissionContainer div.star-rating-readonly a {cursor: default !important;}
-/* Partial Star CSS */
-#BVSubmissionContainer div.star-rating {background: transparent !important; overflow: hidden !important;}
-/* END jQuery.Rating Plugin CSS */
-
-/* Buy Again */
-._BVRecommendedInputContainer ._BVRadioButtonIndividualContainer {float: left; margin-right: 15px;}
-
-/* Tags */
-._BVTagGroupInputContainer {margin-left: 160px;}
-	.BVTagIndividualInputContainer {width: 35%; float: left; margin-right: 15px;}
-	.BVTagIndividualInputContainer ._BVLabelText {width: auto; float: none;}
-		._BVCheckboxGroupContainer ._BVCheckboxIndividualContainer {padding-bottom: 4px;}
-			._BVCheckboxIndividualContainer .BVFormInputText {width: 150px;}
-
-/* Footer */
-.BVFooter {margin-left: 160px;}
-
-/* Buttons */
-.BVFieldButtonGroup .BVField {float: left; clear: none; margin-right: 10px;}
-	._BVButtonSubmitContainer a {color: #fff; text-shadow: 0 1px 0 rgba(193,90,24,1); background-color: #EE8A27; background-image: -moz-linear-gradient(#EE8A27, #E86C1F); background-image: -webkit-linear-gradient(#EE8A27, #E86C1F); background-image: linear-gradient(#EE8A27, #E86C1F); border: 1px solid #EE8A27; border-bottom-color: #E86C1F;}
+	/* Write a Review & Preview */
+	._BVButtonWriteReviewContainer a._BVButton, ._BVButtonWriteReviewContainer a._BVButton:visited, ._BVButtonPreviewContainer a._BVButton, ._BVButtonPreviewContainer a._BVButton:visited {background-color: #006CBC; background-image: -moz-linear-gradient(#006CBC, #00449E); background-image: -webkit-linear-gradient(#006CBC, #00449E); background-image: -ms-linear-gradient(#006CBC, #00449E); background-image: -o-linear-gradient(#006CBC, #00449E); background-image: linear-gradient(#006CBC, #00449E); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#006CBC, endColorstr=#00449E, GradientType=0); border: 1px solid #003865;}
+		._BVButtonWriteReviewContainer a._BVButton ._BVButtonText, ._BVButtonPreviewContainer a._BVButton ._BVButtonText {color: #fff; text-shadow: 0 -1px 1px rgba(0,0,0,0.75);}
+	._BVButtonWriteReviewContainer a._BVButton:active, ._BVButtonWriteReviewContainer a._BVButton:focus, ._BVButtonWriteReviewContainer a._BVButton:hover, ._BVButtonPreviewContainer a._BVButton:active, ._BVButtonPreviewContainer a._BVButton:focus, ._BVButtonPreviewContainer a._BVButton:hover {background-image: -webkit-gradient(linear, left top, left bottom, from(#2488D2), to(#006CBC)); background-image: -webkit-linear-gradient(#2488D2, #006CBC); background-image: -moz-linear-gradient(#2488D2, #006CBC); background-image: -ms-linear-gradient(#2488D2, #006CBC); background-image: -o-linear-gradient(#2488D2, #006CBC); background-image: linear-gradient(#2488D2, #006CBC); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#2488D2, endColorstr=#006CBC, GradientType=0);}
 
 
-/* Pagination */
-._BVPaginationContainer {text-align: center;}
-.BVPaginationBtn {padding: 0 10px; cursor: pointer;}
-.BVPaginationBtn.BVSelected {font-weight: bold; cursor: default;}
 
+/* RATINGS */
+
+	/* Filled & Unfilled Images - SVG scaling */
+	._BVRatingStarsFilledImage, ._BVRatingStarsUnfilledImage {width: 100%; height: auto;}
+	.webkit ._BVRatingStarsFilledImage, .webkit ._BVRatingStarsUnfilledImage {width: auto;}
+
+	/* Overall Star Rating */
+	.BVOverallRatingContainer ._BVRatingStarsContainer {min-width: 100px; height: auto; display: block; float: left;}
+
+	/* Value, Out Of Separator & Range Text */
+	._BVRatingValue, .BVRatingSeparator, ._BVRatingRange {float: left; margin-left: 4px;}
+
+	/* Off-Screen Value Text */
+	._BVRatingStarsText {display: block; position: absolute; text-indent: -9999px; z-index: -1;}
+
+
+
+/* QUICKTAKE DASHBOARD */
+	
+	._BVQuickTakeContainer {overflow: hidden; position: relative;}
+		
+		/* Title */
+		._BVQuickTakeContainer ._BVQuickTakeSummaryTitle {padding: 0 0 12px;}
+		
+		/* Overall Rating */
+		._BVQuickTakeContainer ._BVOverallRatingContainer {}
+		._BVQuickTakeContainer ._BVOverallRatingContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
+			._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsContainer {float: left;}
+				._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsFilledImage, ._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsUnfilledImage {width: 170px !important;}
+			._BVQuickTakeContainer .BVOverallRatingContainer .BVRatingOutOfContainer {font-weight: bold; line-height: 33px; font-size: 34px; color: #085EB9; float: left;}
+				._BVQuickTakeContainer .BVOverallRatingContainer .BVRatingSeparator, ._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingRange {display: none;}
+		
+		/* Buy Again */
+		._BVQuickTakeContainer ._BVRecommendedContainerAverage {width: 320px; background: url(images/backgroundBuyAgain.gif) no-repeat; padding: 7px 0 12px 87px; position: absolute; left: 280px; top: 18px; font-size: 14px;}
+			._BVQuickTakeContainer ._BVRecommendedContainerAverage .BVIsRecommended {margin: 0;}
+			._BVQuickTakeContainer ._BVRecommendedContainerAverage ._BVIsRecommendedValue span {font-weight: bold; font-size: 18px;}
+		
+		/* Filters */
+		._BVQuickTakeContainer ._BVFilters {border-top: 1px solid #E7E7E7; clear: both; margin-top: 30px; padding: 30px 0;}
+			._BVFiltersTitle {margin-bottom: 5px;}
+			.BVFilterGroupContainer {padding: 3px 0;}
+				._BVFilterLabelText {margin-bottom: 6px; font-size: 14px;}
+				._BVFilterText {width: 40px; color: #085EB9; margin-right: 5px;}
+				._BVFilterCountText {font-size: 11px; color: #737474;}
+				._BVFiltersFilteringStatement {font-size: 9px;}
+		
+		/* Write a Review & Sorting */
+		._BVQuickTakeContainer ._BVButtonWriteReviewContainer {background-image: -moz-linear-gradient(#E7E7E7, #F2F2F2); background-image: -webkit-linear-gradient(#E7E7E7, #F2F2F2); background-image: linear-gradient(#E7E7E7, #F2F2F2); background-repeat: repeat-x; border-bottom: 1px solid #C4C4C4; padding: 7px 12px; overflow: hidden;}
+		._BVQuickTakeContainer .BVSortContainer {position: absolute; right: 12px; bottom: 14px;}
+
+
+
+/* GENERAL UGC STYLES */
+
+	/* Header - Rating, Title, Date */
+	.BVUGCHeader {}
+	.BVUGCHeader:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
+
+		/* Overall Rating */
+		.BVUGCHeader ._BVOverallRatingContainer {height: 27px;}
+			.BVUGCHeader ._BVRatingLabelText {display: none;}
+			.BVUGCHeader .BVRatingOutOfContainer .BVRatingSeparator, .BVUGCHeader .BVRatingOutOfContainer ._BVRatingRange {display: none;}
+			.BVUGCHeader ._BVRatingStarsContainer {width: 118px; float: left;}
+			.BVUGCHeader .BVRatingOutOfContainer {font-weight: bold; line-height: 28px; padding-left: 4px;}
+		
+		/* Title */
+		._BVTitleContainer {clear: left;}
+			h3._BVTitleText {font-size: 18px; margin: 0 0 5px; padding: 0;}
+		
+		/* Date */
+		._BVDateContainer {}
+
+	
+	/* User Information - Avatar, Nickname, Location, Context Data, Badges */
+	.BVUserDataContainer {background: url(images/backgroundShadowEdge.png) no-repeat bottom left; padding: 0 0 14px 14px; margin: 15px 0 30px; clear: both; overflow: hidden;}
+		
+		/* Avatar */
+		.BVAvatar {float: left; margin-right: 15px;}
+
+		/* Nickname, Location, Context Data */
+		.BVUserInfo {margin-left: 56px; color: #737474;}
+			._BVUserNicknameContainer, ._BVUserLocationContainer, ._BVDateContainer {display: inline;}
+			._BVContextDataValueGroupContainer {display: inline;}
+				.BVContextDataValueContainer {float: left; margin-right: 15px;}
+
+	
+	/* Badges */
+	._BVBadgesContainer {}
+		.BVBadgeContainer {display: inline;}
+			.BVBadgeContainer div {display: inline;}
+			.BVBadgeItemText {text-transform: uppercase;}
+				.BVBadgeItemIcon {background: url(images/iconBadges.png) no-repeat; padding: 0 0 3px 22px;}
+				.BVBadgeItemText strong {font-family: 'Arial Black', 'Arial Bold', sans-serif;}
+
+					.BVBadgeItemIconTopContributor {background-position: 0 -41px;}
+					.BVBadgeItemIconSocialAnsweringSubscriber {background-position: 0 -160px;}
+					.BVBadgeItemIconVerifiedPurchaser {background-position: 0 -200px;}
+					.BVBadgeItemIconStaff {background-position: 0 -201px;}
+					
+					/* BBY-specific badges */
+					.BVBadgeItemIconEliteContributor {background-position: 0 -120px;}
+					.BVBadgeItemIconRewardZone {background-position: 0 -277px;}
+					.BVBadgeItemIconRewardZoneSilver {background-position: 0 -315px;}
+					.BVBadgeItemIconRewardZoneGamersUnlocked {background-position: 0 -360px;}
+					
+	
+	/* Primary UGC - Text, Tags, Recommendations */
+	.BVUGCPrimaryContent {margin-right: 250px; vertical-align: top;}
+	.BVUGCPrimaryContent:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
+
+		/* Text */
+		._BVBodyTextContainer {margin-bottom: 30px;}
+			p._BVBodyText {display: block; word-wrap: break-word; padding: 0; margin: 0 0 10px;}
+
+		/* Tags */
+		._BVTagGroupContainer {overflow: hidden;}
+			.BVTagContainer {margin-bottom: 15px;}
+			.BVTagContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
+				.BVTagContainer ._BVTagLabelText, .BVTagContainer .BVTag, ._BVTagIndividualContainer {display: inline;}
+		
+		/* Buy Again */
+		._BVRecommendedContainer {font-weight: bold;}
+			._BVRecommendedContainer .BVIsRecommended {margin: 10px 0; background: url(images/iconText.png) no-repeat 0 -601px; padding-left: 20px;}
+
+	
+	/* Secondary UGC - Secondary Ratings, Media */
+	.BVUGCSecondaryContent {clear: right; float: right; vertical-align: top;}
+		._BVSecondaryRatingsContainer:empty {display: none;}
+		.BVUGCSecondaryContent ._BVSecondaryRatingsContainer, .BVUGCSecondaryContent .BVUGCMediaContent {width: 188px; border-bottom: 1px solid #E7E7E7; overflow: hidden; zoom: 1; margin-bottom: 15px; padding-bottom: 15px;}
+		.BVUGCSecondaryContent ._BVSecondaryRatingsContainer:after, .BVUGCSecondaryContent .BVUGCMediaContent:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
+
+		/* Secondary Ratings */
+		.BVSecondaryRatingContainer {width: 195px;}
+		.BVSecondaryRatingContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
+			.BVSecondaryRatingContainer ._BVRatingLabelText {font-weight: bold; display: block;}
+			.BVSecondaryRatingContainer ._BVRatingStarsContainer, .BVSecondaryRatingContainer .BVRatingOutOfContainer {display: block; float: left;}
+			.BVSecondaryRatingContainer .BVRatingOutOfContainer {font-weight: bold;}
+				.BVSecondaryRatingContainer .BVRatingOutOfContainer .BVRatingSeparator, .BVSecondaryRatingContainer .BVRatingOutOfContainer ._BVRatingRange {display: none;}
+
+		/* Media */
+		._BVPhotoGroupContainer {}
+			._BVPhotoThumbnail, ._BVVideoThumbnail {width: 50px; height: 50px; display: block; overflow: hidden; float: left; clear: none; margin: 0 10px 10px 0;}
+				._BVPhotoThumbnail img, ._BVVideoThumbnail img {width: 125px; margin-left: -25px; display: block;}
+
+	
+	/* Footer - Helpfulness Voting, Reporting, Comments */
+
+		/* Helpfulness Voting */
+		._BVFeedbackContainer {background-image: -moz-linear-gradient(#E7E7E7, #F2F2F2); background-image: -webkit-linear-gradient(#E7E7E7, #F2F2F2); background-image: linear-gradient(#E7E7E7, #F2F2F2); background-repeat: repeat-x; padding: 12px; margin-top: 30px; clear: both;}
+		._BVFeedbackContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
+			._BVFeedbackCountContainer {color: #666; margin-bottom: 10px; display: none;}
+			.BVFeedbackVotingPrefix {float: left; line-height: 33px; margin-right: 10px;}
+				._BVFeedbackVotingContainer, ._BVReportInappropriateContainer {float: left;}
+					._BVFeedbackPositiveButton, ._BVFeedbackNegativeButton {float: left;}
+				._BVFeedbackVotingContainer .BVButtonWrapper {float: left; margin-right: 10px;}
+				._BVFeedbackVotingContainer .BVButtonWrapper.selected {opacity: 1;}
+				._BVFeedbackVotingContainer ._BVButton.BVDisabled {opacity: 0.5; cursor: default;}
+			._BVFeedbackPositiveButton ._BVButtonText {background: url(images/votingThumbUpSprite.gif) no-repeat; padding-left: 22px;}
+			._BVFeedbackNegativeButton ._BVButtonText {background: url(images/votingThumbDownSprite.gif) no-repeat; padding-left: 22px;}
+
+
+		/* Inappropriate Reporting */
+		._BVReportInappropriateContainer {}
+			._BVReportInappropriateForm .BVFooter {margin-left: 0;}
+
+			/* Report Button */
+			._BVReportInappropriateForm .BVFieldButtonGroup, ._BVReportInappropriateForm .BVFieldButtonGroup .BVField {margin-bottom: 0;}
+			._BVReportInappropriateButtonContainer a._BVButton.BVDisabled {opacity: 0.5; cursor: default;}
+				._BVReportInappropriateButtonContainer a._BVButton, ._BVReportInappropriateButtonContainer a._BVButton:hover, ._BVReportInappropriateButtonContainer a._BVButton:active, ._BVReportInappropriateButtonContainer a._BVButton:focus, ._BVReportInappropriateButtonContainer a._BVButton:visited {padding: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px;}
+
+			/* Report Form */
+			._BVReportInappropriateFormContainer {position: relative;}
+				._BVReportInappropriateFormContainer ._BVReportInappropriateForm {position: absolute; top: 0; left: 0; background-color: #fff; border: 1px solid #C3C4C4; border-radius: 4px; padding: 10px; box-shadow: 0px 0px 3px rgba(0,0,0,0.3);}
+
+
+	/* Comments */
+	._BVReviewCommentsWidgetContainer {position: relative;}
+
+		/* Write Comment Button */
+		._BVButtonWriteReviewCommentContainer {position: absolute; top: -45px; right: 12px;}
+			._BVButtonWriteReviewCommentContainer a._BVButton, ._BVButtonWriteReviewCommentContainer a._BVButton:hover, ._BVButtonWriteReviewCommentContainer a._BVButton:active, ._BVButtonWriteReviewCommentContainer a._BVButton:focus, ._BVButtonWriteReviewCommentContainer a._BVButton:visited {padding: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px;}
+
+		/* Toggle Comments Button */
+		._BVButtonToggleReviewCommentsContainer {position: absolute; top: -45px; right: 118px;}
+			._BVButtonToggleReviewCommentsContainer a._BVButton, ._BVButtonToggleReviewCommentsContainer a._BVButton:hover, ._BVButtonToggleReviewCommentsContainer a._BVButton:active, ._BVButtonToggleReviewCommentsContainer a._BVButton:focus, ._BVButtonToggleReviewCommentsContainer a._BVButton:visited {padding: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px;}
+
+		/* Comments Display */
+		._BVReviewCommentsToggleContainer {clear: both; display: none;}
+		.BVReviewCommentsHasComments ._BVReviewCommentsToggleContainer {}
+			._BVReviewCommentsToggleContainer .BVSectionHeader {margin: 0;}
+				._BVReviewCommentsToggleContainer .BVSectionHeader h2._BVSectionHeaderText {margin-bottom: 30px; padding-top: 30px;}
+		._BVReviewCommentContainer ._BVFeedbackContainer {background: none transparent; padding: 0; margin-top: 0;}
+		._BVReviewCommentContainer {margin: 0 0 45px 45px; padding-left: 30px; border-left: 1px solid #ccc;}
+			._BVReviewCommentContainer .BVUserDataContainer {background-image: none; padding: 0;}
+				._BVReviewCommentContainer .BVAvatar, ._BVReviewCommentContainer .BVUGCSecondaryContent {display: none;}
+				._BVReviewCommentContainer .BVUserInfo {margin-left: 0; display: inline;}
+				._BVReviewCommentContainer ._BVDateContainer {display: inline;}
+			._BVReviewCommentsPaginationContainer ._BVPaginationContainer {padding: 15px 0;}
+
+
+
+/* PAGINATION */
+
+	._BVPaginationContainer {padding: 15px 0; text-align: center;}
+		.BVPaginationBtn {padding: 0 10px; cursor: pointer; color: #085EB9;}
+			.BVPaginationBtn.BVSelected {color: #49494A;}
+
+
+
+/* REVIEWS */
+
+	/* Reviews Display */
+	._BVReviewBodyContainer, ._BVQuestionAnswerBodyContainer {}
+		._BVReviewContainer, ._BVQuestionAnswerContainer {}
+		._BVReviewContainer.BVlast, ._BVQuestionAnswerContainer.BVlast {}
+		._BVReviewContainer .BVUGCSpacerTop {height: 30px; margin-bottom: 40px; background-image: -moz-linear-gradient(#E7E7E7, #FFFFFF); background-image: -webkit-linear-gradient(#E7E7E7, #FFFFFF); background-image: linear-gradient(#E7E7E7, #FFFFFF); background-repeat: repeat-x;}
+
+
+
+/* SUBMISSION FORM STYLES */
+
+	/* General - Titles, Labels, Values */
+	._BVLabelText {width: 210px; float: left; margin-right: 10px; font-weight: bold;}
+	h1._BVPageHeaderText, h2._BVSectionHeaderText {margin: 0;}
+	._BVPageHeaderContainer {display: none;}
+
+	/* Sections */
+	.BVSection {background-image: -moz-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -webkit-linear-gradient(bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: linear-gradient(bottom, #EBEBEB 0%, #FFFFFF 20%); background-repeat: repeat-x; margin-bottom: 40px; padding: 25px 0 15px;}
+	.BVSection:empty, .BVSection div:empty, .BVFooter:empty, .BVFooter div:empty {display: none;}
+		.BVSectionHeader {padding: 0 0 2px; margin: 0 0 20px;}
+			h2._BVSectionHeaderText {font-size: 24px; font-weight: normal; line-height: 1.333; display: block; margin-left: 42px;}
+		.BVSectionBody {padding: 30px 42px 0;}
+		.BVSectionBody:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
+
+		/* Section Header Backgrounds */
+		._BVSectionHeaderRatingsContainer {background: url(images/backgroundRatingsSub.gif) no-repeat;}
+		._BVSectionHeaderReviewContainer, ._BVSectionHeaderReviewCommentContainer {background: url(images/backgroundReviewSub.gif) no-repeat left 2px;}
+		._BVSectionHeaderMediaContainer {background: url(images/backgroundMediaSub.gif) no-repeat left 2px;}
+		._BVSectionHeaderUserContainer {background: url(images/backgroundUserSub.gif) no-repeat;}
+
+		/* Product Information */
+		.BVSectionProductContainer {background: none transparent; padding: 0; margin: 0;}
+		._BVProductInfoWidgetContainer {width: 175px; float: right; padding: 0 50px 30px 0; display: block;}
+			._BVProductInfoNameContainer {font-size: 14px; font-weight: bold;}
+			._BVProductInfoDescriptionContainer {display: none;}
+			._BVProductInfoImageContainer {}
+
+	/* Error Container */
+	.BVSectionErrorContainer {background: none transparent; padding: 0; margin: 0; color: #F00;}
+	.BVErrorText {color: #F00 !important;}
+	.BVErrorBorder {border: 1px solid #F00 !important;}
+
+	/* Fields */
+	.BVField {clear: left; overflow: hidden; margin-bottom: 30px;}
+	.BVFieldGroup {margin-bottom: 0;}
+		.BVFormInputText, .BVFormInputTextarea {padding: 7px 8px; color: #333; vertical-align: middle;}
+		.BVFormInputText:focus, .BVFormInputTextarea:focus {}
+		.BVFormInputText {width: 400px;}
+		.BVFormInputTextarea {width: 401px; height: 125px; resize: vertical;}
+		._BVCharacterCounter {display: inline;}
+		.BVCharacterCounterText {display: inline-block;}
+		._BVRadioButtonGroupContainer {float: left;}
+
+	/* Helper Text & Character Counter */
+	._BVHelperText, .BVCharacterCounterText {width: 400px; margin-left: 220px; padding: 5px 0 0; font-size: 11px; color: #737474;}
+
+	/* Rating Stars */
+	.BVFieldRating ._BVRadioLabelText {display: none;}
+	/* jQuery.Rating Plugin CSS - http://www.fyneworks.com/jquery/star-rating/ */
+	#BVSubmissionContainer div.rating-cancel, #BVSubmissionContainer div.star-rating {float: left; width: 30px; height: 24px; text-indent: -999em; cursor: pointer; display: block; background: transparent; overflow: hidden;}
+	#BVSubmissionContainer div.rating-cancel {display: none !important;}
+	#BVSubmissionContainer div.rating-cancel, #BVSubmissionContainer div.rating-cancel a {background: url(../images/delete.gif) no-repeat 0 -16px;}
+	#BVSubmissionContainer div.star-rating, #BVSubmissionContainer div.star-rating a {background: url(images/ratingStars_star.gif) no-repeat 0 0px;}
+	#BVSubmissionContainer div.rating-cancel a, #BVSubmissionContainer div.star-rating a {display: block; width: 25px; height: 100%; background-position: 0 0px; border: 0;}
+	#BVSubmissionContainer div.star-rating-on a {background-position: 0 -52px !important;}
+	#BVSubmissionContainer div.star-rating-hover a {background-position: 0 -27px;}
+	/* Read Only CSS */
+	#BVSubmissionContainer div.star-rating-readonly a {cursor: default !important;}
+	/* Partial Star CSS */
+	#BVSubmissionContainer div.star-rating {background: transparent !important; overflow: hidden !important;}
+	/* END jQuery.Rating Plugin CSS */
+
+	/* Ratings */
+	._BVOverallRatingInputContainer ._BVLabelText {font-size: 14px;}
+
+	/* Buy Again */
+	._BVRecommendedInputContainer {}
+		._BVRecommendedInputContainer ._BVLabelText {font-size: 14px;}
+		._BVRecommendedInputContainer ._BVInputGroupContainer {float: left;}
+			._BVRecommendedInputContainer .BVRadioButtonIndividualContainer {width: 60px; float: left; margin-right: 15px;}
+
+	/* Title & Body Text */
+	._BVTitleInputContainer ._BVLabelText, ._BVBodyTextInputContainer ._BVLabelText {font-size: 14px;}
+
+	/* Tags */
+	._BVTagGroupInputContainer {margin-left: 160px;}
+		.BVTagIndividualInputContainer {width: 35%; float: left; margin-right: 15px;}
+		.BVTagIndividualInputContainer ._BVLabelText {width: auto; float: none;}
+			._BVCheckboxGroupContainer ._BVCheckboxIndividualContainer {padding-bottom: 4px;}
+				._BVCheckboxIndividualContainer .BVFormInputText {width: 150px;}
+
+	/* Media Upload */
+	.BVSectionMediaContainer ._BVInputGroupContainer {width: 400px; float: left;}
+		._BVUploadIndividualInputContainer {margin-bottom: 15px;}
+		.BVSectionMediaContainer ._BVHelperText {margin-left: 0;}
+	.BVSectionMediaGuidelines {position: absolute; left: 730px;}
+
+	/* User Info */
+	._BVUserNicknameInputContainer ._BVLabelText, ._BVUserEmailInputContainer ._BVLabelText {font-size: 14px;}
+
+	/* Additional Fields */
+	._BVAdditionalFieldGroupInputContainer {}
+		._BVAdditionalFieldGroupInputContainer #additionalfield_RewardZoneNumberWrapperID {display: none;}
+
+	/* Email Subscription */
+	._BVEmailAlertWhenPublishedContainer, ._BVEmailAlertWhenCommentedContainer {margin: 0 0 0 215px;}
+	._BVEmailAlertWhenCommentedContainer {margin-bottom: 15px;}
+
+	/* Footer */
+	.BVFooter {margin-left: 265px;}
+		.BVFooter .BVField {margin-bottom: 15px;}
+
+	/* Buttons */
+	.BVFieldButtonGroup {margin-left: 265px;}
+	.BVFieldButtonGroup .BVField {float: left; clear: none; margin-right: 10px;}
+		._BVButtonSubmitContainer a {color: #fff; text-shadow: 0 1px 0 rgba(193,90,24,1); background-color: #EE8A27; background-image: -moz-linear-gradient(#EE8A27, #E86C1F); background-image: -webkit-linear-gradient(#EE8A27, #E86C1F); background-image: linear-gradient(#EE8A27, #E86C1F); border: 1px solid #EE8A27; border-bottom-color: #E86C1F;}
+
+	/* Popins */
+	.BVPopinLauncher {color: #085EB9;}
+	.BVPopin {width: 245px; border: 1px solid #C3C4C4; padding: 15px; background-color: #fff; border-radius: 4px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); display: none;}
+		.BVPopin .BVHeader {font-size: 14px; margin-bottom: 10px;}
+		.BVPopin ul {margin: 0; padding-left: 15px;}

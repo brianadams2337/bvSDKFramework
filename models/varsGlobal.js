@@ -79,6 +79,51 @@ var defaultToggleOptions = {
 	queue: true
 };
 
+/***** INLINE VALIDATION OPTIONS *****/
+var defaultInlineValidationOption = {
+	successClass: 'BVSuccess',
+	errorClass: 'BVError',
+	messages: {
+		"required":"this is a required field",
+	},
+	errors: {
+		// classHandler: function ( elem, isRadioOrCheckbox ) {
+	 //          return $( elem ).parent();
+	 //      },
+		errorsWrapper:"<div class='BVErrorContainerInline'></div>",
+		errorElem:"<div class='BVErrorInline'></div>",
+	}
+};
+
+// {
+//   // basic data-api overridable properties here..
+//   inputs: 'input, textarea, select'
+//   , excluded: 'input[type=hidden]'
+//   , trigger: false
+//   , focus: 'first'
+//   , validationMinlength: 3
+//   , successClass: 'parsley-success'
+//   , errorClass: 'parsley-error'
+//   , validators: {}
+//   , showErrors: true
+//   , messages: {}
+
+//   //some quite advanced configuration here..
+//   , validateIfUnchanged: false
+//   , errors: {                     // specify where parsley error-success classes are set
+//     classHandler: function ( elem, isRadioOrCheckbox ) {}
+//   , container: function ( elem, isRadioOrCheckbox ) {}
+//   , errorsWrapper: '<ul></ul>'
+//   , errorElem: '<li></li>'
+//   }
+//   , listeners: {
+//       onFieldValidate: function ( elem, ParsleyField ) { return false; }
+//     , onFormSubmit: function ( isFormValid, event, ParsleyForm ) {}
+//     , onFieldError: function ( elem, constraints, ParsleyField ) {}
+//     , onFieldSuccess: function ( elem, constraints, ParsleyField ) {}
+//   }
+// }
+
 /***** DECIMAL TRUNCATION OPTIONS *****/
 var defaultDecimalOptions = {
 	"overallAverage": 1,
