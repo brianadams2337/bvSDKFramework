@@ -379,3 +379,11 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	.BVPopin {width: 245px; border: 1px solid #C3C4C4; padding: 15px; background-color: #fff; border-radius: 4px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); display: none;}
 		.BVPopin .BVHeader {font-size: 14px; margin-bottom: 10px;}
 		.BVPopin ul {margin: 0; padding-left: 15px;}
+
+/* HISTOGRAM */
+
+	._BVHistogramIndividualWrapper {display: inline-block; height: 10px; width: 100px; background-color: #cccccc;}
+	._BVHistogramIndividual {float: left; background-color: #085EB9; height: 10px;}
+
+
+

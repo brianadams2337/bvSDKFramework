@@ -3,13 +3,8 @@
 
 
 function loadFiltersOverallRating (content, options) {
-	var filtersToLoad = content["RatingDistribution"]; // review stats
 	var defaultLoadOrder = new Array();
-	if (filtersToLoad != undefined) {
-		$.each(filtersToLoad.reverse(), function() {
-			defaultLoadOrder.push(this);
-		});
-	}
+	var defaultLoadOrder = content["RatingDistribution"]; // review stats
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultFilterGroupContainer,
@@ -37,6 +32,7 @@ function loadFiltersOverallRating (content, options) {
 	var ratingsDistribution = {
 		"Id":"rating",
 		"Label":"Star rating...",
+		"TotalResults":content["TotalReviewCount"],
 		"Values":[]
 	};
 	if (settings["loadOrder"] != undefined) {
@@ -61,8 +57,12 @@ function loadFiltersOverallRating (content, options) {
 	// load filters
 	loadIndividualFilters (ratingsDistribution, {
 		"parentContainer":$template,
-		"loadOrder":ratingsDistribution["Values"],
-		"viewReloadOptions":settings["viewReloadOptions"]
+		"viewContainer":defaultFilterIndividualHistogramContainerView,
+		"loadOrder":ratingsDistribution["Values"].reverse(),
+		"viewReloadOptions":settings["viewReloadOptions"],
+		"filterSettings":{
+			"showHistogramBool":true,
+		},
 	});
 }
 
@@ -249,7 +249,6 @@ function loadFiltersTags (content, options) {
 			"controllerSettings":""
 		}
 	}, options);
-	console.log("tags", content);
 	if (settings["loadOrder"] != undefined) {
 		$.each (settings["loadOrder"], function(key) {
 			// set container & template
@@ -291,7 +290,8 @@ function loadIndividualFilters (content, options) {
 			"displayCount":5,
 			"popinBool":false,
 			"onClickBool":false,
-			"showCountBool":true
+			"showCountBool":true,
+			"showHistogramBool":false
 		},
 		"viewReloadOptions":{
 			"model":"",
@@ -331,7 +331,16 @@ function loadIndividualFilters (content, options) {
 			// set filter text
 			$($template).find(defaultReviewFilterTextContainer).andSelf().filter(defaultReviewFilterTextContainer).text(filterText);
 			// set filter count text
-			$($template).find(defaultReviewFilterCountTextContainer).andSelf().filter(defaultReviewFilterCountTextContainer).text(filterCountText);
+			if (settings["filterSettings"]["showCountBool"]) {
+				$($template).find(defaultReviewFilterCountTextContainer).andSelf().filter(defaultReviewFilterCountTextContainer).text(filterCountText);
+			}
+			// set histogram
+			if (settings["filterSettings"]["showHistogramBool"]) {
+				var histogramWidth = (filterCountText/content["TotalResults"]) * 100;
+				$($template).find(defaultHistogramIndividualContainer).andSelf().filter(defaultHistogramIndividualContainer).css({
+					"width":histogramWidth+"%",
+				});
+			}
 			// filter option functionality
 				$($template).click(function(){
 					if ($(this).attr("data-selected") == "false") {
