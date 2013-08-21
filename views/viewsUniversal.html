@@ -33,9 +33,7 @@
 <!-- universal tag individual template -->
 <script id="bvtemplate-tag-individual-universal" type="html">
 	<div class="BVTag">
-		<span class="BVPrefix BVTagTextPrefix"></span>
-		<span class="BVValue _BVTagText"></span>
-		<span class="BVSuffix BVTagTextSuffix">, </span>
+		<span class="BVPrefix BVTagTextPrefix"></span><span class="BVValue _BVTagText"></span><span class="BVSuffix BVTagTextSuffix">, </span>
 	</div>
 </script>
 <!-- universal tag individual template -->
@@ -51,6 +49,7 @@
 
 <!-- universal nickname template -->
 <script id="bvtemplate-nickname-universal" type="html">
+	<span class="BVUserNicknamePrefix">Posted by: </span>
 	<span class="_BVUserNicknameText"></span>
 </script>
 
@@ -164,7 +163,6 @@
 				<div class="_BVUserNicknameContainer"></div>
 				<div class="_BVUserLocationContainer"></div>
 				<div class="_BVDateContainer"></div>
-				<div class="_BVContextDataValueGroupContainer"></div>
 				<div class="_BVBadgesUserContainer"></div>
 			</div>
 		</div>
@@ -179,6 +177,7 @@
 			<div class="_BVBodyTextContainer"></div>
 			<div class="_BVTagGroupContainer"></div>
 			<div class="_BVAdditionalFieldGroupContainer"></div>
+			<div class="_BVContextDataValueGroupContainer"></div>
 			<div class="_BVRecommendedContainer"></div>
 		</div>
 		<div class="_BVFeedbackContainer"></div>
@@ -267,8 +266,7 @@
 			</div>
 			<div class="BVUserInfo">
 				<div class="_BVUserNicknameContainer"></div>
-				<div class="_BVUserLocationContainer"></div>			
-				<div class="_BVContextDataValueGroupContainer"></div>
+				<div class="_BVUserLocationContainer"></div>
 			</div>
 		</div>
 		<div class="BVUGCSecondaryContent">
@@ -279,6 +277,7 @@
 		</div>
 		<div class="BVUGCPrimaryContent">
 			<div class="_BVBodyTextContainer"></div>
+			<div class="_BVContextDataValueGroupContainer"></div>
 			<div class="_BVRecommendedContainer"></div>
 		</div>
 		<div class="_BVFeedbackContainer"></div>
@@ -439,177 +438,177 @@
 
 <!-- badge 1 template -->
 <script id="bvtemplate-badge-1-universal" type="html">
-	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Number One Contributor</div>
+	<div class="BVBadgeItemIcon BVBadgeItemIconTopContributor"></div>
+	<div class="BVBadgeItemText"><strong>Number One</strong> Contributor</div>
 </script>
 
 <!-- badge 10 template -->
 <script id="bvtemplate-badge-10-universal" type="html">
-	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Top 10 Contributor</div>
+	<div class="BVBadgeItemIcon BVBadgeItemIconTopContributor"></div>
+	<div class="BVBadgeItemText"><strong>Top 10</strong> Contributor</div>
 </script>
 
 <!-- badge 25 template -->
 <script id="bvtemplate-badge-25-universal" type="html">
-	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Top 25 Contributor</div>
+	<div class="BVBadgeItemIcon BVBadgeItemIconTopContributor"></div>
+	<div class="BVBadgeItemText"><strong>Top 25</strong> Contributor</div>
 </script>
 
 <!-- badge 50 template -->
 <script id="bvtemplate-badge-50-universal" type="html">
-	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Top 50 Contributor</div>
+	<div class="BVBadgeItemIcon BVBadgeItemIconTopContributor"></div>
+	<div class="BVBadgeItemText"><strong>Top 50</strong> Contributor</div>
 </script>
 
 <!-- badge 100 template -->
 <script id="bvtemplate-badge-100-universal" type="html">
-	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Top 100 Contributor</div>
+	<div class="BVBadgeItemIcon BVBadgeItemIconTopContributor"></div>
+	<div class="BVBadgeItemText"><strong>Top 100</strong> Contributor</div>
 </script>
 
 <!-- badge 250 template -->
 <script id="bvtemplate-badge-250-universal" type="html">
-	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Top 250 Contributor</div>
+	<div class="BVBadgeItemIcon BVBadgeItemIconTopContributor"></div>
+	<div class="BVBadgeItemText"><strong>Top 250</strong> Contributor</div>
 </script>
 
 <!-- badge 500 template -->
 <script id="bvtemplate-badge-500-universal" type="html">
-	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Top 500 Contributor</div>
+	<div class="BVBadgeItemIcon BVBadgeItemIconTopContributor"></div>
+	<div class="BVBadgeItemText"><strong>Top 500</strong> Contributor</div>
 </script>
 
 <!-- badge 1000 template -->
 <script id="bvtemplate-badge-1000-universal" type="html">
-	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Top 1000 Contributor</div>
+	<div class="BVBadgeItemIcon BVBadgeItemIconTopContributor"></div>
+	<div class="BVBadgeItemText"><strong>Top 1000</strong> Contributor</div>
 </script>
 
 <!-- badge expert template -->
 <script id="bvtemplate-badge-expert-universal" type="html">
 	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Expert</div>
+	<div class="BVBadgeItemText"><strong>Expert</strong></div>
 </script>
 
 <!-- badge featured template -->
 <script id="bvtemplate-badge-featured-universal" type="html">
 	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Featured</div>
+	<div class="BVBadgeItemText"><strong>Featured</strong></div>
 </script>
 
 <!-- badge social answering subscriber template -->
 <script id="bvtemplate-badge-social-answering-subscriber-universal" type="html">
 	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Social Answering Subscriber</div>
+	<div class="BVBadgeItemText"><strong>Social Answering</strong> Subscriber</div>
 </script>
 
 <!-- badge staff template -->
 <script id="bvtemplate-badge-staff-universal" type="html">
-	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Staff</div>
+	<div class="BVBadgeItemIcon BVBadgeItemIconStaff"></div>
+	<div class="BVBadgeItemText"><strong>Staff</strong></div>
 </script>
 
 <!-- badge verified purchaser template -->
 <script id="bvtemplate-badge-verified-purchaser-universal" type="html">
-	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Verified Purchaser</div>
+	<div class="BVBadgeItemIcon BVBadgeItemIconVerifiedPurchaser"></div>
+	<div class="BVBadgeItemText"><strong>Verified</strong> Purchaser</div>
 </script>
 
 
 <!-- badge template -->
 <script id="bvtemplate-badge-blog-her-reviewer-universal" type="html">
 	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Inspiration to Fitness</div>
+	<div class="BVBadgeItemText"><strong>Inspiration to Fitness</strong></div>
 </script>
 <!-- badge template -->
 <script id="bvtemplate-badge-business-user-universal" type="html">
 	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Business User</div>
+	<div class="BVBadgeItemText"><strong>Business User</strong></div>
 </script>
 <!-- badge template -->
 <script id="bvtemplate-badge-dell-support-universal" type="html">
 	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Dell Support</div>
+	<div class="BVBadgeItemText"><strong>Dell</strong> Support</div>
 </script>
 <!-- badge template -->
 <script id="bvtemplate-badge-ec-product-review-universal" type="html">
-	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">EC Product Review</div>
+	<div class="BVBadgeItemIcon BVBadgeItemIconEliteContributor"></div>
+	<div class="BVBadgeItemText"><strong>EC</strong> Product Review</div>
 </script>
 <!-- badge template -->
 <script id="bvtemplate-badge-elite-reviewer-universal" type="html">
-	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Elite Reviewer</div>
+	<div class="BVBadgeItemIcon BVBadgeItemIconEliteContributor"></div>
+	<div class="BVBadgeItemText"><strong>Elite</strong> Reviewer</div>
 </script>
 <!-- badge template -->
 <script id="bvtemplate-badge-elite-contributor-universal" type="html">
-	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Elite Contributor</div>
+	<div class="BVBadgeItemIcon BVBadgeItemIconEliteContributor"></div>
+	<div class="BVBadgeItemText"><strong>Elite</strong> Contributor</div>
 </script>
 <!-- badge template -->
 <script id="bvtemplate-badge-ec-reviewer-universal" type="html">
-	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Elite Reviewer</div>
+	<div class="BVBadgeItemIcon BVBadgeItemIconEliteContributor"></div>
+	<div class="BVBadgeItemText"><strong>Elite</strong> Reviewer</div>
 </script>
 <!-- badge template -->
 <script id="bvtemplate-badge-reward-zone-member-universal" type="html">
-	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Reward Zone Gamers Club Member</div>
+	<div class="BVBadgeItemIcon BVBadgeItemIconRewardZoneGamersUnlocked"></div>
+	<div class="BVBadgeItemText"><strong>Reward Zone</strong> Gamers Club Member</div>
 </script>
 <!-- badge template -->
 <script id="bvtemplate-badge-reward-zone-member-unlocked-universal" type="html">
-	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Reward Zone Gamers Club Unlocked Member</div>
+	<div class="BVBadgeItemIcon BVBadgeItemIconRewardZoneGamersUnlocked"></div>
+	<div class="BVBadgeItemText"><strong>Reward Zone</strong> Gamers Club Unlocked Member</div>
 </script>
 <!-- badge template -->
 <script id="bvtemplate-badge-reward-zone-number-silver-universal" type="html">
-	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Reward Zone Premier Silver Member</div>
+	<div class="BVBadgeItemIcon BVBadgeItemIconRewardZoneSilver"></div>
+	<div class="BVBadgeItemText"><strong>Reward Zone</strong> Premier Silver Member</div>
 </script>
 <!-- badge template -->
 <script id="bvtemplate-badge-reward-zone-number-v3-universal" type="html">
-	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Reward Zone Premier Silver Member</div>
+	<div class="BVBadgeItemIcon BVBadgeItemIconRewardZoneSilver"></div>
+	<div class="BVBadgeItemText"><strong>Reward Zone</strong> Premier Silver Member</div>
 </script>
 <!-- badge template -->
 <script id="bvtemplate-badge-reward-zone-number-universal" type="html">
-	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Reward Zone Member</div>
+	<div class="BVBadgeItemIcon BVBadgeItemIconRewardZone"></div>
+	<div class="BVBadgeItemText"><strong>Reward Zone</strong> Member</div>
 </script>
 <!-- badge template -->
 <script id="bvtemplate-badge-reward-zone-number-silver-v3-universal" type="html">
-	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Reward Zone Member</div>
+	<div class="BVBadgeItemIcon BVBadgeItemIconRewardZone"></div>
+	<div class="BVBadgeItemText"><strong>Reward Zone</strong> Member</div>
 </script>
 <!-- badge template -->
 <script id="bvtemplate-badge-reward-zone-premier-silver-universal" type="html">
-	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Best Buy Reward Zone Premier Silver Member</div>
+	<div class="BVBadgeItemIcon BVBadgeItemIconRewardZoneSilver"></div>
+	<div class="BVBadgeItemText"><strong>Best Buy Reward Zone</strong> Premier Silver Member</div>
 </script>
 <!-- badge template -->
 <script id="bvtemplate-badge-reward-zone-silver-universal" type="html">
-	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Best Buy Reward Zone Premier Silver Member</div>
+	<div class="BVBadgeItemIcon BVBadgeItemIconRewardZoneSilver"></div>
+	<div class="BVBadgeItemText"><strong>Best Buy Reward Zone</strong> Premier Silver Member</div>
 </script>
 <!-- badge template -->
 <script id="bvtemplate-badge-reward-zone-universal" type="html">
-	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Reward Zone Member</div>
+	<div class="BVBadgeItemIcon BVBadgeItemIconRewardZone"></div>
+	<div class="BVBadgeItemText"><strong>Reward Zone</strong> Member</div>
 </script>
 <!-- badge template -->
 <script id="bvtemplate-badge-sennheiser-universal" type="html">
 	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Sennheiser Sound Guy</div>
+	<div class="BVBadgeItemText"><strong>Sennheiser</strong> Sound Guy</div>
 </script>
 <!-- badge template -->
 <script id="bvtemplate-badge-sling-media-universal" type="html">
 	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Sling Media</div>
+	<div class="BVBadgeItemText"><strong>Sling Media</strong></div>
 </script>
 <!-- badge template -->
 <script id="bvtemplate-badge-top-contributor-archived-universal" type="html">
-	<div class="BVBadgeItemIcon"></div>
-	<div class="BVBadgeItemText">Top Contributor</div>
+	<div class="BVBadgeItemIcon BVBadgeItemIconTopContributor"></div>
+	<div class="BVBadgeItemText"><strong>Top</strong> Contributor</div>
 </script>
 
 <!-- ********** PRODUCT INFO ********** -->

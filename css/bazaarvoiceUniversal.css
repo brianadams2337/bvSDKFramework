@@ -134,13 +134,13 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	.BVUserDataContainer {background: url(images/backgroundShadowEdge.png) no-repeat bottom left; padding: 0 0 14px 14px; margin: 15px 0 30px; clear: both; overflow: hidden;}
 		
 		/* Avatar */
-		.BVAvatar {float: left; margin-right: 15px;}
+		.BVAvatar {height: 41px; float: left; margin-right: 15px;}
 
 		/* Nickname, Location, Context Data */
 		.BVUserInfo {margin-left: 56px; color: #737474;}
 			._BVUserNicknameContainer, ._BVUserLocationContainer, ._BVDateContainer {display: inline;}
-			._BVContextDataValueGroupContainer {display: inline;}
-				.BVContextDataValueContainer {float: left; margin-right: 15px;}
+			._BVContextDataValueGroupContainer {}
+				.BVContextDataValueContainer {margin-bottom: 15px;}
 
 	
 	/* Badges */
@@ -186,7 +186,9 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	.BVUGCSecondaryContent {clear: right; float: right; vertical-align: top;}
 		._BVSecondaryRatingsContainer:empty {display: none;}
 		.BVUGCSecondaryContent ._BVSecondaryRatingsContainer, .BVUGCSecondaryContent .BVUGCMediaContent {width: 188px; border-bottom: 1px solid #E7E7E7; overflow: hidden; zoom: 1; margin-bottom: 15px; padding-bottom: 15px;}
+		.BVUGCSecondaryContent .BVUGCMediaContent {border-bottom-width: 0;}
 		.BVUGCSecondaryContent ._BVSecondaryRatingsContainer:after, .BVUGCSecondaryContent .BVUGCMediaContent:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
+		._BVPhotoGroupContainer:empty, ._BVVideoGroupContainer:empty {display: none;}
 
 		/* Secondary Ratings */
 		.BVSecondaryRatingContainer {width: 195px;}
@@ -220,7 +222,6 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 
 		/* Inappropriate Reporting */
 		._BVReportInappropriateContainer {}
-			._BVReportInappropriateForm .BVFooter {margin-left: 0;}
 
 			/* Report Button */
 			._BVReportInappropriateForm .BVFieldButtonGroup, ._BVReportInappropriateForm .BVFieldButtonGroup .BVField {margin-bottom: 0;}
@@ -229,7 +230,12 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 
 			/* Report Form */
 			._BVReportInappropriateFormContainer {position: relative;}
-				._BVReportInappropriateFormContainer ._BVReportInappropriateForm {position: absolute; top: 0; left: 0; background-color: #fff; border: 1px solid #C3C4C4; border-radius: 4px; padding: 10px; box-shadow: 0px 0px 3px rgba(0,0,0,0.3);}
+				._BVReportInappropriateFormContainer ._BVReportInappropriateForm {width: 420px; position: absolute; top: 0; left: 0; background-color: #fff; border: 1px solid #C3C4C4; border-radius: 4px; padding: 10px; box-shadow: 0px 0px 3px rgba(0,0,0,0.3);}
+					._BVSectionHeaderReportInappropriateContainer {margin-bottom: 10px !important;}
+						._BVSectionHeaderReportInappropriateContainer h2._BVSectionHeaderText {margin-left: 0;}
+					._BVReportInappropriateTextInputContainer {margin-bottom: 10px !important;}
+					._BVReportInappropriateForm ._BVHelperText {display: none;}
+					._BVReportInappropriateForm .BVFooter, ._BVReportInappropriateForm .BVFieldButtonGroup {margin: 0 !important;}
 
 
 	/* Comments */
@@ -271,6 +277,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	/* Reviews Display */
 	._BVReviewBodyContainer, ._BVQuestionAnswerBodyContainer {}
 		._BVReviewContainer, ._BVQuestionAnswerContainer {}
+		._BVReviewContainer {margin-top: 50px;}
 		._BVReviewContainer.BVlast, ._BVQuestionAnswerContainer.BVlast {}
 		._BVReviewContainer .BVUGCSpacerTop {height: 30px; margin-bottom: 40px; background-image: -moz-linear-gradient(#E7E7E7, #FFFFFF); background-image: -webkit-linear-gradient(#E7E7E7, #FFFFFF); background-image: linear-gradient(#E7E7E7, #FFFFFF); background-repeat: repeat-x;}
 
