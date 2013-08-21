@@ -221,6 +221,8 @@ var defaultPaginationButtonSelectedContainerView = "#bvtemplate-pagination-butto
 /***** GENERIC INPUT *****/
 
 
+// misc
+var defaultInputRequiredIndicatorContainerView = "#bvtemplate-input-required-universal"; // generic input module
 
 // generic
 var defaultInputContainerView = "#bvtemplate-input-default-universal"; // generic input module

@@ -253,18 +253,22 @@ function loadReviewSubmissionForm (content, options) {
 		var params = returnFormParamaters("#" + newID, {
 			"action":"submit"
 		});
-		// POST form to server
-		$(defaultSubmissionFormContainer).hide();
-		postReviewsSubmissionForm(productId, defaultSubmissionThankYouContainer, function (content) {
-				console.log("submitted");
-				loadReviewSubmissionThankYouWidget (content, {
-					"parentContainer":settings["parentContainer"],
-					"productId":productId,
-					"returnURL":returnURL,
-				});
-			}, {
-			"Parameters": params
-		});
+		// validate form using parsly.js plugin
+		var validated = $("#" + newID).parsley('validate');
+		// POST form to server if no errors
+		if (validated) {
+			$(defaultSubmissionFormContainer).hide();
+			postReviewsSubmissionForm(productId, defaultSubmissionThankYouContainer, function (content) {
+					console.log("submitted");
+					loadReviewSubmissionThankYouWidget (content, {
+						"parentContainer":settings["parentContainer"],
+						"productId":productId,
+						"returnURL":returnURL,
+					});
+				}, {
+				"Parameters": params
+			});
+		}
 	});
 
 	// preview button
@@ -277,19 +281,23 @@ function loadReviewSubmissionForm (content, options) {
 		var params = returnFormParamaters("#" + newID, {
 			"action":"preview"
 		});
-		// POST form to server
-		$(defaultSubmissionFormContainer).hide();
-		postReviewsSubmissionForm(productId, defaultSubmissionPreviewContainer, function (content) {
-				console.log("preview");
-				content["Review"]["RatingRange"] = 5; //default to 5 since API doesn't include this for preview
-				loadReviewSubmissionPreviewWidget (content, {
-					"parentContainer":settings["parentContainer"],
-					"productId":productId,
-					"returnURL":returnURL,
-				});
-			}, {
-			"Parameters": params
-		});
+		// validate form using parsly.js plugin
+		var validated = $("#" + newID).parsley('validate');
+		// POST form to server if no errors
+		if (validated) {
+			$(defaultSubmissionFormContainer).hide();
+			postReviewsSubmissionForm(productId, defaultSubmissionPreviewContainer, function (content) {
+					console.log("preview");
+					content["Review"]["RatingRange"] = 5; //default to 5 since API doesn't include this for preview
+					loadReviewSubmissionPreviewWidget (content, {
+						"parentContainer":settings["parentContainer"],
+						"productId":productId,
+						"returnURL":returnURL,
+					});
+				}, {
+				"Parameters": params
+			});
+		}
 	});
 
 	// cancel button
@@ -305,6 +313,16 @@ function loadReviewSubmissionForm (content, options) {
 	// set stars using jquery.rating plugin
 	$(function(){
 		$('input[type=radio].star').rating();
+	});
+	// set inline form validation using parsley.js plugin
+	$("#" + newID).parsley(defaultInlineValidationOption);
+	// add inline validation
+	$(defaultFormInputContainer).change( function() {
+		console.log(this);
+		$(this).parsley('validate');
+	});
+	loadRequiredIndicators (content, {
+		"parentContainer":$template
 	});
 }
 
@@ -350,6 +368,10 @@ function loadOverallRatingInput (content, options) {
 	$container.append($template);
 	// set label
 	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
+	// if required field
+	if (settings["inputSettings"]["inputRequired"]) {
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
+	}
 	// load radio buttons
 	if (settings["loadOrder"] != undefined) {
 		$.each(settings["loadOrder"], function(key) {
@@ -393,6 +415,10 @@ function loadSecondaryRatingGroup (content, options) {
 			$container.append($template);
 			// set label
 			$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
+			// if required field
+			if (settings["inputSettings"]["inputRequired"]) {
+				$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
+			}
 			// load secondary rating input container
 			loadSecondaryRatingIndividual(fieldContent, {
 				"parentContainer":$template
@@ -484,6 +510,10 @@ function loadIsRecommendedInput (content, options) {
 	$container.append($template);
 	// set label
 	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
+	// if required field
+	if (settings["inputSettings"]["inputRequired"]) {
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
+	}
 	// load radio buttons
 	if (settings["loadOrder"] != undefined) {
 		$.each(settings["loadOrder"], function(key) {
@@ -537,6 +567,10 @@ function loadReviewTitleInput (content, options) {
 	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel).attr({
 		"for":inputName
 	});
+	// if required field
+	if (settings["inputSettings"]["inputRequired"]) {
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
+	}
 	// set helper text
 	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).html(inputHelperText);
 	// load input
@@ -583,6 +617,10 @@ function loadReviewTextInput (content, options) {
 	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel).attr({
 		"for":inputName
 	});
+	// if required field
+	if (settings["inputSettings"]["inputRequired"]) {
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
+	}
 	// set helper text
 	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).html(inputHelperText);
 	// load input

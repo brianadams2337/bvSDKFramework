@@ -138,19 +138,23 @@ function loadReviewCommentSubmissionForm (content, options) {
 		var params = returnFormParamaters("#" + newID, {
 			"action":"submit"
 		});
-		// POST form to server
-		$(defaultSubmissionFormContainer).hide();
-		postReviewCommentsSubmissionForm(contentId, defaultSubmissionThankYouContainer, function (content) {
-				console.log("submitted");
-				loadReviewCommentSubmissionThankYouWidget (content, {
-					"parentContainer":settings["parentContainer"],
-					"productId":productId,
-					"contentId":contentId,
-					"returnURL":returnURL,
-				});
-			}, {
-			"Parameters": params
-		});
+		// validate form using parsly.js plugin
+		var validated = $("#" + newID).parsley('validate');
+		// POST form to server if no errors
+		if (validated) {
+			$(defaultSubmissionFormContainer).hide();
+			postReviewCommentsSubmissionForm(contentId, defaultSubmissionThankYouContainer, function (content) {
+					console.log("submitted");
+					loadReviewCommentSubmissionThankYouWidget (content, {
+						"parentContainer":settings["parentContainer"],
+						"productId":productId,
+						"contentId":contentId,
+						"returnURL":returnURL,
+					});
+				}, {
+				"Parameters": params
+			});
+		}
 	});
 
 	// preview button
@@ -163,19 +167,23 @@ function loadReviewCommentSubmissionForm (content, options) {
 		var params = returnFormParamaters("#" + newID, {
 			"action":"preview",
 		});
-		// POST form to server
-		$(defaultSubmissionFormContainer).hide();
-		postReviewCommentsSubmissionForm(contentId, defaultSubmissionPreviewContainer, function (content) {
-				console.log("preview");
-				loadReviewCommentSubmissionPreviewWidget (content, {
-					"parentContainer":settings["parentContainer"],
-					"productId":productId,
-					"contentId":contentId,
-					"returnURL":returnURL,
-				});
-			}, {
-			"Parameters": params
-		});
+		// validate form using parsly.js plugin
+		var validated = $("#" + newID).parsley('validate');
+		// POST form to server if no errors
+		if (validated) {
+			$(defaultSubmissionFormContainer).hide();
+			postReviewCommentsSubmissionForm(contentId, defaultSubmissionPreviewContainer, function (content) {
+					console.log("preview");
+					loadReviewCommentSubmissionPreviewWidget (content, {
+						"parentContainer":settings["parentContainer"],
+						"productId":productId,
+						"contentId":contentId,
+						"returnURL":returnURL,
+					});
+				}, {
+				"Parameters": params
+			});
+		}
 	});
 
 	// cancel button

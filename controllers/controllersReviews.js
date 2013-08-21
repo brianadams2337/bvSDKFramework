@@ -13,7 +13,7 @@ function loadReviewWidget (content, options) {
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
 	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
-	var reviewsStatisticsToLoad = content["Includes"]["Products"][settings["productId"]]['ReviewStatistics']; // review stats
+	var reviewsStatisticsToLoad = content["Includes"]["Products"][settings["productId"]]['FilteredReviewStatistics']; // review stats
 	var reviewsToLoad = content["Results"]; // reviews
 	// add widget template
 	$container.html($template);
@@ -55,7 +55,7 @@ function loadReviewWidget (content, options) {
 		}
 	});
 	// filters
-	loadFiltersOverallRating (content["Includes"]["Products"][settings["productId"]]['ReviewStatistics'], {
+	loadFiltersOverallRating (content["Includes"]["Products"][settings["productId"]]['FilteredReviewStatistics'], {
 		"parentContainer":$template,
 		"viewReloadOptions":{
 			"model":getAllReviews,
@@ -64,7 +64,7 @@ function loadReviewWidget (content, options) {
 			"controllerSettings":settings
 		}
 	});
-	// loadFiltersSecondaryRatings (content["Includes"]["Products"][settings["productId"]]['ReviewStatistics'], {
+	// loadFiltersSecondaryRatings (content["Includes"]["Products"][settings["productId"]]['FilteredReviewStatistics'], {
 	// 	"parentContainer":$template,
 	// 	"viewReloadOptions":{
 	// 		"model":getAllReviews,
@@ -73,7 +73,7 @@ function loadReviewWidget (content, options) {
 	// 		"controllerSettings":settings
 	// 	}
 	// });
-	// loadFiltersContextDataValues (content["Includes"]["Products"][settings["productId"]]['ReviewStatistics'], {
+	// loadFiltersContextDataValues (content["Includes"]["Products"][settings["productId"]]['FilteredReviewStatistics'], {
 	// 	"parentContainer":$template,
 	// 	"viewReloadOptions":{
 	// 		"model":getAllReviews,
@@ -82,7 +82,7 @@ function loadReviewWidget (content, options) {
 	// 		"controllerSettings":settings
 	// 	}
 	// });
-	loadFiltersTags (content["Includes"]["Products"][settings["productId"]]['ReviewStatistics'], {
+	loadFiltersTags (content["Includes"]["Products"][settings["productId"]]['FilteredReviewStatistics'], {
 		"parentContainer":$template,
 		"viewReloadOptions":{
 			"model":getAllReviews,

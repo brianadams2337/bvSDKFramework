@@ -318,12 +318,14 @@ function loadIndividualFilters (content, options) {
 			// set filter data attributes
 			$($template).attr({
 				"data-filter-parameter":content["Id"],
-				"data-filter-value":content["Values"][key]["Value"]
+				"data-filter-value":content["Values"][key]["Value"],
+				"data-selected":"false",
+				"data-disabled":"false"
 			});
 			// set selected/disabled state data attribute
 			if (settings["viewReloadOptions"]["controllerSettings"]["modelLocalDefaultSettings"]["Parameters"]["filter"][content["Id"]] == content["Values"][key]["Value"]) {
 				$($template).attr({
-					"data-disabled":"true",
+					"data-selected":"true",
 				}).addClass("BVSelected");
 			}
 			// set filter text
@@ -331,35 +333,61 @@ function loadIndividualFilters (content, options) {
 			// set filter count text
 			$($template).find(defaultReviewFilterCountTextContainer).andSelf().filter(defaultReviewFilterCountTextContainer).text(filterCountText);
 			// filter option functionality
-			if (!$($template).data("disabled")) {
 				$($template).click(function(){
-					var refreshContainer = $(settings["viewReloadOptions"]["controllerSettings"]["parentContainer"]).find(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]).andSelf().filter(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]);
-					var selected = $(this).attr("data-filter-parameter");
-					var selectedValue = $(this).attr("data-filter-value");
-					// load new content based off of filter selection and current settings
-					// update parameters for new api call
-					// add selected filter
-					settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected] = selectedValue;
-					// reset offset to start from the beginning - 
-					settings["viewReloadOptions"]["modelSettings"]["Parameters"]["offset"] = 0;
-					// make new api call
-					settings["viewReloadOptions"]["model"] (
-						// product id
-						settings["productId"],
-						// container to load
-						refreshContainer,
-						// controller callback
-						function(content, modelLocalDefaultSettings) {
-							// update model settings to represent new data (needed for selcted/disabled states for filters, sorting, and pagination)
-							settings["viewReloadOptions"]["controllerSettings"]["modelLocalDefaultSettings"]["Parameters"] = modelLocalDefaultSettings;
-							// callback function
-							settings["viewReloadOptions"]["controller"](content, settings["viewReloadOptions"]["controllerSettings"]);
-						},
-						// api call parameters
-						settings["viewReloadOptions"]["modelSettings"]
-					);
+					if ($(this).attr("data-selected") == "false") {
+						var refreshContainer = $(settings["viewReloadOptions"]["controllerSettings"]["parentContainer"]).find(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]).andSelf().filter(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]);
+						var selected = $(this).attr("data-filter-parameter");
+						var selectedValue = $(this).attr("data-filter-value");
+						// load new content based off of filter selection and current settings
+						// update parameters for new api call
+						// add selected filter
+						settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected] = selectedValue;
+						// reset offset to start from the beginning - 
+						settings["viewReloadOptions"]["modelSettings"]["Parameters"]["offset"] = 0;
+						// make new api call
+						settings["viewReloadOptions"]["model"] (
+							// product id
+							settings["productId"],
+							// container to load
+							refreshContainer,
+							// controller callback
+							function(content, modelLocalDefaultSettings) {
+								// update model settings to represent new data (needed for selcted/disabled states for filters, sorting, and pagination)
+								settings["viewReloadOptions"]["controllerSettings"]["modelLocalDefaultSettings"]["Parameters"] = modelLocalDefaultSettings;
+								// callback function
+								settings["viewReloadOptions"]["controller"](content, settings["viewReloadOptions"]["controllerSettings"]);
+							},
+							// api call parameters
+							settings["viewReloadOptions"]["modelSettings"]
+						);
+					} else if ($(this).attr("data-selected") == "true") {
+						var refreshContainer = $(settings["viewReloadOptions"]["controllerSettings"]["parentContainer"]).find(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]).andSelf().filter(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]);
+						var selected = $(this).attr("data-filter-parameter");
+						var selectedValue = null;
+						// load new content based off of filter selection and current settings
+						// update parameters for new api call
+						// add selected filter
+						settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected] = selectedValue;
+						// reset offset to start from the beginning
+						settings["viewReloadOptions"]["modelSettings"]["Parameters"]["offset"] = 0;
+						// make new api call
+						settings["viewReloadOptions"]["model"] (
+							// product id
+							settings["productId"],
+							// container to load
+							refreshContainer,
+							// controller callback
+							function(content, modelLocalDefaultSettings) {
+								// update model settings to represent new data (needed for selcted/disabled states for filters, sorting, and pagination)
+								settings["viewReloadOptions"]["controllerSettings"]["modelLocalDefaultSettings"]["Parameters"] = modelLocalDefaultSettings;
+								// callback function
+								settings["viewReloadOptions"]["controller"](content, settings["viewReloadOptions"]["controllerSettings"]);
+							},
+							// api call parameters
+							settings["viewReloadOptions"]["modelSettings"]
+						);
+					}
 				});
-			};
 		});
 	}
 }
