@@ -226,12 +226,14 @@ function loadQuickTake (content, options) {
 	loadReviewRatingAverage (content, {
 		"parentContainer":$template
 	});
-
+	// histogram
+	loadHistogramOverallRating (content, {
+		"parentContainer":$template
+	});
 	// recommended average
 	loadReviewRecommendedAverage (content, {
 		"parentContainer":$template
 	});
-
 	// write review button
 	loadWriteReviewButton ("Review This Product", {
 		"parentContainer":$template,

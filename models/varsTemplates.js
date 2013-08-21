@@ -35,7 +35,17 @@ var defaultQuickTakeContainerView = "#bvtemplate-quick-take-universal"; // quick
 
 
 var defaultFilterGroupContainerView = "#bvtemplate-filter-group-universal"; // filter group module
-var defaultFilterIndividualContainerView = "#bvtemplate-filter-individual-universal"; // filter group module
+var defaultFilterIndividualContainerView = "#bvtemplate-filter-individual-universal"; // filter individual module
+var defaultFilterIndividualHistogramContainerView = "#bvtemplate-filter-individual-histogram-universal"; // filter individual histogram module
+
+
+
+/***** HISTOGRAM *****/
+
+
+
+var defaultHistogramWidgetContainerView = "#bvtemplate-histogram-widget-universal"; // histogram widget module
+var defaultHistogramIndividualContainerView = "#bvtemplate-histogram-individual-universal"; // histogram individual module
 
 
 

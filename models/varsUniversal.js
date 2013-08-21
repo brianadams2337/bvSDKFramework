@@ -30,6 +30,19 @@ var defaultFilterIndividualContainer = "._BVFilterIndividualContainer" // filter
 
 
 
+/***** HISTOGRAM *****/
+
+
+
+var defaultHistogramWidgetContainer = "._BVHistorgramWidgetContainer"; // histogram widget container
+var defaultHistogramGroupContainer = "._BVHistogramGroupContainer"; // histogram group container
+var defaultHistogramIndividualWrapperContainer = "._BVHistogramIndividualWrapper"; // histogram wrapper container (background)
+var defaultHistogramIndividualContainer = "._BVHistogramIndividual" // histogram individual container
+var defaultHistogramLabelTextContainer = "._BVHistogramLableText" // histogram label text container
+var defaultHistogramCountTextContainer = "._BVHistogramCountText" // histogram count text container
+
+
+
 /***** PAGINATION *****/
 
 

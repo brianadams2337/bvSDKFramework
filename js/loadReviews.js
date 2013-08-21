@@ -33,6 +33,7 @@ $(document).ready(function() {
 			$.getScript(siteBaseURL + "controllers/controllersSorting.js"),
 			$.getScript(siteBaseURL + "controllers/controllersFilters.js"),
 			$.getScript(siteBaseURL + "controllers/controllersBadges.js"),
+			$.getScript(siteBaseURL + "controllers/controllersHistogram.js"),
 			/* plugins */
 			$.getScript(siteBaseURL + "js/plugins/jquery.cookie.js"),
 			$.getScript(siteBaseURL + "js/plugins/jquery.dateFormat.js"),
