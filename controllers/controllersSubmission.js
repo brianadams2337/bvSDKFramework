@@ -1393,5 +1393,5 @@ function loadRequiredIndicators (content, options) {
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
 	var $template = returnTemplate(settings["viewContainer"]);
 	// add input template
-	$container.before($template);
+	$container.append($template);
 }

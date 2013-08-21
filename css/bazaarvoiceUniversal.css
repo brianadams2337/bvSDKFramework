@@ -104,7 +104,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 					.BVFiltersFilteringStatement {font-size: 9px;}
 		
 		/* Write a Review & Sorting */
-		._BVQuickTakeContainer ._BVButtonWriteReviewContainer {background-image: -moz-linear-gradient(#E7E7E7, #F2F2F2); background-image: -webkit-linear-gradient(#E7E7E7, #F2F2F2); background-image: linear-gradient(#E7E7E7, #F2F2F2); background-repeat: repeat-x; border-bottom: 1px solid #C4C4C4; padding: 7px 12px; overflow: hidden;}
+		._BVQuickTakeContainer ._BVButtonWriteReviewContainer {background-image: -webkit-gradient(linear, left top, left bottom, from(#E7E7E7), to(#F2F2F2)); background-image: -webkit-linear-gradient(#E7E7E7, #F2F2F2); background-image: -moz-linear-gradient(#E7E7E7, #F2F2F2); background-image: -ms-linear-gradient(#E7E7E7, #F2F2F2); background-image: -o-linear-gradient(#E7E7E7, #F2F2F2); background-image: linear-gradient(#E7E7E7, #F2F2F2); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#E7E7E7, endColorstr=#F2F2F2, GradientType=0); background-repeat: repeat-x; border-bottom: 1px solid #C4C4C4; padding: 7px 12px; overflow: hidden;}
 		._BVQuickTakeContainer .BVSortContainer {position: absolute; right: 12px; bottom: 14px;}
 
 
@@ -207,7 +207,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	/* Footer - Helpfulness Voting, Reporting, Comments */
 
 		/* Helpfulness Voting */
-		._BVFeedbackContainer {background-image: -moz-linear-gradient(#E7E7E7, #F2F2F2); background-image: -webkit-linear-gradient(#E7E7E7, #F2F2F2); background-image: linear-gradient(#E7E7E7, #F2F2F2); background-repeat: repeat-x; padding: 12px; margin-top: 30px; clear: both;}
+		._BVFeedbackContainer {background-image: -webkit-gradient(linear, left top, left bottom, from(#E7E7E7), to(#F2F2F2)); background-image: -webkit-linear-gradient(#E7E7E7, #F2F2F2); background-image: -moz-linear-gradient(#E7E7E7, #F2F2F2); background-image: -ms-linear-gradient(#E7E7E7, #F2F2F2); background-image: -o-linear-gradient(#E7E7E7, #F2F2F2); background-image: linear-gradient(#E7E7E7, #F2F2F2); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#E7E7E7, endColorstr=#F2F2F2, GradientType=0); background-repeat: repeat-x; padding: 12px; margin-top: 30px; clear: both;}
 		._BVFeedbackContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
 			._BVFeedbackCountContainer {color: #666; margin-bottom: 10px; display: none;}
 			.BVFeedbackVotingPrefix {float: left; line-height: 33px; margin-right: 10px;}
@@ -278,22 +278,28 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	._BVReviewBodyContainer, ._BVQuestionAnswerBodyContainer {}
 		._BVReviewContainer, ._BVQuestionAnswerContainer {}
 		._BVReviewContainer {margin-top: 50px;}
+		._BVReviewContainer.BVfirst {margin-top: 0;}
 		._BVReviewContainer.BVlast, ._BVQuestionAnswerContainer.BVlast {}
-		._BVReviewContainer .BVUGCSpacerTop {height: 30px; margin-bottom: 40px; background-image: -moz-linear-gradient(#E7E7E7, #FFFFFF); background-image: -webkit-linear-gradient(#E7E7E7, #FFFFFF); background-image: linear-gradient(#E7E7E7, #FFFFFF); background-repeat: repeat-x;}
+		._BVReviewContainer .BVUGCSpacerTop {height: 30px; margin-bottom: 40px; background-image: -webkit-gradient(linear, left top, left bottom, from(#E7E7E7), to(#FFFFFF)); background-image: -webkit-linear-gradient(#E7E7E7, #FFFFFF); background-image: -moz-linear-gradient(#E7E7E7, #FFFFFF); background-image: -ms-linear-gradient(#E7E7E7, #FFFFFF); background-image: -o-linear-gradient(#E7E7E7, #FFFFFF); background-image: linear-gradient(#E7E7E7, #FFFFFF); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#E7E7E7, endColorstr=#FFFFFF, GradientType=0); background-repeat: repeat-x;}
 
 
 
 /* SUBMISSION FORM STYLES */
 
+	/* Form Elements */
+	._BVFormInput {font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #49494A; line-height: 1.5em;}
+	.BVFormInputCheckbox, .BVFormInputRadioButton {margin-left: 0;}
+
 	/* General - Titles, Labels, Values */
 	._BVLabelText {width: 210px; float: left; margin-right: 10px; font-weight: bold;}
+		.BVRequiredIndicator {color: #bb0628; display: inline-block; margin-left: -3px;}
 	h1._BVPageHeaderText, h2._BVSectionHeaderText {margin: 0;}
 	._BVPageHeaderContainer {display: none;}
 
 	/* Sections */
-	.BVSection {background-image: -moz-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -webkit-linear-gradient(bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: linear-gradient(bottom, #EBEBEB 0%, #FFFFFF 20%); background-repeat: repeat-x; margin-bottom: 40px; padding: 25px 0 15px;}
+	.BVSection {background-image: -webkit-gradient(linear, center bottom, from(#EBEBEB 0%), to(#FFFFFF 20%)); background-image: -webkit-linear-gradient(bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -moz-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -ms-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -o-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EBEBEB, endColorstr=#FFFFFF, GradientType=0); background-repeat: repeat-x; margin-bottom: 40px; padding: 25px 0 15px;}
 	.BVSection:empty, .BVSection div:empty, .BVFooter:empty, .BVFooter div:empty {display: none;}
-		.BVSectionHeader {padding: 0 0 2px; margin: 0 0 20px;}
+		.BVSectionHeader {padding: 0 0 2px; margin: 0 0 45px;}
 			h2._BVSectionHeaderText {font-size: 24px; font-weight: normal; line-height: 1.333; display: block; margin-left: 42px;}
 		.BVSectionBody {padding: 30px 42px 0;}
 		.BVSectionBody:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
@@ -313,8 +319,8 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 
 	/* Error Container */
 	.BVSectionErrorContainer {background: none transparent; padding: 0; margin: 0; color: #F00;}
-	.BVErrorText {color: #F00 !important;}
-	.BVErrorBorder {border: 1px solid #F00 !important;}
+	.BVErrorText {color: #bb0628;}
+	.BVErrorBorder {}
 
 	/* Fields */
 	.BVField {clear: left; overflow: hidden; margin-bottom: 30px;}
@@ -328,12 +334,17 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		._BVRadioButtonGroupContainer {float: left;}
 
 	/* Helper Text & Character Counter */
-	._BVHelperText, .BVCharacterCounterText {width: 400px; margin-left: 220px; padding: 5px 0 0; font-size: 11px; color: #737474;}
+	._BVHelperText, .BVCharacterCounterText {margin-left: 220px;}
+	._BVHelperText, .BVCharacterCounterText, ._BVCharacterCounter {font-size: 11px; color: #737474; padding: 5px 0 0;}
+
+	/* Errors */
+	.BVErrorContainerInline {margin-left: 220px; color: #bb0628; padding: 5px 0 0;}
 
 	/* Rating Stars */
-	.BVFieldRating ._BVRadioLabelText {display: none;}
+	.BVFieldRating {margin-bottom: 15px !important;}
+		.BVFieldRating ._BVRadioLabelText {display: none;}
 	/* jQuery.Rating Plugin CSS - http://www.fyneworks.com/jquery/star-rating/ */
-	#BVSubmissionContainer div.rating-cancel, #BVSubmissionContainer div.star-rating {float: left; width: 30px; height: 24px; text-indent: -999em; cursor: pointer; display: block; background: transparent; overflow: hidden;}
+	#BVSubmissionContainer div.rating-cancel, #BVSubmissionContainer div.star-rating {float: left; width: 36px; height: 24px; text-indent: -999em; cursor: pointer; display: block; background: transparent; overflow: hidden;}
 	#BVSubmissionContainer div.rating-cancel {display: none !important;}
 	#BVSubmissionContainer div.rating-cancel, #BVSubmissionContainer div.rating-cancel a {background: url(../images/delete.gif) no-repeat 0 -16px;}
 	#BVSubmissionContainer div.star-rating, #BVSubmissionContainer div.star-rating a {background: url(images/ratingStars_star.gif) no-repeat 0 0px;}
@@ -344,6 +355,20 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	#BVSubmissionContainer div.star-rating-readonly a {cursor: default !important;}
 	/* Partial Star CSS */
 	#BVSubmissionContainer div.star-rating {background: transparent !important; overflow: hidden !important;}
+	/* END jQuery.Rating Plugin CSS */
+
+	/* Rating Bars */
+	#BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.rating-cancel, #BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.star-rating {float: left; width: 35px; height: 9px; text-indent: -999em; cursor: pointer; display: block; background: transparent; overflow: hidden;}
+	#BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.rating-cancel {display: none !important;}
+	#BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.rating-cancel, #BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.rating-cancel a {background: url(../images/delete.gif) no-repeat 0 -16px;}
+	#BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.star-rating, #BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.star-rating a {background: url(images/ratingStars_secondary.gif) no-repeat 0 0px;}
+	#BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.rating-cancel a, #BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.star-rating a {display: block; width: 35px; height: 100%; background-position: 0 0px; border: 0;}
+	#BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.star-rating-on a {background-position: 0 -9px !important;}
+	#BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.star-rating-hover a {background-position: 0 -9px;}
+	/* Read Only CSS */
+	#BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.star-rating-readonly a {cursor: default !important;}
+	/* Partial Star CSS */
+	#BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.star-rating {background: transparent !important; overflow: hidden !important;}
 	/* END jQuery.Rating Plugin CSS */
 
 	/* Ratings */
@@ -359,9 +384,12 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	._BVTitleInputContainer ._BVLabelText, ._BVBodyTextInputContainer ._BVLabelText {font-size: 14px;}
 
 	/* Tags */
-	._BVTagGroupInputContainer {margin-left: 160px;}
-		.BVTagIndividualInputContainer {width: 35%; float: left; margin-right: 15px;}
-		.BVTagIndividualInputContainer ._BVLabelText {width: auto; float: none;}
+	._BVTagGroupInputContainer {}
+		.BVTagIndividualInputContainer {margin-bottom: 30px;}
+		.BVTagIndividualInputContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
+		.BVTagIndividualInputContainer ._BVLabelText {}
+		._BVInputGroupContainer {width: 500px; float: left;}
+			.BVTagInput {width: 48%; float: left; margin-bottom: 5px;}
 			._BVCheckboxGroupContainer ._BVCheckboxIndividualContainer {padding-bottom: 4px;}
 				._BVCheckboxIndividualContainer .BVFormInputText {width: 150px;}
 
@@ -389,7 +417,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	/* Buttons */
 	.BVFieldButtonGroup {margin-left: 265px;}
 	.BVFieldButtonGroup .BVField {float: left; clear: none; margin-right: 10px;}
-		._BVButtonSubmitContainer a {color: #fff; text-shadow: 0 1px 0 rgba(193,90,24,1); background-color: #EE8A27; background-image: -moz-linear-gradient(#EE8A27, #E86C1F); background-image: -webkit-linear-gradient(#EE8A27, #E86C1F); background-image: linear-gradient(#EE8A27, #E86C1F); border: 1px solid #EE8A27; border-bottom-color: #E86C1F;}
+		._BVButtonSubmitContainer a {color: #fff; text-shadow: 0 1px 0 rgba(193,90,24,1); background-color: #EE8A27; background-image: -webkit-gradient(linear, left top, left bottom, from(#EE8A27), to(#E86C1F)); background-image: -webkit-linear-gradient(#EE8A27, #E86C1F); background-image: -moz-linear-gradient(#EE8A27, #E86C1F); background-image: -ms-linear-gradient(#EE8A27, #E86C1F); background-image: -o-linear-gradient(#EE8A27, #E86C1F); background-image: linear-gradient(#EE8A27, #E86C1F); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EE8A27, endColorstr=#E86C1F, GradientType=0); border: 1px solid #EE8A27; border-bottom-color: #E86C1F;}
 
 	/* Popins */
 	.BVPopinLauncher {color: #085EB9;}
