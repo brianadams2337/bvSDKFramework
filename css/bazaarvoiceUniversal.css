@@ -69,7 +69,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	._BVQuickTakeContainer {overflow: hidden; position: relative;}
 		
 		/* Title */
-		._BVQuickTakeContainer ._BVQuickTakeSummaryTitle {padding: 0 0 12px;}
+		._BVQuickTakeContainer .BVQuickTakeSummaryTitle {padding: 0 0 12px;}
 		
 		/* Overall Rating */
 		._BVQuickTakeContainer ._BVOverallRatingContainer {}
@@ -87,11 +87,21 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		/* Filters */
 		._BVQuickTakeContainer ._BVFilters {border-top: 1px solid #E7E7E7; clear: both; margin-top: 30px; padding: 30px 0;}
 			._BVFiltersTitle {margin-bottom: 5px;}
-			.BVFilterGroupContainer {padding: 3px 0;}
-				._BVFilterLabelText {margin-bottom: 6px; font-size: 14px;}
-				._BVFilterText {width: 40px; color: #085EB9; margin-right: 5px;}
-				._BVFilterCountText {font-size: 11px; color: #737474;}
-				._BVFiltersFilteringStatement {font-size: 9px;}
+			._BVFiltersContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
+				.BVFilterGroupContainer {width: 28%; float: left; padding: 3px 0; margin-right: 10px;}
+					.BVFilter {float: left; clear: both; margin-bottom: 5px;} /* float: left; to keep row from being full width with clickable whitespace */
+					.BVFilter:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
+						.BVFilterTextPrefix {width: 20px; height: 18px; display: block; float: left; background: url(images/iconFilters.gif) no-repeat 0 -240px;}
+						.BVFilter:hover {cursor: pointer;}
+						.BVFilter:hover .BVFilterTextPrefix {background-position: 0 -160px;}
+						.BVFilter.BVSelected .BVFilterTextPrefix {background-position: 0 -160px;}
+						.BVFilter.BVSelected:hover .BVFilterTextPrefix {background-position: 0 0;}
+						.BVFilter:hover ._BVFilterText {cursor: pointer;}
+						._BVFilterLabelText {margin-bottom: 6px;}
+						._BVFilterText {color: #085EB9; margin-right: 3px;}
+						._BVFilterCountText, .BVFilterCountTextPrefix, .BVFilterCountTextSuffix {font-size: 11px; color: #737474;}
+						.BVFilterTextSuffix {display: none;}
+					.BVFiltersFilteringStatement {font-size: 9px;}
 		
 		/* Write a Review & Sorting */
 		._BVQuickTakeContainer ._BVButtonWriteReviewContainer {background-image: -moz-linear-gradient(#E7E7E7, #F2F2F2); background-image: -webkit-linear-gradient(#E7E7E7, #F2F2F2); background-image: linear-gradient(#E7E7E7, #F2F2F2); background-repeat: repeat-x; border-bottom: 1px solid #C4C4C4; padding: 7px 12px; overflow: hidden;}
