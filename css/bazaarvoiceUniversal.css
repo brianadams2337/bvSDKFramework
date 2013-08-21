@@ -36,7 +36,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	a._BVButton:active, a._BVButton:focus, a._BVButton:hover {background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F6F6F6)); background-image: -webkit-linear-gradient(#FFFFFF, #F6F6F6); background-image: -moz-linear-gradient(#FFFFFF, #F6F6F6); background-image: -ms-linear-gradient(#FFFFFF, #F6F6F6); background-image: -o-linear-gradient(#FFFFFF, #F6F6F6); background-image: linear-gradient(#FFFFFF, #F6F6F6); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F6F6F6, GradientType=0);}
 
 	/* Submit */
-	._BVButtonSubmitContainer a._BVButton, ._BVButtonSubmitContainer a._BVButton:visited {background-color: #F7CF00; background-image: -moz-linear-gradient(#FFF200, #F7CF00); background-image: -webkit-linear-gradient(#FFF200, #F7CF00); background-image: -ms-linear-gradient(#FFF200, #F7CF00); background-image: -o-linear-gradient(#FFF200, #F7CF00); background-image: linear-gradient(#FFF200, #F7CF00); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFF200, endColorstr=#F7CF00, GradientType=0); border: 1px solid #F9C500;}
+	._BVButtonSubmitContainer a._BVButton, ._BVButtonSubmitContainer a._BVButton:visited {background-color: #F7CF00; background-image: -moz-linear-gradient(#FFF200, #F7CF00); background-image: -webkit-linear-gradient(#FFF200, #F7CF00); background-image: -ms-linear-gradient(#FFF200, #F7CF00); background-image: -o-linear-gradient(#FFF200, #F7CF00); background-image: linear-gradient(#FFF200, #F7CF00); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFF200, endColorstr=#F7CF00, GradientType=0); border: 1px solid #F9C500; font-size:;}
 		._BVButtonSubmitContainer a._BVButton ._BVButtonText {color: #003B64; text-shadow: 0 1px 1px rgba(255,255,255,0.75);}
 	._BVButtonSubmitContainer a._BVButton:active, ._BVButtonSubmitContainer a._BVButton:focus, ._BVButtonSubmitContainer a._BVButton:hover {background-image: -webkit-gradient(linear, left top, left bottom, from(#FFF86E), to(#FFF200)); background-image: -webkit-linear-gradient(#FFF86E, #FFF200); background-image: -moz-linear-gradient(#FFF86E, #FFF200); background-image: -ms-linear-gradient(#FFF86E, #FFF200); background-image: -o-linear-gradient(#FFF86E, #FFF200); background-image: linear-gradient(#FFF86E, #FFF200); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFF86E, endColorstr=#FFF200, GradientType=0);}
 
@@ -44,6 +44,8 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	._BVButtonWriteReviewContainer a._BVButton, ._BVButtonWriteReviewContainer a._BVButton:visited, ._BVButtonPreviewContainer a._BVButton, ._BVButtonPreviewContainer a._BVButton:visited {background-color: #006CBC; background-image: -moz-linear-gradient(#006CBC, #00449E); background-image: -webkit-linear-gradient(#006CBC, #00449E); background-image: -ms-linear-gradient(#006CBC, #00449E); background-image: -o-linear-gradient(#006CBC, #00449E); background-image: linear-gradient(#006CBC, #00449E); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#006CBC, endColorstr=#00449E, GradientType=0); border: 1px solid #003865;}
 		._BVButtonWriteReviewContainer a._BVButton ._BVButtonText, ._BVButtonPreviewContainer a._BVButton ._BVButtonText {color: #fff; text-shadow: 0 -1px 1px rgba(0,0,0,0.75);}
 	._BVButtonWriteReviewContainer a._BVButton:active, ._BVButtonWriteReviewContainer a._BVButton:focus, ._BVButtonWriteReviewContainer a._BVButton:hover, ._BVButtonPreviewContainer a._BVButton:active, ._BVButtonPreviewContainer a._BVButton:focus, ._BVButtonPreviewContainer a._BVButton:hover {background-image: -webkit-gradient(linear, left top, left bottom, from(#2488D2), to(#006CBC)); background-image: -webkit-linear-gradient(#2488D2, #006CBC); background-image: -moz-linear-gradient(#2488D2, #006CBC); background-image: -ms-linear-gradient(#2488D2, #006CBC); background-image: -o-linear-gradient(#2488D2, #006CBC); background-image: linear-gradient(#2488D2, #006CBC); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#2488D2, endColorstr=#006CBC, GradientType=0);}
+
+	._BVButtonSubmitContainer a._BVButton, ._BVButtonPreviewContainer a._BVButton {font-size: 14px;}
 
 
 
@@ -297,7 +299,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	._BVPageHeaderContainer {display: none;}
 
 	/* Sections */
-	.BVSection {background-image: -webkit-gradient(linear, center bottom, from(#EBEBEB 0%), to(#FFFFFF 20%)); background-image: -webkit-linear-gradient(bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -moz-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -ms-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -o-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EBEBEB, endColorstr=#FFFFFF, GradientType=0); background-repeat: repeat-x; margin-bottom: 40px; padding: 25px 0 15px;}
+	.BVSection {background-image: -webkit-gradient(linear, center bottom, from(#EBEBEB 0%), to(#FFFFFF 20%)); background-image: -webkit-linear-gradient(bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -moz-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -ms-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -o-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EBEBEB, endColorstr=#FFFFFF, GradientType=0); background-repeat: repeat-x; margin-bottom: 40px; padding: 25px 30px 15px;}
 	.BVSection:empty, .BVSection div:empty, .BVFooter:empty, .BVFooter div:empty {display: none;}
 		.BVSectionHeader {padding: 0 0 2px; margin: 0 0 45px;}
 			h2._BVSectionHeaderText {font-size: 24px; font-weight: normal; line-height: 1.333; display: block; margin-left: 42px;}
@@ -312,7 +314,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 
 		/* Product Information */
 		.BVSectionProductContainer {background: none transparent; padding: 0; margin: 0;}
-		._BVProductInfoWidgetContainer {width: 175px; float: right; padding: 0 50px 30px 0; display: block;}
+		._BVProductInfoWidgetContainer {width: 175px; float: right; padding: 110px 50px 30px 0; display: block;}
 			._BVProductInfoNameContainer {font-size: 14px; font-weight: bold;}
 			._BVProductInfoDescriptionContainer {display: none;}
 			._BVProductInfoImageContainer {}
@@ -324,7 +326,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 
 	/* Fields */
 	.BVField {clear: left; overflow: hidden; margin-bottom: 30px;}
-	.BVFieldGroup {margin-bottom: 0;}
+	.BVFieldGroup {}
 		.BVFormInputText, .BVFormInputTextarea {padding: 7px 8px; color: #333; vertical-align: middle;}
 		.BVFormInputText:focus, .BVFormInputTextarea:focus {}
 		.BVFormInputText {width: 400px;}
@@ -381,6 +383,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 			._BVRecommendedInputContainer .BVRadioButtonIndividualContainer {width: 60px; float: left; margin-right: 15px;}
 
 	/* Title & Body Text */
+	.BVSectionReviewGuidelines {position: absolute; left: 700px; margin-top: 4px;}
 	._BVTitleInputContainer ._BVLabelText, ._BVBodyTextInputContainer ._BVLabelText {font-size: 14px;}
 
 	/* Tags */
@@ -397,7 +400,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	.BVSectionMediaContainer ._BVInputGroupContainer {width: 400px; float: left;}
 		._BVUploadIndividualInputContainer {margin-bottom: 15px;}
 		.BVSectionMediaContainer ._BVHelperText {margin-left: 0;}
-	.BVSectionMediaGuidelines {position: absolute; left: 730px;}
+	.BVSectionMediaGuidelines {position: absolute; left: 700px;}
 
 	/* User Info */
 	._BVUserNicknameInputContainer ._BVLabelText, ._BVUserEmailInputContainer ._BVLabelText {font-size: 14px;}
@@ -407,21 +410,21 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		._BVAdditionalFieldGroupInputContainer #additionalfield_RewardZoneNumberWrapperID {display: none;}
 
 	/* Email Subscription */
-	._BVEmailAlertWhenPublishedContainer, ._BVEmailAlertWhenCommentedContainer {margin: 0 0 0 215px;}
-	._BVEmailAlertWhenCommentedContainer {margin-bottom: 15px;}
+	._BVEmailAlertWhenPublishedContainer, ._BVEmailAlertWhenCommentedContainer {margin: 0 0 15px 220px;}
 
 	/* Footer */
-	.BVFooter {margin-left: 265px;}
+	.BVFooter {margin-left: 250px;}
 		.BVFooter .BVField {margin-bottom: 15px;}
 
 	/* Buttons */
-	.BVFieldButtonGroup {margin-left: 265px;}
+	.BVFieldButtonGroup {}
 	.BVFieldButtonGroup .BVField {float: left; clear: none; margin-right: 10px;}
 		._BVButtonSubmitContainer a {color: #fff; text-shadow: 0 1px 0 rgba(193,90,24,1); background-color: #EE8A27; background-image: -webkit-gradient(linear, left top, left bottom, from(#EE8A27), to(#E86C1F)); background-image: -webkit-linear-gradient(#EE8A27, #E86C1F); background-image: -moz-linear-gradient(#EE8A27, #E86C1F); background-image: -ms-linear-gradient(#EE8A27, #E86C1F); background-image: -o-linear-gradient(#EE8A27, #E86C1F); background-image: linear-gradient(#EE8A27, #E86C1F); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EE8A27, endColorstr=#E86C1F, GradientType=0); border: 1px solid #EE8A27; border-bottom-color: #E86C1F;}
 
 	/* Popins */
-	.BVPopinLauncher {color: #085EB9;}
+	.BVPopinLauncher a {background: url(images/iconText.png) no-repeat 0 -160px; color: #085EB9; padding: 2px 0 2px 22px;}
 	.BVPopin {width: 245px; border: 1px solid #C3C4C4; padding: 15px; background-color: #fff; border-radius: 4px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); display: none;}
+	.BVPopin:hover {cursor: pointer;}
 		.BVPopin .BVHeader {font-size: 14px; margin-bottom: 10px;}
 		.BVPopin ul {margin: 0; padding-left: 15px;}
 

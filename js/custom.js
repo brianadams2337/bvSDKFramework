@@ -14,3 +14,8 @@ $('body').on('click', '.BVPopinLauncher a', function(e) {
     $($(this).attr('href')).toggle();
     e.preventDefault();
 });
+// [dbeberniss] Hide tip box when clicked
+$('body').on('click', '.BVPopin', function(e) {
+    $(this).toggle();
+    e.preventDefault();
+});

@@ -820,13 +820,11 @@
 	<form id="" name="" action="" method="" data-validate="parsley">
 		<div class="_BVPageHeaderContainer"></div>
 		<div class="BVPageBody">
-			<div class="BVSection BVSectionProductContainer">
-				<div class="_BVProductInfoWidgetContainer"></div>
-			</div>
 			<div class="BVSection BVSectionErrorContainer">
 				<div class="BVSectionHeader _BVSectionHeaderErrorsContainer"></div>
 				<div class="_BVFormErrorsContainer"></div>
 			</div>
+			<div class="_BVProductInfoWidgetContainer"></div>
 			<div class="BVSection BVSectionRatingsContainer">
 				<div class="BVSectionHeader _BVSectionHeaderRatingsContainer"></div>
 				<div class="BVField BVFieldRating _BVOverallRatingInputContainer"></div>
@@ -835,12 +833,48 @@
 			</div>
 			<div class="BVSection BVSectionReviewContainer">
 				<div class="BVSectionHeader _BVSectionHeaderReviewContainer"></div>
+				<div class="BVSectionReviewGuidelines">
+					<div class="BVPopinLauncher"><a href="#BVSectionReviewContainerPopin">Helpful Tips</a></div>
+					<div id="BVSectionReviewContainerPopin" class="BVPopin">
+						<div class="BVHeader">Tips for writing reviews:</div>
+						<div class="BVBody">
+							<ul>
+								<li>Focus on the product and your experience with it</li>
+								<li>Aim for clear and concise language</li>
+								<li>Be specific. Whats great about it? Whats not so great?</li>
+							</ul>
+							<p>Avoid:</p>
+							<ul>
+								<li>Profanity or spiteful remarks</li>
+								<li>Obscene or distasteful content</li>
+								<li>E-mail addresses, phone numbers and URLs</li>
+								<li>Information about other companies and Web sites</li>
+								<li>Telling customers to shop elsewhere</li>
+							</ul>
+						</div>
+					</div>
+				</div>
 				<div class="BVField _BVTitleInputContainer"></div>
 				<div class="BVField _BVBodyTextInputContainer"></div>
 				<div class="BVField BVFieldGroup _BVTagGroupInputContainer"></div>
 			</div>
 			<div class="BVSection BVSectionMediaContainer">
 				<div class="BVSectionHeader _BVSectionHeaderMediaContainer"></div>
+				<div class="BVSectionMediaGuidelines">
+					<div class="BVPopinLauncher"><a href="#BVSectionMediaGuidelinesPopin">Media Guidelines</a></div>
+					<div id="BVSectionMediaGuidelinesPopin" class="BVPopin">
+						<div class="BVHeader">Media guidelines:</div>
+						<div class="BVBody">
+							<ul>
+								<li>Up to 2 photos, 5MB each</li>
+								<li>Focus on the product and how you use it</li>
+								<li>All photos must be your own</li>
+								<li>No nudity or obscene content</li>
+								<li>Inappropriate photos will cause your entire review to be rejected</li>
+							</ul>
+						</div>
+					</div>
+				</div>
 				<div class="BVField _BVPhotoUploadContainer"></div>
 				<div class="BVField _BVVideoUploadInputContainer"></div>
 				<div class="BVField _BVVideoCaptionInputContainer"></div>
@@ -849,22 +883,24 @@
 				<div class="BVSectionHeader _BVSectionHeaderUserContainer"></div>
 				<div class="BVField _BVUserNicknameInputContainer"></div>
 				<div class="BVField _BVUserIdInputContainer"></div>
-				<div class="BVField _BVUserEmailInputContainer"></div>
 				<div class="BVField _BVUserLocationInputContainer"></div>
 				<div class="BVField BVFieldGroup _BVContextDataValueGroupInputContainer"></div>
 				<div class="BVField BVFieldGroup _BVAdditionalFieldGroupInputContainer"></div>
+				<div class="BVField _BVEmailAlertWhenPublishedContainer"></div>
+				<div class="BVField _BVEmailAlertWhenCommentedContainer"></div>
+				<div class="BVField _BVUserEmailInputContainer"></div>
 			</div>
 		</div>
 		<div class="BVFooter">
 			<div class="BVField _BVTermsConditionsContainer"></div>
-			<div class="BVField _BVEmailAlertWhenPublishedContainer"></div>
-			<div class="BVField _BVEmailAlertWhenCommentedContainer"></div>
 		</div>
 	</form>
-	<div class="BVField BVFieldGroup BVFieldButtonGroup">
-		<div class="BVField _BVButtonSubmitContainer"></div>
-		<div class="BVField _BVButtonPreviewContainer"></div>
-		<div class="BVField _BVButtonCancelContainer"></div>
+	<div class="BVFooter">
+		<div class="BVField BVFieldGroup BVFieldButtonGroup">
+			<div class="BVField _BVButtonSubmitContainer"></div>
+			<div class="BVField _BVButtonPreviewContainer"></div>
+			<div class="BVField _BVButtonCancelContainer"></div>
+		</div>
 	</div>
 </script>
 

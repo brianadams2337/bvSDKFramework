@@ -84,7 +84,7 @@ var defaultInlineValidationOption = {
 	successClass: 'BVSuccess',
 	errorClass: 'BVError',
 	messages: {
-		"required":"this is a required field",
+		"required":"This is a required field",
 	},
 	errors: {
 		// classHandler: function ( elem, isRadioOrCheckbox ) {

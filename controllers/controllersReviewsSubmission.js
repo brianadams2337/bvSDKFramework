@@ -244,7 +244,7 @@ function loadReviewSubmissionForm (content, options) {
 
 	// buttons
 	// submit button
-	loadSubmitButton ("Submit", {
+	loadSubmitButton ("Submit My Review", {
 		"parentContainer":$template
 	});
 	// submit button functionality
@@ -272,7 +272,7 @@ function loadReviewSubmissionForm (content, options) {
 	});
 
 	// preview button
-	loadPreviewButton ("Preview", {
+	loadPreviewButton ("Preview My Review", {
 		"parentContainer":$template
 	});
 	// preview button functionality
