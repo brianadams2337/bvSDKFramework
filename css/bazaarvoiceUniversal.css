@@ -40,10 +40,10 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		._BVButtonSubmitContainer a._BVButton ._BVButtonText {color: #003B64; text-shadow: 0 1px 1px rgba(255,255,255,0.75);}
 	._BVButtonSubmitContainer a._BVButton:active, ._BVButtonSubmitContainer a._BVButton:focus, ._BVButtonSubmitContainer a._BVButton:hover {background-image: -webkit-gradient(linear, left top, left bottom, from(#FFF86E), to(#FFF200)); background-image: -webkit-linear-gradient(#FFF86E, #FFF200); background-image: -moz-linear-gradient(#FFF86E, #FFF200); background-image: -ms-linear-gradient(#FFF86E, #FFF200); background-image: -o-linear-gradient(#FFF86E, #FFF200); background-image: linear-gradient(#FFF86E, #FFF200); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFF86E, endColorstr=#FFF200, GradientType=0);}
 
-	/* Write a Review & Preview */
-	._BVButtonWriteReviewContainer a._BVButton, ._BVButtonWriteReviewContainer a._BVButton:visited, ._BVButtonPreviewContainer a._BVButton, ._BVButtonPreviewContainer a._BVButton:visited {background-color: #006CBC; background-image: -moz-linear-gradient(#006CBC, #00449E); background-image: -webkit-linear-gradient(#006CBC, #00449E); background-image: -ms-linear-gradient(#006CBC, #00449E); background-image: -o-linear-gradient(#006CBC, #00449E); background-image: linear-gradient(#006CBC, #00449E); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#006CBC, endColorstr=#00449E, GradientType=0); border: 1px solid #003865;}
-		._BVButtonWriteReviewContainer a._BVButton ._BVButtonText, ._BVButtonPreviewContainer a._BVButton ._BVButtonText {color: #fff; text-shadow: 0 -1px 1px rgba(0,0,0,0.75);}
-	._BVButtonWriteReviewContainer a._BVButton:active, ._BVButtonWriteReviewContainer a._BVButton:focus, ._BVButtonWriteReviewContainer a._BVButton:hover, ._BVButtonPreviewContainer a._BVButton:active, ._BVButtonPreviewContainer a._BVButton:focus, ._BVButtonPreviewContainer a._BVButton:hover {background-image: -webkit-gradient(linear, left top, left bottom, from(#2488D2), to(#006CBC)); background-image: -webkit-linear-gradient(#2488D2, #006CBC); background-image: -moz-linear-gradient(#2488D2, #006CBC); background-image: -ms-linear-gradient(#2488D2, #006CBC); background-image: -o-linear-gradient(#2488D2, #006CBC); background-image: linear-gradient(#2488D2, #006CBC); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#2488D2, endColorstr=#006CBC, GradientType=0);}
+	/* Write a Review & Preview, Return */
+	._BVButtonWriteReviewContainer a._BVButton, ._BVButtonWriteReviewContainer a._BVButton:visited, ._BVButtonPreviewContainer a._BVButton, ._BVButtonPreviewContainer a._BVButton:visited, ._BVButtonReturnContainer a._BVButton, ._BVButtonReturnContainer a._BVButton:visited {background-color: #006CBC; background-image: -moz-linear-gradient(#006CBC, #00449E); background-image: -webkit-linear-gradient(#006CBC, #00449E); background-image: -ms-linear-gradient(#006CBC, #00449E); background-image: -o-linear-gradient(#006CBC, #00449E); background-image: linear-gradient(#006CBC, #00449E); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#006CBC, endColorstr=#00449E, GradientType=0); border: 1px solid #003865;}
+		._BVButtonWriteReviewContainer a._BVButton ._BVButtonText, ._BVButtonPreviewContainer a._BVButton ._BVButtonText, ._BVButtonReturnContainer a._BVButton ._BVButtonText {color: #fff; text-shadow: 0 -1px 1px rgba(0,0,0,0.75);}
+	._BVButtonWriteReviewContainer a._BVButton:active, ._BVButtonWriteReviewContainer a._BVButton:focus, ._BVButtonWriteReviewContainer a._BVButton:hover, ._BVButtonPreviewContainer a._BVButton:active, ._BVButtonPreviewContainer a._BVButton:focus, ._BVButtonPreviewContainer a._BVButton:hover, ._BVButtonReturnContainer a._BVButton:hover, ._BVButtonReturnContainer a._BVButton:active, ._BVButtonReturnContainer a._BVButton:focus {background-image: -webkit-gradient(linear, left top, left bottom, from(#2488D2), to(#006CBC)); background-image: -webkit-linear-gradient(#2488D2, #006CBC); background-image: -moz-linear-gradient(#2488D2, #006CBC); background-image: -ms-linear-gradient(#2488D2, #006CBC); background-image: -o-linear-gradient(#2488D2, #006CBC); background-image: linear-gradient(#2488D2, #006CBC); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#2488D2, endColorstr=#006CBC, GradientType=0);}
 
 	._BVButtonSubmitContainer a._BVButton, ._BVButtonPreviewContainer a._BVButton {font-size: 14px;}
 
@@ -296,7 +296,6 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	._BVLabelText {width: 210px; float: left; margin-right: 10px; font-weight: bold;}
 		.BVRequiredIndicator {color: #bb0628; display: inline-block; margin-left: -3px;}
 	h1._BVPageHeaderText, h2._BVSectionHeaderText {margin: 0;}
-	._BVPageHeaderContainer {display: none;}
 
 	/* Sections */
 	.BVSection {background-image: -webkit-gradient(linear, center bottom, from(#EBEBEB 0%), to(#FFFFFF 20%)); background-image: -webkit-linear-gradient(bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -moz-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -ms-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -o-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EBEBEB, endColorstr=#FFFFFF, GradientType=0); background-repeat: repeat-x; margin-bottom: 40px; padding: 25px 30px 15px;}
@@ -320,9 +319,13 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 			._BVProductInfoImageContainer {}
 
 	/* Error Container */
-	.BVSectionErrorContainer {background: none transparent; padding: 0; margin: 0; color: #F00;}
-	.BVErrorText {color: #bb0628;}
-	.BVErrorBorder {}
+	.BVSectionErrorContainer {background: none transparent; padding: 0; margin: 0;}
+		
+		/* Errors */
+		._BVFormErrorsContainer {margin-left: 30px; width: 600px; color: #bb0628; border: 1px solid #bb0628; padding: 15px;}
+			ul.parsley-error-list {list-style-type: none; margin: 0 0 0 220px; color: #bb0628; padding: 5px 0 0;}
+			._BVFormErrorsContainer ul.parsley-error-list {color: #bb0628; padding: 5px 0 0;}
+		.BVErrorContainerInline {margin-left: 220px; color: #bb0628; padding: 5px 0 0;}
 
 	/* Fields */
 	.BVField {clear: left; overflow: hidden; margin-bottom: 30px;}
@@ -339,8 +342,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	._BVHelperText, .BVCharacterCounterText {margin-left: 220px;}
 	._BVHelperText, .BVCharacterCounterText, ._BVCharacterCounter {font-size: 11px; color: #737474; padding: 5px 0 0;}
 
-	/* Errors */
-	.BVErrorContainerInline {margin-left: 220px; color: #bb0628; padding: 5px 0 0;}
+
 
 	/* Rating Stars */
 	.BVFieldRating {margin-bottom: 15px !important;}
@@ -406,7 +408,9 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	._BVUserNicknameInputContainer ._BVLabelText, ._BVUserEmailInputContainer ._BVLabelText {font-size: 14px;}
 
 	/* Additional Fields */
-	._BVAdditionalFieldGroupInputContainer {}
+	._BVAdditionalFieldGroupInputContainer {margin-bottom: 0;}
+		._BVAdditionalFieldGroupInputContainer ._BVAdditionalFieldIndividualInputContainer {clear: both; margin-bottom: 30px;}
+		._BVAdditionalFieldGroupInputContainer ._BVAdditionalFieldIndividualInputContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
 		._BVAdditionalFieldGroupInputContainer #additionalfield_RewardZoneNumberWrapperID {display: none;}
 
 	/* Email Subscription */
@@ -427,6 +431,15 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	.BVPopin:hover {cursor: pointer;}
 		.BVPopin .BVHeader {font-size: 14px; margin-bottom: 10px;}
 		.BVPopin ul {margin: 0; padding-left: 15px;}
+
+	/* Preview & Thank You page */
+	.BVPreviewSection, .BVThankYouSection {background: none transparent; padding: 0; margin: 0 0 30px;}
+	.BVThankYouSection {margin: 30px 0;}
+		.BVThankYouText {display: none;}
+	._BVSubmissionPreviewContainer .BVFieldButtonGroup {margin-top: 30px;}
+
+		/* Review Preview */
+		._BVReviewPreviewBodyContainer .BVUGCSpacerTop {display: block !important;}
 
 
 /* CLIENT PAGE TESTING STYLES */

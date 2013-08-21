@@ -946,9 +946,7 @@
 	<div class="_BVPageHeaderContainer"></div>
 	<div class="BVSection BVThankYouSection">
 		<div class="BVThankYouText">Thank you for your review!</div>
-		<div class="BVProcessingTimeText">Your review will post in the next</div>
-		<div class="_BVTypicalHoursToPostText"></div>
-		<div class="BVProcessingTimeText">hours</div>
+		<div class="BVProcessingTimeText">Your review will post in the next <span class="_BVTypicalHoursToPostText"></span> hours.</div>
 	</div>
 	<div class="BVField BVFieldGroup BVFieldButtonGroup">
 		<div class="BVField _BVButtonReturnContainer"></div>
@@ -977,14 +975,30 @@
 			</div>
 			<div class="BVSection BVSectionReviewContainer">
 				<div class="BVSectionHeader _BVSectionHeaderReviewCommentContainer"></div>
+				<div class="BVSectionReviewGuidelines">
+					<div class="BVPopinLauncher"><a href="#BVSectionReviewContainerPopin">Helpful Tips</a></div>
+					<div id="BVSectionReviewContainerPopin" class="BVPopin">
+						<div class="BVHeader">Tips for writing comments:</div>
+						<div class="BVBody">
+							<p>Avoid:</p>
+							<ul>
+								<li>Profanity or spiteful remarks</li>
+								<li>Obscene or distasteful content</li>
+								<li>E-mail addresses, phone numbers and URLs</li>
+								<li>Information about other companies and Web sites</li>
+								<li>Telling customers to shop elsewhere</li>
+							</ul>
+						</div>
+					</div>
+				</div>
 				<div class="BVField _BVTitleInputContainer"></div>
 				<div class="BVField _BVBodyTextInputContainer"></div>
 			</div>
-			<div class="BVSection BVSectionMediaContainer">
+			<!--<div class="BVSection BVSectionMediaContainer">
 				<div class="BVSectionHeader _BVSectionHeaderMediaContainer"></div>
 				<div class="BVField _BVPhotoUploadContainer"></div>
 				<div class="BVField _BVVideoUploadInputContainer"></div>
-			</div>
+			</div>-->
 			<div class="BVSection BVSectionUserContainer">
 				<div class="BVSectionHeader _BVSectionHeaderUserContainer"></div>
 				<div class="BVField _BVUserNicknameInputContainer"></div>
@@ -999,10 +1013,12 @@
 			<div class="BVField _BVEmailAlertWhenCommentedContainer"></div>
 		</div>
 	</form>
-	<div class="BVField BVFieldGroup BVFieldButtonGroup">
-		<div class="BVField _BVButtonSubmitContainer"></div>
-		<div class="BVField _BVButtonPreviewContainer"></div>
-		<div class="BVField _BVButtonCancelContainer"></div>
+	<div class="BVFooter">
+		<div class="BVField BVFieldGroup BVFieldButtonGroup">
+			<div class="BVField _BVButtonSubmitContainer"></div>
+			<div class="BVField _BVButtonPreviewContainer"></div>
+			<div class="BVField _BVButtonCancelContainer"></div>
+		</div>
 	</div>
 </script>
 

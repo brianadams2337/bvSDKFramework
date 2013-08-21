@@ -32,7 +32,7 @@ function loadReviewSubmissionPreviewWidget (content, options) {
 
 	// buttons
 	// submit button
-	loadSubmitButton ("Submit", {
+	loadSubmitButton ("Submit Your Review", {
 		"parentContainer":$template
 	});
 	// submit button functionality

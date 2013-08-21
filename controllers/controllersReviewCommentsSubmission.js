@@ -73,7 +73,7 @@ function loadReviewCommentSubmissionForm (content, options) {
 	
 	/***** headers *****/
 
-	loadPageHeader ("Write Your Comment", {
+	loadPageHeader ("", {
 		"parentContainer":$template,
 		"targetContainer":defualtPageHeaderContainer
 	});
@@ -129,7 +129,7 @@ function loadReviewCommentSubmissionForm (content, options) {
 	console.log("hostedauthentication");
 
 	// submit button
-	loadSubmitButton ("Submit", {
+	loadSubmitButton ("Submit Your Comment", {
 		"parentContainer":$template
 	});
 	// submit button functionality
@@ -158,7 +158,7 @@ function loadReviewCommentSubmissionForm (content, options) {
 	});
 
 	// preview button
-	loadPreviewButton ("Preview", {
+	loadPreviewButton ("Preview Your Comment", {
 		"parentContainer":$template
 	});
 	// preview button functionality
