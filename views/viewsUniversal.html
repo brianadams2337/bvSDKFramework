@@ -119,6 +119,7 @@
 	<div class="_BVQuickTakeSummary">
 		<div class="BVQuickTakeSummaryTitle BVTitle">Customer Rating</div>
 		<div class="_BVOverallRatingContainer"></div>
+		<div class="_BVHistorgramWidgetContainer"></div>
 		<div class="_BVRecommendedContainerAverage"></div>
 	    <div class="_BVFilters">
 	        <div class="_BVFiltersTitle BVTitle">Filter Reviews By:</div>
@@ -416,6 +417,42 @@
 		<span class="BVValue _BVFilterText"></span>
 		<span class="BVSuffix BVFilterTextSuffix"></span>
 		<span class="BVFilterCountTextPrefix">(</span><span class="BVCount _BVFilterCountText"></span><span class="BVFilterCountTextSuffix">)</span>
+	</div>
+</script>
+
+<!-- filter individual histogram template -->
+<script id="bvtemplate-filter-individual-histogram-universal" type="html">
+	<div class="BVFilter">
+		<span class="BVPrefix BVFilterTextPrefix"></span>
+		<span class="BVValue _BVFilterText"></span>
+		<span class="_BVHistogramIndividualWrapper">
+			<span class="_BVHistogramIndividual"></span>
+		</span>
+		<span class="BVSuffix BVFilterTextSuffix"></span>
+		<span class="BVFilterCountTextPrefix">(</span><span class="BVCount _BVFilterCountText"></span><span class="BVFilterCountTextSuffix">)</span>
+	</div>
+</script>
+
+<!-- ********** HISTGRAM ********** -->
+
+<!-- histogram widget template -->
+<script id="bvtemplate-histogram-widget-universal" type="html">
+	<div class="BVHistogram">
+		<span class="BVTitle">Ratings Breakdown</span>
+		<span class="_BVHistogramGroupContainer"></span>
+	</div>
+</script>
+
+<!-- histogram individual template -->
+<script id="bvtemplate-histogram-individual-universal" type="html">
+	<div class="_BVHistogramIndividualContainer">
+		<span class="BVPrefix BVHistogramTextPrefix"></span>
+		<span class="BVValue _BVHistogramLableText"></span>
+		<span class="_BVHistogramIndividualWrapper">
+			<span class="_BVHistogramIndividual"></span>
+		</span>
+		<span class="BVSuffix BVHistogramTextSuffix"></span>
+		<span class="BVHistogramCountTextPrefix">(</span><span class="BVCount _BVHistogramCountText"></span><span class="BVHistogramCountTextSuffix">)</span>
 	</div>
 </script>
 
