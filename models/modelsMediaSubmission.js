@@ -11,7 +11,6 @@ function postPhotoSubmissionForm (productID, callBack, options) {
 }
 
 function photoSubmissionAPICall (options) {
-
 	var defaultSettings = $.extend(true, {
 		"URL":{
 			"baseurl":apiBaseSubmissionURL,
@@ -36,7 +35,7 @@ function photoSubmissionAPICall (options) {
 	
 	// set URL parameters for API call. params must be formatted to fit file upload plugin
 	var params = [];
-	$.each(defaultSettings["Parameters"], function(key, value) {
+	$.each(returnAPIParameters(defaultSettings["Parameters"]), function(key, value) {
 		var obj = {name: key, value: value};
 		params.push(obj);
 	});

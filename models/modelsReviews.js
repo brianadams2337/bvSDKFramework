@@ -325,7 +325,7 @@ function reviewsAPICall (options) {
 	var url = "http://" + defaultSettings["URL"]["baseurl"] + "data/" + "reviews." + defaultSettings["URL"]["format"];
 
 	// set URL parameters for API call
-	var params = defaultSettings["Parameters"];
+	var params = returnAPIParameters(defaultSettings["Parameters"]);
 
 	// create array with url and parameters
 	var apiCall = {"url":url, "params":params};

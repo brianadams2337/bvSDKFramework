@@ -464,7 +464,7 @@ function loadReviewTagGroups (content, options) {
 				if ((index + 1) == valuesArray.length) {
 					loadReviewTagIndividual (this, {
 						"parentContainer":$template,
-						"viewContainer":"#bvtemplate-tag-individual-last-universal",
+						"viewContainer":defaultReviewTagLastContainerView,
 					});
 				} else {
 					loadReviewTagIndividual (this, {
