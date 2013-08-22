@@ -19,3 +19,13 @@ $('body').on('click', '.BVPopin', function(e) {
     $(this).toggle();
     e.preventDefault();
 });
+
+// [dbeberniss] Show/Hide histogram on mouse event
+$('body').on('mouseover', '.BVHistogramLauncher', function(e) {
+    $($(this).attr('href')).show();
+    e.preventDefault();
+});
+$('body').on('mouseout', '.BVHistogramLauncher', function(e) {
+    $($(this).attr('href')).hide();
+    e.preventDefault();
+});

@@ -8,6 +8,7 @@ $(document).ready(function() {
 			$.getScript(siteBaseURL + "js/jquery.min.1.9.1.js"),
 			$.getScript(siteBaseURL + "js/createHTML5Elements.js"),
 			$.getScript(siteBaseURL + "js/browserSelector.js"),
+			$.getScript(siteBaseURL + "js/custom.js"),
 			$.getScript(siteBaseURL + "js/modernizr.js"),
 			/* properties */
 			$.getScript(siteBaseURL + "models/properties/properties.js"),

@@ -66,9 +66,9 @@ function loadIndividualHistogram (content, options) {
 			// add histogram template
 			$container.append($template);
 			// set label text
-			$($template).find(defaultHistogramLabelTextContainer).andSelf().filter(defaultHistogramLabelTextContainer).text(labelText);
+			$($template).find(defaultHistogramLabelTextContainer).andSelf().filter(defaultHistogramLabelTextContainer).html(labelText);
 			// set histogram count text
-			$($template).find(defaultHistogramCountTextContainer).andSelf().filter(defaultHistogramCountTextContainer).text(histogramCountText);
+			$($template).find(defaultHistogramCountTextContainer).andSelf().filter(defaultHistogramCountTextContainer).html(histogramCountText);
 			// set histogram
 			var histogramWidth = (histogramCountText/content["TotalResults"]) * 100;
 			$($template).find(defaultHistogramIndividualContainer).andSelf().filter(defaultHistogramIndividualContainer).css({

@@ -118,8 +118,10 @@
 <script id="bvtemplate-quick-take-universal" type="html">
 	<div class="_BVQuickTakeSummary">
 		<div class="BVQuickTakeSummaryTitle BVTitle">Customer Rating</div>
-		<div class="_BVOverallRatingContainer"></div>
-		<div class="_BVHistorgramWidgetContainer"></div>
+		<a href="#BVQuickTakeHistogramID" class="BVHistogramLauncher">
+			<div class="_BVOverallRatingContainer"></div>
+		</a>
+		<div id="BVQuickTakeHistogramID" class="_BVHistorgramWidgetContainer"></div>
 		<div class="_BVRecommendedContainerAverage"></div>
 	    <div class="_BVFilters">
 	        <div class="_BVFiltersTitle BVTitle">Filter Reviews By:</div>
@@ -413,23 +415,23 @@
 <!-- filter individual template -->
 <script id="bvtemplate-filter-individual-universal" type="html">
 	<div class="BVFilter">
-		<span class="BVPrefix BVFilterTextPrefix"></span>
-		<span class="BVValue _BVFilterText"></span>
-		<span class="BVSuffix BVFilterTextSuffix"></span>
-		<span class="BVFilterCountTextPrefix">(</span><span class="BVCount _BVFilterCountText"></span><span class="BVFilterCountTextSuffix">)</span>
+		<div class="BVPrefix BVFilterTextPrefix"></div>
+		<div class="BVValue _BVFilterText"></div>
+		<div class="BVSuffix BVFilterTextSuffix"></div>
+		<div class="BVFilterCountTextPrefix">(<span class="BVCount _BVFilterCountText"></span>)</div>
 	</div>
 </script>
 
 <!-- filter individual histogram template -->
 <script id="bvtemplate-filter-individual-histogram-universal" type="html">
 	<div class="BVFilter">
-		<span class="BVPrefix BVFilterTextPrefix"></span>
-		<span class="BVValue _BVFilterText"></span>
-		<span class="_BVHistogramIndividualWrapper">
+		<div class="BVPrefix BVFilterTextPrefix"></div>
+		<div class="BVValue _BVFilterText"></div>
+		<div class="_BVHistogramIndividualWrapper">
 			<span class="_BVHistogramIndividual"></span>
-		</span>
-		<span class="BVSuffix BVFilterTextSuffix"></span>
-		<span class="BVFilterCountTextPrefix">(</span><span class="BVCount _BVFilterCountText"></span><span class="BVFilterCountTextSuffix">)</span>
+		</div>
+		<div class="BVSuffix BVFilterTextSuffix"></div>
+		<div class="BVFilterCountTextPrefix">(<span class="BVCount _BVFilterCountText"></span>)</div>
 	</div>
 </script>
 
@@ -438,21 +440,26 @@
 <!-- histogram widget template -->
 <script id="bvtemplate-histogram-widget-universal" type="html">
 	<div class="BVHistogram">
-		<span class="BVTitle">Ratings Breakdown</span>
+		<h2 class="BVTitle">Ratings Breakdown</h2>
 		<span class="_BVHistogramGroupContainer"></span>
+	</div>
+	<div class="BVHistorgramWidgetContainerArrow">
+		<div class="BVHistorgramWidgetContainerArrowMask"></div>
+		<div class="BVHistorgramWidgetContainerArrowShadow"></div>
 	</div>
 </script>
 
 <!-- histogram individual template -->
 <script id="bvtemplate-histogram-individual-universal" type="html">
 	<div class="_BVHistogramIndividualContainer">
-		<span class="BVPrefix BVHistogramTextPrefix"></span>
-		<span class="BVValue _BVHistogramLableText"></span>
-		<span class="_BVHistogramIndividualWrapper">
-			<span class="_BVHistogramIndividual"></span>
-		</span>
-		<span class="BVSuffix BVHistogramTextSuffix"></span>
-		<span class="BVHistogramCountTextPrefix">(</span><span class="BVCount _BVHistogramCountText"></span><span class="BVHistogramCountTextSuffix">)</span>
+		<div class="BVValue _BVHistogramLableText"></div>
+		<div class="_BVHistogramIndividualWrapper">
+			<div class="_BVHistogramIndividual"></div>
+		</div>
+		<div class="BVSuffix BVHistogramTextSuffix"></div>
+		<div class="BVHistogramCountText">
+			(<span class="BVCount _BVHistogramCountText"></span> Reviews)
+		</div>
 	</div>
 </script>
 

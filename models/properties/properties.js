@@ -7,11 +7,11 @@
 
 
 var labelsFilterOverallRating = {
-	"1" : "1 star",
-	"2" : "2 stars",
-	"3" : "3 stars",
-	"4" : "4 stars",
-	"5" : "5 stars",
+	"1" : "<span class=\"BVHistogram1Star\">1 star</span>",
+	"2" : "<span class=\"BVHistogram2Stars\">2 stars</span>",
+	"3" : "<span class=\"BVHistogram3Stars\">3 stars</span>",
+	"4" : "<span class=\"BVHistogram4Stars\">4 stars</span>",
+	"5" : "<span class=\"BVHistogram5Stars\">5 stars</span>",
 };
 
 

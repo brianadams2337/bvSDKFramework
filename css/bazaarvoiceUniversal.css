@@ -20,6 +20,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 
 	/* Titles, Labels, Values */
 	.BVTitle {font-size: 18px; font-weight: bold; line-height: normal;}
+	h2.BVTitle {border-bottom: 1px solid #C3C4C4; margin: 0 0 20px; padding: 0 0 2px; font-size: 25px; font-weight: normal; line-height: 1.5;}
 	.BVLabel {font-weight: bold;}
 	.BVValue {}
 
@@ -67,8 +68,29 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 
 
 /* HISTOGRAM */
-	._BVHistogramIndividualWrapper {display: inline-block; height: 10px; width: 100px; background-color: #cccccc;}
-		._BVHistogramIndividual {float: left; background-color: #085EB9; height: 10px;}
+
+	/* Popin */
+	._BVHistorgramWidgetContainer {width: 290px; margin: 20px 0 0; border: 1px solid #C3C4C4; padding: 30px; background-color: #fff; border-radius: 4px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); display: none; position: absolute;}
+		
+		._BVHistorgramWidgetContainer ._BVHistogramLableText {width: 90px; height: 17px; display: block; float: left; background: url(images/histogramStars.png); margin-right: 10px;}
+			._BVHistorgramWidgetContainer ._BVHistogramLableText span {height: 17px; display: block; background: url(images/histogramStars.png) 0 -17px; text-indent: -999em; outline: none;}
+				
+				/* Stars */
+				._BVHistorgramWidgetContainer .BVHistogram5Stars {width: 90px;}
+				._BVHistorgramWidgetContainer .BVHistogram4Stars {display: block; width: 72px; background: url(images/histogramStars.png) 0 -15px;}
+				._BVHistorgramWidgetContainer .BVHistogram3Stars {width: 54px;}
+				._BVHistorgramWidgetContainer .BVHistogram2Stars {width: 36px;}
+				._BVHistorgramWidgetContainer .BVHistogram1Star {width: 18px;}
+
+	.BVHistorgramWidgetContainerArrow {width: 26px; height: 13px; position: absolute; top: -13px; left: 160px;}
+		.BVHistorgramWidgetContainerArrowMask {width: 0; height: 0; position: absolute; z-index: 10000; border-style: solid; border-color: transparent transparent #fff; border-width: 0 11px 11px; margin: 2px 0 0 2px;}
+		.BVHistorgramWidgetContainerArrowShadow {border-style: solid; border-color: transparent transparent #C3C4C4; border-width: 0 13px 13px; z-index: 9999;}
+
+		._BVHistogramIndividualContainer {margin-bottom: 10px;}
+		._BVHistogramIndividualContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
+			._BVHistogramIndividualWrapper {width: 80px; height: 14px; display: block; float: left; margin-right: 10px; background: url(images/histogramBar.png);}
+				._BVHistogramIndividual {height: 14px; display: block; float: left; background: url(images/histogramBar.png) 0 -14px;}
+
 
 
 
@@ -109,6 +131,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 						._BVFilterText {color: #085EB9; margin-right: 3px;}
 						._BVFilterCountText, .BVFilterCountTextPrefix, .BVFilterCountTextSuffix {font-size: 11px; color: #737474;}
 						.BVFilterTextSuffix {display: none;}
+						._BVFilterText, .BVFilterCountTextPrefix {float: left;}
 					.BVFiltersFilteringStatement {font-size: 9px;}
 		
 		/* Write a Review & Sorting */

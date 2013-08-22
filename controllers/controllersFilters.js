@@ -329,7 +329,7 @@ function loadIndividualFilters (content, options) {
 				}).addClass("BVSelected");
 			}
 			// set filter text
-			$($template).find(defaultReviewFilterTextContainer).andSelf().filter(defaultReviewFilterTextContainer).text(filterText);
+			$($template).find(defaultReviewFilterTextContainer).andSelf().filter(defaultReviewFilterTextContainer).html(filterText);
 			// set filter count text
 			if (settings["filterSettings"]["showCountBool"]) {
 				$($template).find(defaultReviewFilterCountTextContainer).andSelf().filter(defaultReviewFilterCountTextContainer).text(filterCountText);
