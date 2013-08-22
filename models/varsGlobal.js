@@ -1,13 +1,13 @@
 /***** CLIENT DEFAULTS *****/
 
 // url path for staging site
-var stagingURL = "http://localhost:8888/bvSDKFramework/";
-var stagingSubmissionURL = "http://localhost:8888/bvSDKFramework/submission.html?";
+var stagingURL = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/";
+var stagingSubmissionURL = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/submission.html?";
 // url pate for production site
-var productionURL = "http://localhost:8888/bvSDKFramework/";
-var productionSubmissionURL = "http://localhost:8888/bvSDKFramework/submission.html?";
+var productionURL = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/";
+var productionSubmissionURL = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/submission.html?";
 
-// api parameter deautls
+// api parameter defaults
 var apiDefaults = {
 	"stagURL": "stg.api.bazaarvoice.com/",
 	"prodURL": "api.bazaarvoice.com/",
@@ -80,22 +80,26 @@ var defaultToggleOptions = {
 };
 
 /***** INLINE VALIDATION OPTIONS *****/
+var requiredClass = "BVRequired";
+
 var defaultInlineValidationOption = {
 	successClass: 'BVSuccess',
 	errorClass: 'BVError',
 	messages: {
-		"required":"this is a required field",
+		"required":"This is a required field.",
+		"alphanum":"You may not enter spaces or special characters, numbers and letters only.",
 	},
 	errors: {
-		// classHandler: function ( elem, isRadioOrCheckbox ) {
-	 //          return $( elem ).parent();
-	 //      },
+		container: function (elem, isRadioOrCheckbox) {
+			return $(elem).closest(".BVField." + requiredClass);
+		},
+		classHandler: function (elem, isRadioOrCheckbox) {
+			return $(elem).closest(".BVField." + requiredClass);
+		},
 		errorsWrapper:"<div class='BVErrorContainerInline'></div>",
 		errorElem:"<div class='BVErrorInline'></div>",
 	}
 };
-
-var requiredClass = "BVRequired";
 
 /***** DECIMAL TRUNCATION OPTIONS *****/
 var defaultDecimalOptions = {

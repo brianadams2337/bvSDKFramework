@@ -20,6 +20,7 @@ function getReviewsSubmissionForm (productID, container, callBack, options) {
 			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
+			$(container).removeClass("_BVContentLoadingContainer").html("Submission is currently unavailable.")
 			defaultAjaxErrorFunction(e);
 		},
 		beforeSend: function() {
@@ -118,7 +119,7 @@ function reviewsSubmissionAPICall (options) {
 	var url = "http://" + defaultSettings["URL"]["baseurl"] + "data/" + "submitreview." + defaultSettings["URL"]["format"];
 	
 	// set URL parameters for API call
-	var params = defaultSettings["Parameters"];
+	var params = returnAPIParameters(defaultSettings["Parameters"]);
 
 	// create array with url and parameters
 	var apiCall = {"url":url, "params":params};
