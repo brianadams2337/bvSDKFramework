@@ -975,6 +975,8 @@ function loadCheckboxInputField (content, options) {
 				"checked":false,
 			});
 		}
+		// focus on text input container
+		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).focus()
 	});
 	// if required field
 	if (inputRequired == true) {
