@@ -30,6 +30,7 @@ function loadUserNicknameInput (content, options) {
 	var inputName = settings["inputSettings"]["inputName"];
 	var inputLabel = settings["inputSettings"]["inputLabel"];
 	var inputHelperText = settings["inputSettings"]["inputHelperText"];
+	var inputRequired = settings["inputSettings"]["inputRequired"];
 	// add input template
 	$container.append($template);
 	// set label
@@ -37,7 +38,8 @@ function loadUserNicknameInput (content, options) {
 		"for":inputName
 	});
 	// if required field
-	if (settings["inputSettings"]["inputRequired"]) {
+	if (inputRequired) {
+		$($template).parent().addClass(requiredClass);
 		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// set helper text
@@ -77,6 +79,7 @@ function loadUserEmailInput (content, options) {
 	var inputName = settings["inputSettings"]["inputName"];
 	var inputLabel = settings["inputSettings"]["inputLabel"];
 	var inputHelperText = settings["inputSettings"]["inputHelperText"];
+	var inputRequired = settings["inputSettings"]["inputRequired"];
 	// add input template
 	$container.append($template);
 	// set label
@@ -84,7 +87,8 @@ function loadUserEmailInput (content, options) {
 		"for":inputName
 	});
 	// if required field
-	if (settings["inputSettings"]["inputRequired"]) {
+	if (inputRequired) {
+		$($template).parent().addClass(requiredClass);
 		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// set helper text
@@ -124,6 +128,7 @@ function loadUserLocationInput (content, options) {
 	var inputName = settings["inputSettings"]["inputName"];
 	var inputLabel = settings["inputSettings"]["inputLabel"];
 	var inputHelperText = settings["inputSettings"]["inputHelperText"];
+	var inputRequired = settings["inputSettings"]["inputRequired"];
 	// add input template
 	$container.append($template);
 	// set label
@@ -131,7 +136,8 @@ function loadUserLocationInput (content, options) {
 		"for":inputName
 	});
 	// if required field
-	if (settings["inputSettings"]["inputRequired"]) {
+	if (inputRequired) {
+		$($template).parent().addClass(requiredClass);
 		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// set helper text
@@ -171,6 +177,7 @@ function loadUserIDInput (content, options) {
 	var inputName = settings["inputSettings"]["inputName"];
 	var inputLabel = settings["inputSettings"]["inputLabel"];
 	var inputHelperText = settings["inputSettings"]["inputHelperText"];
+	var inputRequired = settings["inputSettings"]["inputRequired"];
 	// add input template
 	$container.append($template);
 	// set label
@@ -178,7 +185,8 @@ function loadUserIDInput (content, options) {
 		"for":inputName
 	});
 	// if required field
-	if (settings["inputSettings"]["inputRequired"]) {
+	if (inputRequired) {
+		$($template).parent().addClass(requiredClass);
 		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// set helper text
@@ -268,7 +276,8 @@ function loadAdditionalFieldIndividualInput (content, options) {
 		"for":(inputName + "ID")
 	});
 	// if required field
-	if (settings["inputSettings"]["inputRequired"]) {
+	if (inputRequired) {
+		$($template).parent().addClass(requiredClass);
 		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// load text field
@@ -308,11 +317,19 @@ function loadContextDataValueGroupInput (content, options) {
 			// set container & template
 			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
 			var $template = returnTemplate(settings["viewContainer"]);
+			// set variables
+			var inputHelperText = new String ();
+			if (fieldContent["Id"] == "contextdatavalue_rewardZoneMembershipV3") {
+				inputHelperText = "Reward Zone Members: Get bonus points for your approved review (see rules*)."
+			}
 			// add individual context data value template
 			$container.append($template);
 			// load context data value input container
 			loadContextDataValueIndividualInput(fieldContent, {
-				"parentContainer":$template
+				"parentContainer":$template,
+				"inputSettings":{
+					"inputHelperText":inputHelperText
+				}
 			});
 		});
 	}
@@ -346,6 +363,7 @@ function loadContextDataValueIndividualInput (content, options) {
 	var inputId = settings["inputSettings"]["inputName"] + "WrapperID"; // id attribute
 	var inputName = settings["inputSettings"]["inputName"]; // name of input
 	var inputLabel = settings["inputSettings"]["inputLabel"]; // input label text
+	var inputHelperText = settings["inputSettings"]["inputHelperText"]; // input helper text
 	var inputRequired = settings["inputSettings"]["inputRequired"]; // required boolean
 	var inputType = settings["inputSettings"]["inputType"]; // input type (radio or select dropdown)
 	// add context data value template
@@ -354,8 +372,11 @@ function loadContextDataValueIndividualInput (content, options) {
 	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel).attr({
 		"for":(inputName + "ID")
 	});
+	// set helper text
+	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).html(inputHelperText);
 	// if required field
-	if (settings["inputSettings"]["inputRequired"]) {
+	if (inputRequired) {
+		$($template).parent().addClass(requiredClass);
 		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// load select/radio input
@@ -471,6 +492,7 @@ function loadTagGroupInput (content, options) {
 						"loadOrder":this,
 						"inputSettings":{
 							"inputHidden":settings["inputSettings"]["inputHidden"],
+							"inputPlaceholder":"Add your own tag",
 						},
 					});
 				});
@@ -496,6 +518,8 @@ function loadTagIndividualInput (content, options) {
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
 	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var inputPlaceholder = settings["inputSettings"]["inputPlaceholder"];
 	// add tag template
 	$container.append($template);
 	// check if input should be hidden
@@ -505,6 +529,9 @@ function loadTagIndividualInput (content, options) {
 	// load checkbox
 	loadCheckboxInputField (content["Data"]["Fields"][settings["loadOrder"]], {
 		"parentContainer":$template,
+		"inputSettings":{
+			"inputPlaceholder":inputPlaceholder
+		}
 	});
 	if (content["Data"]["Fields"][settings["loadOrder"]]["Type"] == "TextInput") {
 		// run once user clicks outside of text field
@@ -646,14 +673,20 @@ function loadTextFieldInput (content, options) {
 		"data-minlength":inputMinLength,
 		"data-maxlength":inputMaxLength,
 	});
-	if (inputRequired) {
-		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
-			"data-required":settings["inputSettings"]["inputRequired"],
+	// if required field
+	if (inputRequired == true) {
+		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass).attr({
+			"data-required":inputRequired,
 		});
 	}
 	if (inputId == "useremail") {
 		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
 			"data-type":"email",
+		});
+	}
+	if (inputId == "usernickname") {
+		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
+			"data-type":"alphanum",
 		});
 	}
 }
@@ -684,6 +717,7 @@ function loadTextAreaInput (content, options) {
 	var inputId = settings["inputSettings"]["inputName"];
 	var inputMinLength = settings["inputSettings"]["inputMinLength"];
 	var inputMaxLength = settings["inputSettings"]["inputMaxLength"];
+	var inputRequired = settings["inputSettings"]["inputRequired"];
 	// add title template
 	$container.append($template);
 	// set label
@@ -691,8 +725,10 @@ function loadTextAreaInput (content, options) {
 		"for":settings["inputSettings"]["inputName"]
 	});
 	// if required field
-	if (settings["inputSettings"]["inputRequired"]) {
-		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
+	if (inputRequired == true) {
+		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass).attr({
+			"data-required":inputRequired,
+		});
 	}
 	// set input attributes
 	$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
@@ -757,15 +793,17 @@ function loadRadioInputIndividual (content, options) {
 				"name":inputName,
 				"value":inputValue
 			});
+			// if required field
+			if (inputRequired == true) {
+				$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass).attr({
+					"data-required":inputRequired,
+				});
+			}
 			// selected value
 			if (inputValue == inputSelected) {
 				$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
 					"checked":"checked",
 				});
-			}
-			// required
-			if (inputRequired == true) {
-				$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass);
 			}
 		});
 	}
@@ -813,6 +851,12 @@ function loadSelectInput (content, options) {
 		"id":inputId,
 		"name":inputName
 	});
+	// if required field
+	if (inputRequired == true) {
+		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass).attr({
+			"data-required":inputRequired,
+		});
+	}
 	// load select options
 	loadSelectOptionsInput(inputOptions, {
 		"parentContainer":$template
@@ -931,10 +975,14 @@ function loadCheckboxInputField (content, options) {
 				"checked":false,
 			});
 		}
+		// focus on text input container
+		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).focus()
 	});
-	// required
+	// if required field
 	if (inputRequired == true) {
-		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass);
+		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass).attr({
+			"data-required":inputRequired,
+		});
 	}
 }
 
@@ -1146,38 +1194,57 @@ function loadPhotoFileUploadInput (content, options) {
 			"inputName":uploadInputName
 		}
 	});
-	// load photo url input (this is what actually submits the photo)
-	loadPhotoUploadPreviewInput (content, {
-		"parentContainer":$template,
-		"loadOrder":settings["loadOrder"]
-	});
 	// set functionality for upload input
 	postPhotoSubmissionForm (settings["productId"], function(data) {
 		// set variables
 		var uploadInput = "input[name='" + uploadInputName + "']";
 		// submit photo using the jquery.fileupload.js plugin to allow ajax submission without embedding a form
-		$($($template)).find(uploadInput).andSelf().filter(uploadInput).fileupload({
+		$($template).find(uploadInput).andSelf().filter(uploadInput).fileupload({
 			type: "POST",
-			enctype: 'multipart/form-data',
+			//enctype: 'multipart/form-data',
 			// url: data["url"],
 			url: defaultPhotoUploadProcessingFile,
+			//multipart: false,
 			formData: data["params"],
 			dataType: "json",
-	        success: function (e, data) {
+	        done: function (e, result) {
+				// load photo url input (this is what actually submits the photo)
+				loadPhotoUploadPreviewInput (content, {
+					"parentContainer":$template,
+					"loadOrder":settings["loadOrder"]
+				});
 				// array to hold photo response in json. needed to replicate object sent on json response for display
-				console.log(content);
 				var arrPhoto = new Array ();
-				arrPhoto.push(data["result"]["Photo"]);
+				arrPhoto.push(result["result"]["Photo"]);
 				// load photo thumbnail
-				loadReviewPhotosGroup (data["result"]["Photo"], {
+				loadReviewPhotosGroup (result["result"]["Photo"], {
 					"parentContainer":$template,
 					"loadOrder":arrPhoto
 				});
 				// set value on photo url input
 				var urlInput = "input[name='" + urlInputName + "']";
-				var urlPhotoNormal = data["result"]["Photo"]["Sizes"]["normal"]["Url"];
-				$($($template)).find(urlInput).andSelf().filter(urlInput).attr({
+				var urlPhotoNormal = result["result"]["Photo"]["Sizes"]["normal"]["Url"];
+				$($template).find(urlInput).andSelf().filter(urlInput).attr({
 					"value":urlPhotoNormal
+				});
+				// load close button
+				loadCloseButton ("remove", {
+					"parentContainer":$template,
+				})
+				// close button functionality
+				$($template).find(defaultButtonCloseContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonCloseContainer + " " + defaultButtonContainer).click(function() {
+					// close container
+					$($template).addClass("_BVContentLoadingContainer").find(defaultPhotoUploadInputContainer).andSelf().filter(defaultPhotoUploadInputContainer).show();
+					$($template).removeClass("_BVContentLoadingContainer").find(defaultPhotoUploadPreviewContainer).andSelf().filter(defaultPhotoUploadPreviewContainer).empty();
+					$($template).hide();
+					console.log($($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).children(":hidden").length);
+					if ($($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).children(":hidden").length == 1) {
+						// find next hidden upload input and show if available
+						$($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).children(":hidden:first").each(function() {
+							// move element to last position and show
+							$(this).detach().prependTo($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).show();
+						})
+					}
 				});
 				// find next hidden upload input and show if available
 				$($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).children(":hidden:first").each(function() {
@@ -1187,7 +1254,7 @@ function loadPhotoFileUploadInput (content, options) {
 	        	// show uploaded image preview container
 	        	$($($template).removeClass("_BVContentLoadingContainer")).find(defaultPhotoUploadPreviewContainer).andSelf().filter(defaultPhotoUploadPreviewContainer).show();
 	        },
-			error: function(e) {
+			fail: function(e) {
 				console.log("there was an error. please try again.", data);
 	        	// show uploaded image preview container
 	        	$($($template).removeClass("_BVContentLoadingContainer")).find(defaultPhotoUploadInputContainer).andSelf().filter(defaultPhotoUploadInputContainer).show();
@@ -1228,7 +1295,7 @@ function loadPhotoUploadPreviewInput (content, options) {
 	// add photo template
 	$container.append($template);
 	// hide photo preview container on load
-	$(defaultPhotoUploadPreviewContainer).hide();
+	$($template).find(defaultPhotoUploadPreviewContainer).andSelf().filter(defaultPhotoUploadPreviewContainer).hide();
 	// load photo caption input
 	loadPhotoCaptionInput (content["Data"]["Fields"][captionInputName], {
 		"parentContainer":$template,

@@ -116,6 +116,7 @@ function loadReviewSubmissionForm (content, options) {
 		"parentContainer":$template,
 		"inputSettings":{
 			"inputLabel":"Review Summary"
+			"inputHelperText":"Example: Great camera for a beginner",
 		}
 	});
 	// review text
@@ -132,6 +133,7 @@ function loadReviewSubmissionForm (content, options) {
 			"parentContainer":$template,
 			"inputSettings":{
 				"inputLabel":"Choose a Nickname (no spaces)",
+				"inputHelperText":"Do not use your full name or email address; your privacy is important to us.",
 			}
 		});
 	}
@@ -141,6 +143,7 @@ function loadReviewSubmissionForm (content, options) {
 			"parentContainer":$template,
 			"inputSettings":{
 				"inputLabel":"My Email",
+				"inputHelperText":"We will ONLY use your email to notify you when your review is posted or if a comment is added to your review after it is posted.",
 			}
 		});
 	}
@@ -160,6 +163,7 @@ function loadReviewSubmissionForm (content, options) {
 		"parentContainer":$template,
 		"inputSettings":{
 			"inputLabel":"My Location",
+			"inputHelperText":"Example: New York, NY",
 		}
 	});
 	// device fingerprint
@@ -205,13 +209,15 @@ function loadReviewSubmissionForm (content, options) {
 		"parentContainer":$template,
 		"inputSettings":{
 			"inputLabel":"Video URL"
+			"inputHelperText":"(Paste the URL from your videos on Youtube)",
 		}
 	});
 	// video caption
 	loadVideoCaptionInput (content, {
 		"parentContainer":$template,
 		"inputSettings":{
-			"inputLabel":"Video Caption"
+			"inputLabel":"Video Caption",
+			"inputHelperText":"Example: \"See it in action.\" 150 Characters Max.",
 		}
 	});
 
@@ -318,7 +324,6 @@ function loadReviewSubmissionForm (content, options) {
 	$("#" + newID).parsley(defaultInlineValidationOption);
 	// add inline validation
 	$(defaultFormInputContainer).change( function() {
-		console.log(this);
 		$(this).parsley('validate');
 	});
 	loadRequiredIndicators (content, {
@@ -364,12 +369,14 @@ function loadOverallRatingInput (content, options) {
 	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var inputLabel = settings["inputSettings"]["inputLabel"];
+	var inputRequired = settings["inputSettings"]["inputRequired"];
 	// add input template
 	$container.append($template);
 	// set label
 	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
 	// if required field
-	if (settings["inputSettings"]["inputRequired"]) {
+	if (inputRequired) {
+		$($template).parent().addClass(requiredClass);
 		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// load radio buttons
@@ -411,12 +418,14 @@ function loadSecondaryRatingGroup (content, options) {
 			var $template = returnTemplate(settings["viewContainer"]);
 			// set variables
 			var inputLabel = fieldContent["Label"];
+			var inputRequired = settings["inputSettings"]["inputRequired"];
 			// add secondary rating template
 			$container.append($template);
 			// set label
 			$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
 			// if required field
-			if (settings["inputSettings"]["inputRequired"]) {
+			if (inputRequired) {
+				$($template).parent().addClass(requiredClass);
 				$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 			}
 			// load secondary rating input container
@@ -506,12 +515,14 @@ function loadIsRecommendedInput (content, options) {
 	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
 	var inputLabel = settings["inputSettings"]["inputLabel"];
+	var inputRequired = settings["inputSettings"]["inputRequired"];
 	// add input template
 	$container.append($template);
 	// set label
 	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
 	// if required field
-	if (settings["inputSettings"]["inputRequired"]) {
+	if (inputRequired) {
+		$($template).parent().addClass(requiredClass);
 		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// load radio buttons
@@ -561,6 +572,7 @@ function loadReviewTitleInput (content, options) {
 	var inputName = settings["inputSettings"]["inputName"];
 	var inputLabel = settings["inputSettings"]["inputLabel"];
 	var inputHelperText = settings["inputSettings"]["inputHelperText"];
+	var inputRequired = settings["inputSettings"]["inputRequired"];
 	// add input template
 	$container.append($template);
 	// set label
@@ -568,7 +580,8 @@ function loadReviewTitleInput (content, options) {
 		"for":inputName
 	});
 	// if required field
-	if (settings["inputSettings"]["inputRequired"]) {
+	if (inputRequired) {
+		$($template).parent().addClass(requiredClass);
 		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// set helper text
@@ -611,6 +624,7 @@ function loadReviewTextInput (content, options) {
 	var inputName = settings["inputSettings"]["inputName"];
 	var inputLabel = settings["inputSettings"]["inputLabel"];
 	var inputHelperText = settings["inputSettings"]["inputHelperText"];
+	var inputRequired = settings["inputSettings"]["inputRequired"];
 	// add input template
 	$container.append($template);
 	// set label
@@ -618,7 +632,8 @@ function loadReviewTextInput (content, options) {
 		"for":inputName
 	});
 	// if required field
-	if (settings["inputSettings"]["inputRequired"]) {
+	if (inputRequired) {
+		$($template).parent().addClass(requiredClass);
 		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// set helper text

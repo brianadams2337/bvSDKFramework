@@ -195,6 +195,16 @@ function loadReviewCommentSubmissionForm (content, options) {
 		// load return page
 		returnToPage(returnURL);
 	});
+	
+	// set inline form validation using parsley.js plugin
+	$("#" + newID).parsley(defaultInlineValidationOption);	
+	// add inline validation
+	$(defaultFormInputContainer).change( function() {
+		$(this).parsley('validate');
+	});
+	loadRequiredIndicators (content, {
+		"parentContainer":$template
+	});
 }
 
 // review title
@@ -233,6 +243,10 @@ function loadReviewCommentTitleInput (content, options) {
 	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel).attr({
 		"for":inputName
 	});
+	// if required field
+	if (settings["inputSettings"]["inputRequired"]) {
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
+	}
 	// set helper text
 	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).html(inputHelperText);
 	// load input
@@ -280,6 +294,10 @@ function loadReviewCommentTextInput (content, options) {
 	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel).attr({
 		"for":inputName
 	});
+	// if required field
+	if (settings["inputSettings"]["inputRequired"]) {
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
+	}
 	// set helper text
 	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).html(inputHelperText);
 	// load input
