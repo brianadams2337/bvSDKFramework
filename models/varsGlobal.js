@@ -1,13 +1,13 @@
 /***** CLIENT DEFAULTS *****/
 
 // url path for staging site
-var stagingURL = "http://localhost:8888/bvSDKFramework/";
-var stagingSubmissionURL = "http://localhost:8888/submission.html?";
+var stagingURL = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/";
+var stagingSubmissionURL = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/submission.html?";
 // url pate for production site
-var productionURL = "http://localhost:8888/bvSDKFramework/";
-var productionSubmissionURL = "http://localhost:8888/submission.html?";
+var productionURL = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/";
+var productionSubmissionURL = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/submission.html?";
 
-// api parameter deautls
+// api parameter defaults
 var apiDefaults = {
 	"stagURL": "stg.api.bazaarvoice.com/",
 	"prodURL": "api.bazaarvoice.com/",
