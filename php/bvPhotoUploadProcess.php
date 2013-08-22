@@ -1,13 +1,14 @@
 <?php
 
-	$defaults = array();
 	$fields = array_keys($_POST);
+	$files = array_keys($_FILES);
 
 	foreach ($fields as $key => $value) {
 		$defaults[$value] = $_POST[$value];
 	}
-
-	$defaults = http_build_query($defaults);
+	foreach ($files as $key => $value) {
+		$defaults[$value] = "@" . $_FILES[$value]["tmp_name"];
+	}
 
 	$h = curl_init();
 	curl_setopt($h, CURLOPT_URL, "http://stg.api.bazaarvoice.com/data/uploadphoto.json");

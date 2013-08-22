@@ -2,10 +2,10 @@
 
 // url path for staging site
 var stagingURL = "http://localhost:8888/bvSDKFramework/";
-var stagingSubmissionURL = "http://localhost:8888/bvSDKFramework/submission.html?";
+var stagingSubmissionURL = "http://localhost:8888/submission.html?";
 // url pate for production site
 var productionURL = "http://localhost:8888/bvSDKFramework/";
-var productionSubmissionURL = "http://localhost:8888/bvSDKFramework/submission.html?";
+var productionSubmissionURL = "http://localhost:8888/submission.html?";
 
 // api parameter deautls
 var apiDefaults = {
@@ -80,22 +80,26 @@ var defaultToggleOptions = {
 };
 
 /***** INLINE VALIDATION OPTIONS *****/
+var requiredClass = "BVRequired";
+
 var defaultInlineValidationOption = {
 	successClass: 'BVSuccess',
 	errorClass: 'BVError',
 	messages: {
-		"required":"this is a required field",
+		"required":"This is a required field.",
+		"alphanum":"You may not enter spaces or special characters, numbers and letters only.",
 	},
 	errors: {
-		// classHandler: function ( elem, isRadioOrCheckbox ) {
-	 //          return $( elem ).parent();
-	 //      },
+		container: function (elem, isRadioOrCheckbox) {
+			return $(elem).closest(".BVField." + requiredClass);
+		},
+		classHandler: function (elem, isRadioOrCheckbox) {
+			return $(elem).closest(".BVField." + requiredClass);
+		},
 		errorsWrapper:"<div class='BVErrorContainerInline'></div>",
 		errorElem:"<div class='BVErrorInline'></div>",
 	}
 };
-
-var requiredClass = "BVRequired";
 
 /***** DECIMAL TRUNCATION OPTIONS *****/
 var defaultDecimalOptions = {
