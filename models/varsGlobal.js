@@ -1,11 +1,11 @@
 /***** CLIENT DEFAULTS *****/
 
 // url path for staging site
-var stagingURL = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/";
-var stagingSubmissionURL = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/submission.html?";
+var stagingURL = stagingURL || (location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/");
+var stagingSubmissionURL = stagingSubmissionURL || (location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/submission.html?");
 // url pate for production site
-var productionURL = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/";
-var productionSubmissionURL = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/submission.html?";
+var productionURL = productionURL || (location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/");
+var productionSubmissionURL = productionSubmissionURL || (location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/submission.html?");
 
 // api parameter defaults
 var apiDefaults = {
