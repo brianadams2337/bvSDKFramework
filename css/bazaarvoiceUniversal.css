@@ -105,7 +105,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		._BVQuickTakeContainer ._BVOverallRatingContainer {}
 		._BVQuickTakeContainer ._BVOverallRatingContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
 			._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsContainer {float: left;}
-				._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsFilledImage, ._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsUnfilledImage {width: 170px !important;}
+				._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsFilledImage, ._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsUnfilledImage {width: 170px !important; height: 30px !important;}
 			._BVQuickTakeContainer .BVOverallRatingContainer .BVRatingOutOfContainer {font-weight: bold; line-height: 33px; font-size: 34px; color: #085EB9; float: left;}
 				._BVQuickTakeContainer .BVOverallRatingContainer .BVRatingSeparator, ._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingRange {display: none;}
 		
@@ -223,10 +223,11 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		._BVPhotoGroupContainer:empty, ._BVVideoGroupContainer:empty {display: none;}
 
 		/* Secondary Ratings */
-		.BVSecondaryRatingContainer {width: 195px;}
+		.BVSecondaryRatingContainer {width: 195px; margin-bottom: 10px;}
 		.BVSecondaryRatingContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
-			.BVSecondaryRatingContainer ._BVRatingLabelText {font-weight: bold; display: block;}
-			.BVSecondaryRatingContainer ._BVRatingStarsContainer, .BVSecondaryRatingContainer .BVRatingOutOfContainer {display: block; float: left;}
+			.BVSecondaryRatingContainer ._BVRatingLabelText {font-weight: bold; display: block; margin-bottom: 3px;}
+			.BVSecondaryRatingContainer ._BVRatingStarsContainer, .BVSecondaryRatingContainer .BVRatingOutOfContainer {display: block; float: left; line-height: 11px;}
+			.BVSecondaryRatingContainer ._BVRatingStarsContainer {width: 150px;}
 			.BVSecondaryRatingContainer .BVRatingOutOfContainer {font-weight: bold;}
 				.BVSecondaryRatingContainer .BVRatingOutOfContainer .BVRatingSeparator, .BVSecondaryRatingContainer .BVRatingOutOfContainer ._BVRatingRange {display: none;}
 
