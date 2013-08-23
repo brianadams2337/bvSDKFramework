@@ -54,6 +54,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 
 	/* Filled & Unfilled Images - SVG scaling */
 	._BVRatingStarsFilledImage, ._BVRatingStarsUnfilledImage {width: 100%; height: auto;}
+	.BVSecondaryRatingContainer ._BVRatingStarsFilledImage, .BVSecondaryRatingContainer ._BVRatingStarsUnfilledImage {height: 10px;}
 	.ie .BVSecondaryRatingContainer ._BVRatingStarsFilledImage, .ie .BVSecondaryRatingContainer ._BVRatingStarsUnfilledImage {height: 11px;}
 	.webkit ._BVRatingStarsFilledImage, .webkit ._BVRatingStarsUnfilledImage {width: auto;}
 
