@@ -99,9 +99,9 @@ function loadReviewSubmissionPreview (content, options) {
 		"parentContainer":$template
 	});
 	// load review secondary ratings
-	// loadReviewSecondaryRatings (content, {
-	// 	"parentContainer":$template
-	// });
+	loadReviewSecondaryRatings (content, {
+		"parentContainer":$template
+	});
 	// load review recommended
 	loadReviewRecommended (content, {
 		"parentContainer":$template
@@ -122,26 +122,30 @@ function loadReviewSubmissionPreview (content, options) {
 	loadReviewUserNickname (content, {
 		"parentContainer":$template
 	});
-	// // load review user location
-	// loadReviewUserLocation (content, {
+	// load review user location
+	loadReviewUserLocation (content, {
+		"parentContainer":$template
+	});
+	// load review cdvs
+	loadReviewContextDataValuesGroup (content, {
+		"parentContainer":$template
+	});
+	// load review tags
+	loadReviewTagGroups(content, {
+		"parentContainer":$template
+	});
+	// // load review additional fields
+	// loadReviewAdditionalFieldsGroups(content, {
 	// 	"parentContainer":$template
 	// });
-	// // load review cdvs
-	// loadReviewContextDataValuesGroup (content, {
-	// 	"parentContainer":$template
-	// });
-	// // load review tags
-	// loadReviewTagGroups(content, {
-	// 	"parentContainer":$template
-	// });
-	// // load review photos
-	// loadReviewPhotosGroup(content, {
-	// 	"parentContainer":$template
-	// });
-	// // load review videos
-	// loadReviewVideosGroup(content, {
-	// 	"parentContainer":$template
-	// });
+	// load review photos
+	loadReviewPhotosGroup(content, {
+		"parentContainer":$template
+	});
+	// load review videos
+	loadReviewVideosGroup(content, {
+		"parentContainer":$template
+	});
 	// // load review badges
 	// loadBadges(content, {
 	// 	"parentContainer":$template
