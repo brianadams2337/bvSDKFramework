@@ -435,7 +435,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	/* Media Upload */
 	.BVSectionMediaContainer ._BVInputGroupContainer {width: 400px; float: left;}
 		._BVUploadIndividualInputContainer {margin-bottom: 15px;}
-		.BVSectionMediaContainer ._BVHelperText {margin-left: 0;}
+		.BVSectionMediaContainer .BVUploadInput ._BVHelperText {margin-left: 0;}
 	.BVSectionMediaGuidelines {position: relative; zoom: 1;}
 		.BVSectionMediaGuidelines .BVPopinLauncher {position: absolute; top: 4px; left: 650px;}
 
