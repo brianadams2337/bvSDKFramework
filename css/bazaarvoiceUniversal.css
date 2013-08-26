@@ -419,7 +419,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 
 	/* Title & Body Text */
 	.BVSectionReviewGuidelines {position: relative; zoom: 1;}
-		.BVSectionReviewGuidelines .BVPopinLauncher {position: absolute; top: 4px; left: 700px;}
+		.BVSectionReviewGuidelines .BVPopinLauncher {position: absolute; top: 2px; left: 650px;}
 	._BVTitleInputContainer ._BVLabelText, ._BVBodyTextInputContainer ._BVLabelText {font-size: 14px;}
 
 	/* Tags */
@@ -437,7 +437,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		._BVUploadIndividualInputContainer {margin-bottom: 15px;}
 		.BVSectionMediaContainer ._BVHelperText {margin-left: 0;}
 	.BVSectionMediaGuidelines {position: relative; zoom: 1;}
-		.BVSectionMediaGuidelines .BVPopinLauncher {position: absolute; top: 4px; left: 700px;}
+		.BVSectionMediaGuidelines .BVPopinLauncher {position: absolute; top: 4px; left: 650px;}
 
 	/* User Info */
 	._BVUserNicknameInputContainer ._BVLabelText, ._BVUserEmailInputContainer ._BVLabelText {font-size: 14px;}
@@ -461,7 +461,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		._BVButtonSubmitContainer a {color: #fff; text-shadow: 0 1px 0 rgba(193,90,24,1); background-color: #EE8A27; background-image: -webkit-gradient(linear, left top, left bottom, from(#EE8A27), to(#E86C1F)); background-image: -webkit-linear-gradient(#EE8A27, #E86C1F); background-image: -moz-linear-gradient(#EE8A27, #E86C1F); background-image: -ms-linear-gradient(#EE8A27, #E86C1F); background-image: -o-linear-gradient(#EE8A27, #E86C1F); background-image: linear-gradient(#EE8A27, #E86C1F); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EE8A27, endColorstr=#E86C1F, GradientType=0); border: 1px solid #EE8A27; border-bottom-color: #E86C1F;}
 
 	/* Popins */
-	.BVPopinLauncher a {background: url(images/iconText.png) no-repeat 0 -160px; color: #085EB9; padding: 2px 0 2px 22px;}
+	.BVPopinLauncher a {background: url(images/iconText.png) no-repeat 0 -160px; color: #085EB9; padding: 2px 0 2px 22px; display: inline-block;}
 	.BVPopin {width: 245px; border: 1px solid #C3C4C4; padding: 15px; background-color: #fff; border-radius: 4px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); display: none;}
 	.BVPopin:hover {cursor: pointer;}
 		.BVPopin .BVHeader {font-size: 14px; margin-bottom: 10px;}
