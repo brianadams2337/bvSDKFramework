@@ -418,7 +418,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 			._BVRecommendedInputContainer .BVRadioButtonIndividualContainer {width: 60px; float: left; margin-right: 15px;}
 
 	/* Title & Body Text */
-	.BVSectionReviewGuidelines {position: relative; zoom: 1;}
+	.BVSectionReviewGuidelines {height: 0; position: relative; zoom: 1;}
 		.BVSectionReviewGuidelines .BVPopinLauncher {position: absolute; top: 2px; left: 650px;}
 	._BVTitleInputContainer ._BVLabelText, ._BVBodyTextInputContainer ._BVLabelText {font-size: 14px;}
 
@@ -436,7 +436,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	.BVSectionMediaContainer ._BVInputGroupContainer {width: 400px; float: left;}
 		._BVUploadIndividualInputContainer {margin-bottom: 15px;}
 		.BVSectionMediaContainer .BVUploadInput ._BVHelperText {margin-left: 0;}
-	.BVSectionMediaGuidelines {position: relative; zoom: 1;}
+	.BVSectionMediaGuidelines {height: 0; position: relative; zoom: 1;}
 		.BVSectionMediaGuidelines .BVPopinLauncher {position: absolute; top: 4px; left: 650px;}
 
 	/* User Info */
@@ -462,7 +462,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 
 	/* Popins */
 	.BVPopinLauncher a {background: url(images/iconText.png) no-repeat 0 -160px; color: #085EB9; padding: 2px 0 2px 22px; display: inline-block;}
-	.BVPopin {width: 245px; border: 1px solid #C3C4C4; padding: 15px; background-color: #fff; border-radius: 4px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); display: none;}
+	.BVPopin {width: 245px; border: 1px solid #C3C4C4; padding: 15px; background-color: #fff; border-radius: 4px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); display: none; position: absolute; top: 35px; left: 650px;}
 	.BVPopin:hover {cursor: pointer;}
 		.BVPopin .BVHeader {font-size: 14px; margin-bottom: 10px;}
 		.BVPopin ul {margin: 0; padding-left: 15px;}
