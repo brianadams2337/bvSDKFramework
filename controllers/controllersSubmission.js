@@ -1183,6 +1183,10 @@ function loadPhotoFileUploadInput (content, options) {
 	$container.append($template);
 	// set label
 	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
+	// set attributes
+	$($template).attr({
+		"data-state":"input",
+	});
 	// if required field
 	if (settings["inputSettings"]["inputRequired"]) {
 		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
@@ -1201,10 +1205,7 @@ function loadPhotoFileUploadInput (content, options) {
 		// submit photo using the jquery.fileupload.js plugin to allow ajax submission without embedding a form
 		$($template).find(uploadInput).andSelf().filter(uploadInput).fileupload({
 			type: "POST",
-			//enctype: 'multipart/form-data',
-			// url: data["url"],
 			url: defaultPhotoUploadProcessingFile,
-			//multipart: false,
 			formData: data["params"],
 			dataType: "json",
 	        done: function (e, result) {
@@ -1227,32 +1228,34 @@ function loadPhotoFileUploadInput (content, options) {
 				$($template).find(urlInput).andSelf().filter(urlInput).attr({
 					"value":urlPhotoNormal
 				});
-				// load close button
-				loadCloseButton ("remove", {
+				// load remove button
+				loadGenericButton ("remove", {
 					"parentContainer":$template,
+					"viewContainer":"#bvtemplate-button-close-universal"
 				})
-				// close button functionality
-				$($template).find(defaultButtonCloseContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonCloseContainer + " " + defaultButtonContainer).click(function() {
-					// close container
-					$($template).addClass("_BVContentLoadingContainer").find(defaultPhotoUploadInputContainer).andSelf().filter(defaultPhotoUploadInputContainer).show();
-					$($template).removeClass("_BVContentLoadingContainer").find(defaultPhotoUploadPreviewContainer).andSelf().filter(defaultPhotoUploadPreviewContainer).empty();
-					$($template).hide();
-					console.log($($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).children(":hidden").length);
-					if ($($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).children(":hidden").length == 1) {
+				// remove button functionality
+				$($template).find(defaultButtonGenericContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonGenericContainer + " " + defaultButtonContainer).click(function() {
+					// remove uploaded photo
+					// show input field and empty photo container
+					$($template).find(defaultPhotoUploadInputContainer).andSelf().filter(defaultPhotoUploadInputContainer).show();
+					$($template).find(defaultPhotoUploadPreviewContainer).andSelf().filter(defaultPhotoUploadPreviewContainer).empty();
+					// update state of container and hide
+					$($template).attr({"data-state":"input"}).hide();
+					// check to see if a new input is needed
+					if ($($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).children("[data-state='input']:visible").length == 0) {
 						// find next hidden upload input and show if available
-						$($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).children(":hidden:first").each(function() {
-							// move element to last position and show
+						$($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).children("[data-state='input']:hidden:first").each(function() {
 							$(this).detach().prependTo($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).show();
 						})
 					}
 				});
 				// find next hidden upload input and show if available
-				$($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).children(":hidden:first").each(function() {
+				$($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).children("[data-state='input']:hidden:first").each(function() {
 					// move element to last position and show
 					$(this).detach().prependTo($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).show();
 				})
-	        	// show uploaded image preview container
-	        	$($($template).removeClass("_BVContentLoadingContainer")).find(defaultPhotoUploadPreviewContainer).andSelf().filter(defaultPhotoUploadPreviewContainer).show();
+	        	// show uploaded image preview container and update state of container
+	        	$($($template).attr({"data-state":"file"}).removeClass("_BVContentLoadingContainer")).find(defaultPhotoUploadPreviewContainer).andSelf().filter(defaultPhotoUploadPreviewContainer).show();
 	        },
 			fail: function(e) {
 				console.log("there was an error. please try again.", data);
