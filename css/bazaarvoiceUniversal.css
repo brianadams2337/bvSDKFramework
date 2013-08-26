@@ -426,10 +426,10 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		.BVTagIndividualInputContainer {margin-bottom: 30px;}
 		.BVTagIndividualInputContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
 		.BVTagIndividualInputContainer ._BVLabelText {}
-		._BVInputGroupContainer {width: 500px; float: left;}
+		._BVTagGroupInputContainer ._BVInputGroupContainer {width: 500px; float: left;}
 			.BVTagInput {width: 48%; float: left; margin-bottom: 5px;}
-			._BVCheckboxGroupContainer ._BVCheckboxIndividualContainer {padding-bottom: 4px;}
-				._BVCheckboxIndividualContainer .BVFormInputText {width: 150px;}
+			._BVTagGroupInputContainer ._BVCheckboxGroupContainer ._BVCheckboxIndividualContainer {padding-bottom: 4px;}
+				._BVTagGroupInputContainer ._BVCheckboxIndividualContainer .BVFormInputText {width: 150px;}
 
 	/* Media Upload */
 	.BVSectionMediaContainer ._BVInputGroupContainer {width: 400px; float: left;}
