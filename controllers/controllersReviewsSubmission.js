@@ -115,7 +115,7 @@ function loadReviewSubmissionForm (content, options) {
 	loadReviewTitleInput (content, {
 		"parentContainer":$template,
 		"inputSettings":{
-			"inputLabel":"Review Summary"
+			"inputLabel":"Review Summary",
 			"inputHelperText":"Example: Great camera for a beginner",
 		}
 	});
@@ -208,7 +208,7 @@ function loadReviewSubmissionForm (content, options) {
 	loadYoutubeUrlInput (content, {
 		"parentContainer":$template,
 		"inputSettings":{
-			"inputLabel":"Video URL"
+			"inputLabel":"Video URL",
 			"inputHelperText":"(Paste the URL from your videos on Youtube)",
 		}
 	});
