@@ -65,7 +65,7 @@ var defaultReviewContextDataValueTextContainer = "._BVContextDataValueText";
 
 /* ADDITIONAL FIELDS */
 var defaultReviewAdditionalFieldGroupContainer = "._BVAdditionalFieldGroupContainer"; // additional fields container
-var defaultReviewAdditionalFieldLabelTextContainer = "._BVAdditionalFieldsLabelText";
+var defaultReviewAdditionalFieldLabelTextContainer = "._BVAdditionalFieldLabelText";
 var defaultReviewAdditionalFieldTextContainer = "._BVAdditionalFieldsValueText";
 
 /* MEDIA */
