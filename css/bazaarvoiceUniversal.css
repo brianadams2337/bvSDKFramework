@@ -418,7 +418,8 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 			._BVRecommendedInputContainer .BVRadioButtonIndividualContainer {width: 60px; float: left; margin-right: 15px;}
 
 	/* Title & Body Text */
-	.BVSectionReviewGuidelines {position: absolute; left: 700px; margin-top: 4px;}
+	.BVSectionReviewGuidelines {position: relative; zoom: 1;}
+		.BVSectionReviewGuidelines .BVPopinLauncher {position: absolute; top: 4px; left: 700px;}
 	._BVTitleInputContainer ._BVLabelText, ._BVBodyTextInputContainer ._BVLabelText {font-size: 14px;}
 
 	/* Tags */
@@ -435,7 +436,8 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	.BVSectionMediaContainer ._BVInputGroupContainer {width: 400px; float: left;}
 		._BVUploadIndividualInputContainer {margin-bottom: 15px;}
 		.BVSectionMediaContainer ._BVHelperText {margin-left: 0;}
-	.BVSectionMediaGuidelines {position: absolute; left: 700px;}
+	.BVSectionMediaGuidelines {position: relative; zoom: 1;}
+		.BVSectionMediaGuidelines .BVPopinLauncher {position: absolute; top: 4px; left: 700px;}
 
 	/* User Info */
 	._BVUserNicknameInputContainer ._BVLabelText, ._BVUserEmailInputContainer ._BVLabelText {font-size: 14px;}
