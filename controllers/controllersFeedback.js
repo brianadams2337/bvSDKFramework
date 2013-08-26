@@ -647,11 +647,11 @@ function loadFeedbackStatus (content, options) {
 		"data-feedbacktype":"statusMessage",
 	});
 	// load close button
-	loadCloseButton ("close", {
+	loadGenericButton ("close", {
 		"parentContainer":$template,
 	})
 	// close button functionality
-	$($template).find(defaultButtonCloseContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonCloseContainer + " " + defaultButtonContainer).click(function() {
+	$($template).find(defaultButtonGenericContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonGenericContainer + " " + defaultButtonContainer).click(function() {
 		// close container
 		$($template).fadeOut(defaultToggleOptions);
 	});

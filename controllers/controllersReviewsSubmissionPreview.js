@@ -45,7 +45,8 @@ function loadReviewSubmissionPreviewWidget (content, options) {
 		var validated = $("#" + newID).parsley('validate');
 		// POST form to server if no errors
 		if (validated) {
-			postReviewsSubmissionForm(productId, $template, function (content) {
+			$(defaultSubmissionPreviewContainer).hide();
+			postReviewsSubmissionForm(productId, defaultSubmissionThankYouContainer, function (content) {
 					console.log("submitted");
 					loadReviewSubmissionThankYouWidget (content, {
 						"parentContainer":settings["parentContainer"],
