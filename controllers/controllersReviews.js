@@ -585,12 +585,11 @@ function loadReviewAdditionalFieldsGroups (content, options) {
 			var cur = settings["loadOrder"][index];
 			// set variables
 			var id = content["AdditionalFields"][cur]["Id"];
-			var value = content["AdditionalFields"][cur]["Value"];
-			var valueText = content["AdditionalFields"][cur]["ValueLabel"];
-			var labelText = content["AdditionalFields"][cur]["DimensionLabel"];
+			var valueText = content["AdditionalFields"][cur]["Value"];
+			var labelText = content["AdditionalFields"][cur]["Label"];
 			// set class variables
 			var labelClass = "BVAdditionalFields" + id;
-			var valueClass = "BVAdditionalFields" + value;
+			var valueClass = "BVAdditionalFields" + valueText;
 			// add additional field template
 			$container.append($template);
 			// set additional field label (title)

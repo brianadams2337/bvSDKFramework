@@ -265,7 +265,6 @@ function loadReviewSubmissionForm (content, options) {
 		if (validated) {
 			$(defaultSubmissionFormContainer).hide();
 			postReviewsSubmissionForm(productId, defaultSubmissionThankYouContainer, function (content) {
-					console.log("submitted");
 					loadReviewSubmissionThankYouWidget (content, {
 						"parentContainer":settings["parentContainer"],
 						"productId":productId,
@@ -293,8 +292,9 @@ function loadReviewSubmissionForm (content, options) {
 		if (validated) {
 			$(defaultSubmissionFormContainer).hide();
 			postReviewsSubmissionForm(productId, defaultSubmissionPreviewContainer, function (content) {
-					console.log("preview");
-					content["Review"]["RatingRange"] = 5; //default to 5 since API doesn't include this for preview
+					// update content to have matching review node so the preview will match the display
+					content = updateReviewPreviewNode(content);
+					// review preview
 					loadReviewSubmissionPreviewWidget (content, {
 						"parentContainer":settings["parentContainer"],
 						"productId":productId,
