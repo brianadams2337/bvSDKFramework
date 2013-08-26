@@ -331,7 +331,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	h1._BVPageHeaderText, h2._BVSectionHeaderText {margin: 0;}
 
 	/* Sections */
-	.BVSection {background-image: -webkit-gradient(linear, center bottom, from(#EBEBEB 0%), to(#FFFFFF 20%)); background-image: -webkit-linear-gradient(bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -moz-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -ms-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -o-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EBEBEB, endColorstr=#FFFFFF, GradientType=0); background-repeat: repeat-x; margin-bottom: 40px; padding: 25px 30px 15px;}
+	.BVSection {background-image: -webkit-gradient(linear, center bottom, from(#EBEBEB 0%), to(#FFFFFF 20%)); background-image: -webkit-linear-gradient(bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -moz-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background:-ms-linear-gradient(top, #FFFFFF 20%, #EBEBEB 100%); background-image: -o-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-repeat: repeat-x; margin-bottom: 40px; padding: 25px 30px 15px;}
 	.BVSection:empty, .BVSection div:empty, .BVFooter:empty, .BVFooter div:empty {display: none;}
 		.BVSectionHeader {padding: 0 0 2px; margin: 0 0 45px;}
 			h2._BVSectionHeaderText {font-size: 24px; font-weight: normal; line-height: 1.333; display: block; margin-left: 42px;}
