@@ -342,7 +342,7 @@ function loadWriteReviewButton (content, options) {
 	});
 }
 
-
+/***** SUBMISSION *****/
 
 function updateReviewPreviewNode (content) {
 
