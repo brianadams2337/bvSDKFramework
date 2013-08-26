@@ -79,7 +79,7 @@ var defaultReviewRecommededContainerView = "#bvtemplate-recommended-universal"; 
 // tags templates
 var defaultReviewTagsContainerView = "#bvtemplate-tag-group-universal"; // all tags module
 var defaultReviewTagContainerView = "#bvtemplate-tag-individual-universal"; // individual tag module
-var defaultReviewTagLastContainerView = "#bvtemplate-tag-individual-last-universal" // last individual tag module
+var defaultReviewTagLastContainerView = "#bvtemplate-tag-individual-last-universal"; // last individual tag module
 // user info templates
 var defaultReviewUserNicknameContainerView = "#bvtemplate-nickname-universal"; // nickname module
 var defaultReviewUserLocationContainerView = "#bvtemplate-location-universal"; // location module

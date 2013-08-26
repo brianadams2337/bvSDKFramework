@@ -98,10 +98,31 @@ function returnFormParamaters (form, options) {
 }
 
 function returnTemplate (template) {
+	// template to process
 	var temp = $.parseHTML($(template).html());
+	// find all images with data image urls
 	$(temp).find("img[data-img-url]").andSelf().filter("img[data-img-url]").each(function() {
-		$(this).attr("src", pathResource($(this).attr("data-img-url")));
+		// use Modernizr to check for svg support
+		if(!Modernizr.svg){
+			// image file name
+			var img = $(this).attr("data-img-url");
+			// split image name to get suffix
+			img = img.split(".");
+			// if image is svg
+			if (img[1] == "svg") {
+				// switch to png
+				img = img[0] + ".png";
+				$(this).attr("src", pathResource(img));
+			} else {
+				// use original image name
+				$(this).attr("src", pathResource($(this).attr("data-img-url")));
+			}
+		} else {
+			// use original image name
+			$(this).attr("src", pathResource($(this).attr("data-img-url")));
+		}
 	});
+	// return updated template
 	return temp;
 }
 
@@ -263,11 +284,11 @@ function loadReturnButton (content, options) {
 	}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).html(content);
 }
 
-// close button
-function loadCloseButton (content, options) {
+// generic button
+function loadGenericButton (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"", // must be defined in call
-		"targetContainer":defaultButtonCloseContainer,
+		"targetContainer":defaultButtonGenericContainer,
 		"viewContainer":defaultButtonContainerView,
 	}, options);
 	// set container & template

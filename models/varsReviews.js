@@ -102,11 +102,11 @@ var defaultButtonPreviewContainer = "._BVButtonPreviewContainer"; // preview but
 var defaultButtonEditContainer = "._BVButtonEditContainer"; // edit button
 var defaultButtonCancelContainer = "._BVButtonCancelContainer"; // cancel button
 var defaultButtonReturnContainer = "._BVButtonReturnContainer"; // return button
-var defaultButtonCloseContainer = "._BVButtonCloseContainer"; // return button
+var defaultButtonGenericContainer = "._BVButtonGenericContainer"; // generic button
 var defaultButtonContainer = "._BVButton"; // button container
 var defaultButtonTextContainer = "._BVButtonText"; // button text
 
 /* PAGINATION */
-var defaultReviewPaginationContainer = "._BVReviewPaginationContainer" // review pagination container
+var defaultReviewPaginationContainer = "._BVReviewPaginationContainer"; // review pagination container
 
 

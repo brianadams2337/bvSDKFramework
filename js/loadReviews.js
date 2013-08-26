@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$.when(
 		// global variables
-		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '')+"/bvSDKFramework/models/varsGlobal.js")
+		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/models/varsGlobal.js")
 	).done(function(){
 		$.when(
 			/* LOAD JS FILES */
@@ -36,7 +36,7 @@ $(document).ready(function() {
 			$.getScript(siteBaseURL + "controllers/controllersBadges.js"),
 			$.getScript(siteBaseURL + "controllers/controllersHistogram.js"),
 			/* plugins */
-			$.getScript(siteBaseURL + "js/plugins/jquery.cookie.js"),
+			$.getScript(siteBaseURL + "js/plugins/jquery-cookie.js"),
 			$.getScript(siteBaseURL + "js/plugins/jquery.dateFormat.js"),
 			$.getScript(siteBaseURL + "js/plugins/jquery.magnific-popup.js"),
 			/* LOAD CSS FILES */

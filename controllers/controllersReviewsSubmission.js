@@ -344,11 +344,11 @@ function loadOverallRatingInput (content, options) {
 		"targetContainer":defaultOverallRatingInputContainer,
 		"viewContainer":defaultInputRadioIndividualContainerView,
 		"loadOrder":[
-					{1:"poor"},
-					{2:"fair"},
-					{3:"average"},
-					{4:"good"},
-					{5:"excellent"}
+					{"1":"poor"},
+					{"2":"fair"},
+					{"3":"average"},
+					{"4":"good"},
+					{"5":"excellent"}
 				],
 		"productId":"",
 		"inputSettings":{
@@ -443,11 +443,11 @@ function loadSecondaryRatingIndividual (content, options) {
 		"targetContainer":defaultRadioButtonGroupInputContainer,
 		"viewContainer":defaultInputRadioIndividualContainerView,
 		"loadOrder":[
-					{1:"poor"},
-					{2:"fair"},
-					{3:"average"},
-					{4:"good"},
-					{5:"excellent"}
+					{"1":"poor"},
+					{"2":"fair"},
+					{"3":"average"},
+					{"4":"good"},
+					{"5":"excellent"}
 				],
 		"productId":"",
 		"inputSettings":{
@@ -493,8 +493,8 @@ function loadIsRecommendedInput (content, options) {
 		"targetContainer":defaultIsRecommendedInputContainer,
 		"viewContainer":defaultInputRadioIndividualContainerView,
 		"loadOrder":[
-					{true:"Yes"},
-					{false:"No"}
+					{"true":"Yes"},
+					{"false":"No"}
 				],
 		"productId":"",
 		"inputSettings":{
