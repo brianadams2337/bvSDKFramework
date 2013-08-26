@@ -358,7 +358,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		._BVFormErrorsContainer {margin-left: 30px; width: 600px; color: #bb0628; border: 1px solid #bb0628; padding: 15px;}
 			ul.parsley-error-list {list-style-type: none; margin: 0 0 0 220px; color: #bb0628; padding: 5px 0 0;}
 			._BVFormErrorsContainer ul.parsley-error-list {color: #bb0628; padding: 5px 0 0;}
-		.BVErrorContainerInline {margin-left: 220px; color: #bb0628; padding: 5px 0 0;}
+		.BVErrorContainerInline {margin-left: 220px; color: #bb0628; padding: 5px 0 0; clear: left;}
 
 	/* Fields */
 	.BVField {clear: left; overflow: hidden; margin-bottom: 30px;}
