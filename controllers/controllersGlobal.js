@@ -341,3 +341,198 @@ function loadWriteReviewButton (content, options) {
 		loadSubmissionPage(url);
 	});
 }
+
+/***** SUBMISSION *****/
+
+function updateReviewPreviewNode (content) {
+
+	content["Review"]["RatingRange"] = 5; //default to 5 since API doesn't include this for preview
+
+	content["Review"]["TotalFeedbackCount"] = 0; // set to 0 since there wont be any feedback yet
+	content["Review"]["TotalPositiveFeedbackCount"] = 0; // set to 0 since there wont be any feedback yet
+	content["Review"]["TotalNegativeFeedbackCount"] = 0; // set to 0 since there wont be any feedback yet
+	content["Review"]["Helpfulness"] = 0; // set to 0 since there wont be any feedback yet
+
+	content["Review"]["TotalInappropriateFeedbackCount"] = 0; // set to 0 since there wont be any feedback yet
+	content["Review"]["InappropriateFeedbackList"] = []; // empty since there wont be any feedback yet
+
+	content["Review"]["TotalCommentCount"] = 0; // set to 0 since there wont be any comments yet
+	content["Review"]["CommentIds"] = []; // empty since there wont be any comments yet
+
+	content["Review"]["ClientResponses"] = []; // empty since there wont be any client responses yet
+
+	content["Review"]["IsFeatured"] = false; // set to false since review will not be featured by default
+	content["Review"]["IsSyndicated"] = false; // set to false since review will not be syndicated by default
+
+	// content["Review"]["AuthorId"] = null;
+	// content["Review"]["CampaignId"] = null;
+	// content["Review"]["ProductId"] = null;
+	// content["Review"]["ProductRecommendationIds"] = [];
+	content["Review"]["IsRatingsOnly"] = content["Data"]["Fields"]["isratingsonly"]["Value"];
+
+	content["Review"]["ModerationStatus"] = "PENDING"; // set to "PENDING" since review has not been submitted
+	content["Review"]["LastModificationTime"] = content["Review"]["SubmissionTime"]; // set to submission time since there have been no modifications
+	content["Review"]["LastModeratedTime"] = null; // set to null since review has not been submitted yet
+
+	content["Review"]["BadgesOrder"] = []; // empty since there wont be any badges yet
+	content["Review"]["Badges"] = {}; // empty since there wont be any badges yet
+
+	content["Review"]["UserNickname"] = content["Data"]["Fields"]["usernickname"]["Value"];
+	content["Review"]["UserLocation"] = content["Data"]["Fields"]["userlocation"]["Value"];
+
+	content["Review"]["SecondaryRatingsOrder"] = [];
+	content["Review"]["SecondaryRatings"] = {};
+
+	if (content["Data"]["Groups"]["rating"]) {
+		// set secondary ratings load order
+		$.each (content["Data"]["Groups"]["rating"]["SubElements"], function () {
+			if (content["Data"]["Fields"][this["Id"]]["Value"] != null) {
+				content["Review"]["SecondaryRatingsOrder"].push(this["Id"]);
+			}
+		});
+		// set secondary ratings object
+		$.each (content["Review"]["SecondaryRatingsOrder"], function () {
+			var rating = new Object;
+			// set rating values
+			rating["DisplayType"] = "NORMAL";
+			rating["Id"] = content["Data"]["Fields"][this]["Id"];
+			rating["Label"] = content["Data"]["Fields"][this]["Label"];
+			rating["MaxLabel"] = content["Data"]["Fields"][this]["Id"];
+			rating["MinLabel"] = content["Data"]["Fields"][this]["Id"];
+			rating["Value"] = parseInt(content["Data"]["Fields"][this]["Value"]);
+			rating["ValueLabel"] = content["Data"]["Fields"][this]["Id"];
+			rating["ValueRange"] = 5;
+			// add rating to secondary ratings object
+			content["Review"]["SecondaryRatings"][this] = rating;
+		});
+	}
+
+	content["Review"]["TagDimensionsOrder"] = [];
+	content["Review"]["TagDimensions"] = {};
+
+	if (content["Data"]["Groups"]["tag"]) {
+		// set tags load order
+		$.each (content["Data"]["Groups"]["tag"]["SubElements"], function (index) {
+			content["Review"]["TagDimensionsOrder"][index] = this["Id"];
+		});
+		console.log(content["Review"]["TagDimensionsOrder"]);
+		// set secondary ratings object
+		$.each (content["Review"]["TagDimensionsOrder"], function () {
+			var tag = new Object;
+			// set tag values
+			tag["Id"] = content["Data"]["Groups"][this]["Id"];
+			tag["Label"] = content["Data"]["Groups"][this]["Label"];
+			tag["Values"] = {};
+			$.each(content["Data"]["Groups"][this]["SubElements"], function () {
+				$.each(content["Data"]["Groups"][this["Id"]]["SubElements"], function (index) {
+					// set tag values
+					tag["Values"][index] = content["Data"]["Fields"][this["Id"]]["Value"];
+				})
+			})
+			// add tag to tag dimensions object
+			content["Review"]["TagDimensions"][this] = tag;
+		});
+	}
+
+	content["Review"]["AdditionalFieldsOrder"] = [];
+	content["Review"]["AdditionalFields"] = {};
+
+	if (content["Data"]["Groups"]["additionalfield"]) {
+		// set additional fields load order
+		$.each (content["Data"]["Groups"]["additionalfield"]["SubElements"], function () {
+			if (content["Data"]["Fields"][this["Id"]]["Value"] != null) {
+				content["Review"]["AdditionalFieldsOrder"].push(this["Id"]);
+			}
+		});
+		// set additional fields object
+		$.each (content["Review"]["AdditionalFieldsOrder"], function () {
+			var additionalfield = new Object;
+			// set rating values
+			additionalfield["Id"] = content["Data"]["Fields"][this]["Id"];
+			additionalfield["Label"] = content["Data"]["Fields"][this]["Label"];
+			additionalfield["Value"] = content["Data"]["Fields"][this]["Value"];
+			// add field to additional fields object
+			content["Review"]["AdditionalFields"][this] = additionalfield;
+		});
+	}
+
+	content["Review"]["ContextDataValuesOrder"] = [];
+	content["Review"]["ContextDataValues"] = {};
+
+	if (content["Data"]["Groups"]["contextdatavalue"]) {
+		// set context data values load order
+		$.each (content["Data"]["Groups"]["contextdatavalue"]["SubElements"], function () {
+			if (content["Data"]["Fields"][this["Id"]]["Value"] != null) {
+				content["Review"]["ContextDataValuesOrder"].push(this["Id"]);
+			}
+		});
+		// set context data values object
+		$.each (content["Review"]["ContextDataValuesOrder"], function () {
+			var contextdatavalue = new Object;
+			// set rating values
+			contextdatavalue["DimensionLabel"] = content["Data"]["Fields"][this]["Label"];
+			contextdatavalue["Id"] = content["Data"]["Fields"][this]["Id"];
+			$.each (content["Data"]["Fields"][this]["Options"], function () {
+				if (this["Selected"] == true) {
+					contextdatavalue["Value"] = this["Value"];
+					contextdatavalue["ValueLabel"] = this["Label"];
+				}							
+			})
+
+			// add data to context data values object
+			content["Review"]["ContextDataValues"][this] = contextdatavalue;
+		});
+	}
+
+	content["Review"]["Photos"] = [];
+
+	if (content["Data"]["Groups"]["photo"]) {
+		// set tags load order
+		$.each (content["Data"]["Groups"]["photo"]["SubElements"], function (index) {
+			var urlField = content["Data"]["Groups"][this["Id"]]["SubElements"][0]["Id"];
+			var captionField = content["Data"]["Groups"][this["Id"]]["SubElements"][1]["Id"];
+			if (content["Data"]["Fields"][urlField]["Value"] != null) {
+				var photo = new Object;
+				// set tag values
+				photo["Id"] = content["Data"]["Groups"][this["Id"]]["Id"];
+				photo["Caption"] = content["Data"]["Fields"][captionField]["Value"];
+				photo["Sizes"] = {};
+				photo["SizesOrder"] = {0:"thumbnail",1:"normal"};
+				var size = new Object;
+				size["Id"] = content["Data"]["Fields"][urlField]["Id"];
+				size["Url"] = content["Data"]["Fields"][urlField]["Value"];
+				$.each(photo["SizesOrder"], function () {
+					// set tag values
+					photo["Sizes"][this] = size;
+				})
+				// add photo to photo dimensions object
+				content["Review"]["Photos"][index] = photo;
+			}
+		});
+	}
+
+	content["Review"]["Videos"] = [];
+
+	if (content["Data"]["Groups"]["video"]) {
+		// set tags load order
+		$.each (content["Data"]["Groups"]["video"]["SubElements"], function (index) {
+			var urlField = content["Data"]["Groups"][this["Id"]]["SubElements"][0]["Id"];
+			var captionField = content["Data"]["Groups"][this["Id"]]["SubElements"][1]["Id"];
+			if (content["Data"]["Fields"][urlField]["Value"] != null) {
+				var video = new Object;
+				// set tag values
+				video["VideoId"] = content["Data"]["Groups"][this["Id"]]["Id"];
+				video["Caption"] = content["Data"]["Fields"][captionField]["Value"];
+				video["VideoHost"] = content["Data"]["Fields"][urlField]["Value"];
+				video["VideoIframeUrl"] = content["Data"]["Fields"][urlField]["Value"];
+				video["VideoThumbnailUrl"] = content["Data"]["Fields"][urlField]["Value"];
+				video["VideoUrl"] = content["Data"]["Fields"][urlField]["Value"];
+				// add video to video dimensions object
+				content["Review"]["Videos"][index] = video;
+			}
+		});
+	}
+
+	return content;
+
+}
