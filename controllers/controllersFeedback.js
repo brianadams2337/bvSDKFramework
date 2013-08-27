@@ -646,6 +646,8 @@ function loadFeedbackStatus (content, options) {
 		"data-contentid":contentId,
 		"data-feedbacktype":"statusMessage",
 	});
+	// set status container variable using data attribute - this needs to be done here to avoid a bug with fadeout in jQuery 1.9.1
+	var statusContainer = $("[data-feedbacktype='statusMessage'][data-contentid='" + contentId + "']");
 	// load close button
 	loadGenericButton ("close", {
 		"parentContainer":$template,
@@ -653,7 +655,7 @@ function loadFeedbackStatus (content, options) {
 	// close button functionality
 	$($template).find(defaultButtonGenericContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonGenericContainer + " " + defaultButtonContainer).click(function() {
 		// close container
-		$($template).fadeOut(defaultToggleOptions);
+		$(statusContainer).fadeOut(defaultToggleOptions);
 	});
 }
 
