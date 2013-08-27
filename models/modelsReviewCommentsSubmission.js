@@ -81,7 +81,7 @@ function reviewCommentsSubmissionAPICall (options) {
 		"Parameters":{
 			"apiversion":apiDefaults["apiVersion"], //The API version.
 			"action":null, //The submission action to take -- either 'Preview' or 'Submit'. 'Preview' will show a draft of the content to be submitted; 'Submit' will submit the content. Note that if Action=Submit, the request must be an HTTP POST.
-			"agreedtotermsandconditions":true, //Boolean indicating whether or not the user agreed to the terms and conditions. Required depending on the client's settings.
+			"agreedtotermsandconditions":null, //Boolean indicating whether or not the user agreed to the terms and conditions. Required depending on the client's settings.
 			"callback":null, //Callback function name (JsonP).
 			"campaignId":null, //Arbitrary text that may be saved alongside content to indicate vehicle by which content was captured, e.g. “post-purchase email”.
 			"commenttext":null, //Value is comment body text.
