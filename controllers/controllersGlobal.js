@@ -415,18 +415,35 @@ function updateReviewPreviewNode (content) {
 		$.each (content["Data"]["Groups"]["tag"]["SubElements"], function (index) {
 			content["Review"]["TagDimensionsOrder"][index] = this["Id"];
 		});
-		console.log(content["Review"]["TagDimensionsOrder"]);
 		// set secondary ratings object
 		$.each (content["Review"]["TagDimensionsOrder"], function () {
 			var tag = new Object;
+			var i = 0; // integer to be used as object key for each tag value label
 			// set tag values
 			tag["Id"] = content["Data"]["Groups"][this]["Id"];
 			tag["Label"] = content["Data"]["Groups"][this]["Label"];
-			tag["Values"] = {};
+			tag["Values"] = [];
 			$.each(content["Data"]["Groups"][this]["SubElements"], function () {
-				$.each(content["Data"]["Groups"][this["Id"]]["SubElements"], function (index) {
+				$.each(content["Data"]["Groups"][this["Id"]]["SubElements"], function () {
 					// set tag values
-					tag["Values"][index] = content["Data"]["Fields"][this["Id"]]["Value"];
+					// check if tag is predefined (BooleanInput is predefined, TextInput is open field)
+					if (content["Data"]["Fields"][this["Id"]]["Type"] == "BooleanInput") {
+						// check if selected
+						if (content["Data"]["Fields"][this["Id"]]["Value"] == "true") {
+							// set tag object value label
+							tag["Values"][i] = content["Data"]["Fields"][this["Id"]]["Label"];
+							// update object key varibale
+							i++;
+						}
+					} else {
+						// check if selected
+						if (content["Data"]["Fields"][this["Id"]]["Value"] != null) {
+							// set tag object value label
+							tag["Values"][i] = content["Data"]["Fields"][this["Id"]]["Value"];
+							// update object key varibale
+							i++;
+						}
+					}
 				})
 			})
 			// add tag to tag dimensions object
