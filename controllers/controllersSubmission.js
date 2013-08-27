@@ -580,6 +580,7 @@ function loadTermsAndConditionsInput (content, options) {
 		"inputSettings":{
 			"inputLabel":labelsSubmissionOptIns["termsAndConditions"],
 			"inputValue":true,
+			"inputRequired":true,
 		}
 	});
 }
@@ -938,6 +939,12 @@ function loadCheckboxInputField (content, options) {
 		$($template).find(defaultFormCheckboxLabelTextContainer).andSelf().filter(defaultFormCheckboxLabelTextContainer).text(inputLabel).attr({
 			"for":inputId
 		});
+		// set checkbox input attributes
+		$($template).find(defaultFormInputContainer + "[type='checkbox']").andSelf().filter(defaultFormInputContainer + "[type='checkbox']").attr({
+			"id":inputId,
+			"name":inputName,
+			"value":true,
+		});
 	} else {
 		loadTextFieldInput(content, {
 			"parentContainer":$template,
@@ -949,13 +956,13 @@ function loadCheckboxInputField (content, options) {
 				"inputPlaceholder":inputPlaceholder
 			}
 		});
+		// set checkbox input attributes
+		$($template).find(defaultFormInputContainer + "[type='checkbox']").andSelf().filter(defaultFormInputContainer + "[type='checkbox']").attr({
+			"id":inputId,
+			"name":inputName,
+			"value":"",
+		});
 	}
-	// set input attributes
-	$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
-		"id":inputId,
-		"name":inputName,
-		"value":inputValue,
-	});
 	// may be needed for editing
 	// // selected value
 	// if (inputValue) {
@@ -967,13 +974,15 @@ function loadCheckboxInputField (content, options) {
 	// add functionality to update checked attribute on change
 	$($template).change(function() {
 		if (this.checked) {
-			$(this).attr({
-				"checked":true,
-			});
+			// enable text input
+			$($template).find(defaultFormInputContainer + "[type='text']").andSelf().filter(defaultFormInputContainer + "[type='text']").prop('disabled', false);
+			// check checkbox
+			$($template).find(defaultFormInputContainer + "[type='checkbox']").andSelf().filter(defaultFormInputContainer + "[type='checkbox']").prop('checked', true);
 		} else {
-			$(this).attr({
-				"checked":false,
-			});
+			// disbale text input
+			$($template).find(defaultFormInputContainer + "[type='text']").andSelf().filter(defaultFormInputContainer + "[type='text']").prop('disabled', true);
+			// uncheck checkbox
+			$($template).find(defaultFormInputContainer + "[type='checkbox']").andSelf().filter(defaultFormInputContainer + "[type='checkbox']").prop('checked', false);
 		}
 		// focus on text input container
 		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).focus()
