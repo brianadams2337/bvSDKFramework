@@ -59,7 +59,7 @@ function returnAPIParameters (p) {
 }
 
 function defaultAjaxErrorFunction (content) {
-	console.log(content);
+	consoleLogFallback(content);
 }
 
 function parseUAS (UAS) {

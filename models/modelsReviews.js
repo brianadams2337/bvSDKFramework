@@ -17,7 +17,7 @@ function getSpecificReviews (reviewIDs, container, callBack, options) {
 		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			console.log(data, paramString, paramObject);
+			consoleLogFallback(data, paramString, paramObject);
 			callBack(data, paramObject);
 			$(container).removeClass("_BVContentLoadingContainer");
 		},
@@ -51,7 +51,7 @@ function getAllReviews (productID, container, callBack, options) {
 		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			console.log(data, urlString, paramString, paramObject);
+			consoleLogFallback(data, urlString, paramString, paramObject);
 			callBack(data, paramObject);
 			$(container).removeClass("_BVContentLoadingContainer");
 		},
@@ -85,7 +85,7 @@ function getReviewsStats (productID, container, callBack, options) {
 		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			console.log(data, paramString, paramObject);
+			consoleLogFallback(data, paramString, paramObject);
 			callBack(data, paramObject);
 			$(container).removeClass("_BVContentLoadingContainer");
 		},
@@ -118,7 +118,7 @@ function getFeaturedReviews (productID, container, callBack, options) {
 		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			console.log(data, paramString, paramObject);
+			consoleLogFallback(data, paramString, paramObject);
 			callBack(data, paramObject);
 			$(container).removeClass("_BVContentLoadingContainer");
 		},
@@ -151,7 +151,7 @@ function getPhotoReviews (productID, container, callBack, options) {
 		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			console.log(data, paramString, paramObject);
+			consoleLogFallback(data, paramString, paramObject);
 			callBack(data, paramObject);
 			$(container).removeClass("_BVContentLoadingContainer");
 		},
@@ -185,7 +185,7 @@ function getFeaturedPhotoReviews (productID, container, callBack, options) {
 		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			console.log(data, paramString, paramObject);
+			consoleLogFallback(data, paramString, paramObject);
 			callBack(data, paramObject);
 			$(container).removeClass("_BVContentLoadingContainer");
 		},
@@ -217,7 +217,7 @@ function getReviewsCustom (productID, container, callBack, options) {
 		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			console.log(data, paramString, paramObject);
+			consoleLogFallback(data, paramString, paramObject);
 			callBack(data, paramObject);
 			$(container).removeClass("_BVContentLoadingContainer");
 		},

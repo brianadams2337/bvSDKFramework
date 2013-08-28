@@ -13,6 +13,6 @@ function loadEventListeners(content, options) {
 		}); 
 	}
 	else {
-		console.log(options["textFieldCounter"]);
+		consoleLogFallback(options["textFieldCounter"]);
 	}
 }

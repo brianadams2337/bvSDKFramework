@@ -45,7 +45,6 @@ function loadReviewCommentSubmissionPreviewWidget (content, options) {
 		// POST form to server if no errors
 		if (validated) {
 			postReviewCommentsSubmissionForm(contentId, $template, function (content) {
-					console.log("submitted");
 					loadReviewCommentSubmissionThankYouWidget (content, {
 						"parentContainer":settings["parentContainer"],
 						"productId":productId,

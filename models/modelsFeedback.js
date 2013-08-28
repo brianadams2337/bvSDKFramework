@@ -14,7 +14,7 @@ function postFeedbackForm (contentID, callBack, options) {
 		data: params,
 		dataType: "json",
 		success: function(data) {
-			console.log(data);
+			consoleLogFallback(data);
 			callBack(data, settings);
 		},
 		error: function(e) {
