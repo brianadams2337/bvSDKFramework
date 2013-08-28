@@ -104,29 +104,29 @@ function loadReviewCommentSubmissionForm (content, options) {
 	});
 
 	// device fingerprint
-	console.log("devicefingerprint");
+	consoleLogFallback("devicefingerprint");
 	// product id
-	console.log("productid");
+	consoleLogFallback("productid");
 	// submission id
-	console.log("submissionid");
+	consoleLogFallback("submissionid");
 	// auth source type
-	console.log("authsourcetype");
+	consoleLogFallback("authsourcetype");
 	// is ratings only
-	console.log("isratingsonly");
+	consoleLogFallback("isratingsonly");
 	// net promoter score
-	console.log("netpromoterscore");
+	consoleLogFallback("netpromoterscore");
 	// net promoter comment
-	console.log("netpromotercomment");
+	consoleLogFallback("netpromotercomment");
 	// photo upload
-	console.log("photoupload");
+	consoleLogFallback("photoupload");
 	// video upload
-	console.log("videoupload");
+	consoleLogFallback("videoupload");
 	// product recommendations
-	console.log("productrecommendations");
+	consoleLogFallback("productrecommendations");
 	// user location geocode
-	console.log("userlocationgeocode");
+	consoleLogFallback("userlocationgeocode");
 	// hosted authentication
-	console.log("hostedauthentication");
+	consoleLogFallback("hostedauthentication");
 
 	// submit button
 	loadSubmitButton ("Submit Your Comment", {
@@ -144,7 +144,6 @@ function loadReviewCommentSubmissionForm (content, options) {
 		if (validated) {
 			$(defaultSubmissionFormContainer).hide();
 			postReviewCommentsSubmissionForm(contentId, defaultSubmissionThankYouContainer, function (content) {
-					console.log("submitted");
 					loadReviewCommentSubmissionThankYouWidget (content, {
 						"parentContainer":settings["parentContainer"],
 						"productId":productId,
@@ -173,7 +172,6 @@ function loadReviewCommentSubmissionForm (content, options) {
 		if (validated) {
 			$(defaultSubmissionFormContainer).hide();
 			postReviewCommentsSubmissionForm(contentId, defaultSubmissionPreviewContainer, function (content) {
-					console.log("preview");
 					loadReviewCommentSubmissionPreviewWidget (content, {
 						"parentContainer":settings["parentContainer"],
 						"productId":productId,
@@ -280,7 +278,6 @@ function loadReviewCommentTextInput (content, options) {
 			"inputOptionsArray":content["Options"]
 		}
 	}, options);
-	console.log("test");
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
 	var $template = returnTemplate(settings["viewContainer"]);

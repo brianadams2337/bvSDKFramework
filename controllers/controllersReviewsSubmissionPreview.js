@@ -47,7 +47,6 @@ function loadReviewSubmissionPreviewWidget (content, options) {
 		if (validated) {
 			$(defaultSubmissionPreviewContainer).hide();
 			postReviewsSubmissionForm(productId, defaultSubmissionThankYouContainer, function (content) {
-					console.log("submitted");
 					loadReviewSubmissionThankYouWidget (content, {
 						"parentContainer":settings["parentContainer"],
 						"productId":productId,

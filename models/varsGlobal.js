@@ -30,7 +30,7 @@ var apiDefaults = {
 };
 
 var bvUserDefaults = {
-	"bvUAS": typeof userToken != 'undefined' ? userToken : (function(){console.log("userToken variable not declared");})(), // encoded user string, or userToken if set
+	"bvUAS": typeof userToken != 'undefined' ? userToken : (function(){})(), // encoded user string, or userToken if set
 	"userId": "testuser",
 	"userEmail":"bvspambox@gmail.com", //User's email address
 	"userLocation":"austin, tx", //User location text

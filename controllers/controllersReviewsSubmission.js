@@ -167,19 +167,19 @@ function loadReviewSubmissionForm (content, options) {
 		}
 	});
 	// device fingerprint
-	console.log("devicefingerprint");
+	consoleLogFallback("devicefingerprint");
 	// product id
-	console.log("productid");
+	consoleLogFallback("productid");
 	// submission id
-	console.log("submissionid");
+	consoleLogFallback("submissionid");
 	// auth source type
-	console.log("authsourcetype");
+	consoleLogFallback("authsourcetype");
 	// is ratings only
-	console.log("isratingsonly");
+	consoleLogFallback("isratingsonly");
 	// net promoter score
-	console.log("netpromoterscore");
+	consoleLogFallback("netpromoterscore");
 	// net promoter comment
-	console.log("netpromotercomment");
+	consoleLogFallback("netpromotercomment");
 
 	// context data values
 	loadContextDataValueGroupInput (content, {
@@ -222,15 +222,15 @@ function loadReviewSubmissionForm (content, options) {
 	});
 
 	// product recommendations
-	console.log("productrecommendations");
+	consoleLogFallback("productrecommendations");
 	// tags
 	loadTagGroupInput (content, {
 		"parentContainer":$template
 	});
 	// user location geocode
-	console.log("userlocationgeocode");
+	consoleLogFallback("userlocationgeocode");
 	// hosted authentication
-	console.log("hostedauthentication");
+	consoleLogFallback("hostedauthentication");
 
 	// opt in checkboxes
 	if (content["Data"]["Fields"]["agreedtotermsandconditions"]) {

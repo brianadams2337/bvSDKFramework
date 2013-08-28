@@ -19,7 +19,7 @@ function getSpecificProduct (reviewIDs, callBack, options) {
 		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			console.log(data, paramString, paramObject);
+			consoleLogFallback(data, paramString, paramObject);
 			callBack(data, paramObject);
 		},
 		error: function(e) {
@@ -49,7 +49,7 @@ function getAllProducts (productID, callBack, options) {
 		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			console.log(data, paramString, paramObject);
+			consoleLogFallback(data, paramString, paramObject);
 			callBack(data, paramObject);
 		},
 		error: function(e) {
