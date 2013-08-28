@@ -484,7 +484,7 @@ function loadReportInappropriateForm (content, options) {
 			"contentId":contentId,
 			"feedbackSettings":{
 				"contentType":contentType,
-				"reasonText":$template.find(defaultReportInappropriateTextInput).andSelf().filter(defaultReportInappropriateTextInput).val()
+				"reasonText":$($template).find(defaultReportInappropriateTextInput).andSelf().filter(defaultReportInappropriateTextInput).val()
 			}
 		});
 	});
@@ -563,8 +563,8 @@ function processFeedbackReportInappropriate (cookieName, options) {
 	var formContainer = $("form[data-feedbacktype='" + feedbackType + "'][data-contentid='" + contentId + "']");
 	// process report inappropriate
 	if (!$.cookie(cookieName) && !formContainer.hasClass("BVDisabled")) {
-		console.log(settings);
-		console.log(cookieName);
+		consoleLogFallback(settings);
+		consoleLogFallback(cookieName);
 		// if no cookie for this feedback (no previous reports)
 		postFeedbackForm (
 			contentId,

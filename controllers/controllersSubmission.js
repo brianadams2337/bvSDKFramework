@@ -1267,7 +1267,7 @@ function loadPhotoFileUploadInput (content, options) {
 	        	$($($template).attr({"data-state":"file"}).removeClass("_BVContentLoadingContainer")).find(defaultPhotoUploadPreviewContainer).andSelf().filter(defaultPhotoUploadPreviewContainer).show();
 	        },
 			fail: function(e) {
-				console.log("there was an error. please try again.", data);
+				consoleLogFallback("there was an error. please try again.", data);
 	        	// show uploaded image preview container
 	        	$($($template).removeClass("_BVContentLoadingContainer")).find(defaultPhotoUploadInputContainer).andSelf().filter(defaultPhotoUploadInputContainer).show();
 				defaultAjaxErrorFunction(e);

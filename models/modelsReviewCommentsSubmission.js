@@ -15,7 +15,7 @@ function getReviewCommentsSubmissionForm (reviewid, container, callBack, options
 		data: params,
 		dataType: "jsonp",
 		success: function(data) {
-			console.log(data);
+			consoleLogFallback(data);
 			callBack(data, settings);
 			$(container).removeClass("_BVContentLoadingContainer");
 		},
@@ -39,14 +39,14 @@ function postReviewCommentsSubmissionForm (reviewid, container, callBack, option
 	var apiCall = reviewCommentsSubmissionAPICall(settings);
 	var url = apiCall["url"];
 	var params = $.param(apiCall["params"]);
-	console.log(params);
+	consoleLogFallback(params);
 	$.ajax({
 		type: "POST",
 		url: defaultReviewCommentSubmissionFormProcessingFile,
 		data: params,
 		dataType: "json",
 		success: function(data) {
-			console.log(data);
+			consoleLogFallback(data);
 			if(data["HasErrors"]) {
 				var errorObject = data["FormErrors"]["FieldErrors"];
 				$(defaultFormErrorsContainer).html('');
