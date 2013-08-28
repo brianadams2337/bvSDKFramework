@@ -4,7 +4,6 @@ $(document).ready(function() {
 	    if (window.location.search) {
 			// split up the query string and store in an associative array
 			var params = window.location.search.slice(1).split("&");
-			console.log (params);
 			for (var i = 0; i < params.length; i++) {
 				var obj = params[i].split("=");
 				result[obj[0]] = unescape(obj[1]);
@@ -69,13 +68,12 @@ $(document).ready(function() {
 				$(deferred.resolve);
 			})
 		).done(function(){
-			console.log("done");
 			switch (urlParameters["contentType"]) {
 				case "review": 
-					console.log("review");
+					consoleLogFallback("review");
 					// load review submission container
 					getReviewsSubmissionForm(urlParameters["productId"], defaultSubmissionContainer, function(content) {
-						console.log(parseUAS(bvUserDefaults['bvUAS']));
+						consoleLogFallback(parseUAS(bvUserDefaults['bvUAS']));
 						loadReviewSubmissionWidget(content, {
 							"parentContainer":defaultSubmissionContainer,
 							"productId":urlParameters["productId"],
@@ -86,10 +84,9 @@ $(document).ready(function() {
 					break;
 
 				case "review_comment": 
-					console.log("review comment");
+					consoleLogFallback("review comment");
 					// load review submission container
 					getReviewCommentsSubmissionForm(urlParameters["reviewId"], defaultSubmissionContainer, function(content) {
-						console.log(urlParameters["reviewId"]);
 						loadReviewCommentSubmissionWidget(content, {
 							"parentContainer":defaultSubmissionContainer,
 							"productId":urlParameters["productId"],
@@ -101,23 +98,23 @@ $(document).ready(function() {
 					break;
 
 				case "question": 
-					console.log("question");
+					consoleLogFallback("question");
 					break;
 
 				case "answer": 
-					console.log("answer");
+					consoleLogFallback("answer");
 					break;
 
 				case "story": 
-					console.log("story");
+					consoleLogFallback("story");
 					break;
 
 				case "story_comment": 
-					console.log("story comment");
+					consoleLogFallback("story comment");
 					break;
 
 				default:
-					console.log("nothing");
+					consoleLogFallback("nothing");
 					break;
 
 			}

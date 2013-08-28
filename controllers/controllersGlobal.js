@@ -126,15 +126,23 @@ function returnTemplate (template) {
 	return temp;
 }
 
-function loadingContainerAnimation (container, callback) {
-	$(container).empty().addClass("_BVContentLoadingContainer");
-	callback()
-	$("#lfkjlasfjdlkfs").promise().done(function() {
-		console.log("done");
-		$(container).removeClass("_BVContentLoadingContainer").show();		
-	});
+function consoleLogFallback (content) {
+	if (!production) {
+		var alertFallback = true;
+		if (typeof console === "undefined" || typeof console.log === "undefined") {
+			console = {};
+			if (alertFallback) {
+				console.log = function(content) {
+					alert(content);
+				};
+			} else {
+				console.log = function() {};
+			}
+		} else {
+			console.log(content);
+		}
+	}
 }
-
 
 /***** HEADERS *****/
 
@@ -335,7 +343,7 @@ function loadWriteReviewButton (content, options) {
 			"contentType":"review",
 			"returnURL":returnURL
 		});
-		console.log(submissionParams);
+		consoleLogFallback(submissionParams);
 		var url = siteBaseSubmissionURL + submissionParams;
 		// load submission container
 		loadSubmissionPage(url);
