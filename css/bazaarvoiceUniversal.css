@@ -478,7 +478,3 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		._BVReviewPreviewBodyContainer .BVUGCSpacerTop {display: block !important;}
 
 
-/* CLIENT PAGE TESTING STYLES */
-
-template {display: none !important;}
-.testtempclass {font-size: 18px; color: #ff0000;}
