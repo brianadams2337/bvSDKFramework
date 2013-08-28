@@ -128,7 +128,6 @@ function returnTemplate (template) {
 
 function consoleLogFallback (content) {
 	if (!production) {
-		console.log("aksjdfhakfahsj");
 		var alertFallback = true;
 		if (typeof console === "undefined" || typeof console.log === "undefined") {
 			console = {};
