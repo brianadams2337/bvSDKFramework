@@ -484,7 +484,7 @@ function loadReportInappropriateForm (content, options) {
 			"contentId":contentId,
 			"feedbackSettings":{
 				"contentType":contentType,
-				"reasonText":$template.find(defaultReportInappropriateTextInput).andSelf().filter(defaultReportInappropriateTextInput).val()
+				"reasonText":$($template).find(defaultReportInappropriateTextInput).andSelf().filter(defaultReportInappropriateTextInput).val()
 			}
 		});
 	});
