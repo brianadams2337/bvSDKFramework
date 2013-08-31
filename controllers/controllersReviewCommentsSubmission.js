@@ -125,7 +125,6 @@ function loadReviewCommentSubmissionForm (content, options) {
 			}
 		});
 	}
->>>>>>> master
 
 	// device fingerprint
 	consoleLogFallback("devicefingerprint");
