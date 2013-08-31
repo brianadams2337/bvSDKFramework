@@ -159,13 +159,15 @@ function loadReviewSubmissionForm (content, options) {
 	*/
 
 	// location
-	loadUserLocationInput (content, {
-		"parentContainer":$template,
-		"inputSettings":{
-			"inputLabel":"User Location",
-			"inputHelperText":"Example: New York, NY",
-		}
-	});
+	if (content["Data"]["Fields"]["userlocation"]) {
+		loadUserLocationInput (content, {
+			"parentContainer":$template,
+			"inputSettings":{
+				"inputLabel":"User Location",
+				"inputHelperText":"Example: New York, NY",
+			}
+		});
+	}
 	// device fingerprint
 	consoleLogFallback("devicefingerprint");
 	// product id
@@ -235,13 +237,17 @@ function loadReviewSubmissionForm (content, options) {
 	// opt in checkboxes
 	if (content["Data"]["Fields"]["agreedtotermsandconditions"]) {
 		loadTermsAndConditionsInput (content, {
-			"parentContainer":$template
+			"parentContainer":$template,
+			"inputSettings":{
+				"inputRequired":true,
+			}
 		});
 	}
 	if (content["Data"]["Fields"]["sendemailalertwhencommented"]) {
 		loadSendEmailAlertWhenCommentedInput (content, {
 			"parentContainer":$template
-		});				};
+		});
+	};
 	if (content["Data"]["Fields"]["sendemailalertwhenpublished"]) {
 		loadSendEmailAlertWhenPublishedInput (content, {
 			"parentContainer":$template

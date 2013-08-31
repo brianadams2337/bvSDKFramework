@@ -14,13 +14,14 @@ $(document).ready(function() {
 
 	$.when(
 		// global variables
-		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/models/varsGlobal.js")
+		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/models/varsGlobal.js"),
+		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/js/jquery.min.1.9.1.js"),
+		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/js/jquery-ui.js")
 	).done(function(){
 		$.when(
 			/* LOAD JS FILES */
-			$.getScript(siteBaseURL + "js/jquery.min.1.9.1.js"),
-			$.getScript(siteBaseURL + "js/jquery-ui.js"),
 			$.getScript(siteBaseURL + "js/createHTML5Elements.js"),
+			$.getScript(siteBaseURL + "js/browserSelector.js"),
 			$.getScript(siteBaseURL + "js/modernizr.js"),
 			/* properties */
 			$.getScript(siteBaseURL + "models/properties/properties.js"),
@@ -62,10 +63,6 @@ $(document).ready(function() {
 			$("head").append("<link id='' href='" + siteBaseURL + "css/magnific-popup.css' type='text/css' rel='stylesheet' />"),
 			$.get(siteBaseURL + "views/viewsUniversal.html", function(data) {
 				$("body").append(data);
-			}),
-
-			$.Deferred(function(deferred){
-				$(deferred.resolve);
 			})
 		).done(function(){
 			switch (urlParameters["contentType"]) {
@@ -136,7 +133,11 @@ $(document).ready(function() {
 					titleSrc: 'title'
 				}).click();
 			});
-			
+		}).fail(function(e){
+			// console.log("e", e);
 		});
+	}).fail(function(e){
+		// console.log("e", e);
 	});
+
 });
