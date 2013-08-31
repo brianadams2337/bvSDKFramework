@@ -96,12 +96,36 @@ function loadReviewCommentSubmissionForm (content, options) {
 		}
 	});
 	// nickname
-	loadUserNicknameInput (content, {
-		"parentContainer":$template,
-		"inputSettings":{
-			"inputLabel":"Choose a Nickname (no spaces)",
-		}
-	});
+	if (content["Data"]["Fields"]["usernickname"]) {
+		loadUserNicknameInput (content, {
+			"parentContainer":$template,
+			"inputSettings":{
+				"inputLabel":"Choose a Nickname (no spaces)",
+				"inputHelperText":"Do not use your full name or email address; your privacy is important to us.",
+			}
+		});
+	}
+	// email
+	if (content["Data"]["Fields"]["useremail"]) {
+		loadUserEmailInput (content, {
+			"parentContainer":$template,
+			"inputSettings":{
+				"inputLabel":"User Email",
+				"inputHelperText":"We will ONLY use your email to notify you when your review is posted or if a comment is added to your review after it is posted.",
+			}
+		});
+	}
+	// location
+	if (content["Data"]["Fields"]["userlocation"]) {
+		loadUserLocationInput (content, {
+			"parentContainer":$template,
+			"inputSettings":{
+				"inputLabel":"User Location",
+				"inputHelperText":"Example: New York, NY",
+			}
+		});
+	}
+>>>>>>> master
 
 	// device fingerprint
 	consoleLogFallback("devicefingerprint");
@@ -117,16 +141,27 @@ function loadReviewCommentSubmissionForm (content, options) {
 	consoleLogFallback("netpromoterscore");
 	// net promoter comment
 	consoleLogFallback("netpromotercomment");
-	// photo upload
-	consoleLogFallback("photoupload");
-	// video upload
-	consoleLogFallback("videoupload");
 	// product recommendations
 	consoleLogFallback("productrecommendations");
 	// user location geocode
 	consoleLogFallback("userlocationgeocode");
 	// hosted authentication
 	consoleLogFallback("hostedauthentication");
+
+	// opt in checkboxes
+	if (content["Data"]["Fields"]["agreedtotermsandconditions"]) {
+		loadTermsAndConditionsInput (content, {
+			"parentContainer":$template,
+			"inputSettings":{
+				"inputRequired":true,
+			}
+		});
+	}
+	if (content["Data"]["Fields"]["sendemailalertwhenpublished"]) {
+		loadSendEmailAlertWhenPublishedInput (content, {
+			"parentContainer":$template
+		});
+	};
 
 	// submit button
 	loadSubmitButton ("Submit Your Comment", {
@@ -172,6 +207,9 @@ function loadReviewCommentSubmissionForm (content, options) {
 		if (validated) {
 			$(defaultSubmissionFormContainer).hide();
 			postReviewCommentsSubmissionForm(contentId, defaultSubmissionPreviewContainer, function (content) {
+					// update content to have matching review node so the preview will match the display
+					content = updateCommentPreviewNode(content);
+					// comment preview
 					loadReviewCommentSubmissionPreviewWidget (content, {
 						"parentContainer":settings["parentContainer"],
 						"productId":productId,
@@ -235,6 +273,7 @@ function loadReviewCommentTitleInput (content, options) {
 	var inputName = settings["inputSettings"]["inputName"];
 	var inputLabel = settings["inputSettings"]["inputLabel"];
 	var inputHelperText = settings["inputSettings"]["inputHelperText"];
+	var inputRequired = settings["inputSettings"]["inputRequired"];
 	// add input template
 	$container.append($template);
 	// set label
@@ -242,7 +281,8 @@ function loadReviewCommentTitleInput (content, options) {
 		"for":inputName
 	});
 	// if required field
-	if (settings["inputSettings"]["inputRequired"]) {
+	if (inputRequired) {
+		$($template).parent().addClass(requiredClass);
 		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// set helper text
@@ -285,6 +325,7 @@ function loadReviewCommentTextInput (content, options) {
 	var inputName = settings["inputSettings"]["inputName"];
 	var inputLabel = settings["inputSettings"]["inputLabel"];
 	var inputHelperText = settings["inputSettings"]["inputHelperText"];
+	var inputRequired = settings["inputSettings"]["inputRequired"];
 	// add input template
 	$container.append($template);
 	// set label
@@ -292,7 +333,8 @@ function loadReviewCommentTextInput (content, options) {
 		"for":inputName
 	});
 	// if required field
-	if (settings["inputSettings"]["inputRequired"]) {
+	if (inputRequired) {
+		$($template).parent().addClass(requiredClass);
 		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// set helper text
