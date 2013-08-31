@@ -568,12 +568,22 @@ function loadTermsAndConditionsInput (content, options) {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultTermsConditionsInputContainer,
 		"viewContainer":defaultTermsConditionsContainerView,
+		"inputSettings":{
+			"inputRequired":content["Required"],
+		}
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
 	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var inputRequired = settings["inputSettings"]["inputRequired"]; // required boolean
 	// add input template
 	$container.append($template);
+	// if required field
+	if (inputRequired) {
+		$($template).parent().addClass(requiredClass);
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
+	}
 	// load checkbox
 	loadCheckboxInputField (content, {
 		"parentContainer":$template,
@@ -665,6 +675,12 @@ function loadTextFieldInput (content, options) {
 	var inputRequired = settings["inputSettings"]["inputRequired"]; // required boolean
 	// add input template
 	$container.append($template);
+	// if required field
+	if (inputRequired) {
+		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass).attr({
+			"data-required":inputRequired,
+		});
+	}
 	// set input attributes
 	$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
 		"id":inputId,
@@ -674,12 +690,6 @@ function loadTextFieldInput (content, options) {
 		"data-minlength":inputMinLength,
 		"data-maxlength":inputMaxLength,
 	});
-	// if required field
-	if (inputRequired == true) {
-		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass).attr({
-			"data-required":inputRequired,
-		});
-	}
 	if (inputId == "useremail") {
 		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
 			"data-type":"email",
@@ -726,7 +736,7 @@ function loadTextAreaInput (content, options) {
 		"for":settings["inputSettings"]["inputName"]
 	});
 	// if required field
-	if (inputRequired == true) {
+	if (inputRequired) {
 		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass).attr({
 			"data-required":inputRequired,
 		});
@@ -788,18 +798,18 @@ function loadRadioInputIndividual (content, options) {
 			$($template).find(defaultFormRadioLabelTextContainer).andSelf().filter(defaultFormRadioLabelTextContainer).html(inputLabel).attr({
 				"for":inputId
 			});
+			// if required field
+			if (inputRequired) {
+				$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass).attr({
+					"data-required":inputRequired,
+				});
+			}
 			// set input attributes
 			$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
 				"id":inputId,
 				"name":inputName,
 				"value":inputValue
 			});
-			// if required field
-			if (inputRequired == true) {
-				$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass).attr({
-					"data-required":inputRequired,
-				});
-			}
 			// selected value
 			if (inputValue == inputSelected) {
 				$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
@@ -847,17 +857,17 @@ function loadSelectInput (content, options) {
 	var inputOptions = settings["inputSettings"]["inputOptionsArray"]; // options to be loaded in the dropdown
 	// add input template
 	$container.append($template);
+	// if required field
+	if (inputRequired) {
+		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass).attr({
+			"data-required":inputRequired,
+		});
+	}
 	// set input attributes
 	$($template).find(defaultFormSelectInputContainer).andSelf().filter(defaultFormSelectInputContainer).attr({
 		"id":inputId,
 		"name":inputName
 	});
-	// if required field
-	if (inputRequired == true) {
-		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass).attr({
-			"data-required":inputRequired,
-		});
-	}
 	// load select options
 	loadSelectOptionsInput(inputOptions, {
 		"parentContainer":$template
@@ -934,6 +944,12 @@ function loadCheckboxInputField (content, options) {
 	var inputPlaceholder = settings["inputSettings"]["inputPlaceholder"];
 	// add input template
 	$container.append($template);
+	// if required field
+	if (inputRequired) {
+		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass).attr({
+			"data-required":inputRequired,
+		});
+	}
 	// set label
 	if (inputType !== "TextInput") {
 		$($template).find(defaultFormCheckboxLabelTextContainer).andSelf().filter(defaultFormCheckboxLabelTextContainer).text(inputLabel).attr({
@@ -987,12 +1003,6 @@ function loadCheckboxInputField (content, options) {
 		// focus on text input container
 		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).focus()
 	});
-	// if required field
-	if (inputRequired == true) {
-		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass).attr({
-			"data-required":inputRequired,
-		});
-	}
 }
 
 
