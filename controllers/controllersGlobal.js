@@ -561,3 +561,112 @@ function updateReviewPreviewNode (content) {
 	return content;
 
 }
+
+function updateCommentPreviewNode (content) {
+
+	content["Comment"]["TotalFeedbackCount"] = 0; // set to 0 since there wont be any feedback yet
+	content["Comment"]["TotalPositiveFeedbackCount"] = 0; // set to 0 since there wont be any feedback yet
+	content["Comment"]["TotalNegativeFeedbackCount"] = 0; // set to 0 since there wont be any feedback yet
+	content["Comment"]["Helpfulness"] = 0; // set to 0 since there wont be any feedback yet
+
+	content["Comment"]["TotalInappropriateFeedbackCount"] = 0; // set to 0 since there wont be any feedback yet
+	content["Comment"]["InappropriateFeedbackList"] = []; // empty since there wont be any feedback yet
+
+	content["Comment"]["IsFeatured"] = false; // set to false since comment will not be featured by default
+
+	// content["Comment"]["AuthorId"] = null;
+	// content["Comment"]["CampaignId"] = null;
+	// content["Comment"]["ReviewId"] = null;
+	// content["Comment"]["StoryId"] = null;
+	// content["Comment"]["ProductRecommendationIds"] = [];
+
+	content["Comment"]["ModerationStatus"] = "PENDING"; // set to "PENDING" since comment has not been submitted
+	content["Comment"]["LastModificationTime"] = content["Comment"]["SubmissionTime"]; // set to submission time since there have been no modifications
+	content["Comment"]["LastModeratedTime"] = null; // set to null since comment has not been submitted yet
+
+	content["Comment"]["BadgesOrder"] = []; // empty since there wont be any badges yet
+	content["Comment"]["Badges"] = {}; // empty since there wont be any badges yet
+
+	content["Comment"]["UserNickname"] = content["Data"]["Fields"]["usernickname"]["Value"];
+	content["Comment"]["UserLocation"] = content["Data"]["Fields"]["userlocation"]["Value"];
+
+	content["Comment"]["ContextDataValuesOrder"] = [];
+	content["Comment"]["ContextDataValues"] = {};
+
+	if (content["Data"]["Groups"]["contextdatavalue"]) {
+		// set context data values load order
+		$.each (content["Data"]["Groups"]["contextdatavalue"]["SubElements"], function () {
+			if (content["Data"]["Fields"][this["Id"]]["Value"] != null) {
+				content["Comment"]["ContextDataValuesOrder"].push(this["Id"]);
+			}
+		});
+		// set context data values object
+		$.each (content["Comment"]["ContextDataValuesOrder"], function () {
+			var contextdatavalue = new Object;
+			// set rating values
+			contextdatavalue["DimensionLabel"] = content["Data"]["Fields"][this]["Label"];
+			contextdatavalue["Id"] = content["Data"]["Fields"][this]["Id"];
+			$.each (content["Data"]["Fields"][this]["Options"], function () {
+				if (this["Selected"] == true) {
+					contextdatavalue["Value"] = this["Value"];
+					contextdatavalue["ValueLabel"] = this["Label"];
+				}							
+			})
+
+			// add data to context data values object
+			content["Comment"]["ContextDataValues"][this] = contextdatavalue;
+		});
+	}
+
+	content["Comment"]["Photos"] = [];
+
+	if (content["Data"]["Groups"]["photo"]) {
+		// set tags load order
+		$.each (content["Data"]["Groups"]["photo"]["SubElements"], function (index) {
+			var urlField = content["Data"]["Groups"][this["Id"]]["SubElements"][0]["Id"];
+			var captionField = content["Data"]["Groups"][this["Id"]]["SubElements"][1]["Id"];
+			if (content["Data"]["Fields"][urlField]["Value"] != null) {
+				var photo = new Object;
+				// set tag values
+				photo["Id"] = content["Data"]["Groups"][this["Id"]]["Id"];
+				photo["Caption"] = content["Data"]["Fields"][captionField]["Value"];
+				photo["Sizes"] = {};
+				photo["SizesOrder"] = {0:"thumbnail",1:"normal"};
+				var size = new Object;
+				size["Id"] = content["Data"]["Fields"][urlField]["Id"];
+				size["Url"] = content["Data"]["Fields"][urlField]["Value"];
+				$.each(photo["SizesOrder"], function () {
+					// set tag values
+					photo["Sizes"][this] = size;
+				})
+				// add photo to photo dimensions object
+				content["Comment"]["Photos"][index] = photo;
+			}
+		});
+	}
+
+	content["Comment"]["Videos"] = [];
+
+	if (content["Data"]["Groups"]["video"]) {
+		// set tags load order
+		$.each (content["Data"]["Groups"]["video"]["SubElements"], function (index) {
+			var urlField = content["Data"]["Groups"][this["Id"]]["SubElements"][0]["Id"];
+			var captionField = content["Data"]["Groups"][this["Id"]]["SubElements"][1]["Id"];
+			if (content["Data"]["Fields"][urlField]["Value"] != null) {
+				var video = new Object;
+				// set tag values
+				video["VideoId"] = content["Data"]["Groups"][this["Id"]]["Id"];
+				video["Caption"] = content["Data"]["Fields"][captionField]["Value"];
+				video["VideoHost"] = content["Data"]["Fields"][urlField]["Value"];
+				video["VideoIframeUrl"] = content["Data"]["Fields"][urlField]["Value"];
+				video["VideoThumbnailUrl"] = content["Data"]["Fields"][urlField]["Value"];
+				video["VideoUrl"] = content["Data"]["Fields"][urlField]["Value"];
+				// add video to video dimensions object
+				content["Comment"]["Videos"][index] = video;
+			}
+		});
+	}
+
+	return content;
+
+}
