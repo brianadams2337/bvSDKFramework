@@ -1,12 +1,11 @@
 $(document).ready(function() {
 	$.when(
 		// global variables
-		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/models/varsGlobal.js"),
-		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/js/jquery.min.1.9.1.js"),
-		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/js/jquery-ui.js")
+		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '')+"/bvSDKFramework/models/varsGlobal.js")
 	).done(function(){
 		$.when(
 			/* LOAD JS FILES */
+			$.getScript(siteBaseURL + "js/jquery.min.1.9.1.js"),
 			$.getScript(siteBaseURL + "js/createHTML5Elements.js"),
 			$.getScript(siteBaseURL + "js/browserSelector.js"),
 			$.getScript(siteBaseURL + "js/custom.js"),
@@ -37,7 +36,7 @@ $(document).ready(function() {
 			$.getScript(siteBaseURL + "controllers/controllersBadges.js"),
 			$.getScript(siteBaseURL + "controllers/controllersHistogram.js"),
 			/* plugins */
-			$.getScript(siteBaseURL + "js/plugins/jquery-cookie.js"),
+			$.getScript(siteBaseURL + "js/plugins/jquery.cookie.js"),
 			$.getScript(siteBaseURL + "js/plugins/jquery.dateFormat.js"),
 			$.getScript(siteBaseURL + "js/plugins/jquery.magnific-popup.js"),
 			/* LOAD CSS FILES */
@@ -50,7 +49,7 @@ $(document).ready(function() {
 			$.Deferred(function(deferred){
 				$(deferred.resolve);
 			})
-		).done(function(){
+		).then(function(){
 			// load reviews
 				getAllReviews (productId, defaultReviewsParentContainer, function(content, modelLocalDefaultSettings) {
 					// callback function
@@ -94,11 +93,6 @@ $(document).ready(function() {
 					titleSrc: 'title'
 				}).click();
 			});
-		}).fail(function(e){
-			// console.log("e", e);
-		});
-	}).fail(function(e){
-		// console.log("e", e);
+		}, function(error){console.log(error);});
 	});
-
 });

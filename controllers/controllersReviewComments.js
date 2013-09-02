@@ -408,7 +408,7 @@ function loadWriteReviewCommentButton (content, options) {
 			"contentType":contentType,
 			"returnURL":returnURL
 		});
-		console.log(submissionParams);
+		consoleLogFallback(submissionParams);
 
 		var url = siteBaseSubmissionURL + submissionParams;
 		loadSubmissionPage(url);

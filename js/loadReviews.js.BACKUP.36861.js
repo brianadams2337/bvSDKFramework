@@ -50,7 +50,7 @@ $(document).ready(function() {
 			$.Deferred(function(deferred){
 				$(deferred.resolve);
 			})
-		).done(function(){
+		).then(function(){
 			// load reviews
 				getAllReviews (productId, defaultReviewsParentContainer, function(content, modelLocalDefaultSettings) {
 					// callback function
@@ -94,11 +94,15 @@ $(document).ready(function() {
 					titleSrc: 'title'
 				}).click();
 			});
+<<<<<<< HEAD
+		}, function(error){console.log(error);});
+=======
 		}).fail(function(e){
 			// console.log("e", e);
 		});
 	}).fail(function(e){
 		// console.log("e", e);
+>>>>>>> 39d5b584ffb9b8794f3ce89008fc5655a6b3068a
 	});
 
 });

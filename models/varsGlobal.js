@@ -30,10 +30,10 @@ var apiDefaults = {
 };
 
 var bvUserDefaults = {
-	"bvUAS": typeof userToken != 'undefined' ? userToken : (function(){console.log("userToken variable not declared");})(), // encoded user string, or userToken if set
+	"bvUAS": typeof userToken != 'undefined' ? userToken : (function(){})(), // encoded user string, or userToken if set
 	"userId": "testuser",
 	"userEmail":"bvspambox@gmail.com", //User's email address
-	"userLocation":"austin, tx", //User location text
+	"userLocation":null, //User location text
 	"userNickname":"testuser", //User nickname display text
 };
 
@@ -91,10 +91,10 @@ var defaultInlineValidationOption = {
 	},
 	errors: {
 		container: function (elem, isRadioOrCheckbox) {
-			return $(elem).closest(".BVField." + requiredClass);
+			return $(elem).closest(".BVField");
 		},
 		classHandler: function (elem, isRadioOrCheckbox) {
-			return $(elem).closest(".BVField." + requiredClass);
+			return $(elem).closest(".BVField");
 		},
 		errorsWrapper:"<div class='BVErrorContainerInline'></div>",
 		errorElem:"<div class='BVErrorInline'></div>",

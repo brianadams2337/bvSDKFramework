@@ -65,13 +65,20 @@ $(document).ready(function() {
 			$.get(siteBaseURL + "views/viewsUniversal.html", function(data) {
 				$("body").append(data);
 			})
+<<<<<<< HEAD
+		).then(function(){
+=======
 		).done(function(){
+>>>>>>> 39d5b584ffb9b8794f3ce89008fc5655a6b3068a
 			switch (urlParameters["contentType"]) {
 				case "review": 
 					consoleLogFallback("review");
 					// load review submission container
 					getReviewsSubmissionForm(urlParameters["productId"], defaultSubmissionContainer, function(content) {
+<<<<<<< HEAD
+=======
 						consoleLogFallback(parseUAS(bvUserDefaults['bvUAS']));
+>>>>>>> 39d5b584ffb9b8794f3ce89008fc5655a6b3068a
 						loadReviewSubmissionWidget(content, {
 							"parentContainer":defaultSubmissionContainer,
 							"productId":urlParameters["productId"],
@@ -134,11 +141,16 @@ $(document).ready(function() {
 					titleSrc: 'title'
 				}).click();
 			});
+<<<<<<< HEAD
+			
+		}, function(error){console.log(error);});
+=======
 		}).fail(function(e){
 			// console.log("e", e);
 		});
 	}).fail(function(e){
 		// console.log("e", e);
+>>>>>>> 39d5b584ffb9b8794f3ce89008fc5655a6b3068a
 	});
 
 });

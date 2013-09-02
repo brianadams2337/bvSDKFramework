@@ -44,8 +44,8 @@ function loadReviewCommentSubmissionPreviewWidget (content, options) {
 		var validated = $("#" + newID).parsley('validate');
 		// POST form to server if no errors
 		if (validated) {
-			postReviewCommentsSubmissionForm(contentId, $template, function (content) {
-					console.log("submitted");
+			$(defaultSubmissionPreviewContainer).hide();
+			postReviewCommentsSubmissionForm(contentId, defaultSubmissionPreviewContainer, function (content) {
 					loadReviewCommentSubmissionThankYouWidget (content, {
 						"parentContainer":settings["parentContainer"],
 						"productId":productId,
@@ -107,36 +107,22 @@ function loadReviewCommentSubmissionPreview (content, options) {
 		"parentContainer":$template
 	});
 	// load comment user nickname
-	loadCommentUserNickname (content, {
-		"parentContainer":$template
-	});
+	if (content["UserNickname"]) {
+		loadCommentUserNickname (content, {
+			"parentContainer":$template
+		});
+	}
 	// load comment user location
-	loadCommentUserLocation (content, {
-		"parentContainer":$template
-	});
+	if (content["UserLocation"]) {
+		loadCommentUserLocation (content, {
+			"parentContainer":$template
+		});
+	}
 	// load comment cdvs
 	if (content["ContextDataValuesOrder"]) {
 		loadCommentContextDataValuesGroup (content, {
 			"parentContainer":$template
 		});
 	}
-	// load comment photos
-	if (content["Photos"]) {
-		loadCommentPhotosGroup(content, {
-			"parentContainer":$template
-		});
-	}
-	// load comment videos
-	if (content["Videos"]) {
-		loadCommentVideosGroup(content, {
-			"parentContainer":$template
-		});
-	}
 
-	// load badges
-	if (content["BadgesOrder"]) {
-		loadBadges(content, {
-			"parentContainer":$template
-		});
-	}
 }

@@ -159,27 +159,29 @@ function loadReviewSubmissionForm (content, options) {
 	*/
 
 	// location
-	loadUserLocationInput (content, {
-		"parentContainer":$template,
-		"inputSettings":{
-			"inputLabel":"My Location",
-			"inputHelperText":"Example: New York, NY",
-		}
-	});
+	if (content["Data"]["Fields"]["userlocation"]) {
+		loadUserLocationInput (content, {
+			"parentContainer":$template,
+			"inputSettings":{
+				"inputLabel":"My Location",
+				"inputHelperText":"Example: New York, NY",
+			}
+		});
+	}
 	// device fingerprint
-	console.log("devicefingerprint");
+	consoleLogFallback("devicefingerprint");
 	// product id
-	console.log("productid");
+	consoleLogFallback("productid");
 	// submission id
-	console.log("submissionid");
+	consoleLogFallback("submissionid");
 	// auth source type
-	console.log("authsourcetype");
+	consoleLogFallback("authsourcetype");
 	// is ratings only
-	console.log("isratingsonly");
+	consoleLogFallback("isratingsonly");
 	// net promoter score
-	console.log("netpromoterscore");
+	consoleLogFallback("netpromoterscore");
 	// net promoter comment
-	console.log("netpromotercomment");
+	consoleLogFallback("netpromotercomment");
 
 	// context data values
 	loadContextDataValueGroupInput (content, {
@@ -222,26 +224,30 @@ function loadReviewSubmissionForm (content, options) {
 	});
 
 	// product recommendations
-	console.log("productrecommendations");
+	consoleLogFallback("productrecommendations");
 	// tags
 	loadTagGroupInput (content, {
 		"parentContainer":$template
 	});
 	// user location geocode
-	console.log("userlocationgeocode");
+	consoleLogFallback("userlocationgeocode");
 	// hosted authentication
-	console.log("hostedauthentication");
+	consoleLogFallback("hostedauthentication");
 
 	// opt in checkboxes
 	if (content["Data"]["Fields"]["agreedtotermsandconditions"]) {
 		loadTermsAndConditionsInput (content, {
-			"parentContainer":$template
+			"parentContainer":$template,
+			"inputSettings":{
+				"inputRequired":true,
+			}
 		});
 	}
 	if (content["Data"]["Fields"]["sendemailalertwhencommented"]) {
 		loadSendEmailAlertWhenCommentedInput (content, {
 			"parentContainer":$template
-		});				};
+		});
+	};
 	if (content["Data"]["Fields"]["sendemailalertwhenpublished"]) {
 		loadSendEmailAlertWhenPublishedInput (content, {
 			"parentContainer":$template
@@ -265,7 +271,6 @@ function loadReviewSubmissionForm (content, options) {
 		if (validated) {
 			$(defaultSubmissionFormContainer).hide();
 			postReviewsSubmissionForm(productId, defaultSubmissionThankYouContainer, function (content) {
-					console.log("submitted");
 					loadReviewSubmissionThankYouWidget (content, {
 						"parentContainer":settings["parentContainer"],
 						"productId":productId,
@@ -293,8 +298,9 @@ function loadReviewSubmissionForm (content, options) {
 		if (validated) {
 			$(defaultSubmissionFormContainer).hide();
 			postReviewsSubmissionForm(productId, defaultSubmissionPreviewContainer, function (content) {
-					console.log("preview");
-					content["Review"]["RatingRange"] = 5; //default to 5 since API doesn't include this for preview
+					// update content to have matching review node so the preview will match the display
+					content = updateReviewPreviewNode(content);
+					// review preview
 					loadReviewSubmissionPreviewWidget (content, {
 						"parentContainer":settings["parentContainer"],
 						"productId":productId,
@@ -344,11 +350,11 @@ function loadOverallRatingInput (content, options) {
 		"targetContainer":defaultOverallRatingInputContainer,
 		"viewContainer":defaultInputRadioIndividualContainerView,
 		"loadOrder":[
-					{1:"poor"},
-					{2:"fair"},
-					{3:"average"},
-					{4:"good"},
-					{5:"excellent"}
+					{"1":"poor"},
+					{"2":"fair"},
+					{"3":"average"},
+					{"4":"good"},
+					{"5":"excellent"}
 				],
 		"productId":"",
 		"inputSettings":{
@@ -443,11 +449,11 @@ function loadSecondaryRatingIndividual (content, options) {
 		"targetContainer":defaultRadioButtonGroupInputContainer,
 		"viewContainer":defaultInputRadioIndividualContainerView,
 		"loadOrder":[
-					{1:"poor"},
-					{2:"fair"},
-					{3:"average"},
-					{4:"good"},
-					{5:"excellent"}
+					{"1":"poor"},
+					{"2":"fair"},
+					{"3":"average"},
+					{"4":"good"},
+					{"5":"excellent"}
 				],
 		"productId":"",
 		"inputSettings":{
@@ -493,8 +499,8 @@ function loadIsRecommendedInput (content, options) {
 		"targetContainer":defaultIsRecommendedInputContainer,
 		"viewContainer":defaultInputRadioIndividualContainerView,
 		"loadOrder":[
-					{true:"Yes"},
-					{false:"No"}
+					{"true":"Yes"},
+					{"false":"No"}
 				],
 		"productId":"",
 		"inputSettings":{

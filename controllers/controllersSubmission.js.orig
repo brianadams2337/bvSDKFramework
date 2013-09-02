@@ -861,6 +861,15 @@ function loadSelectInput (content, options) {
 	inputOptions["Value"] = inputValue; // slave UAS value into model
 	// add input template
 	$container.append($template);
+<<<<<<< HEAD
+	// set input attributes
+	$($template).find(defaultFormSelectInputContainer).andSelf().filter(defaultFormSelectInputContainer).attr({
+		"id":inputId,
+		"name":inputName,
+		"Value":inputValue,
+	});
+=======
+>>>>>>> 39d5b584ffb9b8794f3ce89008fc5655a6b3068a
 	// if required field
 	if (inputRequired) {
 		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass).attr({
@@ -870,8 +879,7 @@ function loadSelectInput (content, options) {
 	// set input attributes
 	$($template).find(defaultFormSelectInputContainer).andSelf().filter(defaultFormSelectInputContainer).attr({
 		"id":inputId,
-		"name":inputName,
-		"Value":inputValue,
+		"name":inputName
 	});
 	// load select options
 	loadSelectOptionsInput(inputOptions, {

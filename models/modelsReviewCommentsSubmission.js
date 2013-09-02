@@ -15,7 +15,7 @@ function getReviewCommentsSubmissionForm (reviewid, container, callBack, options
 		data: params,
 		dataType: "jsonp",
 		success: function(data) {
-			console.log(data);
+			consoleLogFallback(data);
 			callBack(data, settings);
 			$(container).removeClass("_BVContentLoadingContainer");
 		},
@@ -39,14 +39,14 @@ function postReviewCommentsSubmissionForm (reviewid, container, callBack, option
 	var apiCall = reviewCommentsSubmissionAPICall(settings);
 	var url = apiCall["url"];
 	var params = $.param(apiCall["params"]);
-	console.log(params);
+	consoleLogFallback(params);
 	$.ajax({
 		type: "POST",
 		url: defaultReviewCommentSubmissionFormProcessingFile,
 		data: params,
 		dataType: "json",
 		success: function(data) {
-			console.log(data);
+			consoleLogFallback(data);
 			if(data["HasErrors"]) {
 				var errorObject = data["FormErrors"]["FieldErrors"];
 				$(defaultFormErrorsContainer).html('');
@@ -81,7 +81,7 @@ function reviewCommentsSubmissionAPICall (options) {
 		"Parameters":{
 			"apiversion":apiDefaults["apiVersion"], //The API version.
 			"action":null, //The submission action to take -- either 'Preview' or 'Submit'. 'Preview' will show a draft of the content to be submitted; 'Submit' will submit the content. Note that if Action=Submit, the request must be an HTTP POST.
-			"agreedtotermsandconditions":true, //Boolean indicating whether or not the user agreed to the terms and conditions. Required depending on the client's settings.
+			"agreedtotermsandconditions":null, //Boolean indicating whether or not the user agreed to the terms and conditions. Required depending on the client's settings.
 			"callback":null, //Callback function name (JsonP).
 			"campaignId":null, //Arbitrary text that may be saved alongside content to indicate vehicle by which content was captured, e.g. “post-purchase email”.
 			"commenttext":null, //Value is comment body text.

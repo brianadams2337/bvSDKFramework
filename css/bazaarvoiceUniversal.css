@@ -331,7 +331,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	h1._BVPageHeaderText, h2._BVSectionHeaderText {margin: 0;}
 
 	/* Sections */
-	.BVSection {background-image: -webkit-gradient(linear, center bottom, from(#EBEBEB 0%), to(#FFFFFF 20%)); background-image: -webkit-linear-gradient(bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -moz-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -ms-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -o-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EBEBEB, endColorstr=#FFFFFF, GradientType=0); background-repeat: repeat-x; margin-bottom: 40px; padding: 25px 30px 15px;}
+	.BVSection {background-image: -webkit-gradient(linear, center bottom, from(#EBEBEB 0%), to(#FFFFFF 20%)); background-image: -webkit-linear-gradient(bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -moz-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background:-ms-linear-gradient(top, #FFFFFF 20%, #EBEBEB 100%); background-image: -o-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-repeat: repeat-x; margin-bottom: 40px; padding: 25px 30px 15px;}
 	.BVSection:empty, .BVSection div:empty, .BVFooter:empty, .BVFooter div:empty {display: none;}
 		.BVSectionHeader {padding: 0 0 2px; margin: 0 0 45px;}
 			h2._BVSectionHeaderText {font-size: 24px; font-weight: normal; line-height: 1.333; display: block; margin-left: 42px;}
@@ -358,7 +358,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		._BVFormErrorsContainer {margin-left: 30px; width: 600px; color: #bb0628; border: 1px solid #bb0628; padding: 15px;}
 			ul.parsley-error-list {list-style-type: none; margin: 0 0 0 220px; color: #bb0628; padding: 5px 0 0;}
 			._BVFormErrorsContainer ul.parsley-error-list {color: #bb0628; padding: 5px 0 0;}
-		.BVErrorContainerInline {margin-left: 220px; color: #bb0628; padding: 5px 0 0;}
+		.BVErrorContainerInline {margin-left: 220px; color: #bb0628; padding: 5px 0 0; clear: left;}
 
 	/* Fields */
 	.BVField {clear: left; overflow: hidden; margin-bottom: 30px;}
@@ -418,7 +418,8 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 			._BVRecommendedInputContainer .BVRadioButtonIndividualContainer {width: 60px; float: left; margin-right: 15px;}
 
 	/* Title & Body Text */
-	.BVSectionReviewGuidelines {position: absolute; left: 700px; margin-top: 4px;}
+	.BVSectionReviewGuidelines {height: 0; position: relative; zoom: 1;}
+		.BVSectionReviewGuidelines .BVPopinLauncher {position: absolute; top: 2px; left: 650px;}
 	._BVTitleInputContainer ._BVLabelText, ._BVBodyTextInputContainer ._BVLabelText {font-size: 14px;}
 
 	/* Tags */
@@ -426,16 +427,17 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		.BVTagIndividualInputContainer {margin-bottom: 30px;}
 		.BVTagIndividualInputContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
 		.BVTagIndividualInputContainer ._BVLabelText {}
-		._BVInputGroupContainer {width: 500px; float: left;}
+		._BVTagGroupInputContainer ._BVInputGroupContainer {width: 500px; float: left;}
 			.BVTagInput {width: 48%; float: left; margin-bottom: 5px;}
-			._BVCheckboxGroupContainer ._BVCheckboxIndividualContainer {padding-bottom: 4px;}
-				._BVCheckboxIndividualContainer .BVFormInputText {width: 150px;}
+			._BVTagGroupInputContainer ._BVCheckboxGroupContainer ._BVCheckboxIndividualContainer {padding-bottom: 4px;}
+				._BVTagGroupInputContainer ._BVCheckboxIndividualContainer .BVFormInputText {width: 150px;}
 
 	/* Media Upload */
 	.BVSectionMediaContainer ._BVInputGroupContainer {width: 400px; float: left;}
 		._BVUploadIndividualInputContainer {margin-bottom: 15px;}
-		.BVSectionMediaContainer ._BVHelperText {margin-left: 0;}
-	.BVSectionMediaGuidelines {position: absolute; left: 700px;}
+		.BVSectionMediaContainer .BVUploadInput ._BVHelperText {margin-left: 0;}
+	.BVSectionMediaGuidelines {height: 0; position: relative; zoom: 1;}
+		.BVSectionMediaGuidelines .BVPopinLauncher {position: absolute; top: 4px; left: 650px;}
 
 	/* User Info */
 	._BVUserNicknameInputContainer ._BVLabelText, ._BVUserEmailInputContainer ._BVLabelText {font-size: 14px;}
@@ -459,8 +461,8 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		._BVButtonSubmitContainer a {color: #fff; text-shadow: 0 1px 0 rgba(193,90,24,1); background-color: #EE8A27; background-image: -webkit-gradient(linear, left top, left bottom, from(#EE8A27), to(#E86C1F)); background-image: -webkit-linear-gradient(#EE8A27, #E86C1F); background-image: -moz-linear-gradient(#EE8A27, #E86C1F); background-image: -ms-linear-gradient(#EE8A27, #E86C1F); background-image: -o-linear-gradient(#EE8A27, #E86C1F); background-image: linear-gradient(#EE8A27, #E86C1F); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EE8A27, endColorstr=#E86C1F, GradientType=0); border: 1px solid #EE8A27; border-bottom-color: #E86C1F;}
 
 	/* Popins */
-	.BVPopinLauncher a {background: url(images/iconText.png) no-repeat 0 -160px; color: #085EB9; padding: 2px 0 2px 22px;}
-	.BVPopin {width: 245px; border: 1px solid #C3C4C4; padding: 15px; background-color: #fff; border-radius: 4px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); display: none;}
+	.BVPopinLauncher a {background: url(images/iconText.png) no-repeat 0 -160px; color: #085EB9; padding: 2px 0 2px 22px; display: inline-block;}
+	.BVPopin {width: 245px; border: 1px solid #C3C4C4; padding: 15px; background-color: #fff; border-radius: 4px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); display: none; position: absolute; top: 35px; left: 650px;}
 	.BVPopin:hover {cursor: pointer;}
 		.BVPopin .BVHeader {font-size: 14px; margin-bottom: 10px;}
 		.BVPopin ul {margin: 0; padding-left: 15px;}
@@ -476,7 +478,3 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		._BVReviewPreviewBodyContainer .BVUGCSpacerTop {display: block !important;}
 
 
-/* CLIENT PAGE TESTING STYLES */
-
-template {display: none !important;}
-.testtempclass {font-size: 18px; color: #ff0000;}

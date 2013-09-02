@@ -96,37 +96,71 @@ function loadReviewCommentSubmissionForm (content, options) {
 		}
 	});
 	// nickname
-	loadUserNicknameInput (content, {
-		"parentContainer":$template,
-		"inputSettings":{
-			"inputLabel":"Choose a Nickname (no spaces)",
-		}
-	});
+	if (content["Data"]["Fields"]["usernickname"]) {
+		loadUserNicknameInput (content, {
+			"parentContainer":$template,
+			"inputSettings":{
+				"inputLabel":"Choose a Nickname (no spaces)",
+				"inputHelperText":"Do not use your full name or email address; your privacy is important to us.",
+			}
+		});
+	}
+	// email
+	if (content["Data"]["Fields"]["useremail"]) {
+		loadUserEmailInput (content, {
+			"parentContainer":$template,
+			"inputSettings":{
+				"inputLabel":"User Email",
+				"inputHelperText":"We will ONLY use your email to notify you when your review is posted or if a comment is added to your review after it is posted.",
+			}
+		});
+	}
+	// location
+	if (content["Data"]["Fields"]["userlocation"]) {
+		loadUserLocationInput (content, {
+			"parentContainer":$template,
+			"inputSettings":{
+				"inputLabel":"User Location",
+				"inputHelperText":"Example: New York, NY",
+			}
+		});
+	}
 
 	// device fingerprint
-	console.log("devicefingerprint");
+	consoleLogFallback("devicefingerprint");
 	// product id
-	console.log("productid");
+	consoleLogFallback("productid");
 	// submission id
-	console.log("submissionid");
+	consoleLogFallback("submissionid");
 	// auth source type
-	console.log("authsourcetype");
+	consoleLogFallback("authsourcetype");
 	// is ratings only
-	console.log("isratingsonly");
+	consoleLogFallback("isratingsonly");
 	// net promoter score
-	console.log("netpromoterscore");
+	consoleLogFallback("netpromoterscore");
 	// net promoter comment
-	console.log("netpromotercomment");
-	// photo upload
-	console.log("photoupload");
-	// video upload
-	console.log("videoupload");
+	consoleLogFallback("netpromotercomment");
 	// product recommendations
-	console.log("productrecommendations");
+	consoleLogFallback("productrecommendations");
 	// user location geocode
-	console.log("userlocationgeocode");
+	consoleLogFallback("userlocationgeocode");
 	// hosted authentication
-	console.log("hostedauthentication");
+	consoleLogFallback("hostedauthentication");
+
+	// opt in checkboxes
+	if (content["Data"]["Fields"]["agreedtotermsandconditions"]) {
+		loadTermsAndConditionsInput (content, {
+			"parentContainer":$template,
+			"inputSettings":{
+				"inputRequired":true,
+			}
+		});
+	}
+	if (content["Data"]["Fields"]["sendemailalertwhenpublished"]) {
+		loadSendEmailAlertWhenPublishedInput (content, {
+			"parentContainer":$template
+		});
+	};
 
 	// submit button
 	loadSubmitButton ("Submit Your Comment", {
@@ -144,7 +178,6 @@ function loadReviewCommentSubmissionForm (content, options) {
 		if (validated) {
 			$(defaultSubmissionFormContainer).hide();
 			postReviewCommentsSubmissionForm(contentId, defaultSubmissionThankYouContainer, function (content) {
-					console.log("submitted");
 					loadReviewCommentSubmissionThankYouWidget (content, {
 						"parentContainer":settings["parentContainer"],
 						"productId":productId,
@@ -173,7 +206,9 @@ function loadReviewCommentSubmissionForm (content, options) {
 		if (validated) {
 			$(defaultSubmissionFormContainer).hide();
 			postReviewCommentsSubmissionForm(contentId, defaultSubmissionPreviewContainer, function (content) {
-					console.log("preview");
+					// update content to have matching review node so the preview will match the display
+					content = updateCommentPreviewNode(content);
+					// comment preview
 					loadReviewCommentSubmissionPreviewWidget (content, {
 						"parentContainer":settings["parentContainer"],
 						"productId":productId,
@@ -237,6 +272,7 @@ function loadReviewCommentTitleInput (content, options) {
 	var inputName = settings["inputSettings"]["inputName"];
 	var inputLabel = settings["inputSettings"]["inputLabel"];
 	var inputHelperText = settings["inputSettings"]["inputHelperText"];
+	var inputRequired = settings["inputSettings"]["inputRequired"];
 	// add input template
 	$container.append($template);
 	// set label
@@ -244,7 +280,8 @@ function loadReviewCommentTitleInput (content, options) {
 		"for":inputName
 	});
 	// if required field
-	if (settings["inputSettings"]["inputRequired"]) {
+	if (inputRequired) {
+		$($template).parent().addClass(requiredClass);
 		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// set helper text
@@ -280,7 +317,6 @@ function loadReviewCommentTextInput (content, options) {
 			"inputOptionsArray":content["Options"]
 		}
 	}, options);
-	console.log("test");
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
 	var $template = returnTemplate(settings["viewContainer"]);
@@ -288,6 +324,7 @@ function loadReviewCommentTextInput (content, options) {
 	var inputName = settings["inputSettings"]["inputName"];
 	var inputLabel = settings["inputSettings"]["inputLabel"];
 	var inputHelperText = settings["inputSettings"]["inputHelperText"];
+	var inputRequired = settings["inputSettings"]["inputRequired"];
 	// add input template
 	$container.append($template);
 	// set label
@@ -295,7 +332,8 @@ function loadReviewCommentTextInput (content, options) {
 		"for":inputName
 	});
 	// if required field
-	if (settings["inputSettings"]["inputRequired"]) {
+	if (inputRequired) {
+		$($template).parent().addClass(requiredClass);
 		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
 	}
 	// set helper text

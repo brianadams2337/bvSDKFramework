@@ -484,7 +484,7 @@ function loadReportInappropriateForm (content, options) {
 			"contentId":contentId,
 			"feedbackSettings":{
 				"contentType":contentType,
-				"reasonText":$template.find(defaultReportInappropriateTextInput).andSelf().filter(defaultReportInappropriateTextInput).val()
+				"reasonText":$($template).find(defaultReportInappropriateTextInput).andSelf().filter(defaultReportInappropriateTextInput).val()
 			}
 		});
 	});
@@ -563,8 +563,8 @@ function processFeedbackReportInappropriate (cookieName, options) {
 	var formContainer = $("form[data-feedbacktype='" + feedbackType + "'][data-contentid='" + contentId + "']");
 	// process report inappropriate
 	if (!$.cookie(cookieName) && !formContainer.hasClass("BVDisabled")) {
-		console.log(settings);
-		console.log(cookieName);
+		consoleLogFallback(settings);
+		consoleLogFallback(cookieName);
 		// if no cookie for this feedback (no previous reports)
 		postFeedbackForm (
 			contentId,
@@ -646,14 +646,16 @@ function loadFeedbackStatus (content, options) {
 		"data-contentid":contentId,
 		"data-feedbacktype":"statusMessage",
 	});
+	// set status container variable using data attribute - this needs to be done here to avoid a bug with fadeout in jQuery 1.9.1
+	var statusContainer = $("[data-feedbacktype='statusMessage'][data-contentid='" + contentId + "']");
 	// load close button
-	loadCloseButton ("close", {
+	loadGenericButton ("close", {
 		"parentContainer":$template,
 	})
 	// close button functionality
-	$($template).find(defaultButtonCloseContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonCloseContainer + " " + defaultButtonContainer).click(function() {
+	$($template).find(defaultButtonGenericContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonGenericContainer + " " + defaultButtonContainer).click(function() {
 		// close container
-		$($template).fadeOut(defaultToggleOptions);
+		$(statusContainer).fadeOut(defaultToggleOptions);
 	});
 }
 
