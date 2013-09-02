@@ -1,5 +1,5 @@
 // gets review submission form
-function getReviewsSubmissionForm (productID, callBack, options) {
+function getReviewsSubmissionForm (productID, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"productid":productID,
@@ -15,17 +15,22 @@ function getReviewsSubmissionForm (productID, callBack, options) {
 		data: params,
 		dataType: "jsonp",
 		success: function(data) {
-			console.log(data);
+			consoleLogFallback(data);
 			callBack(data, settings);
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
+			$(container).removeClass("_BVContentLoadingContainer").html("Submission is currently unavailable.")
 			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).addClass("_BVContentLoadingContainer");
 		}
 	});
 }
 
 // posts review submission form
-function postReviewsSubmissionForm (productID, callBack, options) {
+function postReviewsSubmissionForm (productID, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"productid":productID
@@ -34,14 +39,14 @@ function postReviewsSubmissionForm (productID, callBack, options) {
 	var apiCall = reviewsSubmissionAPICall(settings);
 	var url = apiCall["url"];
 	var params = $.param(apiCall["params"]);
-	console.log(params);
+	consoleLogFallback(params);
 	$.ajax({
 		type: "POST",
 		url: defaultReviewSubmissionFormProcessingFile,
 		data: params,
 		dataType: "json",
 		success: function(data) {
-			console.log(data);
+			consoleLogFallback(data);
 			if(data["HasErrors"]) {
 				var errorObject = data["FormErrors"]["FieldErrors"];
 				$(defaultFormErrorsContainer).html('');
@@ -49,13 +54,18 @@ function postReviewsSubmissionForm (productID, callBack, options) {
 					$('*[name="' + k + '"]').parent().parent().addClass('BVErrorText');
 					$('*[name="' + k + '"]').addClass('BVErrorBorder');
 					$(defaultFormErrorsContainer).append(v["Message"] + '<br/>');
+					$(defaultSubmissionFormContainer).show();
 				});
 			} else {
 				callBack(data, settings);
 			}
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).addClass("_BVContentLoadingContainer");
 		}
 	});
 }
@@ -109,7 +119,7 @@ function reviewsSubmissionAPICall (options) {
 	var url = "http://" + defaultSettings["URL"]["baseurl"] + "data/" + "submitreview." + defaultSettings["URL"]["format"];
 	
 	// set URL parameters for API call
-	var params = defaultSettings["Parameters"];
+	var params = returnAPIParameters(defaultSettings["Parameters"]);
 
 	// create array with url and parameters
 	var apiCall = {"url":url, "params":params};

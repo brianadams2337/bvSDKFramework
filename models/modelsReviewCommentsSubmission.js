@@ -1,5 +1,5 @@
 // gets review comment submission form
-function getReviewCommentsSubmissionForm (reviewid, callBack, options) {
+function getReviewCommentsSubmissionForm (reviewid, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"reviewid":reviewid,
@@ -15,17 +15,21 @@ function getReviewCommentsSubmissionForm (reviewid, callBack, options) {
 		data: params,
 		dataType: "jsonp",
 		success: function(data) {
-			console.log(data);
+			consoleLogFallback(data);
 			callBack(data, settings);
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).addClass("_BVContentLoadingContainer");
 		}
 	});
 }
 
 // posts review comment submission form
-function postReviewCommentsSubmissionForm (reviewid, callBack, options) {
+function postReviewCommentsSubmissionForm (reviewid, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"reviewid":reviewid,
@@ -35,14 +39,14 @@ function postReviewCommentsSubmissionForm (reviewid, callBack, options) {
 	var apiCall = reviewCommentsSubmissionAPICall(settings);
 	var url = apiCall["url"];
 	var params = $.param(apiCall["params"]);
-	console.log(params);
+	consoleLogFallback(params);
 	$.ajax({
 		type: "POST",
 		url: defaultReviewCommentSubmissionFormProcessingFile,
 		data: params,
 		dataType: "json",
 		success: function(data) {
-			console.log(data);
+			consoleLogFallback(data);
 			if(data["HasErrors"]) {
 				var errorObject = data["FormErrors"]["FieldErrors"];
 				$(defaultFormErrorsContainer).html('');
@@ -50,13 +54,18 @@ function postReviewCommentsSubmissionForm (reviewid, callBack, options) {
 					$('*[name="' + k + '"]').parent().parent().addClass('BVErrorText');
 					$('*[name="' + k + '"]').addClass('BVErrorBorder');
 					$(defaultFormErrorsContainer).append(v["Message"] + '<br/>');
+					$(defaultSubmissionFormContainer).show();
 				});
+			} else {
+				callBack(data, settings);
 			}
-
-			callBack(data, settings);
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).addClass("_BVContentLoadingContainer");
 		}
 	});
 }
@@ -72,7 +81,7 @@ function reviewCommentsSubmissionAPICall (options) {
 		"Parameters":{
 			"apiversion":apiDefaults["apiVersion"], //The API version.
 			"action":null, //The submission action to take -- either 'Preview' or 'Submit'. 'Preview' will show a draft of the content to be submitted; 'Submit' will submit the content. Note that if Action=Submit, the request must be an HTTP POST.
-			"agreedtotermsandconditions":true, //Boolean indicating whether or not the user agreed to the terms and conditions. Required depending on the client's settings.
+			"agreedtotermsandconditions":null, //Boolean indicating whether or not the user agreed to the terms and conditions. Required depending on the client's settings.
 			"callback":null, //Callback function name (JsonP).
 			"campaignId":null, //Arbitrary text that may be saved alongside content to indicate vehicle by which content was captured, e.g. “post-purchase email”.
 			"commenttext":null, //Value is comment body text.
@@ -102,7 +111,7 @@ function reviewCommentsSubmissionAPICall (options) {
 	var url = "http://" + defaultSettings["URL"]["baseurl"] + "data/" + "submitreviewcomment." + defaultSettings["URL"]["format"];
 	
 	// set URL parameters for API call
-	var params = defaultSettings["Parameters"];
+	var params = returnAPIParameters(defaultSettings["Parameters"]);
 
 	// create array with url and parameters
 	var apiCall = {"url":url, "params":params};

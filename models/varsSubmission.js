@@ -30,12 +30,18 @@ var defaultAdditionalFieldIndividualInputContainer = "._BVAdditionalFieldIndivid
 
 var defaultTagGroupInputContainer = "._BVTagGroupInputContainer"; // tags container
 
+var defaultPhotoUploadGroupInputContainer = "._BVPhotoUploadContainer" // photo upload group container
+var defaultPhotoUploadInputContainer = "._BVPhotoUploadInputContainer" // photo upload preview toggle container
+var defaultPhotoUploadPreviewContainer = "._BVPhotoUploadPreviewContainer" // photo upload preview toggle container
+
 var defaultTermsConditionsInputContainer = "._BVTermsConditionsContainer"; // terms and conditions container
 var defaultEmailAlertWhenCommentedInputContainer = "._BVEmailAlertWhenCommentedContainer"; // email alert when commented container
 var defaultEmailAlertWhenPublishedInputContainer = "._BVEmailAlertWhenPublishedContainer"; // email alert when published container
 
 var defaultFormInputContainer = "._BVFormInput"; // form input container
 var defaultFormInputWrapperContainer = "._BVFormInputWrapper"; // form input wrapper container
+var defaultFormPhotoCaptionInputWrapperContainer = "._BVPhotoCaptionInputWrapper"; // form input wrapper container
+var defaultFormPhotoUrlInputWrapperContainer = "._BVPhotoUrlInputWrapper"; // form input wrapper container
 
 var defaultReviewVideoInputContainer = "._BVVideoUploadInputContainer"; // review video input
 var defaultReviewVideoCaptionInputContainer = "._BVVideoCaptionInputContainer"; // review video input
@@ -46,10 +52,14 @@ var defaultCheckboxGroupInputContainer = "._BVInputGroupContainer"; // checkbox 
 var defaultCheckboxIndividualInputContainer = "._BVCheckboxIndividualContainer"; // checkbox individual container
 var defaultFormSelectInputContainer = "._BVFormSelectInput"; // select input
 var defaultFormSelectOptionInputContainer = "._BVFormSelectOptionInput"; // option input
+var defaultUploadGroupInputContainer = "._BVInputGroupContainer"; // upload group container
+var defaultUploadIndividualInputContainer = "._BVUploadIndividualInputContainer"; // upload individual container
 
 var defaultFormLabelTextContainer = "._BVLabelText"; // text input label text
+var defaultFormRequiredLabelTextContainer = "._BVLabelText." + requiredClass; // text input required label text
 var defaultFormRadioLabelTextContainer = "._BVRadioLabelText"; // radio input label text
 var defaultFormCheckboxLabelTextContainer = "._BVCheckboxLabelText"; // checkbox input label text
+var defaultFormUploadLabelTextContainer = "._BVUploadLabelText"; // upload input label text
 var defaultFormHelperTextContainer = "._BVHelperText"; // input helper text
 var defaultFormCharacterCounterTextContainer = "._BVCharacterCounter"; // character counter
 var defaultFormCharacterCounterTextContainerText = "._BVCharacterCounterText"; // character counter suffix
@@ -57,6 +67,7 @@ var defaultFormCharacterCounterTextContainerText = "._BVCharacterCounterText"; /
 var defaultSubmissionButtonsContainer = "._BVFieldButtonGroup"; //Submit, Preview, Edit and Cancel button container
 
 var defaultTypicalHoursToPostTextContainer = "._BVTypicalHoursToPostText"; // time till post text on thank you page
+
 
 
 /***** HEADERS *****/

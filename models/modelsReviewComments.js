@@ -1,5 +1,5 @@
 // gets a single comment by ID (no filter, sorts, etc)
-function getSpecificReviewComments (reviewIDs, callBack, options) {
+function getSpecificReviewComments (reviewIDs, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"filter":{
@@ -7,22 +7,30 @@ function getSpecificReviewComments (reviewIDs, callBack, options) {
 			}
 		}
 	}, options);
-	var url = reviewCommentsAPICall(settings);
+	var apiCall = reviewCommentsAPICall(settings);
+	var urlString = apiCall["url"];
+	var paramObject = apiCall["params"];
+	var paramString = returnAPIParametersString(apiCall["params"]);
 	$.ajax({
 		type: "GET",
-		url: url,
+		url: urlString,
+		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			callBack(data, settings);
+			callBack(data, paramObject);
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).empty().addClass("_BVContentLoadingContainer");
 		}
 	});
 }
 
 // gets all comments - set productID to null to return all reviews
-function getAllReviewComments (reviewID, callBack, options) {
+function getAllReviewComments (reviewID, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"filter":{
@@ -30,16 +38,24 @@ function getAllReviewComments (reviewID, callBack, options) {
 			},
 		}
 	}, options);
-	var url = reviewCommentsAPICall(settings);
+	var apiCall = reviewCommentsAPICall(settings);
+	var urlString = apiCall["url"];
+	var paramObject = apiCall["params"];
+	var paramString = returnAPIParametersString(apiCall["params"]);
 	$.ajax({
 		type: "GET",
-		url: url,
+		url: urlString,
+		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			callBack(data, settings);
+			callBack(data, paramObject);
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).empty().addClass("_BVContentLoadingContainer");
 		}
 	});
 }
@@ -111,12 +127,15 @@ function reviewCommentsAPICall (options) {
 	}, options);
 
 	// set URL base for API call
-	var url = "http://" + defaultSettings["URL"]["baseurl"] + "data/" + "reviewcomments." + defaultSettings["URL"]["format"] + "?";
-	
-	// add URL parameters for API call
-	url =  addAPIParameters(url, defaultSettings["Parameters"]);
+	var url = "http://" + defaultSettings["URL"]["baseurl"] + "data/" + "reviewcomments." + defaultSettings["URL"]["format"];
+
+	// set URL parameters for API call
+	var params = returnAPIParameters(defaultSettings["Parameters"]);
+
+	// create array with url and parameters
+	var apiCall = {"url":url, "params":params};
 
 	// return the API call
-	return url;
+	return apiCall;
 
 };

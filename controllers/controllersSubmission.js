@@ -6,11 +6,9 @@
 function loadUserNicknameInput (content, options) {
 	var content = content["Data"]["Fields"]["usernickname"];
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultUserNicknameInputContainer,
 		"viewContainer":defaultInputContainerView,
-		"loadOrder":"",
-		"productId":"",
 		"inputSettings":{
 			"inputName":content["Id"],
 			"inputType":content["Type"],
@@ -25,29 +23,31 @@ function loadUserNicknameInput (content, options) {
 			"inputOptionsArray":content["Options"]
 		}
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		success: function(container) {
-			var $container = $(container);
-			// set label
-			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(settings["inputSettings"]["inputLabel"]).attr({
-				"for":settings["inputSettings"]["inputName"]
-			});
-			// set helper text
-			$container.find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(settings["inputSettings"]["inputHelperText"]);
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-			// load input
-			loadTextFieldInput (content, {
-				"parentContainer":$container,
-				"inputSettings":settings["inputSettings"]
-			});
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var inputName = settings["inputSettings"]["inputName"];
+	var inputLabel = settings["inputSettings"]["inputLabel"];
+	var inputHelperText = settings["inputSettings"]["inputHelperText"];
+	var inputRequired = settings["inputSettings"]["inputRequired"];
+	// add input template
+	$container.append($template);
+	// set label
+	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel).attr({
+		"for":inputName
+	});
+	// if required field
+	if (inputRequired) {
+		$($template).parent().addClass(requiredClass);
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
+	}
+	// set helper text
+	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).html(inputHelperText);
+	// load input
+	loadTextFieldInput (content, {
+		"parentContainer":$template,
+		"inputSettings":settings["inputSettings"]
 	});
 }
 
@@ -55,11 +55,9 @@ function loadUserNicknameInput (content, options) {
 function loadUserEmailInput (content, options) {
 	var content = content["Data"]["Fields"]["useremail"];
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultUserEmailInputContainer,
 		"viewContainer":defaultInputContainerView,
-		"loadOrder":"",
-		"productId":"",
 		"inputSettings":{
 			"inputName":content["Id"],
 			"inputType":content["Type"],
@@ -74,29 +72,31 @@ function loadUserEmailInput (content, options) {
 			"inputOptionsArray":content["Options"]
 		}
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		success: function(container) {
-			var $container = $(container);
-			// set label
-			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(settings["inputSettings"]["inputLabel"]).attr({
-				"for":settings["inputSettings"]["inputName"]
-			});
-			// set helper text
-			$container.find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(settings["inputSettings"]["inputHelperText"]);
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-			// load input
-			loadTextFieldInput (content, {
-				"parentContainer":$container,
-				"inputSettings":settings["inputSettings"]
-			});
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var inputName = settings["inputSettings"]["inputName"];
+	var inputLabel = settings["inputSettings"]["inputLabel"];
+	var inputHelperText = settings["inputSettings"]["inputHelperText"];
+	var inputRequired = settings["inputSettings"]["inputRequired"];
+	// add input template
+	$container.append($template);
+	// set label
+	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel).attr({
+		"for":inputName
+	});
+	// if required field
+	if (inputRequired) {
+		$($template).parent().addClass(requiredClass);
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
+	}
+	// set helper text
+	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).html(inputHelperText);
+	// load input
+	loadTextFieldInput (content, {
+		"parentContainer":$template,
+		"inputSettings":settings["inputSettings"]
 	});
 }
 
@@ -104,11 +104,9 @@ function loadUserEmailInput (content, options) {
 function loadUserLocationInput (content, options) {
 	var content = content["Data"]["Fields"]["userlocation"];
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultUserLocationInputContainer,
 		"viewContainer":defaultInputContainerView,
-		"loadOrder":"",
-		"productId":"",
 		"inputSettings":{
 			"inputName":content["Id"],
 			"inputType":content["Type"],
@@ -123,29 +121,31 @@ function loadUserLocationInput (content, options) {
 			"inputOptionsArray":content["Options"]
 		}
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		success: function(container) {
-			var $container = $(container);
-			// set label
-			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(settings["inputSettings"]["inputLabel"]).attr({
-				"for":settings["inputSettings"]["inputName"]
-			});
-			// set helper text
-			$container.find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(settings["inputSettings"]["inputHelperText"]);
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-			// load input
-			loadTextFieldInput (content, {
-				"parentContainer":$container,
-				"inputSettings":settings["inputSettings"]
-			});
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var inputName = settings["inputSettings"]["inputName"];
+	var inputLabel = settings["inputSettings"]["inputLabel"];
+	var inputHelperText = settings["inputSettings"]["inputHelperText"];
+	var inputRequired = settings["inputSettings"]["inputRequired"];
+	// add input template
+	$container.append($template);
+	// set label
+	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel).attr({
+		"for":inputName
+	});
+	// if required field
+	if (inputRequired) {
+		$($template).parent().addClass(requiredClass);
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
+	}
+	// set helper text
+	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).html(inputHelperText);
+	// load input
+	loadTextFieldInput (content, {
+		"parentContainer":$template,
+		"inputSettings":settings["inputSettings"]
 	});
 }
 
@@ -153,11 +153,9 @@ function loadUserLocationInput (content, options) {
 function loadUserIDInput (content, options) {
 	var content = content["Data"]["Fields"]["userid"];
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultUserIdInputContainer,
 		"viewContainer":defaultInputContainerView,
-		"loadOrder":"",
-		"productId":"",
 		"inputSettings":{
 			"inputName":"userid",
 			"inputType":"hidden",
@@ -172,29 +170,31 @@ function loadUserIDInput (content, options) {
 			"inputOptionsArray":""
 		}
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		success: function(container) {
-			var $container = $(container);
-			// set label
-			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(settings["inputSettings"]["inputLabel"]).attr({
-				"for":settings["inputSettings"]["inputName"]
-			});
-			// set helper text
-			$container.find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(settings["inputSettings"]["inputHelperText"]);
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-			// load input
-			loadTextFieldInput (content, {
-				"parentContainer":$container,
-				"inputSettings":settings["inputSettings"]
-			});
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var inputName = settings["inputSettings"]["inputName"];
+	var inputLabel = settings["inputSettings"]["inputLabel"];
+	var inputHelperText = settings["inputSettings"]["inputHelperText"];
+	var inputRequired = settings["inputSettings"]["inputRequired"];
+	// add input template
+	$container.append($template);
+	// set label
+	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel).attr({
+		"for":inputName
+	});
+	// if required field
+	if (inputRequired) {
+		$($template).parent().addClass(requiredClass);
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
+	}
+	// set helper text
+	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).html(inputHelperText);
+	// load input
+	loadTextFieldInput (content, {
+		"parentContainer":$template,
+		"inputSettings":settings["inputSettings"]
 	});
 }
 
@@ -207,53 +207,45 @@ function loadUserIDInput (content, options) {
 // additional fields group container
 function loadAdditionalFieldGroupInput (content, options) {
 	var defaultLoadOrder = new Array();
-	$.each(content["Data"]["Groups"]["additionalfield"]["SubElements"], function() {
-		defaultLoadOrder.push(this["Id"]);
-	});
+	if (content["Data"]["Groups"]["additionalfield"] != undefined) {
+		$.each(content["Data"]["Groups"]["additionalfield"]["SubElements"], function() {
+			defaultLoadOrder.push(this["Id"]);
+		});
+	}
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultAdditionalFieldGroupInputContainer,
 		"viewContainer":defaultAdditionalFieldContainerView,
 		"loadOrder":defaultLoadOrder,
-		"productId":"",
 		"inputSettings":{
 			"inputType":content["Type"],
 			"inputRequired":content["Required"],
 			"inputSubElements":content["SubElements"]
 		}
 	}, options);
-	$.each(settings["loadOrder"], function(key) {
-		var fieldContent = content["Data"]["Fields"][this];
-		$.ajax({
-			url: settings["viewContainer"],
-			type: 'GET',
-			dataType: 'html',
-			async: false,
-			success: function(container) {
-				var $container = $(container);
-				// add individual additional field template
-				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
-				// load additional field input container
-				loadAdditionalFieldIndividualInput(fieldContent, {
-					"parentContainer":$container
-				});
-			},
-			error: function(e) {
-				defaultAjaxErrorFunction(e);
-			}
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(key) {
+			var fieldContent = content["Data"]["Fields"][this];
+			// set container & template
+			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+			var $template = returnTemplate(settings["viewContainer"]);
+			// add individual additional field template
+			$container.append($template);
+			// load additional field input container
+			loadAdditionalFieldIndividualInput(fieldContent, {
+				"parentContainer":$template
+			});
 		});
-	});
+	}
 }
 
 // additional field individual container
 function loadAdditionalFieldIndividualInput (content, options) {
 	// content is expecting ["Data"]["Fields"][<contextdatavalue_Value>]
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultAdditionalFieldIndividualInputContainer,
 		"viewContainer":defaultInputContainerView,
-		"loadOrder":"",
-		"productId":"",
 		"inputSettings":{
 			"inputName":content["Id"],
 			"inputType":content["Type"],
@@ -268,35 +260,29 @@ function loadAdditionalFieldIndividualInput (content, options) {
 			"inputOptionsArray":content["Options"]
 		}
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// set variables
-			var inputId = settings["inputSettings"]["inputName"] + "WrapperID"; // id attribute
-			var inputName = settings["inputSettings"]["inputName"]; // name of input
-			var inputLabel = settings["inputSettings"]["inputLabel"]; // input label text
-			var inputRequired = settings["inputSettings"]["inputRequired"]; // required boolean
-			var inputType = settings["inputSettings"]["inputType"]; // input type (radio or select dropdown)
-			// set label
-			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(inputLabel).attr({
-				"for":(inputName + "ID")
-			});
-			// add additional field template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).attr({
-				"id":inputId
-			}).append($container);
-			// load text field
-			loadTextFieldInput(content, {
-				"parentContainer":$container
-			});
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var inputId = settings["inputSettings"]["inputName"] + "WrapperID"; // id attribute
+	var inputName = settings["inputSettings"]["inputName"]; // name of input
+	var inputLabel = settings["inputSettings"]["inputLabel"]; // input label text
+	var inputRequired = settings["inputSettings"]["inputRequired"]; // required boolean
+	var inputType = settings["inputSettings"]["inputType"]; // input type (radio or select dropdown)
+	// add title template
+	$container.attr({"id":inputId}).append($template);
+	// set label
+	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel).attr({
+		"for":(inputName + "ID")
+	});
+	// if required field
+	if (inputRequired) {
+		$($template).parent().addClass(requiredClass);
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
+	}
+	// load text field
+	loadTextFieldInput(content, {
+		"parentContainer":$template
 	});
 }
 
@@ -309,53 +295,53 @@ function loadAdditionalFieldIndividualInput (content, options) {
 // cdv group container
 function loadContextDataValueGroupInput (content, options) {
 	var defaultLoadOrder = new Array();
-	$.each(content["Data"]["Groups"]["contextdatavalue"]["SubElements"], function() {
-		defaultLoadOrder.push(this["Id"]);
-	});
+	if (content["Data"]["Groups"]["contextdatavalue"] != undefined) {
+		$.each(content["Data"]["Groups"]["contextdatavalue"]["SubElements"], function() {
+			defaultLoadOrder.push(this["Id"]);
+		});
+	}
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultContextDataValueGroupInputContainer,
 		"viewContainer":defaultContextDataValueContainerView,
 		"loadOrder":defaultLoadOrder,
-		"productId":"",
 		"inputSettings":{
 			"inputType":content["Type"],
 			"inputRequired":content["Required"],
 			"inputSubElements":content["SubElements"]
 		}
 	}, options);
-	$.each(settings["loadOrder"], function(key) {
-		var fieldContent = content["Data"]["Fields"][this];
-		$.ajax({
-			url: settings["viewContainer"],
-			type: 'GET',
-			dataType: 'html',
-			async: false,
-			success: function(container) {
-				var $container = $(container);
-				// add individual context data value template
-				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
-				// load context data value input container
-				loadContextDataValueIndividualInput(fieldContent, {
-					"parentContainer":$container
-				});
-			},
-			error: function(e) {
-				defaultAjaxErrorFunction(e);
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(key) {
+			var fieldContent = content["Data"]["Fields"][this];
+			// set container & template
+			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+			var $template = returnTemplate(settings["viewContainer"]);
+			// set variables
+			var inputHelperText = new String ();
+			if (fieldContent["Id"] == "contextdatavalue_rewardZoneMembershipV3") {
+				inputHelperText = "Reward Zone Members: Get bonus points for your approved review (see rules*)."
 			}
+			// add individual context data value template
+			$container.append($template);
+			// load context data value input container
+			loadContextDataValueIndividualInput(fieldContent, {
+				"parentContainer":$template,
+				"inputSettings":{
+					"inputHelperText":inputHelperText
+				}
+			});
 		});
-	});
+	}
 }
 
 // cdv individual container
 function loadContextDataValueIndividualInput (content, options) {
 	// content is expecting ["Data"]["Fields"][<contextdatavalue_Value>]
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultContextDataValueIndividualInputContainer,
 		"viewContainer":defaultInputContainerView,
-		"loadOrder":"",
-		"productId":"",
 		"inputSettings":{
 			"inputName":content["Id"],
 			"inputType":content["Type"],
@@ -370,55 +356,54 @@ function loadContextDataValueIndividualInput (content, options) {
 			"inputOptionsArray":content["Options"]
 		}
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// set variables
-			var inputId = settings["inputSettings"]["inputName"] + "WrapperID"; // id attribute
-			var inputName = settings["inputSettings"]["inputName"]; // name of input
-			var inputLabel = settings["inputSettings"]["inputLabel"]; // input label text
-			var inputRequired = settings["inputSettings"]["inputRequired"]; // required boolean
-			var inputType = settings["inputSettings"]["inputType"]; // input type (radio or select dropdown)
-			// set label
-			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(inputLabel).attr({
-				"for":(inputName + "ID")
-			});
-			// add context data value template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).attr({
-				"id":inputId
-			}).append($container);
-			// load select/radio input
-			if (inputType == "SelectInput") {
-				// load select(dropdown)
-				loadSelectInput(content, {
-					"parentContainer":$container
-				});
-			} else {
-				// set radio button load order
-				var defaultLoadOrder = new Array();
-				$.each(content["Options"], function(index) {
-					if (this["Label"]) {
-						var obj = {};
-						obj[this["Value"]] = this["Label"];
-						defaultLoadOrder[index] = obj;
-					};
-				});
-				// load radio buttons
-				loadRadioInputIndividual (content, {
-					"parentContainer":$container,
-					"targetContainer":defaultFormInputWrapperContainer,
-					"loadOrder":defaultLoadOrder
-				});
-			}
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var inputId = settings["inputSettings"]["inputName"] + "WrapperID"; // id attribute
+	var inputName = settings["inputSettings"]["inputName"]; // name of input
+	var inputLabel = settings["inputSettings"]["inputLabel"]; // input label text
+	var inputHelperText = settings["inputSettings"]["inputHelperText"]; // input helper text
+	var inputRequired = settings["inputSettings"]["inputRequired"]; // required boolean
+	var inputType = settings["inputSettings"]["inputType"]; // input type (radio or select dropdown)
+	// add context data value template
+	$container.attr({"id":inputId}).append($template);
+	// set label
+	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel).attr({
+		"for":(inputName + "ID")
 	});
+	// set helper text
+	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).html(inputHelperText);
+	// if required field
+	if (inputRequired) {
+		$($template).parent().addClass(requiredClass);
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
+	}
+	// load select/radio input
+	if (inputType == "SelectInput") {
+		// load select(dropdown)
+		loadSelectInput(content, {
+			"parentContainer":$template
+		});
+	} else {
+		// set radio button load order
+		var defaultLoadOrder = new Array();
+		if (content["Options"] != undefined) {
+			$.each(content["Options"], function(index) {
+				if (this["Label"]) {
+					var obj = {};
+					obj[this["Value"]] = this["Label"];
+					defaultLoadOrder[index] = obj;
+				};
+			});
+		}
+		// load radio buttons
+		loadRadioInputIndividual (content, {
+			"parentContainer":$template,
+			"targetContainer":defaultFormInputWrapperContainer,
+			"loadOrder":defaultLoadOrder
+		});
+	}
 }
 
 
@@ -429,15 +414,16 @@ function loadContextDataValueIndividualInput (content, options) {
 
 function loadTagGroupInput (content, options) {
 	var defaultLoadOrder = new Array();
-	$.each(content["Data"]["Groups"]["tag"]["SubElements"], function() {
-		defaultLoadOrder.push(this["Id"]);
-	});
+	if (content["Data"]["Groups"]["tag"] != undefined) {
+		$.each(content["Data"]["Groups"]["tag"]["SubElements"], function() {
+			defaultLoadOrder.push(this["Id"]);
+		});
+	}
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultTagGroupInputContainer,
 		"viewContainer":defaultTagIndividualGroupContainerView,
 		"loadOrder":defaultLoadOrder,
-		"productId":"",
 		"inputSettings":{
 			"inputName":content["Id"],
 			"inputType":content["Type"],
@@ -446,74 +432,128 @@ function loadTagGroupInput (content, options) {
 			"inputSubElements":content["SubElements"]
 		}
 	}, options);
-	$.each(settings["loadOrder"], function(key, value) {
-		$.ajax({
-			url: settings["viewContainer"],
-			type: 'GET',
-			dataType: 'html',
-			async: false,
-			success: function(container) {
-				var $container = $(container);
-				// set label
-				var inputLabel = content["Data"]["Groups"][value]["Label"];
-				$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(inputLabel);
-				// add input template
-				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
-				// set order to load inputs
-				var tagLoadOrder = new Array ();
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(key, value) {
+			// set container & template
+			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+			var $template = returnTemplate(settings["viewContainer"]);
+			// set variables
+			var inputLabel = content["Data"]["Groups"][value]["Label"];
+			// add input template
+			$container.append($template);
+			// set label
+			$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
+			// if required field
+			if (settings["inputSettings"]["inputRequired"]) {
+				$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
+			}
+			// set order to load inputs
+			// pre-defined tags load order
+			var tagLoadOrder = new Array ();
+			// open text field tags load order
+			var tagOpenFieldLoadOrder = new Array ();
+			// sort tag into their respective load order arrays
+			if (content["Data"]["Groups"][value] != undefined) {
 				$.each(content["Data"]["Groups"][value]["SubElements"], function() {
-					$.each(content["Data"]["Groups"][this["Id"]]["SubElements"], function() {
-						tagLoadOrder.push(this["Id"]);
-					})
+					if (content["Data"]["Groups"][this["Id"]] != undefined) {
+						$.each(content["Data"]["Groups"][this["Id"]]["SubElements"], function() {
+							// check if field type is TextInput (open text) or Boolean (pre-defined)
+							if (content["Data"]["Fields"][this["Id"]]["Type"] == "TextInput") {
+								tagOpenFieldLoadOrder.push(this["Id"]);
+							} else {
+								tagLoadOrder.push(this["Id"]);
+							}
+						});
+					}
 				});
-				// load inputs
-				loadTagIndividualInput (content, {
-					"parentContainer":$container,
-					"loadOrder":tagLoadOrder
+			}
+			// load pre-defined tags
+			if (tagLoadOrder != undefined) {
+				$.each(tagLoadOrder, function() {
+					// load inputs
+					loadTagIndividualInput (content, {
+						"parentContainer":$template,
+						"loadOrder":this,
+					});
 				});
-			},
-			error: function(e) {
-				defaultAjaxErrorFunction(e);
+			}
+			// load open text field tags
+			if (tagOpenFieldLoadOrder != undefined) {
+				$.each(tagOpenFieldLoadOrder, function(key, value) {
+					// only show first open text feild tag
+					if ((key + 1) == 1) {
+						settings["inputSettings"]["inputHidden"] = false;
+					} else {
+						settings["inputSettings"]["inputHidden"] = true;
+					}
+					// load inputs
+					loadTagIndividualInput (content, {
+						"parentContainer":$template,
+						"loadOrder":this,
+						"inputSettings":{
+							"inputHidden":settings["inputSettings"]["inputHidden"],
+							"inputPlaceholder":"Add your own tag",
+						},
+					});
+				});
 			}
 		});
-	});
+	}
 }
 
 function loadTagIndividualInput (content, options) {
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultCheckboxGroupInputContainer,
 		"viewContainer":defaultTagIndividualContainerView,
-		"loadOrder":"",
-		"productId":"",
 		"inputSettings":{
 			"inputName":content["Id"],
 			"inputType":content["Type"],
+			"inputHidden":false,
 			"inputLabel":content["Label"],
 			"inputRequired":content["Required"],
 			"inputSubElements":content["SubElements"]
 		}
 	}, options);
-	$.each(settings["loadOrder"], function(key, value) {
-		$.ajax({
-			url: settings["viewContainer"],
-			type: 'GET',
-			dataType: 'html',
-			async: false,
-			success: function(container) {
-				var $container = $(container);
-				// add tag template
-				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
-				// load checkbox
-				loadCheckboxInputField (content["Data"]["Fields"][value], {
-					"parentContainer":$container
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var inputPlaceholder = settings["inputSettings"]["inputPlaceholder"];
+	// add tag template
+	$container.append($template);
+	// check if input should be hidden
+	if (settings["inputSettings"]["inputHidden"]) {
+		$($template).hide();
+	}
+	// load checkbox
+	loadCheckboxInputField (content["Data"]["Fields"][settings["loadOrder"]], {
+		"parentContainer":$template,
+		"inputSettings":{
+			"inputPlaceholder":inputPlaceholder
+		}
+	});
+	if (content["Data"]["Fields"][settings["loadOrder"]]["Type"] == "TextInput") {
+		// run once user clicks outside of text field
+		$($template).focusout( function() {
+			// check to see if this field has any text (no need to show a new field if this field can still be used)
+			if ($("input[type='text'][name='" + content["Data"]["Fields"][settings["loadOrder"]]["Id"] + "']").val().trim().length > 0) {
+				// array of open text tag values (used to see if a new empty field is needed)
+				var tagOpenTextValues = new Array();
+				$($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).find("input[type='text']").andSelf().filter("input[type='text']").not(":hidden").each(function() {
+					tagOpenTextValues.push($(this).val().trim());
 				});
-			},
-			error: function(e) {
-				defaultAjaxErrorFunction(e);
+				// check to see if an empty text field tag is already showing
+				if ($.inArray("", tagOpenTextValues) == -1) {
+					// loop through all tags within this target container (use target to keep your search localized to this group)
+					$($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).children(":hidden:first").each(function() {
+						// move element to last position and show
+						$(this).detach().appendTo($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).show();
+					});
+				}
 			}
 		});
-	});
+	}
 }
 
 
@@ -525,32 +565,32 @@ function loadTagIndividualInput (content, options) {
 function loadTermsAndConditionsInput (content, options) {
 	var content = content["Data"]["Fields"]["agreedtotermsandconditions"];
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultTermsConditionsInputContainer,
 		"viewContainer":defaultTermsConditionsContainerView,
-		"loadOrder":"",
-		"productId":""
+		"inputSettings":{
+			"inputRequired":content["Required"],
+		}
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
-			// load checkbox
-			loadCheckboxInputField (content, {
-				"parentContainer":$container,
-				"inputSettings":{
-					"inputLabel":labelsSubmissionOptIns["termsAndConditions"],
-					"inputValue":true,
-				}
-			});
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var inputRequired = settings["inputSettings"]["inputRequired"]; // required boolean
+	// add input template
+	$container.append($template);
+	// if required field
+	if (inputRequired) {
+		$($template).parent().addClass(requiredClass);
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
+	}
+	// load checkbox
+	loadCheckboxInputField (content, {
+		"parentContainer":$template,
+		"inputSettings":{
+			"inputLabel":labelsSubmissionOptIns["termsAndConditions"],
+			"inputValue":true,
+			"inputRequired":true,
 		}
 	});
 }
@@ -558,32 +598,21 @@ function loadTermsAndConditionsInput (content, options) {
 function loadSendEmailAlertWhenCommentedInput (content, options) {
 	content = content["Data"]["Fields"]["sendemailalertwhencommented"];
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultEmailAlertWhenCommentedInputContainer,
 		"viewContainer":defaultEmailWhenCommentedContainerView,
-		"loadOrder":"",
-		"productId":""
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
-			// load checkbox
-			loadCheckboxInputField (content, {
-				"parentContainer":$container,
-				"inputSettings":{
-					"inputLabel":labelsSubmissionOptIns["emailAlertWhenCommented"],
-					"inputValue":true,
-				}
-			});
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// add input template
+	$container.append($template);
+	// load checkbox
+	loadCheckboxInputField (content, {
+		"parentContainer":$template,
+		"inputSettings":{
+			"inputLabel":labelsSubmissionOptIns["emailAlertWhenCommented"],
+			"inputValue":true,
 		}
 	});
 }
@@ -591,32 +620,21 @@ function loadSendEmailAlertWhenCommentedInput (content, options) {
 function loadSendEmailAlertWhenPublishedInput (content, options) {
 	var content = content["Data"]["Fields"]["sendemailalertwhenpublished"];
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultEmailAlertWhenPublishedInputContainer,
 		"viewContainer":defaultEmailAlertWhenPublishedContainerView,
-		"loadOrder":"",
-		"productId":""
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
-			// load checkbox
-			loadCheckboxInputField (content, {
-				"parentContainer":$container,
-				"inputSettings":{
-					"inputLabel":labelsSubmissionOptIns["emailAlertWhenPublished"],
-					"inputValue":true,
-				}
-			});
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// add input template
+	$container.append($template);
+	// load checkbox
+	loadCheckboxInputField (content, {
+		"parentContainer":$template,
+		"inputSettings":{
+			"inputLabel":labelsSubmissionOptIns["emailAlertWhenPublished"],
+			"inputValue":true,
 		}
 	});
 }
@@ -631,102 +649,107 @@ function loadSendEmailAlertWhenPublishedInput (content, options) {
 // generic text field
 function loadTextFieldInput (content, options) {
 	var settings = $.extend(true, {
-		"parentContainer":"",
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultFormInputWrapperContainer,
 		"viewContainer":defaultInputTextFieldContainerView,
-		"loadOrder":"",
-		"productId":"",
 		"inputSettings":{
-			"inputName":"",
-			"inputType":"",
-			"inputLabel":"",
+			"inputName":content["Id"],
+			"inputType":content["Type"],
+			"inputLabel":content["Label"],
 			"inputPlaceholder":"", // user defined
-			"inputValue":"",
-			"inputMinLength":"",
-			"inputMaxLength":"",
-			"inputRequired":"",
-			"inputDefault":"",
-			"inputOptionsArray":""
+			"inputValue":content["Value"],
+			"inputMinLength":content["MinLength"],
+			"inputMaxLength":content["MaxLength"],
+			"inputRequired":content["Required"],
+			"inputDefault":content["Default"],
+			"inputOptionsArray":content["Options"]
 		}
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		success: function(container) {
-			var $container = $(container);
-			// set variables
-			var inputId = settings["inputSettings"]["inputName"];
-			// set label
-			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(settings["inputSettings"]["inputLabel"]).attr({
-				"for":settings["inputSettings"]["inputName"]
-			});
-			// set input attributes
-			$container.find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
-				"id":inputId,
-				"name":settings["inputSettings"]["inputName"],
-				"value":settings["inputSettings"]["inputValue"],
-				"placeholder":settings["inputSettings"]["inputPlaceholder"],
-				"data-required":settings["inputSettings"]["inputRequired"]
-			});
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var inputId = settings["inputSettings"]["inputName"];
+	var inputMinLength = settings["inputSettings"]["inputMinLength"];
+	var inputMaxLength = settings["inputSettings"]["inputMaxLength"];
+	var inputRequired = settings["inputSettings"]["inputRequired"]; // required boolean
+	// add input template
+	$container.append($template);
+	// if required field
+	if (inputRequired) {
+		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass).attr({
+			"data-required":inputRequired,
+		});
+	}
+	// set input attributes
+	$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
+		"id":inputId,
+		"name":settings["inputSettings"]["inputName"],
+		"value":settings["inputSettings"]["inputValue"],
+		"placeholder":settings["inputSettings"]["inputPlaceholder"],
+		"data-minlength":inputMinLength,
+		"data-maxlength":inputMaxLength,
 	});
+	if (inputId == "useremail") {
+		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
+			"data-type":"email",
+		});
+	}
+	if (inputId == "usernickname") {
+		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
+			"data-type":"alphanum",
+		});
+	}
 }
 
 // generic text area
 function loadTextAreaInput (content, options) {
 	var settings = $.extend(true, {
-		"parentContainer":"",
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultFormInputWrapperContainer,
 		"viewContainer":defaultInputTextAreaContainerView,
-		"loadOrder":"",
-		"productId":"",
 		"inputSettings":{
-			"inputName":"",
-			"inputType":"",
-			"inputLabel":"",
+			"inputName":content["Id"],
+			"inputType":content["Type"],
+			"inputLabel":content["Label"],
 			"inputPlaceholder":"", // user defined
-			"inputValue":"",
-			"inputMinLength":"",
-			"inputMaxLength":"",
-			"inputRequired":"",
-			"inputDefault":"",
-			"inputOptionsArray":""
+			"inputValue":content["Value"],
+			"inputMinLength":content["MinLength"],
+			"inputMaxLength":content["MaxLength"],
+			"inputRequired":content["Required"],
+			"inputDefault":content["Default"],
+			"inputOptionsArray":content["Options"]
 		}
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// set variables
-			var inputId = settings["inputSettings"]["inputName"];
-			// set label
-			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(settings["inputSettings"]["inputLabel"]).attr({
-				"for":settings["inputSettings"]["inputName"]
-			});
-			// set input attributes
-			$container.find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
-				"id":inputId,
-				"name":settings["inputSettings"]["inputName"],
-				"value":settings["inputSettings"]["inputValue"],
-				"placeholder":settings["inputSettings"]["inputPlaceholder"],
-				"data-required":settings["inputSettings"]["inputRequired"]
-			});
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-		
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var inputId = settings["inputSettings"]["inputName"];
+	var inputMinLength = settings["inputSettings"]["inputMinLength"];
+	var inputMaxLength = settings["inputSettings"]["inputMaxLength"];
+	var inputRequired = settings["inputSettings"]["inputRequired"];
+	// add title template
+	$container.append($template);
+	// set label
+	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(settings["inputSettings"]["inputLabel"]).attr({
+		"for":settings["inputSettings"]["inputName"]
+	});
+	// if required field
+	if (inputRequired) {
+		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass).attr({
+			"data-required":inputRequired,
+		});
+	}
+	// set input attributes
+	$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
+		"id":inputId,
+		"name":settings["inputSettings"]["inputName"],
+		"value":settings["inputSettings"]["inputValue"],
+		"placeholder":settings["inputSettings"]["inputPlaceholder"],
+		"data-required":settings["inputSettings"]["inputRequired"],
+		"data-minlength":inputMinLength,
+		"data-maxlength":inputMaxLength,
 	});
 }
 
@@ -740,11 +763,10 @@ function loadTextAreaInput (content, options) {
 function loadRadioInputIndividual (content, options) {
 	// object containing value and label text [<value>:<lable text>]
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer, // needs to be given a more specific container if called more than once
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultRadioButtonGroupInputContainer,
 		"viewContainer":defaultInputRadioContainerView,
 		"loadOrder":"", // this must be defined in the call
-		"productId":"",
 		"inputSettings":{
 			"inputName":content["Id"],
 			"inputType":content["Type"],
@@ -758,49 +780,44 @@ function loadRadioInputIndividual (content, options) {
 			"inputOptionsArray":content["Options"]
 		}
 	}, options);
-	$.each (settings["loadOrder"], function(key, value) {
-		$.ajax({
-			url: settings["viewContainer"],
-			type: 'GET',
-			dataType: 'html',
-			async: false,
-			success: function(container) {
-				var $container = $(container);
-				// set variables
-				var inputValue = key; // radio value
-				var inputLabel = value; // radio label text
-				var inputName = settings["inputSettings"]["inputName"]; // input name attribute
-				var inputId = inputName + inputValue; // id attribute
-				var inputRequired = settings["inputSettings"]["inputRequired"]; // required boolean
-				var inputSelected = settings["inputSettings"]["inputValue"]; // selected value
-				// set label
-				$container.find(defaultFormRadioLabelTextContainer).andSelf().filter(defaultFormRadioLabelTextContainer).text(inputLabel).attr({
-					"for":inputId
+	if (settings["loadOrder"] != undefined) {
+		$.each (settings["loadOrder"], function(key, value) {
+			// set container & template
+			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+			var $template = returnTemplate(settings["viewContainer"]);
+			// set variables
+			var inputValue = key; // radio value
+			var inputLabel = value; // radio label text
+			var inputName = settings["inputSettings"]["inputName"]; // input name attribute
+			var inputId = inputName + inputValue; // id attribute
+			var inputRequired = settings["inputSettings"]["inputRequired"]; // required boolean
+			var inputSelected = settings["inputSettings"]["inputValue"]; // selected value
+			// add input template
+			$container.append($template);
+			// set label
+			$($template).find(defaultFormRadioLabelTextContainer).andSelf().filter(defaultFormRadioLabelTextContainer).html(inputLabel).attr({
+				"for":inputId
+			});
+			// if required field
+			if (inputRequired) {
+				$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass).attr({
+					"data-required":inputRequired,
 				});
-				// set input attributes
-				$container.find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
-					"id":inputId,
-					"name":inputName,
-					"value":inputValue
+			}
+			// set input attributes
+			$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
+				"id":inputId,
+				"name":inputName,
+				"value":inputValue
+			});
+			// selected value
+			if (inputValue == inputSelected) {
+				$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
+					"checked":"checked",
 				});
-				// selected value
-				if (inputValue == inputSelected) {
-					$container.find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
-						"checked":"checked",
-					});
-				}
-				// required
-				if (inputRequired == true) {
-					$container.find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass("required");
-				}
-				// add input template
-				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
-			},
-			error: function(e) {
-				defaultAjaxErrorFunction(e);
 			}
 		});
-	});
+	}
 }
 
 
@@ -813,11 +830,9 @@ function loadRadioInputIndividual (content, options) {
 function loadSelectInput (content, options) {
 	// content expected ["Data"]["Fields"][<contextdatavalue_Value>]
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultFormInputWrapperContainer,
 		"viewContainer":defaultInputSelectContainerView,
-		"loadOrder":"",
-		"productId":"",
 		"inputSettings":{
 			"inputName":content["Id"],
 			"inputType":content["Type"],
@@ -832,93 +847,82 @@ function loadSelectInput (content, options) {
 			"inputOptionsArray":content["Options"]
 		}
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// set variables
-			var inputId = settings["inputSettings"]["inputName"] + "ID"; // id attribute
-			var inputName = settings["inputSettings"]["inputName"]; // name of select input
-			var inputRequired = settings["inputSettings"]["inputRequired"]; // required boolean
-			var inputOptions = settings["inputSettings"]["inputOptionsArray"]; // options to be loaded in the dropdown
-			// set input attributes
-			$container.find(defaultFormSelectInputContainer).andSelf().filter(defaultFormSelectInputContainer).attr({
-				"id":inputId,
-				"name":inputName
-			});
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
-			// load select options
-			loadSelectOptionsInput(inputOptions, {
-				"parentContainer":$container
-			});
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var inputId = settings["inputSettings"]["inputName"] + "ID"; // id attribute
+	var inputName = settings["inputSettings"]["inputName"]; // name of select input
+	var inputRequired = settings["inputSettings"]["inputRequired"]; // required boolean
+	var inputOptions = settings["inputSettings"]["inputOptionsArray"]; // options to be loaded in the dropdown
+	// add input template
+	$container.append($template);
+	// if required field
+	if (inputRequired) {
+		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass).attr({
+			"data-required":inputRequired,
+		});
+	}
+	// set input attributes
+	$($template).find(defaultFormSelectInputContainer).andSelf().filter(defaultFormSelectInputContainer).attr({
+		"id":inputId,
+		"name":inputName
+	});
+	// load select options
+	loadSelectOptionsInput(inputOptions, {
+		"parentContainer":$template
 	});
 }
 
-// generic option inpute
+// generic option input
 function loadSelectOptionsInput (content, options) {
 	// content expected ["Data"]["Fields"][<contextdatavalue_Value>]["Options"]
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultFormSelectInputContainer,
 		"viewContainer":defaultInputSelectOptionContainerView,
 		"loadOrder":content,
-		"productId":"",
 		"inputSettings":{
 			"inputValue":content["Value"],
 			"inputSelected":content["Selected"],
 			"inputLabel":content["Label"]
 		}
 	}, options);
-	$.each(settings["loadOrder"], function(key) {
-		$.ajax({
-			url: settings["viewContainer"],
-			type: 'GET',
-			dataType: 'html',
-			async: false,
-			success: function(container) {
-				var $container = $(container);
-				// set variables
-				var inputValue = settings["loadOrder"][key]["Value"]; // option value
-				var inputLabel = settings["loadOrder"][key]["Label"]; // option label text
-				var inputSelected = settings["loadOrder"][key]["Selected"]; // option selected boolean
-				// set input attributes
-				$container.find(defaultFormSelectOptionInputContainer).andSelf().filter(defaultFormSelectOptionInputContainer).html(inputLabel).attr({
-					"label":"",
-					"value":inputValue,
-					"selected":inputSelected,
-					"disabled":false
-				});
-				// add input template
-				$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
-			},
-			error: function(e) {
-				defaultAjaxErrorFunction(e);
-			}
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(key) {
+			// set container & template
+			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+			var $template = returnTemplate(settings["viewContainer"]);
+			// set variables
+			var inputValue = settings["loadOrder"][key]["Value"]; // option value
+			var inputLabel = settings["loadOrder"][key]["Label"]; // option label text
+			var inputSelected = settings["loadOrder"][key]["Selected"]; // option selected boolean
+			// add title template
+			$container.append($template);
+			// set input attributes
+			$($template).find(defaultFormSelectOptionInputContainer).andSelf().filter(defaultFormSelectOptionInputContainer).html(inputLabel).attr({
+				"label":"",
+				"value":inputValue,
+				"selected":inputSelected,
+				"disabled":false
+			});
 		});
-	});
+	}
 }
 
 function loadCheckboxInputField (content, options) {
 	// content expected ["Data"]["Fields"][<fieldname>]
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer, // needs to be given a more specific container if called more than once
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultCheckboxIndividualInputContainer,
 		"viewContainer":defaultInputCheckboxIndividualContainerView,
 		"loadOrder":"", // this must be defined in the call
-		"productId":"",
 		"inputSettings":{
 			"inputName":content["Id"],
 			"inputType":content["Type"],
 			"inputLabel":content["Label"],
 			"inputPlaceholder":"", // user defined
+			"inputHidden":false, // user defined
 			"inputValue":content["Value"],
 			"inputMinLength":content["MinLength"],
 			"inputMaxLength":content["MaxLength"],
@@ -927,74 +931,77 @@ function loadCheckboxInputField (content, options) {
 			"inputOptionsArray":content["Options"]
 		}
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		async: false,
-		success: function(container) {
-			var $container = $(container);
-			// set variables
-			var inputValue = settings["inputSettings"]["inputValue"]; // checkbox value
-			var inputLabel = settings["inputSettings"]["inputLabel"]; // checkbox label text
-			var inputName = settings["inputSettings"]["inputName"]; // input name attribute
-			var inputId = settings["inputSettings"]["inputName"]; // id attribute
-			var inputRequired = settings["inputSettings"]["inputRequired"]; // required boolean
-			var inputType = settings["inputSettings"]["inputType"];
-			var inputPlaceholder = settings["inputSettings"]["inputPlaceholder"];
-			// set label
-			if (inputType !== "TextInput") {
-				$container.find(defaultFormCheckboxLabelTextContainer).andSelf().filter(defaultFormCheckboxLabelTextContainer).text(inputLabel).attr({
-					"for":inputId
-				});
-			} else {
-				loadTextFieldInput(content, {
-					"parentContainer":$container,
-					"targetContainer":$container.find(defaultFormCheckboxLabelTextContainer).andSelf().filter(defaultFormCheckboxLabelTextContainer).attr({
-						"for":inputId
-					}),
-					"inputSettings":{
-						"inputName":inputName,
-						"inputPlaceholder":inputPlaceholder
-					}
-				});
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var inputValue = settings["inputSettings"]["inputValue"]; // checkbox value
+	var inputLabel = settings["inputSettings"]["inputLabel"]; // checkbox label text
+	var inputName = settings["inputSettings"]["inputName"]; // input name attribute
+	var inputId = settings["inputSettings"]["inputName"]; // id attribute
+	var inputRequired = settings["inputSettings"]["inputRequired"]; // required boolean
+	var inputType = settings["inputSettings"]["inputType"];
+	var inputPlaceholder = settings["inputSettings"]["inputPlaceholder"];
+	// add input template
+	$container.append($template);
+	// if required field
+	if (inputRequired) {
+		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass).attr({
+			"data-required":inputRequired,
+		});
+	}
+	// set label
+	if (inputType !== "TextInput") {
+		$($template).find(defaultFormCheckboxLabelTextContainer).andSelf().filter(defaultFormCheckboxLabelTextContainer).text(inputLabel).attr({
+			"for":inputId
+		});
+		// set checkbox input attributes
+		$($template).find(defaultFormInputContainer + "[type='checkbox']").andSelf().filter(defaultFormInputContainer + "[type='checkbox']").attr({
+			"id":inputId,
+			"name":inputName,
+			"value":true,
+		});
+	} else {
+		loadTextFieldInput(content, {
+			"parentContainer":$template,
+			"targetContainer":$($template).find(defaultFormCheckboxLabelTextContainer).andSelf().filter(defaultFormCheckboxLabelTextContainer).attr({
+				"for":inputId
+			}),
+			"inputSettings":{
+				"inputName":inputName,
+				"inputPlaceholder":inputPlaceholder
 			}
-			// set input attributes
-			$container.find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
-				"id":inputId,
-				"name":inputName,
-				"value":inputValue,
-			});
-			/* may be needed for editing
-			// selected value
-			if (inputValue) {
-				$container.find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
-					"checked":true,
-				});
-			}
-			*/
-			// add functionality to update checked attribute on change
-			$container.change(function() {
-				if (this.checked) {
-					$(this).attr({
-						"checked":true,
-					});
-				} else {
-					$(this).attr({
-						"checked":false,
-					});
-				}
-			});
-			// required
-			if (inputRequired == true) {
-				$container.find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass("required");
-			}
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).append($container);
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
+		});
+		// set checkbox input attributes
+		$($template).find(defaultFormInputContainer + "[type='checkbox']").andSelf().filter(defaultFormInputContainer + "[type='checkbox']").attr({
+			"id":inputId,
+			"name":inputName,
+			"value":"",
+		});
+	}
+	// may be needed for editing
+	// // selected value
+	// if (inputValue) {
+	// 	$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
+	// 		"checked":true,
+	// 	});
+	// }
+	
+	// add functionality to update checked attribute on change
+	$($template).change(function() {
+		if (this.checked) {
+			// enable text input
+			$($template).find(defaultFormInputContainer + "[type='text']").andSelf().filter(defaultFormInputContainer + "[type='text']").prop('disabled', false);
+			// check checkbox
+			$($template).find(defaultFormInputContainer + "[type='checkbox']").andSelf().filter(defaultFormInputContainer + "[type='checkbox']").prop('checked', true);
+		} else {
+			// disbale text input
+			$($template).find(defaultFormInputContainer + "[type='text']").andSelf().filter(defaultFormInputContainer + "[type='text']").prop('disabled', true);
+			// uncheck checkbox
+			$($template).find(defaultFormInputContainer + "[type='checkbox']").andSelf().filter(defaultFormInputContainer + "[type='checkbox']").prop('checked', false);
 		}
+		// focus on text input container
+		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).focus()
 	});
 }
 
@@ -1007,11 +1014,9 @@ function loadCheckboxInputField (content, options) {
 function loadYoutubeUrlInput (content, options) {
 	var content = content["Data"]["Fields"]["videourl_1"];
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultReviewVideoInputContainer,
 		"viewContainer":defaultInputContainerView,
-		"loadOrder":"",
-		"productId":"",
 		"inputSettings":{
 			"inputName":content["Id"],
 			"inputType":content["Type"],
@@ -1026,41 +1031,38 @@ function loadYoutubeUrlInput (content, options) {
 			"inputOptionsArray":content["Options"]
 		}
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		success: function(container) {
-			var $container = $(container);
-			// set label
-			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(settings["inputSettings"]["inputLabel"]).attr({
-				"for":settings["inputSettings"]["inputName"]
-			});
-			// set helper text
-			$container.find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(settings["inputSettings"]["inputHelperText"]);
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-			// load input
-			loadTextFieldInput (content, {
-				"parentContainer":$container,
-				"targetContainer":defaultFormInputWrapperContainer,
-				"inputSettings":settings["inputSettings"]
-			});
-		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
-		}
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var inputName = settings["inputSettings"]["inputName"];
+	var inputLabel = settings["inputSettings"]["inputLabel"];
+	var inputHelperText = settings["inputSettings"]["inputHelperText"];
+	// add input template
+	$container.append($template);
+	// set label
+	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel).attr({
+		"for":inputName
+	});
+	// if required field
+	if (settings["inputSettings"]["inputRequired"]) {
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
+	}
+	// set helper text
+	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).html(inputHelperText);
+	// load input
+	loadTextFieldInput (content, {
+		"parentContainer":$template,
+		"inputSettings":settings["inputSettings"]
 	});
 }
 
 function loadVideoCaptionInput (content, options) {
 	var content = content["Data"]["Fields"]["videocaption_1"];
 	var settings = $.extend(true, {
-		"parentContainer":defaultSubmissionFormContainer,
+		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultReviewVideoCaptionInputContainer,
 		"viewContainer":defaultInputContainerView,
-		"loadOrder":"",
-		"productId":"",
 		"inputSettings":{
 			"inputName":content["Id"],
 			"inputType":content["Type"],
@@ -1075,31 +1077,410 @@ function loadVideoCaptionInput (content, options) {
 			"inputOptionsArray":content["Options"]
 		}
 	}, options);
-	$.ajax({
-		url: settings["viewContainer"],
-		type: 'GET',
-		dataType: 'html',
-		success: function(container) {
-			var $container = $(container);
-			// set label
-			$container.find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).text(settings["inputSettings"]["inputLabel"]).attr({
-				"for":settings["inputSettings"]["inputName"]
-			});
-			// set helper text
-			$container.find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(settings["inputSettings"]["inputHelperText"]);
-			// add input template
-			$(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]).html($container);
-			// load input
-			loadTextFieldInput (content, {
-				"parentContainer":$container,
-				"targetContainer":defaultFormInputWrapperContainer,
-				"inputSettings":settings["inputSettings"]
-			});
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var inputName = settings["inputSettings"]["inputName"];
+	var inputLabel = settings["inputSettings"]["inputLabel"];
+	var inputHelperText = settings["inputSettings"]["inputHelperText"];
+	// add input template
+	$container.append($template);
+	// set label
+	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel).attr({
+		"for":inputName
+	});
+	// if required field
+	if (settings["inputSettings"]["inputRequired"]) {
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
+	}
+	// set helper text
+	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).html(inputHelperText);
+	// load input
+	loadTextFieldInput (content, {
+		"parentContainer":$template,
+		"targetContainer":defaultFormInputWrapperContainer,
+		"inputSettings":settings["inputSettings"]
+	});
+}
+
+function loadPhotoGroupInput (content, options) {
+	var defaultLoadOrder = new Array();
+	if (content["Data"]["Groups"]["photo"] != undefined) {
+		$.each(content["Data"]["Groups"]["photo"]["SubElements"], function() {
+			defaultLoadOrder.push(this["Id"]);
+		});
+	}
+	var settings = $.extend(true, {
+		"parentContainer":"", // container must be defined in call
+		"targetContainer":defaultPhotoUploadGroupInputContainer,
+		"viewContainer":defaultInputUploadGroupContainerView,
+		"loadOrder":defaultLoadOrder,
+		"inputSettings":{
+			"inputName":content["Id"],
+			"inputType":content["Type"],
+			"inputHidden":false,
+			"inputLabel":content["Label"],
+			"inputRequired":content["Required"],
+			"inputSubElements":content["SubElements"]
 		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
+		"mediaSettings":{
+			"contentType":"",
+		}
+	}, options);
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var inputLabel = settings["inputSettings"]["inputLabel"];
+	// add input template
+	$container.append($template);
+	// set label
+	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
+	// if required field
+	if (settings["inputSettings"]["inputRequired"]) {
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
+	}
+	// load photo upload inputs
+	if (settings["loadOrder"] != undefined) {
+		$.each(settings["loadOrder"], function(key, value) {
+			// set order to load inputs
+			var photoLoadOrder = new Array ();
+			if (content["Data"]["Groups"][value] != undefined) {
+				$.each(content["Data"]["Groups"][value]["SubElements"], function() {
+					photoLoadOrder.push(this["Id"]);
+				});
+			}
+			if ((key + 1) == settings["loadOrder"].length) {
+				settings["inputSettings"]["inputHidden"] = false;
+			} else {
+				settings["inputSettings"]["inputHidden"] = true;
+			}
+			// load photo upload input
+			loadPhotoFileUploadInput (content, {
+				"parentContainer":$template,
+				"loadOrder":photoLoadOrder,
+				"inputSettings":{
+					"inputHidden":settings["inputSettings"]["inputHidden"],
+				},
+				"mediaSettings":{
+					"contentType":settings["mediaSettings"]["contentType"],
+				}
+			});
+		});
+	}
+}
+
+function loadPhotoFileUploadInput (content, options) {
+	var settings = $.extend(true, {
+		"parentContainer":"", // container must be defined in call
+		"targetContainer":defaultUploadGroupInputContainer,
+		"viewContainer":defaultInputUploadIndividualContainerView,
+		"inputSettings":{
+			"inputName":content["Id"],
+			"inputType":content["Type"],
+			"inputHidden":false,
+			"inputLabel":content["Label"],
+			"inputRequired":content["Required"],
+			"inputSubElements":content["SubElements"]
+		},
+		"mediaSettings":{
+			"contentType":"",
+		}
+	}, options);
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	if (settings["inputSettings"]["inputHidden"]) {
+		$($template).hide();
+	}
+	// set variables
+	var urlInputName = settings["loadOrder"][0];
+	var uploadInputName = "photo"; // DO NOT CHANGE - must be photo for upload to work
+	var inputLabel = settings["inputSettings"]["inputLabel"];
+	// add photo template
+	$container.append($template);
+	// set label
+	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel);
+	// set attributes
+	$($template).attr({
+		"data-state":"input",
+	});
+	// if required field
+	if (settings["inputSettings"]["inputRequired"]) {
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
+	}
+	// load file upload input (this returns the url needed to submit the photo)
+	loadUploadInput (content["Data"]["Fields"][urlInputName], {
+		"parentContainer":$template,
+		"inputSettings":{
+			"inputName":uploadInputName
+		}
+	});
+	// set functionality for upload input
+	postPhotoSubmissionForm (settings["productId"], function(data) {
+		// set variables
+		var uploadInput = "input[name='" + uploadInputName + "']";
+		// submit photo using the jquery.fileupload.js plugin to allow ajax submission without embedding a form
+		$($template).find(uploadInput).andSelf().filter(uploadInput).fileupload({
+			type: "POST",
+			url: defaultPhotoUploadProcessingFile,
+			formData: data["params"],
+			dataType: "json",
+	        done: function (e, result) {
+				// load photo url input (this is what actually submits the photo)
+				loadPhotoUploadPreviewInput (content, {
+					"parentContainer":$template,
+					"loadOrder":settings["loadOrder"]
+				});
+				// array to hold photo response in json. needed to replicate object sent on json response for display
+				var arrPhoto = new Array ();
+				arrPhoto.push(result["result"]["Photo"]);
+				// load photo thumbnail
+				loadReviewPhotosGroup (result["result"]["Photo"], {
+					"parentContainer":$template,
+					"loadOrder":arrPhoto
+				});
+				// set value on photo url input
+				var urlInput = "input[name='" + urlInputName + "']";
+				var urlPhotoNormal = result["result"]["Photo"]["Sizes"]["normal"]["Url"];
+				$($template).find(urlInput).andSelf().filter(urlInput).attr({
+					"value":urlPhotoNormal
+				});
+				// load remove button
+				loadGenericButton ("remove", {
+					"parentContainer":$template,
+					"viewContainer":"#bvtemplate-button-close-universal"
+				})
+				// remove button functionality
+				$($template).find(defaultButtonGenericContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonGenericContainer + " " + defaultButtonContainer).click(function() {
+					// remove uploaded photo
+					// show input field and empty photo container
+					$($template).find(defaultPhotoUploadInputContainer).andSelf().filter(defaultPhotoUploadInputContainer).show();
+					$($template).find(defaultPhotoUploadPreviewContainer).andSelf().filter(defaultPhotoUploadPreviewContainer).empty();
+					// update state of container and hide
+					$($template).attr({"data-state":"input"}).hide();
+					// check to see if a new input is needed
+					if ($($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).children("[data-state='input']:visible").length == 0) {
+						// find next hidden upload input and show if available
+						$($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).children("[data-state='input']:hidden:first").each(function() {
+							$(this).detach().prependTo($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).show();
+						})
+					}
+				});
+				// find next hidden upload input and show if available
+				$($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).children("[data-state='input']:hidden:first").each(function() {
+					// move element to last position and show
+					$(this).detach().prependTo($(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"])).show();
+				})
+	        	// show uploaded image preview container and update state of container
+	        	$($($template).attr({"data-state":"file"}).removeClass("_BVContentLoadingContainer")).find(defaultPhotoUploadPreviewContainer).andSelf().filter(defaultPhotoUploadPreviewContainer).show();
+	        },
+			fail: function(e) {
+				consoleLogFallback("there was an error. please try again.", data);
+	        	// show uploaded image preview container
+	        	$($($template).removeClass("_BVContentLoadingContainer")).find(defaultPhotoUploadInputContainer).andSelf().filter(defaultPhotoUploadInputContainer).show();
+				defaultAjaxErrorFunction(e);
+			},
+			beforeSend: function() {
+				// hide file upload input
+				$($template).addClass("_BVContentLoadingContainer").find(defaultPhotoUploadInputContainer).andSelf().filter(defaultPhotoUploadInputContainer).hide();
+	        }
+	    });
+	}, {
+		"Parameters":{
+			"contenttype":settings["mediaSettings"]["contentType"],
 		}
 	});
 }
 
+function loadPhotoUploadPreviewInput (content, options) {
+	var settings = $.extend(true, {
+		"parentContainer":"", // container must be defined in call
+		"targetContainer":defaultPhotoUploadPreviewContainer,
+		"viewContainer":defaultInputUploadPhotoPreviewContainerView,
+		"inputSettings":{
+			"inputName":content["Id"],
+			"inputType":content["Type"],
+			"inputLabel":content["Label"],
+			"inputRequired":content["Required"],
+			"inputSubElements":content["SubElements"]
+		}
+	}, options);
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var urlInputName = settings["loadOrder"][0];
+	var captionInputName = settings["loadOrder"][1];
+	var inputName = settings["inputSettings"]["inputName"];
+	// add photo template
+	$container.append($template);
+	// hide photo preview container on load
+	$($template).find(defaultPhotoUploadPreviewContainer).andSelf().filter(defaultPhotoUploadPreviewContainer).hide();
+	// load photo caption input
+	loadPhotoCaptionInput (content["Data"]["Fields"][captionInputName], {
+		"parentContainer":$template,
+		"inputSettings":{
+			"inputLabel":"Add Caption",
+		}
+	});
+	// load photo url input (hidden)
+	loadPhotoUrlInput (content["Data"]["Fields"][urlInputName], {
+		"parentContainer":$template,
+	});
+}
 
+function loadPhotoCaptionInput (content, options) {
+	var settings = $.extend(true, {
+		"parentContainer":"", // container must be defined in call
+		"targetContainer":defaultFormPhotoCaptionInputWrapperContainer,
+		"viewContainer":defaultInputContainerView,
+		"inputSettings":{
+			"inputName":content["Id"],
+			"inputType":content["Type"],
+			"inputLabel":content["Label"],
+			"inputPlaceholder":"", // user defined
+			"inputHelperText":"", // user defined
+			"inputValue":content["Value"],
+			"inputMinLength":content["MinLength"],
+			"inputMaxLength":content["MaxLength"],
+			"inputRequired":content["Required"],
+			"inputDefault":content["Default"],
+			"inputOptionsArray":content["Options"]
+		}
+	}, options);
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	inputLabel = settings["inputSettings"]["inputLabel"];
+	inputName = settings["inputSettings"]["inputName"];
+	inputHelperText = settings["inputSettings"]["inputHelperText"];
+	// add input template
+	$container.append($template);
+	// set label
+	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel).attr({
+		"for":inputName,
+	});
+	// if required field
+	if (settings["inputSettings"]["inputRequired"]) {
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
+	}
+	// set helper text
+	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(inputHelperText);
+	// load input
+	loadTextFieldInput (content, {
+		"parentContainer":$template,
+		"inputSettings":settings["inputSettings"]
+	});
+}
+
+function loadPhotoUrlInput (content, options) {
+	var settings = $.extend(true, {
+		"parentContainer":"", // container must be defined in call
+		"targetContainer":defaultFormPhotoUrlInputWrapperContainer,
+		"viewContainer":defaultInputContainerView,
+		"inputSettings":{
+			"inputName":content["Id"],
+			"inputType":content["Type"],
+			"inputLabel":content["Label"],
+			"inputPlaceholder":"", // user defined
+			"inputHelperText":"", // user defined
+			"inputValue":content["Value"],
+			"inputMinLength":content["MinLength"],
+			"inputMaxLength":content["MaxLength"],
+			"inputRequired":content["Required"],
+			"inputDefault":content["Default"],
+			"inputOptionsArray":content["Options"]
+		}
+	}, options);
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	inputLabel = settings["inputSettings"]["inputLabel"];
+	inputName = settings["inputSettings"]["inputName"];
+	inputHelperText = settings["inputSettings"]["inputHelperText"];
+	// add input template
+	$container.append($template);
+	// hide container
+	$($template).hide();
+	// set label
+	$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).html(inputLabel).attr({
+		"for":inputName,
+	});
+	// if required field
+	if (settings["inputSettings"]["inputRequired"]) {
+		$($template).find(defaultFormLabelTextContainer).andSelf().filter(defaultFormLabelTextContainer).addClass(requiredClass);
+	}
+	// set helper text
+	$($template).find(defaultFormHelperTextContainer).andSelf().filter(defaultFormHelperTextContainer).text(inputHelperText);
+	// load photo url input (hidden)
+	loadTextFieldInput (content, {
+		"parentContainer":$template,
+		"viewContainer":defaultInputTextFieldHiddenContainerView,
+		"inputSettings":settings["inputSettings"]
+	});
+}
+
+// load an upload input
+function loadUploadInput (content, options) {
+	// content expected ["Data"]["Fields"][<fieldname>]
+	var settings = $.extend(true, {
+		"parentContainer":"", // container must be defined in call
+		"targetContainer":defaultUploadIndividualInputContainer,
+		"viewContainer":defaultInputUploadPhotoContainerView,
+		"inputSettings":{
+			"inputName":content["Id"],
+			"inputType":content["Type"],
+			"inputLabel":content["Label"],
+			"inputPlaceholder":"", // user defined
+			"inputValue":content["Value"],
+			"inputMinLength":content["MinLength"],
+			"inputMaxLength":content["MaxLength"],
+			"inputRequired":content["Required"],
+			"inputDefault":content["Default"],
+			"inputOptionsArray":content["Options"]
+		}
+	}, options);
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var inputLabel = settings["inputSettings"]["inputLabel"]; // input label text
+	var inputName = settings["inputSettings"]["inputName"]; // input name attribute
+	var inputId = settings["inputSettings"]["inputName"]; // id attribute
+	var inputRequired = settings["inputSettings"]["inputRequired"]; // required boolean
+	var inputType = settings["inputSettings"]["inputType"];
+	var inputPlaceholder = settings["inputSettings"]["inputPlaceholder"];
+	// add input template
+	$container.append($template);
+	// set label
+	$($template).find(defaultFormUploadLabelTextContainer).andSelf().filter(defaultFormUploadLabelTextContainer).html(inputLabel).attr({
+		"for":inputId
+	});
+	// set input attributes
+	$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).attr({
+		"id":inputId,
+		"name":inputName,
+	});
+	// required
+	if (inputRequired == true) {
+		$($template).find(defaultFormInputContainer).andSelf().filter(defaultFormInputContainer).addClass(requiredClass);
+	}
+}
+
+// load indicators for required input
+function loadRequiredIndicators (content, options) {
+	var settings = $.extend(true, {
+		"parentContainer":"", // container must be defined in call
+		"targetContainer":defaultFormRequiredLabelTextContainer,
+		"viewContainer":defaultInputRequiredIndicatorContainerView,
+	}, options);
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// add input template
+	$container.append($template);
+}

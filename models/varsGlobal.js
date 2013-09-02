@@ -1,13 +1,13 @@
 /***** CLIENT DEFAULTS *****/
 
 // url path for staging site
-var stagingURL = "http://localhost:8888/bvSDKFramework/";
-var stagingSubmissionURL = "http://localhost:8888/bvSDKFramework/submission.html?";
+var stagingURL = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/";
+var stagingSubmissionURL = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/submission.html?";
 // url pate for production site
-var productionURL = "http://localhost:8888/bvSDKFramework/";
-var productionSubmissionURL = "http://localhost:8888/bvSDKFramework/submission.html?";
+var productionURL = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/";
+var productionSubmissionURL = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/submission.html?";
 
-// api parameter deautls
+// api parameter defaults
 var apiDefaults = {
 	"stagURL": "stg.api.bazaarvoice.com/",
 	"prodURL": "api.bazaarvoice.com/",
@@ -30,10 +30,10 @@ var apiDefaults = {
 };
 
 var bvUserDefaults = {
-	"bvUAS": typeof userToken != 'undefined' ? userToken : (function(){console.log("userToken variable not declared");})(), // encoded user string, or userToken if set
+	"bvUAS": typeof userToken != 'undefined' ? userToken : (function(){})(), // encoded user string, or userToken if set
 	"userId": "testuser",
 	"userEmail":"bvspambox@gmail.com", //User's email address
-	"userLocation":"austin, tx", //User location text
+	"userLocation":null, //User location text
 	"userNickname":"testuser", //User nickname display text
 };
 
@@ -79,23 +79,53 @@ var defaultToggleOptions = {
 	queue: true
 };
 
+/***** INLINE VALIDATION OPTIONS *****/
+var requiredClass = "BVRequired";
 
+var defaultInlineValidationOption = {
+	successClass: 'BVSuccess',
+	errorClass: 'BVError',
+	messages: {
+		"required":"This is a required field.",
+		"alphanum":"You may not enter spaces or special characters, numbers and letters only.",
+	},
+	errors: {
+		container: function (elem, isRadioOrCheckbox) {
+			return $(elem).closest(".BVField");
+		},
+		classHandler: function (elem, isRadioOrCheckbox) {
+			return $(elem).closest(".BVField");
+		},
+		errorsWrapper:"<div class='BVErrorContainerInline'></div>",
+		errorElem:"<div class='BVErrorInline'></div>",
+	}
+};
+
+/***** DECIMAL TRUNCATION OPTIONS *****/
+var defaultDecimalOptions = {
+	"overallAverage": 1,
+	"secondaryAverage": 1,
+	"overall": 1,
+	"secondary": 1,
+	"overallRange": 0,
+	"secondaryRange": 0
+};
 
 /***** SERVER SIDE URLS *****/
 
 var defaultServerSideLanguage = "php";
 
-var defaultReviewSubmissionFormProcessingFile = defaultServerSideLanguage + "/" + "bvReviewSubmissionProcess" + "." + defaultServerSideLanguage;
-var defaultReviewCommentSubmissionFormProcessingFile = defaultServerSideLanguage + "/" + "bvReviewCommentSubmissionProcess" + "." + defaultServerSideLanguage;
-var defaultQuestionSubmissionFormProcessingFile = defaultServerSideLanguage + "/" + "bvQuestionSubmissionProcess" + "." + defaultServerSideLanguage;
-var defaultAnswerSubmissionFormProcessingFile = defaultServerSideLanguage + "/" + "bvAnswerSubmissionProcess" + "." + defaultServerSideLanguage;
-var defaultStorySubmissionFormProcessingFile = defaultServerSideLanguage + "/" + "bvStorySubmissionProcess" + "." + defaultServerSideLanguage;
-var defaultStoryCommentSubmissionFormProcessingFile = defaultServerSideLanguage + "/" + "bvStoryCommentSubmissionProcess" + "." + defaultServerSideLanguage;
+var defaultReviewSubmissionFormProcessingFile = siteBaseURL + "php/bvReviewSubmissionProcess.php";
+var defaultReviewCommentSubmissionFormProcessingFile = siteBaseURL + "php/bvReviewCommentSubmissionProcess.php";
+var defaultQuestionSubmissionFormProcessingFile = siteBaseURL + "php/bvQuestionSubmissionProcess.php";
+var defaultAnswerSubmissionFormProcessingFile = siteBaseURL + "php/bvAnswerSubmissionProcess.php";
+var defaultStorySubmissionFormProcessingFile = siteBaseURL + "php/bvStorySubmissionProcess.php";
+var defaultStoryCommentSubmissionFormProcessingFile = siteBaseURL + "php/bvStoryCommentSubmissionProcess.php";
 
-var defaultFeedbackFormProcessingFile = defaultServerSideLanguage + "/" + "bvFeedbackProcess" + "." + defaultServerSideLanguage;
+var defaultFeedbackFormProcessingFile = siteBaseURL + "php/bvFeedbackProcess.php";
 
-var defaultPhotoUploadProcessingFile = defaultServerSideLanguage + "/" + "bvPhotoUploadProcess" + "." + defaultServerSideLanguage;
-var defaultVideoUploadFormProcessingFile = defaultServerSideLanguage + "/" + "bvVideoUploadProcess" + "." + defaultServerSideLanguage;
+var defaultPhotoUploadProcessingFile = siteBaseURL + "php/bvPhotoUploadProcess.php";
+var defaultVideoUploadFormProcessingFile = siteBaseURL + "php/bvVideoUploadProcess.php";
 
 
 

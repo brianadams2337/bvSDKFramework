@@ -14,6 +14,7 @@ var settings = $.extend(true, {
 		"inputLabel":"",
 		"inputPlaceholder":"", // USER DEFINED
 		"inputHelperText":"", // USER DEFINED
+		"inputHidden":"", // USER DEFINED
 		"inputValue":"",
 		"inputSelected":"",
 		"inputMinLength":"",
@@ -38,6 +39,17 @@ var settings = $.extend(true, {
 		"lastBtnBool":"",
 		"lastBtnLabel":"",
 		"totalPageBool":""
+	},
+	// helpfulness/inappropriate settings
+	"feedbackSettings":{
+		"contentType":"",
+		"feedbackType":"",
+		"vote":"",
+		"reasonText":""
+	},
+	// media submission settings
+	"mediaSettings":{
+		"contentType":""
 	},
 	// for pagination, filtering, sorting, etc
 	"viewReloadOptions":{

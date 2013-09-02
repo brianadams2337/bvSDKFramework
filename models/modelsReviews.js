@@ -1,5 +1,5 @@
 // gets a single review by ID (no filter, sorts, etc)
-function getSpecificReviews (reviewIDs, callBack, options) {
+function getSpecificReviews (reviewIDs, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"filter":{
@@ -7,22 +7,65 @@ function getSpecificReviews (reviewIDs, callBack, options) {
 			}
 		}
 	}, options);
-	var url = reviewsAPICall(settings);
+	var apiCall = reviewsAPICall(settings);
+	var urlString = apiCall["url"];
+	var paramObject = apiCall["params"];
+	var paramString = returnAPIParametersString(apiCall["params"]);
 	$.ajax({
 		type: "GET",
-		url: url,
+		url: urlString,
+		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			callBack(data, settings);
+			consoleLogFallback(data, paramString, paramObject);
+			callBack(data, paramObject);
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).empty().addClass("_BVContentLoadingContainer");
 		}
 	});
 }
 
 // gets all reviews with statistics - set productID to null to return all reviews
-function getAllReviews (productID, callBack, options) {
+function getAllReviews (productID, container, callBack, options) {
+	var settings = $.extend(true, {
+		"Parameters":{
+			"include":"products",
+			"filteredstats":"reviews",
+			"filter":{
+				"productid":productID,
+			}
+		}
+	}, options);
+	var apiCall = reviewsAPICall(settings);
+	var urlString = apiCall["url"];
+	var paramObject = apiCall["params"];
+	var paramString = returnAPIParametersString(apiCall["params"]);
+	$.ajax({
+		type: "GET",
+		url: urlString,
+		data: paramString,
+		dataType: "jsonp",
+		success: function(data) {
+			consoleLogFallback(data, urlString, paramString, paramObject);
+			callBack(data, paramObject);
+			$(container).removeClass("_BVContentLoadingContainer");
+		},
+		error: function(e) {
+			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).empty().addClass("_BVContentLoadingContainer");
+		}
+	});
+}
+
+// gets all reviews with statistics - set productID to null to return all reviews
+function getReviewsStats (productID, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"include":"products",
@@ -32,48 +75,31 @@ function getAllReviews (productID, callBack, options) {
 			}
 		}
 	}, options);
-	var url = reviewsAPICall(settings);
+	var apiCall = reviewsAPICall(settings);
+	var urlString = apiCall["url"];
+	var paramObject = apiCall["params"];
+	var paramString = returnAPIParametersString(apiCall["params"]);
 	$.ajax({
 		type: "GET",
-		url: url,
+		url: urlString,
+		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			console.log(data);
-			callBack(data, settings);
+			consoleLogFallback(data, paramString, paramObject);
+			callBack(data, paramObject);
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
-		}
-	});
-}
-
-// gets all reviews with statistics - set productID to null to return all reviews
-function getReviewsStats (productID, callBack, options) {
-	var settings = $.extend(true, {
-		"Parameters":{
-			"include":"products",
-			"stats":"reviews",
-			"filter":{
-				"productid":productID
-			}
-		}
-	}, options);
-	var url = reviewsAPICall(settings);
-	$.ajax({
-		type: "GET",
-		url: url,
-		dataType: "jsonp",
-		success: function(data) {
-			callBack(data, settings);
 		},
-		error: function(e) {
-			defaultAjaxErrorFunction(e);
+		beforeSend: function() {
+			$(container).empty().addClass("_BVContentLoadingContainer");
 		}
 	});
 }
 
 // gets all featured reviews - if no productID, all reviews will return
-function getFeaturedReviews (productID, callBack, options) {
+function getFeaturedReviews (productID, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"filter":{
@@ -82,22 +108,31 @@ function getFeaturedReviews (productID, callBack, options) {
 			}
 		}
 	}, options);
-	var url = reviewsAPICall(settings);
+	var apiCall = reviewsAPICall(settings);
+	var urlString = apiCall["url"];
+	var paramObject = apiCall["params"];
+	var paramString = returnAPIParametersString(apiCall["params"]);
 	$.ajax({
 		type: "GET",
-		url: url,
+		url: urlString,
+		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			callBack(data, settings);
+			consoleLogFallback(data, paramString, paramObject);
+			callBack(data, paramObject);
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).empty().addClass("_BVContentLoadingContainer");
 		}
 	});
 }
 
 // gets all reviews with photos - if no productID, all reviews will return
-function getPhotoReviews (productID, callBack, options) {
+function getPhotoReviews (productID, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"filter":{
@@ -106,22 +141,31 @@ function getPhotoReviews (productID, callBack, options) {
 			}
 		}
 	}, options);
-	var url = reviewsAPICall(settings);
+	var apiCall = reviewsAPICall(settings);
+	var urlString = apiCall["url"];
+	var paramObject = apiCall["params"];
+	var paramString = returnAPIParametersString(apiCall["params"]);
 	$.ajax({
 		type: "GET",
-		url: url,
+		url: urlString,
+		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			callBack(data, settings);
+			consoleLogFallback(data, paramString, paramObject);
+			callBack(data, paramObject);
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).empty().addClass("_BVContentLoadingContainer");
 		}
 	});
 }
 
 // gets all featured reviews with photos - if no productID, all reviews will return
-function getFeaturedPhotoReviews (productID, callBack, options) {
+function getFeaturedPhotoReviews (productID, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"filter":{
@@ -131,22 +175,31 @@ function getFeaturedPhotoReviews (productID, callBack, options) {
 			}
 		}
 	}, options);
-	var url = reviewsAPICall(settings);
+	var apiCall = reviewsAPICall(settings);
+	var urlString = apiCall["url"];
+	var paramObject = apiCall["params"];
+	var paramString = returnAPIParametersString(apiCall["params"]);
 	$.ajax({
 		type: "GET",
-		url: url,
+		url: urlString,
+		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			callBack(data, settings);
+			consoleLogFallback(data, paramString, paramObject);
+			callBack(data, paramObject);
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).empty().addClass("_BVContentLoadingContainer");
 		}
 	});
 }
 
 // create your own api call
-function getReviewsCustom (productID, callBack, options) {
+function getReviewsCustom (productID, container, callBack, options) {
 	var settings = $.extend(true, {
 		"Parameters":{
 			"filter":{
@@ -154,16 +207,25 @@ function getReviewsCustom (productID, callBack, options) {
 			}
 		}
 	}, options);
-	var url = reviewsAPICall(settings);
+	var apiCall = reviewsAPICall(settings);
+	var urlString = apiCall["url"];
+	var paramObject = apiCall["params"];
+	var paramString = returnAPIParametersString(apiCall["params"]);
 	$.ajax({
 		type: "GET",
-		url: url,
+		url: urlString,
+		data: paramString,
 		dataType: "jsonp",
 		success: function(data) {
-			callBack(data, settings);
+			consoleLogFallback(data, paramString, paramObject);
+			callBack(data, paramObject);
+			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
+		},
+		beforeSend: function() {
+			$(container).empty().addClass("_BVContentLoadingContainer");
 		}
 	});
 }
@@ -254,17 +316,21 @@ function reviewsAPICall (options) {
 				"userlocation":null //Location of the author
 			},
 			"sort_[TYPE]":null, // Sorting option for nested content. Sort order is required (asc or desc). TYPE can be any nested content. i.e. Comments for Reviews.
+			"filteredstats":null,
 			"stats":null // The type of statistics that will be calculated on included subjects. Available content types are: Reviews, Questions, Answers, Stories. Note: Not all statistical content types apply to every possible include.
 		}
 	}, options);
 
 	// set URL base for API call
-	var url = "http://" + defaultSettings["URL"]["baseurl"] + "data/" + "reviews." + defaultSettings["URL"]["format"] + "?";
-	
-	// add URL parameters for API call
-	url =  addAPIParameters(url, defaultSettings["Parameters"]);
+	var url = "http://" + defaultSettings["URL"]["baseurl"] + "data/" + "reviews." + defaultSettings["URL"]["format"];
+
+	// set URL parameters for API call
+	var params = returnAPIParameters(defaultSettings["Parameters"]);
+
+	// create array with url and parameters
+	var apiCall = {"url":url, "params":params};
 
 	// return the API call
-	return url;
-
+	return apiCall;
+	
 };
