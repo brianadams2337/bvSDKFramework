@@ -1,10 +1,10 @@
 /***** USER INFO *****/
-
-
+userParams = parseUAS(bvUserDefaults['bvUAS']);
 
 // user nickname
 function loadUserNicknameInput (content, options) {
 	var content = content["Data"]["Fields"]["usernickname"];
+	content["Value"] = (userParams[content["Id"]] || ""); // slave in UAS parameter to model
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultUserNicknameInputContainer,
@@ -54,6 +54,7 @@ function loadUserNicknameInput (content, options) {
 // user email
 function loadUserEmailInput (content, options) {
 	var content = content["Data"]["Fields"]["useremail"];
+	content["Value"] = (userParams[content["Id"]] || ""); // slave in UAS parameter to model
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultUserEmailInputContainer,
@@ -103,6 +104,7 @@ function loadUserEmailInput (content, options) {
 // user location
 function loadUserLocationInput (content, options) {
 	var content = content["Data"]["Fields"]["userlocation"];
+	content["Value"] = (userParams[content["Id"]] || ""); // slave in UAS parameter to model
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultUserLocationInputContainer,
@@ -152,6 +154,7 @@ function loadUserLocationInput (content, options) {
 // user id
 function loadUserIDInput (content, options) {
 	var content = content["Data"]["Fields"]["userid"];
+	content["Value"] = (userParams[content["Id"]] || ""); // slave in UAS parameter to model
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultUserIdInputContainer,
@@ -226,6 +229,7 @@ function loadAdditionalFieldGroupInput (content, options) {
 	if (settings["loadOrder"] != undefined) {
 		$.each(settings["loadOrder"], function(key) {
 			var fieldContent = content["Data"]["Fields"][this];
+			fieldContent["Value"] = (userParams[this] || ""); // slave in UAS parameter to model
 			// set container & template
 			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
 			var $template = returnTemplate(settings["viewContainer"]);
@@ -314,21 +318,18 @@ function loadContextDataValueGroupInput (content, options) {
 	if (settings["loadOrder"] != undefined) {
 		$.each(settings["loadOrder"], function(key) {
 			var fieldContent = content["Data"]["Fields"][this];
+			fieldContent["Value"] = (userParams[this] || ""); // slave in UAS parameter to model
 			// set container & template
 			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
 			var $template = returnTemplate(settings["viewContainer"]);
-			// set variables
-			var inputHelperText = new String ();
-			if (fieldContent["Id"] == "contextdatavalue_rewardZoneMembershipV3") {
-				inputHelperText = "Reward Zone Members: Get bonus points for your approved review (see rules*)."
-			}
+
 			// add individual context data value template
 			$container.append($template);
 			// load context data value input container
 			loadContextDataValueIndividualInput(fieldContent, {
 				"parentContainer":$template,
 				"inputSettings":{
-					"inputHelperText":inputHelperText
+					"inputHelperText":(contextdatavalueHelperText[fieldContent["ID"]] || ""),
 				}
 			});
 		});
@@ -689,6 +690,7 @@ function loadTextFieldInput (content, options) {
 			"data-type":"alphanum",
 		});
 	}
+	$(settings["parentContainer"][1]).val(settings["inputSettings"]["inputValue"]); // set slaved value if it exists
 }
 
 // generic text area
@@ -844,12 +846,15 @@ function loadSelectInput (content, options) {
 	var inputName = settings["inputSettings"]["inputName"]; // name of select input
 	var inputRequired = settings["inputSettings"]["inputRequired"]; // required boolean
 	var inputOptions = settings["inputSettings"]["inputOptionsArray"]; // options to be loaded in the dropdown
+	var inputValue = settings["inputSettings"]["inputValue"];
+	inputOptions["Value"] = inputValue; // slave UAS value into model
 	// add input template
 	$container.append($template);
 	// set input attributes
 	$($template).find(defaultFormSelectInputContainer).andSelf().filter(defaultFormSelectInputContainer).attr({
 		"id":inputId,
-		"name":inputName
+		"name":inputName,
+		"Value":inputValue,
 	});
 	// if required field
 	if (inputRequired == true) {
@@ -896,6 +901,7 @@ function loadSelectOptionsInput (content, options) {
 				"disabled":false
 			});
 		});
+		$(settings["parentContainer"][1]).val(settings["inputSettings"]["inputValue"]); // set slaved value if it exists
 	}
 }
 

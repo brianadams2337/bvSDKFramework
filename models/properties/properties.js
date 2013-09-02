@@ -43,7 +43,7 @@ var labelsSubmissionOptIns = {
 	"termsAndConditions" : "I acknowledge that I have read and agree to the Terms & Conditions.",
 	"emailAlertWhenCommented" : "Please send me an email when my review is posted.",
 	"emailAlertWhenPublished" : "Please send me an email when someone comments on my review.",
-}
+};
 
 
 
@@ -56,4 +56,10 @@ var statusMessages = {
 	"inappropriateReceived" : "Thanks! Your concern has been successfully submitted.",
 	"helpfullnessRemoved" : "Your feedback has been removed.",
 	"error" : "Sorry. There was an error submitting your feedback.",
-}
+};
+
+/***** Custom Field Helper Text *****/
+
+var contextdatavalueHelperText = {
+	"contextdatavalue_rewardZoneMembershipV3" : "Reward Zone Members: Get bonus points for your approved review (see rules*).",
+};

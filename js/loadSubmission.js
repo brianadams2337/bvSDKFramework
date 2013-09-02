@@ -69,14 +69,12 @@ $(document).ready(function() {
 			$.Deferred(function(deferred){
 				$(deferred.resolve);
 			})
-		).done(function(){
-
+		).then(function(){
 			switch (urlParameters["contentType"]) {
 				case "review": 
 					console.log("review");
 					// load review submission container
 					getReviewsSubmissionForm(urlParameters["productId"], defaultSubmissionContainer, function(content) {
-						console.log(parseUAS(bvUserDefaults['bvUAS']));
 						loadReviewSubmissionWidget(content, {
 							"parentContainer":defaultSubmissionContainer,
 							"productId":urlParameters["productId"],
@@ -141,6 +139,6 @@ $(document).ready(function() {
 				}).click();
 			});
 			
-		});
+		}, function(error){console.log(error);});
 	});
 });

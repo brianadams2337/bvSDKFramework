@@ -49,7 +49,7 @@ $(document).ready(function() {
 			$.Deferred(function(deferred){
 				$(deferred.resolve);
 			})
-		).done(function(){
+		).then(function(){
 			// load reviews
 				getAllReviews (productId, defaultReviewsParentContainer, function(content, modelLocalDefaultSettings) {
 					// callback function
@@ -93,6 +93,6 @@ $(document).ready(function() {
 					titleSrc: 'title'
 				}).click();
 			});
-		});
+		}, function(error){console.log(error);});
 	});
 });

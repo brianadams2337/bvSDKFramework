@@ -109,7 +109,7 @@ function loadIndividualReview (content, options) {
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
 	var $template = returnTemplate(settings["viewContainer"]);
 	// set variables
-	var contentId = content["Id"]
+	var contentId = content["Id"];
 	var newID = "BVReviewContainer" + contentId;
 	// add review template
 	$container.append($template);
