@@ -1,10 +1,12 @@
 /***** USER INFO *****/
-userParams = parseUAS(bvUserDefaults['bvUAS']);
+var userParams = parseUAS(bvUserDefaults['bvUAS']);
 
 // user nickname
 function loadUserNicknameInput (content, options) {
 	var content = content["Data"]["Fields"]["usernickname"];
-	content["Value"] = (userParams[content["Id"]] || ""); // slave in UAS parameter to model
+	content = $.extend(true, content, {
+		"Value":userParams[content["Id"]]
+	});
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultUserNicknameInputContainer,
@@ -54,7 +56,9 @@ function loadUserNicknameInput (content, options) {
 // user email
 function loadUserEmailInput (content, options) {
 	var content = content["Data"]["Fields"]["useremail"];
-	content["Value"] = (userParams[content["Id"]] || ""); // slave in UAS parameter to model
+	content = $.extend(true, content, { // slave in UAS parameter to model
+		"Value":userParams[content["Id"]]
+	});
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultUserEmailInputContainer,
@@ -104,7 +108,9 @@ function loadUserEmailInput (content, options) {
 // user location
 function loadUserLocationInput (content, options) {
 	var content = content["Data"]["Fields"]["userlocation"];
-	content["Value"] = (userParams[content["Id"]] || ""); // slave in UAS parameter to model
+	content = $.extend(true, content, { // slave in UAS parameter to model
+		"Value":userParams[content["Id"]]
+	});
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultUserLocationInputContainer,
@@ -154,7 +160,9 @@ function loadUserLocationInput (content, options) {
 // user id
 function loadUserIDInput (content, options) {
 	var content = content["Data"]["Fields"]["userid"];
-	content["Value"] = (userParams[content["Id"]] || ""); // slave in UAS parameter to model
+	content = $.extend(true, content, { // slave in UAS parameter to model
+		"Value":userParams[content["Id"]]
+	});
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultUserIdInputContainer,
@@ -229,7 +237,9 @@ function loadAdditionalFieldGroupInput (content, options) {
 	if (settings["loadOrder"] != undefined) {
 		$.each(settings["loadOrder"], function(key) {
 			var fieldContent = content["Data"]["Fields"][this];
-			fieldContent["Value"] = (userParams[this] || ""); // slave in UAS parameter to model
+			fieldContent = $.extend(true, fieldContent, { // slave in UAS parameter to model
+				"Value":userParams[this]
+			});
 			// set container & template
 			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
 			var $template = returnTemplate(settings["viewContainer"]);
@@ -318,7 +328,9 @@ function loadContextDataValueGroupInput (content, options) {
 	if (settings["loadOrder"] != undefined) {
 		$.each(settings["loadOrder"], function(key) {
 			var fieldContent = content["Data"]["Fields"][this];
-			fieldContent["Value"] = (userParams[this] || ""); // slave in UAS parameter to model
+			fieldContent = $.extend(true, fieldContent, { // slave in UAS parameter to model
+				"Value":userParams[this]
+			});
 			// set container & template
 			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
 			var $template = returnTemplate(settings["viewContainer"]);
