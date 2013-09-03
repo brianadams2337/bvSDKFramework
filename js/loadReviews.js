@@ -94,10 +94,10 @@ $(document).ready(function() {
 				}).click();
 			});
 		}).fail(function(e){
-			// console.log("e", e);
+			console.log("e", e);
 		});
 	}).fail(function(e){
-		// console.log("e", e);
+		console.log("e", e);
 	});
 
 });
