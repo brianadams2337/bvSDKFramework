@@ -59,3 +59,6 @@ var statusMessages = {
 }
 
 
+/***** Context Data Value Helper Text *****/
+
+var contextdatavalueHelperText = {};
