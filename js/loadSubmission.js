@@ -14,9 +14,9 @@ $(document).ready(function() {
 
 	$.when(
 		// global variables
-		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/models/varsGlobal.js"),
-		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/js/jquery.min.1.9.1.js"),
-		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/js/jquery-ui.js")
+		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bv/bvSDKFramework/models/varsGlobal.js"),
+		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bv/bvSDKFramework/js/jquery.min.1.9.1.js"),
+		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bv/bvSDKFramework/js/jquery-ui.js")
 	).done(function(){
 		$.when(
 			/* LOAD JS FILES */
