@@ -31,10 +31,10 @@ var apiDefaults = {
 
 var bvUserDefaults = {
 	"bvUAS": typeof userToken != 'undefined' ? userToken : "", // encoded user string, or userToken if set
-	"userId": "testuser",
-	"userEmail":"bvspambox@gmail.com", //User's email address
-	"userLocation":null, //User location text
-	"userNickname":"testuser", //User nickname display text
+	// "userId": "testuser",
+	// "userEmail":"bvspambox@gmail.com", //User's email address
+	// "userLocation":null, //User location text
+	// "userNickname":"testuser", //User nickname display text
 };
 
 var controllerSubmissionDefaults = {

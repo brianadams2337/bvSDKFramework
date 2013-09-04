@@ -97,11 +97,11 @@ function reviewCommentsSubmissionAPICall (options) {
 			"sendemailalertwhenpublished":null, //Boolean indicating whether or not the user wants to be notified when his/her content is published.
 			"storyid":null, //The id of the story that this comment is being submitted on. One ReviewId or StoryId is required.
 			"title":null, //Value is content title text.
-			"user":bvUserDefaults["bvUAS"], //Value of the encrypted user. This parameter demonstrates that a user has been authenticated. Note that the UserId parameter does not contain authentication information and should not be used for hosted authentication. See the Authenticate User method for more information.
-			"useremail":bvUserDefaults["userEmail"], //User's email address
-			"userid":bvUserDefaults["userId"], //User's external ID
-			"userlocation":bvUserDefaults["userLocation"], //User location text
-			"usernickname":bvUserDefaults["userNickname"], //User nickname display text
+			"user":null, //Value of the encrypted user. This parameter demonstrates that a user has been authenticated. Note that the UserId parameter does not contain authentication information and should not be used for hosted authentication. See the Authenticate User method for more information.
+			"useremail":null, //User's email address
+			"userid":null, //User's external ID
+			"userlocation":null, //User location text
+			"usernickname":null, //User nickname display text
 			"videocaption_<n>":null, //Value is caption text for the video URL with the same value of <n>.
 			"videourl_<n>":null //Value is valid YouTube or Bazaarvoice video-upload URL where <n> is a non-negative integer.
 		}
