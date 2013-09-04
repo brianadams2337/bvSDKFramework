@@ -55,29 +55,52 @@ function addFirstLastClasses (toReceive) {
 
 
 function setStarRating (toReceive, rating, range) {
-	var imgWidth = $(toReceive).find('._BVRatingStarsUnfilledImage').andSelf().filter('._BVRatingStarsUnfilledImage').width();
-   	var avgDecimal = (rating/range);
-   	var avg = (avgDecimal * 100);
-	var imgPercentage = (imgWidth / (imgWidth * avgDecimal)) * 100;
+	// set variables for images to load
+	var imgLoad = $(toReceive).find('img'); // all images in template 
+	var imgLoadTotal = imgLoad.length; // total amount of images in template
+	var imgLoadCount = 0; // total amount of images currently loaded in template
+	// loop through all images to keep track of when they finish loading
+	$.each(imgLoad, function() {
+		// on image load
+		$(this).load(function() {
+			// increment 1 to total count of images loaded
+			imgLoadCount++;
+			// if all images are loaded, run function
+			if (imgLoadCount == imgLoadTotal) {
+				// calculate variables for image sizing
+				var imgWidth = $(toReceive).find('._BVRatingStarsUnfilledImage').andSelf().filter('._BVRatingStarsUnfilledImage').width(); // width of unfilled star image to use as a base size
+			   	var avgDecimal = (rating/range); // rating decimal
+			   	var avg = (avgDecimal * 100); // rating percentage
+				var imgPercentage = (imgWidth / (imgWidth * avgDecimal)) * 100; // width of filled image based of rating percentage
 
-	$(toReceive).find('._BVRatingStarsContainer').andSelf().filter('._BVRatingStarsContainer').css({
-		"position":"relative"
+				// set attr for star rating container - pos relative is needed to position imgs inside correctly
+				$(toReceive).find('._BVRatingStarsContainer').andSelf().filter('._BVRatingStarsContainer').css(
+					"cssText", "position: relative !important;"
+				);
+
+				// set attr for filled star container
+				$(toReceive).find('._BVRatingStarsFilled').andSelf().filter('._BVRatingStarsFilled').css(
+					"cssText", "width: " + avg + "% !important; position: absolute !important; top: 0px !important; left: 0px !important; overflow: hidden !important;"
+				);
+				// set attr for unfilled star container
+				$(toReceive).find('._BVRatingStarsUnfilled').andSelf().filter('._BVRatingStarsUnfilled').css(
+					"cssText", "width: 100% !important;"
+				);
+
+				// set attr for filled star img - needed to counteract sizing of parent container
+				$(toReceive).find('._BVRatingStarsFilledImage').andSelf().filter('._BVRatingStarsFilledImage').css(
+					"cssText", "width: " + imgPercentage + "% !important;"
+				);
+				// set attr for unfilled star img - needed to to keep constraints of parent container
+				$(toReceive).find('._BVRatingStarsUnfilledImage').andSelf().filter('._BVRatingStarsUnfilledImage').css(
+					"cssText", "width: 100% !important;"
+				);
+				
+				// set rating text - for SEO purposes - hidden by default
+				$(toReceive).find('._BVRatingStarsText').andSelf().filter('._BVRatingStarsText').text(rating + " stars");
+			}
+		});
 	});
-	$(toReceive).find('._BVRatingStarsFilled').andSelf().filter('._BVRatingStarsFilled').css({
-		"width":avg+"%",
-		"position":"absolute",
-		"top":"0px",
-		"left":"0px",
-		"overflow":"hidden"
-	});
-	$(toReceive).find('._BVRatingStarsFilledImage').andSelf().filter('._BVRatingStarsFilledImage').css({
-		"width":imgPercentage+"%"
-	});
-	$(toReceive).find('._BVRatingStarsUnfilled').andSelf().filter('._BVRatingStarsUnfilled').css({
-		"width":"100%"
-	});
-	
-	$(toReceive).find('._BVRatingStarsText').andSelf().filter('._BVRatingStarsText').text(rating + " stars");
 }
 
 function convertDecimalToPercentage (value) {
