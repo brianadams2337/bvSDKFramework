@@ -53,10 +53,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 /* RATINGS */
 
 	/* Filled & Unfilled Images - SVG scaling */
-	._BVRatingStarsFilledImage, ._BVRatingStarsUnfilledImage {width: 100%; height: auto;}
-	.BVSecondaryRatingContainer ._BVRatingStarsFilledImage, .BVSecondaryRatingContainer ._BVRatingStarsUnfilledImage {height: 10px;}
-	.ie .BVSecondaryRatingContainer ._BVRatingStarsFilledImage, .ie .BVSecondaryRatingContainer ._BVRatingStarsUnfilledImage {height: 11px;}
-	.webkit ._BVRatingStarsFilledImage, .webkit ._BVRatingStarsUnfilledImage {width: auto;}
+	._BVRatingStarsFilledImage, ._BVRatingStarsUnfilledImage {}
 
 	/* Overall Star Rating */
 	.BVOverallRatingContainer ._BVRatingStarsContainer {min-width: 100px; height: auto; display: block; float: left;}
@@ -72,6 +69,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 /* HISTOGRAM */
 
 	/* Popin */
+	a.BVHistogramLauncher, a.BVHistogramLauncher:hover, a.BVHistogramLauncher:active, a.BVHistogramLauncher:focus {border: 0 none !important; text-decoration: none !important;}
 	._BVHistorgramWidgetContainer {width: 290px; margin: 20px 0 0; border: 1px solid #C3C4C4; padding: 30px; background-color: #fff; border-radius: 4px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); display: none; position: absolute;}
 		
 		._BVHistorgramWidgetContainer ._BVHistogramLableText {width: 90px; height: 17px; display: block; float: left; background: url(images/histogramStars.png); margin-right: 10px;}
@@ -106,8 +104,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		/* Overall Rating */
 		._BVQuickTakeContainer ._BVOverallRatingContainer {}
 		._BVQuickTakeContainer ._BVOverallRatingContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
-			._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsContainer {float: left;}
-				._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsFilledImage, ._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsUnfilledImage {width: 170px !important; height: 30px !important;}
+			._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsContainer {width: 170px; height: 30px; float: left;}
 			._BVQuickTakeContainer .BVOverallRatingContainer .BVRatingOutOfContainer {font-weight: bold; line-height: 33px; font-size: 34px; color: #085EB9; float: left;}
 				._BVQuickTakeContainer .BVOverallRatingContainer .BVRatingSeparator, ._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingRange {display: none;}
 		
