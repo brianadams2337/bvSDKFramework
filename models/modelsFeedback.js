@@ -38,7 +38,7 @@ function feedbackAPICall (options) {
 			"feedbacktype":null, //Type of feedback (inappropriate, helpfulness)
 			"passkey":apiDefaults["passkey"], //API key is required to authenticate API user and check permission to access particular client's data.
 			"productid":null, //Product ID which the feedback is associated
-			"userid":bvUserDefaults["userId"], //User's external ID
+			"userid":null, //User's external ID
 			"vote":null, //Helpfulness vote for this content. Valid votes are: Positive, Negative, UNDO. This parameter is only required for FeedbackType=helpfulness.
 			"reasontext":null //Reason this content has been flagged as inappropriate
 		}

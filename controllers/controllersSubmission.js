@@ -56,7 +56,8 @@ function loadUserNicknameInput (content, options) {
 // user email
 function loadUserEmailInput (content, options) {
 	var content = content["Data"]["Fields"]["useremail"];
-	content = $.extend(true, content, { // slave in UAS parameter to model
+	// slave in UAS parameter value if available
+	content = $.extend(true, content, {
 		"Value":userParams[content["Id"]]
 	});
 	var settings = $.extend(true, {
@@ -108,7 +109,8 @@ function loadUserEmailInput (content, options) {
 // user location
 function loadUserLocationInput (content, options) {
 	var content = content["Data"]["Fields"]["userlocation"];
-	content = $.extend(true, content, { // slave in UAS parameter to model
+	// slave in UAS parameter value if available
+	content = $.extend(true, content, {
 		"Value":userParams[content["Id"]]
 	});
 	var settings = $.extend(true, {
@@ -160,7 +162,8 @@ function loadUserLocationInput (content, options) {
 // user id
 function loadUserIDInput (content, options) {
 	var content = content["Data"]["Fields"]["userid"];
-	content = $.extend(true, content, { // slave in UAS parameter to model
+	// slave in UAS parameter value if available
+	content = $.extend(true, content, {
 		"Value":userParams[content["Id"]]
 	});
 	var settings = $.extend(true, {
@@ -237,7 +240,8 @@ function loadAdditionalFieldGroupInput (content, options) {
 	if (settings["loadOrder"] != undefined) {
 		$.each(settings["loadOrder"], function(key) {
 			var fieldContent = content["Data"]["Fields"][this];
-			fieldContent = $.extend(true, fieldContent, { // slave in UAS parameter to model
+			// slave in UAS parameter value if available
+			fieldContent = $.extend(true, fieldContent, {
 				"Value":userParams[this]
 			});
 			// set container & template
@@ -328,7 +332,8 @@ function loadContextDataValueGroupInput (content, options) {
 	if (settings["loadOrder"] != undefined) {
 		$.each(settings["loadOrder"], function(key) {
 			var fieldContent = content["Data"]["Fields"][this];
-			fieldContent = $.extend(true, fieldContent, { // slave in UAS parameter to model
+			// slave in UAS parameter value if available
+			fieldContent = $.extend(true, fieldContent, {
 				"Value":userParams[this]
 			});
 			// set container & template
@@ -713,7 +718,6 @@ function loadTextFieldInput (content, options) {
 			"data-type":"alphanum",
 		});
 	}
-	$(settings["parentContainer"][1]).val(settings["inputSettings"]["inputValue"]); // set slaved value if it exists
 }
 
 // generic text area
@@ -870,7 +874,16 @@ function loadSelectInput (content, options) {
 	var inputRequired = settings["inputSettings"]["inputRequired"]; // required boolean
 	var inputOptions = settings["inputSettings"]["inputOptionsArray"]; // options to be loaded in the dropdown
 	var inputValue = settings["inputSettings"]["inputValue"];
-	inputOptions["Value"] = inputValue; // slave UAS value into model
+	// slave in UAS parameter value if available
+	if (inputValue) {
+		$.each(inputOptions, function(key) {
+			if (this["Value"] == inputValue) {
+				this["Selected"] = true;
+			} else {
+				this["Selected"] = false;
+			}
+		});
+	}
 	// add input template
 	$container.append($template);
 	// if required field
@@ -883,7 +896,6 @@ function loadSelectInput (content, options) {
 	$($template).find(defaultFormSelectInputContainer).andSelf().filter(defaultFormSelectInputContainer).attr({
 		"id":inputId,
 		"name":inputName,
-		"Value":inputValue,
 	});
 	// load select options
 	loadSelectOptionsInput(inputOptions, {
@@ -924,7 +936,6 @@ function loadSelectOptionsInput (content, options) {
 				"disabled":false
 			});
 		});
-		$(settings["parentContainer"][1]).val(settings["inputSettings"]["inputValue"]); // set slaved value if it exists
 	}
 }
 
