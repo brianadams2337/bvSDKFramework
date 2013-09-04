@@ -25,7 +25,6 @@ function photoSubmissionAPICall (options) {
 			"passkey":apiDefaults["passkey"], //API key is required to authenticate API user and check permission to access particular client's data.
 			"photourl":null, //URL of the photo to be uploaded. Use either the photo or photoUrl parameter to define the photo to upload. An error is returned if both parameters are defined. HTTP and HTTPS are the only protocols supported for the photoUrl parameter.
 			"user":bvUserDefaults["bvUAS"], //Value of the encrypted user. This parameter demonstrates that a user has been authenticated. Note that the UserId parameter does not contain authentication information and should not be used for hosted authentication. See the Authenticate User method for more information.
-			//"userid":bvUserDefaults["userId"], //User's external ID
 			"userid":null, //User's external ID
 		}
 	}, options);
