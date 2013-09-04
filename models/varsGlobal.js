@@ -30,7 +30,7 @@ var apiDefaults = {
 };
 
 var bvUserDefaults = {
-	"bvUAS": typeof userToken != 'undefined' ? userToken : (function(){})(), // encoded user string, or userToken if set
+	"bvUAS": typeof userToken != 'undefined' ? userToken : "", // encoded user string, or userToken if set
 	"userId": "testuser",
 	"userEmail":"bvspambox@gmail.com", //User's email address
 	"userLocation":null, //User location text
