@@ -62,6 +62,8 @@ function defaultAjaxErrorFunction (content) {
 	consoleLogFallback(content);
 }
 
+/***** UAS PARAMETERS *****/
+
 function parseUAS (UAS) {
 	var encodedString = UAS.substring(32); //Assumes MD5 hash is 32 digits and strips it from UAS
 	var str = '';
@@ -77,3 +79,7 @@ function parseUAS (UAS) {
     });
     return params;
 }
+
+// parsed UAS object
+var userParams = parseUAS(bvUserDefaults['bvUAS']);
+
