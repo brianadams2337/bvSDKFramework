@@ -1,6 +1,3 @@
-/***** USER INFO *****/
-var userParams = parseUAS(bvUserDefaults['bvUAS']);
-
 // user nickname
 function loadUserNicknameInput (content, options) {
 	var content = content["Data"]["Fields"]["usernickname"];
