@@ -13,7 +13,7 @@ if (typeof jQuery == 'undefined' || !(($.fn.jquery) = jqueryVersion)) {
 	loadScript('http://ajax.googleapis.com/ajax/libs/jquery/' + jqueryVersion + '/jquery.min.js', function() {
 		if (typeof jQuery=='undefined') {
 			// load local file as fallback if jquery did not load successfully from CDN
-			loadScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bv/bvSDKFramework/js/jquery.min." + jqueryVersion + ".js", function() {
+			loadScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/js/jquery.min." + jqueryVersion + ".js", function() {
 				initBVSubmission();
 			})
 		} else {
@@ -39,7 +39,7 @@ function loadJQueryUI () {
 		loadScript("http://ajax.googleapis.com/ajax/libs/jqueryui/" + jqueryUIVersion + "/jquery-ui.min.js", function() {
 			if (typeof jQuery.ui == 'undefined') {
 				// load local file as fallback if jquery ui did not load successfully from CDN
-				loadScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bv/bvSDKFramework/js/jquery-ui.min." + jqueryUIVersion + ".js", function() {
+				loadScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/js/jquery-ui.min." + jqueryUIVersion + ".js", function() {
 					return true;
 				});
 			} else {
@@ -100,9 +100,9 @@ function initBVSubmission () {
 		// jquery ui - loaded through function to check for CDN resource with local fallback
 		loadJQueryUI(),
 		// modernizr - must load for HTML 5 browser support (includes HTML5 shiv)
-		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bv/bvSDKFramework/js/modernizr.js"),
+		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/js/modernizr.js"),
 		// global variables - must load first for bv content
-		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bv/bvSDKFramework/models/varsGlobal.js")
+		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/models/varsGlobal.js")
 	).done(function(){
 		// load models (controllers depend on them)
 		$.when(
@@ -119,7 +119,7 @@ function initBVSubmission () {
 			$.getScript(siteBaseURL + "models/modelsReviewsSubmission.js"),
 			$.getScript(siteBaseURL + "models/modelsReviewCommentsSubmission.js"),
 			$.getScript(siteBaseURL + "models/modelsMediaSubmission.js"),
-			$.getScript(siteBaseURL + "models/modelsProductCatalog.js"),
+			$.getScript(siteBaseURL + "models/modelsProductCatalog.js")
 		).done(function(){
 			// load controllers, plugins, and css files
 			$.when(
