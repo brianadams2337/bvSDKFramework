@@ -100,6 +100,11 @@ function setStarRating (toReceive, rating, range) {
 				$(toReceive).find('._BVRatingStarsText').andSelf().filter('._BVRatingStarsText').text(rating + " stars");
 			}
 		});
+	}).each(function(){
+		// needed to trigger img load when cached by browser
+		if (this.complete) {
+			$(this).trigger('load');
+		}
 	});
 }
 
@@ -150,7 +155,7 @@ function returnTemplate (template) {
 }
 
 function consoleLogFallback (content) {
-	if (!production) {
+	if (!bvProduction) {
 		var alertFallback = true;
 		if (typeof console === "undefined" || typeof console.log === "undefined") {
 			console = {};

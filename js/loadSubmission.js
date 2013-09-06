@@ -1,7 +1,92 @@
-$(document).ready(function() {
+
+// version of jquery being used by SDK - if changed, make sure local file is updated for fallbacks
+var jqueryVersion = "1.10.2";
+var jqueryUIVersion = "1.10.3";
+
+// check if jquery does not exist or does not match version
+if (typeof jQuery == 'undefined' || !(($.fn.jquery) = jqueryVersion)) {
+	var otherJSLibrary;
+	// check for other js libraries
+	if (typeof $ == 'function') {
+		otherJSLibrary = true;
+	}
+	
+	loadScript('http://ajax.googleapis.com/ajax/libs/jquery/' + jqueryVersion + '/jquery.min.js', function() {
+		if (typeof jQuery=='undefined') {
+			// load local file as fallback if jquery did not load successfully from CDN
+			loadScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bv/bvSDKFramework/js/jquery.min." + jqueryVersion + ".js", function() {
+				initBVSubmission();
+			})
+		} else {
+			// jquery script loaded successfully
+			if (!otherJSLibrary) {
+				// no conflicts - init bv
+				initBVSubmission();
+			} else {
+				// possible conflicts with other library
+				// $.noConflict();
+				initBVSubmission();
+			}
+		}
+	});
+	
+} else {
+	// jQuery was already loaded
+	initBVSubmission();
+};
+
+function loadJQueryUI () {
+	if (typeof jQuery.ui == 'undefined' || !(($.ui.jquery) = jqueryUIVersion)) {
+		loadScript("http://ajax.googleapis.com/ajax/libs/jqueryui/" + jqueryUIVersion + "/jquery-ui.min.js", function() {
+			if (typeof jQuery.ui == 'undefined') {
+				// load local file as fallback if jquery ui did not load successfully from CDN
+				loadScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bv/bvSDKFramework/js/jquery-ui.min." + jqueryUIVersion + ".js", function() {
+					return true;
+				});
+			} else {
+				// jquery ui script loaded successfully
+				return true;
+			}
+		});
+	} else {
+		// jquery ui was already loaded
+		return true;
+	}
+}
+
+function loadScript(url, callback) {
+	// create script to load
+	var script = document.createElement('script');
+	script.type = "text/javascript";
+	script.src = url;
+	// document head
+	var head = document.getElementsByTagName('head')[0];
+	// toggle to ensure script only loads once in browsers with onreadystatechange bugs (specifically Opera, maybe others)
+	var complete = false;
+	
+	// handler for script load
+	script.onload = script.onreadystatechange = function() {
+		// check to make sure script is loaded
+		if (!complete && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) {
+			// toggle to stop script from loading more than once	
+			complete = true;
+			// callback function provided as param
+			callback();
+			// reset onreadystatechange of script for browser compatibility bugs (specifically Opera, maybe others)
+			script.onload = script.onreadystatechange = null;
+			// remove loaded script from head
+			// head.removeChild(script);
+		};
+	};
+	// add script to head
+	head.appendChild(script);
+}
+
+function initBVSubmission () {
+	// get passed parameters from the url
 	var urlParameters = (function() {
 		var result = {};
-	    if (window.location.search) {
+		if (window.location.search) {
 			// split up the query string and store in an associative array
 			var params = window.location.search.slice(1).split("&");
 			for (var i = 0; i < params.length; i++) {
@@ -9,20 +94,20 @@ $(document).ready(function() {
 				result[obj[0]] = unescape(obj[1]);
 			}
 		}
-	    return result;
+		return result;
 	}());
-
+	// load needed files
 	$.when(
-		// global variables
-		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/models/varsGlobal.js"),
-		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/js/jquery.min.1.9.1.js"),
-		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/js/jquery-ui.js")
+		// jquery ui - loaded through function to check for CDN resource with local fallback
+		loadJQueryUI(),
+		// modernizr - must load for HTML 5 browser support (includes HTML5 shiv)
+		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bv/bvSDKFramework/js/modernizr.js"),
+		// global variables - must load first for bv content
+		$.getScript(location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bv/bvSDKFramework/models/varsGlobal.js")
 	).done(function(){
 		$.when(
 			/* LOAD JS FILES */
-			$.getScript(siteBaseURL + "js/createHTML5Elements.js"),
 			$.getScript(siteBaseURL + "js/browserSelector.js"),
-			$.getScript(siteBaseURL + "js/modernizr.js"),
 			/* properties */
 			$.getScript(siteBaseURL + "models/properties/properties.js"),
 			/* models */
@@ -140,4 +225,4 @@ $(document).ready(function() {
 		// console.log("e", e);
 	});
 
-});
+}
