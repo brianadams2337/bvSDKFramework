@@ -45,7 +45,7 @@ var controllerSubmissionDefaults = {
 // true = production
 // false = staging
 
-var production = false;
+var bvProduction = false;
 
 
 
@@ -53,22 +53,22 @@ var production = false;
 
 var apiBaseURL;
 var apiBaseSubmissionURL;
-	if (production) {
-		apiBaseURL = apiDefaults["prodURL"];
-		apiBaseSubmissionURL = apiDefaults["prodSubmissionURL"];
-	} else {
-		apiBaseURL = apiDefaults["stagURL"];
-		apiBaseSubmissionURL = apiDefaults["stagSubmissionURL"];
+if (bvProduction) {
+	apiBaseURL = apiDefaults["prodURL"];
+	apiBaseSubmissionURL = apiDefaults["prodSubmissionURL"];
+} else {
+	apiBaseURL = apiDefaults["stagURL"];
+	apiBaseSubmissionURL = apiDefaults["stagSubmissionURL"];
 };
 
 var siteBaseURL;
 var siteBaseSubmissionURL;
-	if (production) {
-		siteBaseURL = productionURL;
-		siteBaseSubmissionURL = productionSubmissionURL;
-	} else {
-		siteBaseURL = stagingURL;
-		siteBaseSubmissionURL = stagingSubmissionURL;
+if (bvProduction) {
+	siteBaseURL = productionURL;
+	siteBaseSubmissionURL = productionSubmissionURL;
+} else {
+	siteBaseURL = stagingURL;
+	siteBaseSubmissionURL = stagingSubmissionURL;
 };
 
 
