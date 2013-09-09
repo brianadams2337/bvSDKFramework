@@ -95,7 +95,6 @@ function initBVReviews () {
 		$.when(
 			/* LOAD JS FILES */
 			$.getScript(siteBaseURL + "js/browserSelector.js"),
-			$.getScript(siteBaseURL + "js/custom.js"),
 			$.getScript(siteBaseURL + "js/modernizr.js"),
 			// properties
 			$.getScript(siteBaseURL + "models/properties/properties.js"),
@@ -130,6 +129,7 @@ function initBVReviews () {
 				$.getScript(siteBaseURL + "js/plugins/jquery.dateFormat.js"),
 				$.getScript(siteBaseURL + "js/plugins/jquery.magnific-popup.js"),
 				$.getScript(siteBaseURL + "js/browserSelector.js"),
+				$.getScript(siteBaseURL + "js/custom.js"),
 				// css files
 				$("head").append("<link href='" + siteBaseURL + "css/bazaarvoiceUniversal.css' type='text/css' rel='stylesheet' />"),
 				$("head").append("<link href='" + siteBaseURL + "css/magnific-popup.css' type='text/css' rel='stylesheet' />"),

@@ -107,7 +107,6 @@ function initBVSubmission () {
 		// load models (controllers depend on them)
 		$.when(
 			/* LOAD JS FILES */
-			$.getScript(siteBaseURL + "js/custom.js"),
 			$.getScript(siteBaseURL + "js/browserSelector.js"),
 			$.getScript(siteBaseURL + "js/modernizr.js"),
 			// properties
@@ -149,6 +148,7 @@ function initBVSubmission () {
 				$.getScript(siteBaseURL + "js/plugins/jquery.iframe-transport.js"),
 				$.getScript(siteBaseURL + "js/plugins/Parsley.js-1.1.16/parsley.js"),
 				$.getScript(siteBaseURL + "js/browserSelector.js"),
+				$.getScript(siteBaseURL + "js/custom.js"),
 				// css files
 				$("head").append("<link id='' href='" + siteBaseURL + "css/bazaarvoiceUniversal.css' type='text/css' rel='stylesheet' />"),
 				$("head").append("<link id='' href='" + siteBaseURL + "css/magnific-popup.css' type='text/css' rel='stylesheet' />"),
