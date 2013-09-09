@@ -181,12 +181,12 @@ function initBVReviews () {
 					}).click();
 				});
 			}).fail(function(e){
-				// console.log(e);
+				console.log(e);
 			});
 		}).fail(function(e){
-			// console.log(e);
+			console.log(e);
 		});
 	}).fail(function(e){
-		// console.log(e);
+		console.log(e);
 	});
 }
