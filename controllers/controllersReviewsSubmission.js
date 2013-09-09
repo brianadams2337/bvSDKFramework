@@ -168,6 +168,7 @@ function loadReviewSubmissionForm (content, options) {
 			}
 		});
 	}
+
 	// device fingerprint
 	consoleLogFallback("devicefingerprint");
 	// product id
@@ -187,10 +188,18 @@ function loadReviewSubmissionForm (content, options) {
 	loadContextDataValueGroupInput (content, {
 		"parentContainer":$template
 	});
+
+	// append reward zone context data field helper text
+	$('<div class=\"_BVHelperTextCustom\"><span><strong>REWARD ZONE</strong> MEMBERS:</span> Get bonus points for your approved review (see <a href=\"javascript:void window.open(\'http://www.bestbuy.com/site/olspage.jsp?id=pcmcat299800050000&amp;type=category\',\'\',\'scrollbars=no,menubar=no,height=350,width=500,resizable=yes,toolbar=no\')\">details</a>*).</div>').insertBefore('#contextdatavalue_rewardZoneMembershipV3WrapperID ._BVFormInputWrapper');
+
 	// additional fields
 	loadAdditionalFieldGroupInput (content, {
 		"parentContainer":$template
 	});
+
+	// append reward zone additional field helper text
+	$('#additionalfield_RewardZoneNumberWrapperID ._BVHelperText').append('Example: 0123456789');
+	
 	// secondary ratings
 	loadSecondaryRatingGroup (content, {
 		"parentContainer":$template
@@ -211,7 +220,7 @@ function loadReviewSubmissionForm (content, options) {
 		"parentContainer":$template,
 		"inputSettings":{
 			"inputLabel":"Video URL",
-			"inputHelperText":"(Paste the URL from your videos on Youtube)",
+			"inputHelperText":"(Paste the URL from your videos on <span onmouseout=\"$('#BVVideoPasteGuideContainerID').addClass('BVHidden').removeClass('BVYouTubeGuide').removeClass('BVVIYouTubeGuide');\" onmouseover=\"$('#BVVideoPasteGuideContainerID').removeClass('BVHidden').addClass('BVYouTubeGuide').addClass('BVVIYouTubeGuide'); return false;\"><a href=\"http://www.youtube.com/\" class=\"BVLink\" target=\"_blank\" id=\"BVYouTubeLinkID\">YouTube</a></span>)<div class=\"BVVideoPasteGuideContainer BVVIVideoPasteGuideContainer BVHidden\" id=\"BVVideoPasteGuideContainerID\"><div class=\"BVVideoPasteGuideContainerImage BVVIVideoPasteGuideContainerImage\"></div><div class=\"BVVideoPasteGuideContainerLabel BVVIVideoPasteGuideContainerLabel\">Copy the YouTube URL from your browser's location bar.</div></div>",
 		}
 	});
 	// video caption

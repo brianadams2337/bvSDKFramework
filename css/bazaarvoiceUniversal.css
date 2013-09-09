@@ -369,10 +369,9 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		._BVRadioButtonGroupContainer {float: left;}
 
 	/* Helper Text & Character Counter */
+	._BVHelperText {width: 400px;}
 	._BVHelperText, .BVCharacterCounterText {margin-left: 220px;}
 	._BVHelperText, .BVCharacterCounterText, ._BVCharacterCounter {font-size: 11px; color: #737474; padding: 5px 0 0;}
-
-
 
 	/* Rating Stars */
 	.BVFieldRating {margin-bottom: 15px !important;}
@@ -430,11 +429,21 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 				._BVTagGroupInputContainer ._BVCheckboxIndividualContainer .BVFormInputText {width: 150px;}
 
 	/* Media Upload */
-	.BVSectionMediaContainer ._BVInputGroupContainer {width: 400px; float: left;}
+	.BVSectionMediaContainer ._BVInputGroupContainer {width: 425px; float: left;}
 		._BVUploadIndividualInputContainer {margin-bottom: 15px;}
+		._BVUploadIndividualInputContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
+		.BVPhotoUploadPreviewWrapper {position: relative; zoom: 1;}
+			.BVPhotoUploadPreviewWrapper a._BVPhotoThumbnail, .BVPhotoUploadPreviewWrapper a._BVPhotoThumbnail:visited, .BVPhotoUploadPreviewWrapper a._BVPhotoThumbnail:hover, .BVPhotoUploadPreviewWrapper a._BVPhotoThumbnail:focus, .BVPhotoUploadPreviewWrapper a._BVPhotoThumbnail:active {cursor: default;}
+			._BVUploadIndividualInputContainer ._BVLabelText {width: 100px; padding-top: 7px;}
+			._BVUploadIndividualInputContainer .BVFormInputText {width: 228px;}
+			._BVUploadIndividualInputContainer ._BVButtonGenericContainer {position: absolute; top: 29px; left: 59px;}
+			._BVUploadIndividualInputContainer .BVButtonClose {background: none transparent; padding: 0; border: 0 none;}
 		.BVSectionMediaContainer .BVUploadInput ._BVHelperText {margin-left: 0;}
 	.BVSectionMediaGuidelines {height: 0; position: relative; zoom: 1;}
 		.BVSectionMediaGuidelines .BVPopinLauncher {position: absolute; top: 4px; left: 650px;}
+	.BVVideoPasteGuideContainer {position: absolute; border: 1px solid #000; background-color: #fff;}
+		.BVVideoPasteGuideContainerImage {width: 432px; height: 62px; background: url(images/vid_paste_youtube.gif) no-repeat; display: block !important;}
+		.BVVideoPasteGuideContainerLabel {font-size: 11px; padding: 2px 5px; white-space: nowrap;}
 
 	/* User Info */
 	._BVUserNicknameInputContainer ._BVLabelText, ._BVUserEmailInputContainer ._BVLabelText {font-size: 14px;}
@@ -444,6 +453,9 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		._BVAdditionalFieldGroupInputContainer ._BVAdditionalFieldIndividualInputContainer {clear: both; margin-bottom: 30px;}
 		._BVAdditionalFieldGroupInputContainer ._BVAdditionalFieldIndividualInputContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
 		._BVAdditionalFieldGroupInputContainer #additionalfield_RewardZoneNumberWrapperID {display: none;}
+		#contextdatavalue_rewardZoneMembershipV3WrapperID ._BVLabelText {padding-top: 22px;}
+		#contextdatavalue_rewardZoneMembershipV3WrapperID ._BVHelperTextCustom {padding-bottom: 5px;}
+		#contextdatavalue_rewardZoneMembershipV3WrapperID ._BVHelperTextCustom span {color: #003B64;}
 
 	/* Email Subscription */
 	._BVEmailAlertWhenPublishedContainer, ._BVEmailAlertWhenCommentedContainer {margin: 0 0 15px 220px;}
@@ -474,4 +486,6 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		/* Review Preview */
 		._BVReviewPreviewBodyContainer .BVUGCSpacerTop {display: block !important;}
 
+
+	.BVHidden {display: none;}
 
