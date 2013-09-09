@@ -106,9 +106,6 @@ function initBVSubmission () {
 	).done(function(){
 		// load models (controllers depend on them)
 		$.when(
-			/* LOAD JS FILES */
-			$.getScript(siteBaseURL + "js/browserSelector.js"),
-			$.getScript(siteBaseURL + "js/modernizr.js"),
 			// properties
 			$.getScript(siteBaseURL + "models/properties/properties.js"),
 			// models
