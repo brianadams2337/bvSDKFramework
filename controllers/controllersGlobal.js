@@ -156,7 +156,7 @@ function returnTemplate (template) {
 
 function consoleLogFallback (content) {
 	if (!bvProduction) {
-		var alertFallback = true;
+		var alertFallback = false;
 		if (typeof console === "undefined" || typeof console.log === "undefined") {
 			console = {};
 			if (alertFallback) {
@@ -220,7 +220,7 @@ function loadSubmitButton (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultButtonSubmitContainer,
-		"viewContainer":defaultButtonContainerView,
+		"viewContainer":defaultButtonPrimaryContainerView,
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
@@ -241,7 +241,7 @@ function loadPreviewButton (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultButtonPreviewContainer,
-		"viewContainer":defaultButtonContainerView,
+		"viewContainer":defaultButtonSecondaryContainerView,
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
@@ -253,7 +253,8 @@ function loadPreviewButton (content, options) {
 		"id":"",
 		"title":"",
 		"onclick":"return false;",
-		"href":""
+		"href":"",
+		"hidefocus":"true"
 	}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).html(content);
 }
 
@@ -262,7 +263,7 @@ function loadEditButton (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultButtonEditContainer,
-		"viewContainer":defaultButtonContainerView,
+		"viewContainer":defaultButtonSecondaryContainerView,
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
@@ -283,7 +284,7 @@ function loadCancelButton (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultButtonCancelContainer,
-		"viewContainer":defaultButtonContainerView,
+		"viewContainer":defaultButtonTertiaryContainerView,
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
@@ -304,7 +305,7 @@ function loadReturnButton (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultButtonReturnContainer,
-		"viewContainer":defaultButtonContainerView,
+		"viewContainer":defaultButtonSecondaryContainerView,
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
@@ -325,7 +326,7 @@ function loadGenericButton (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"", // must be defined in call
 		"targetContainer":defaultButtonGenericContainer,
-		"viewContainer":defaultButtonContainerView,
+		"viewContainer":defaultButtonTertiaryContainerView,
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
@@ -346,7 +347,7 @@ function loadWriteReviewButton (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"",
 		"targetContainer":defaultButtonWriteReviewContainer,
-		"viewContainer":defaultButtonContainerView,
+		"viewContainer":defaultButtonPrimaryContainerView,
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
@@ -375,6 +376,36 @@ function loadWriteReviewButton (content, options) {
 		var url = siteBaseSubmissionURL + submissionParams;
 		// load submission container
 		loadSubmissionPage(url);
+	});
+}
+
+// read reviews button (go-to)
+function loadReadReviewsButton (content, options) {
+	var settings = $.extend(true, {
+		"parentContainer":"",
+		"targetContainer":defaultButtonReadReviewsContainer,
+		"viewContainer":defaultButtonTextContainerView,
+	}, options);
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// set variables
+	var productId = settings["productId"]
+	var returnURL = $(location).attr("href") + "";
+	// add button template
+	$container.append($template);
+	// set attributes
+	$($template).find(defaultButtonContainer).andSelf().filter(defaultButtonContainer).attr({
+		"id":"",
+		"title":"",
+		// "onclick":"return false;",
+		"href":"#BVRRContainer"
+	}).find(defaultButtonTextContainer).andSelf().filter(defaultButtonTextContainer).html(content);
+	// write review button functionality
+	$($template).find(defaultButtonContainer).andSelf().filter(defaultButtonContainer).click(function() {
+		// var url = siteBaseSubmissionURL + submissionParams;
+		// // load submission container
+		// loadSubmissionPage(url);
 	});
 }
 

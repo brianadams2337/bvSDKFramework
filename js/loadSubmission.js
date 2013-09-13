@@ -3,7 +3,7 @@ var jqueryVersion = "1.10.2";
 var jqueryUIVersion = "1.10.3";
 
 // check if jquery does not exist or does not match version
-if (typeof jQuery == 'undefined' || !(($.fn.jquery) = jqueryVersion)) {
+if (typeof jQuery == 'undefined' || !(($.fn.jquery) == jqueryVersion)) {
 	var otherJSLibrary;
 	// check for other js libraries
 	if (typeof $ == 'function') {

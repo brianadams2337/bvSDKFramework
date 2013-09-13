@@ -4,6 +4,7 @@
 var defaultReviewsParentContainer = "#BVRRContainer"; // main container for RR implementation
 var defaultReviewsBodyContainer = "._BVReviewBodyContainer"; // all reviews section container
 var defaultQuickTakeContainer = "._BVQuickTakeContainer"; // quick take container
+var defaultPrimarySummaryContainer = "._BVPrimarySummaryContainer"; // primary summary container
 var defaultReviewContainer = "._BVReviewContainer"; // individual review container
 
 /* HEADERS */
@@ -97,6 +98,7 @@ var defaultReviewReportInappropriateContainer = "._BVReportInappropriateContaine
 
 /* BUTTONS */
 var defaultButtonWriteReviewContainer = "._BVButtonWriteReviewContainer"; // write review button
+var defaultButtonReadReviewsContainer = "._BVButtonReadReviewsContainer"; // read reviews button
 var defaultButtonSubmitContainer = "._BVButtonSubmitContainer"; // submit button
 var defaultButtonPreviewContainer = "._BVButtonPreviewContainer"; // preview button
 var defaultButtonEditContainer = "._BVButtonEditContainer"; // edit button
