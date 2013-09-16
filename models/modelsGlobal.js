@@ -1,27 +1,33 @@
-function returnAPIParametersString (p) {
+function returnAPIParametersString (object) {
 	var params = ""
-	$.each (p, function (k, v) {			
-		if (k == "filter") {
-			$.each (this, function (k, v) {
-				if (!(v == null)) {
-					params += "&filter=" + k + ":" + v;
+	$.each (object, function (parameter, parameterValue) {			
+		if (parameter == "filter") {
+			$.each (this, function (filter, filterValue) {
+				if (!(filterValue == null || filterValue == undefined || !filterValue)) {
+					if (typeof filterValue === "string") {
+						params += "&filter=" + filter + ":" + filterValue;
+					} else {
+						$.each(filterValue, function(index, value) {
+							params += "&filter=" + filter + ":" + value;
+						});
+					}
 				};
 			});
-		} else if (k == "sort") {
+		} else if (parameter == "sort") {
 			var i = 1;
-			$.each (this, function (k, v) {
-				if (!(v == null)) {
+			$.each (this, function (sort, sortValue) {
+				if (!(sortValue == null || sortValue == undefined || !sortValue)) {
 					if (i == 1) {
-						params += "&sort=" + k + ":" + v;
+						params += "&sort=" + sort + ":" + sortValue;
 					} else {
-						params += "," + k + ":" + v;
+						params += "," + sort + ":" + sortValue;
 					};
 					i++;
 				};
 			});
 		} else {
-			if (!(k == "URL" || k == "AjaxSettings" || v == null)) {
-				params += "&" + k + "=" + v;
+			if (!(parameter == "URL" || parameter == "AjaxSettings" || parameterValue == null || parameterValue == undefined || !parameterValue)) {
+				params += "&" + parameter + "=" + parameterValue;
 			};
 		};
 	});
@@ -29,28 +35,28 @@ function returnAPIParametersString (p) {
 	return params.substring(1);
 }
 
-function returnAPIParameters (p) {
+function returnAPIParameters (object) {
 	var params = new Object;
-	$.each (p, function (k, v) {			
-		if (k == "filter") {
+	$.each (object, function (parameter, parameterValue) {			
+		if (parameter == "filter") {
 			var filters = new Object;
-			$.each (this, function (k, v) {
-				if (!(v == null || v == undefined || !v)) {
-					filters[k] = v;
+			$.each (this, function (filter, filterValue) {
+				if (!(filterValue == null || filterValue == undefined || !filterValue)) {
+					filters[filter] = filterValue;
 				};
 			});
 			params["filter"] = filters;
-		} else if (k == "sort") {
+		} else if (parameter == "sort") {
 			var sorts = new Object;
-			$.each (this, function (k, v) {
-				if (!(v == null || v == undefined || !v)) {
-					sorts[k] = v;
+			$.each (this, function (sort, sortValue) {
+				if (!(sortValue == null || sortValue == undefined || !sortValue)) {
+					sorts[sort] = sortValue;
 				};
 			});
 			params["sort"] = sorts;
 		} else {
-			if (!(k == "URL" || k == "AjaxSettings" || v == null || v == undefined || !v)) {
-				params[k] = v;
+			if (!(parameter == "URL" || parameter == "AjaxSettings" || parameterValue == null || parameterValue == undefined || !parameterValue)) {
+				params[parameter] = parameterValue;
 			};
 		};
 	});

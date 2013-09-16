@@ -159,7 +159,7 @@ function loadFeedbackVotingButton (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultFeedbackVotingButtonContainer,
-		"viewContainer":defaultButtonContainerView,
+		"viewContainer":defaultButtonSecondaryContainerView,
 		"loadOrder":"",
 		"productId":"",
 		"contentId":"",
@@ -393,7 +393,7 @@ function loadReportInappropriateButton (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultReportInappropriateButtonContainer,
-		"viewContainer":defaultButtonContainerView,
+		"viewContainer":defaultButtonTertiaryContainerView,
 		"loadOrder":"",
 		"productId":"",
 		"contentId":""

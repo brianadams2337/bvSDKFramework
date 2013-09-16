@@ -295,19 +295,40 @@ function loadReviewSubmissionForm (content, options) {
 		// validate form using parsly.js plugin
 		var validated = $("#" + newID).parsley('validate');
 		// POST form to server if no errors
+		// if (validated) {
+		// 	$(defaultSubmissionFormContainer).hide();
+		// 	postReviewsSubmissionForm(productId, defaultSubmissionPreviewContainer, function (content) {
+		// 			// update content to have matching review node so the preview will match the display
+		// 			content = updateReviewPreviewNode(content);
+		// 			// review preview
+		// 			loadReviewSubmissionPreviewWidget (content, {
+		// 				"parentContainer":settings["parentContainer"],
+		// 				"productId":productId,
+		// 				"returnURL":returnURL,
+		// 			});
+		// 		}, {
+		// 		"Parameters": params
+		// 	});
+		// }
 		if (validated) {
-			$(defaultSubmissionFormContainer).hide();
-			postReviewsSubmissionForm(productId, defaultSubmissionPreviewContainer, function (content) {
-					// update content to have matching review node so the preview will match the display
-					content = updateReviewPreviewNode(content);
-					// review preview
-					loadReviewSubmissionPreviewWidget (content, {
-						"parentContainer":settings["parentContainer"],
-						"productId":productId,
-						"returnURL":returnURL,
-					});
-				}, {
-				"Parameters": params
+			$("#BVSubmissionContainer").css({"height":$(defaultSubmissionFormContainer).height()});
+			$('html, body').animate({
+				scrollTop: $("#BVSubmissionContainer").offset().top
+			}, 300);
+			$(defaultSubmissionFormContainer).fadeOut(300, function() {
+				postReviewsSubmissionForm(productId, defaultSubmissionPreviewContainer, function (content) {
+						// update content to have matching review node so the preview will match the display
+						content = updateReviewPreviewNode(content);
+						// review preview
+						loadReviewSubmissionPreviewWidget (content, {
+							"parentContainer":settings["parentContainer"],
+							"productId":productId,
+							"returnURL":returnURL,
+						});
+						$("#BVSubmissionContainer").animate({"height":$(defaultSubmissionPreviewContainer).height()}, 300);
+					}, {
+					"Parameters": params
+				});
 			});
 		}
 	});
