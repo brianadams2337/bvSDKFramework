@@ -380,7 +380,7 @@ function loadWriteReviewCommentButton (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultButtonWriteReviewCommentContainer,
-		"viewContainer":defaultButtonContainerView,
+		"viewContainer":defaultButtonTextContainerView,
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
@@ -420,7 +420,7 @@ function loadToggleReviewCommentsButton (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultButtonToggleReviewCommentsContainer,
-		"viewContainer":defaultButtonContainerView,
+		"viewContainer":defaultButtonTextContainerView,
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);

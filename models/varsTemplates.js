@@ -15,7 +15,20 @@ var defaultSectionHeaderContainerView = "#bvtemplate-header-section-universal"; 
 
 
 
-var defaultButtonContainerView = "#bvtemplate-button-default-universal"; // generic button module
+var defaultButtonPrimaryContainerView = "#bvtemplate-button-primary-default-universal"; // primary button module
+var defaultButtonSecondaryContainerView = "#bvtemplate-button-secondary-default-universal"; // secondary button module
+var defaultButtonTertiaryContainerView = "#bvtemplate-button-tertiary-default-universal"; // tertiary button module
+var defaultButtonCloseContainerView = "#bvtemplate-button-close-default-universal"; // close button module
+var defaultButtonTextContainerView = "#bvtemplate-button-text-default-universal"; // text button module
+var defaultButtonDefaultContainerView = "#bvtemplate-button-default-universal"; // generic button module
+
+
+
+/***** PRIMARY SUMMARY *****/
+
+
+
+var defaultPrimarySummaryContainerView = "#bvtemplate-primary-summary-universal"; // primary summary module
 
 
 

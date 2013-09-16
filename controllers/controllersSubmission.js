@@ -1276,7 +1276,7 @@ function loadPhotoFileUploadInput (content, options) {
 				// load remove button
 				loadGenericButton ("remove", {
 					"parentContainer":$template,
-					"viewContainer":"#bvtemplate-button-close-universal"
+					"viewContainer":defaultButtonCloseContainerView
 				})
 				// remove button functionality
 				$($template).find(defaultButtonGenericContainer + " " + defaultButtonContainer).andSelf().filter(defaultButtonGenericContainer + " " + defaultButtonContainer).click(function() {

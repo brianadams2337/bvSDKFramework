@@ -4,7 +4,14 @@
 
 function loadFiltersOverallRating (content, options) {
 	var defaultLoadOrder = new Array();
-	var defaultLoadOrder = content["RatingDistribution"]; // review stats
+	// var defaultLoadOrder = content["RatingDistribution"]; // review stats
+	var defaultLoadOrder = [
+		{"Value":"5"},
+		{"Value":"4"},
+		{"Value":"3"},
+		{"Value":"2"},
+		{"Value":"1"},
+	];
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultFilterGroupContainer,
@@ -14,6 +21,7 @@ function loadFiltersOverallRating (content, options) {
 		"modelLocalDefaultSettings":"",
 		"filterSettings":{
 			"displayCount":5,
+			"multipleSelect":false,
 			"popinBool":false,
 			"onClickBool":false,
 			"showCountBool":true
@@ -36,12 +44,24 @@ function loadFiltersOverallRating (content, options) {
 		"Values":[]
 	};
 	if (settings["loadOrder"] != undefined) {
-		$.each(settings["loadOrder"], function() {
-			var obj = new Object;
-			obj["Count"] = this["Count"];
-			obj["Value"] = this["RatingValue"];
-			obj["Label"] = labelsFilterOverallRating[this["RatingValue"]];
-			ratingsDistribution["Values"].push(obj);
+		$.each(settings["loadOrder"], function(index) {
+			var filterValue = this["Value"];
+			var filter = $.grep(content["RatingDistribution"], function(filter) {
+				return filter.RatingValue == filterValue;
+			});
+			if (filter.length > 0) {
+				var obj = new Object;
+				obj["Count"] = filter[0]["Count"];
+				obj["Value"] = filter[0]["RatingValue"];
+				obj["Label"] = labelsFilterOverallRating[filter[0]["RatingValue"]];
+				ratingsDistribution["Values"].push(obj);
+			} else {
+				var obj = new Object;
+				obj["Count"] = 0;
+				obj["Value"] = filterValue;
+				obj["Label"] = labelsFilterOverallRating[filterValue];
+				ratingsDistribution["Values"].push(obj);
+			}
 		});
 	}
 	// set variables
@@ -58,10 +78,11 @@ function loadFiltersOverallRating (content, options) {
 	loadIndividualFilters (ratingsDistribution, {
 		"parentContainer":$template,
 		"viewContainer":defaultFilterIndividualHistogramContainerView,
-		"loadOrder":ratingsDistribution["Values"].reverse(),
+		"loadOrder":ratingsDistribution["Values"],
 		"viewReloadOptions":settings["viewReloadOptions"],
 		"filterSettings":{
 			"showHistogramBool":true,
+			"multipleSelect":true,
 		},
 	});
 }
@@ -76,6 +97,7 @@ function loadFiltersSecondaryRatings (content, options) {
 		"modelLocalDefaultSettings":"",
 		"filterSettings":{
 			"displayCount":5,
+			"multipleSelect":false,
 			"popinBool":false,
 			"onClickBool":false,
 			"showCountBool":true
@@ -138,6 +160,7 @@ function loadFiltersContextDataValues (content, options) {
 		"modelLocalDefaultSettings":"",
 		"filterSettings":{
 			"displayCount":5,
+			"multipleSelect":true,
 			"popinBool":false,
 			"onClickBool":false,
 			"showCountBool":true
@@ -188,6 +211,7 @@ function loadFiltersAdditionalFields (content, options) {
 		"modelLocalDefaultSettings":"",
 		"filterSettings":{
 			"displayCount":5,
+			"multipleSelect":true,
 			"popinBool":false,
 			"onClickBool":false,
 			"showCountBool":true
@@ -238,6 +262,7 @@ function loadFiltersTags (content, options) {
 		"modelLocalDefaultSettings":"",
 		"filterSettings":{
 			"displayCount":5,
+			"multipleSelect":true,
 			"popinBool":false,
 			"onClickBool":false,
 			"showCountBool":true
@@ -288,6 +313,7 @@ function loadIndividualFilters (content, options) {
 		"modelLocalDefaultSettings":"",
 		"filterSettings":{
 			"displayCount":5,
+			"multipleSelect":true,
 			"popinBool":false,
 			"onClickBool":false,
 			"showCountBool":true,
@@ -306,6 +332,7 @@ function loadIndividualFilters (content, options) {
 			var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
 			var $template = returnTemplate(settings["viewContainer"]);
 			// set variables
+			var multipleSelect = settings["filterSettings"]["multipleSelect"];
 			var filterText = new String();
 			if (content["Values"][key]["Label"]) {
 				var filterText = content["Values"][key]["Label"];
@@ -323,10 +350,17 @@ function loadIndividualFilters (content, options) {
 				"data-disabled":"false"
 			});
 			// set selected/disabled state data attribute
-			if (settings["viewReloadOptions"]["controllerSettings"]["modelLocalDefaultSettings"]["Parameters"]["filter"][content["Id"]] == content["Values"][key]["Value"]) {
+			// set selected filter
+			if ((settings["viewReloadOptions"]["controllerSettings"]["modelLocalDefaultSettings"]["Parameters"]["filter"][content["Id"]] == content["Values"][key]["Value"]) || ($.inArray(content["Values"][key]["Value"], settings["viewReloadOptions"]["controllerSettings"]["modelLocalDefaultSettings"]["Parameters"]["filter"][content["Id"]]) > -1)) {
 				$($template).attr({
 					"data-selected":"true",
 				}).addClass("BVSelected");
+			}
+			// set disabled filter
+			if (filterCountText == 0) {
+				$($template).attr({
+					"data-disabled":"true",
+				}).addClass("BVDisabled");
 			}
 			// set filter text
 			$($template).find(defaultReviewFilterTextContainer).andSelf().filter(defaultReviewFilterTextContainer).html(filterText);
@@ -342,7 +376,8 @@ function loadIndividualFilters (content, options) {
 				});
 			}
 			// filter option functionality
-				$($template).click(function(){
+			$($template).click(function(){
+				if ($(this).attr("data-disabled") == "false") {
 					if ($(this).attr("data-selected") == "false") {
 						var refreshContainer = $(settings["viewReloadOptions"]["controllerSettings"]["parentContainer"]).find(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]).andSelf().filter(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]);
 						var selected = $(this).attr("data-filter-parameter");
@@ -350,8 +385,29 @@ function loadIndividualFilters (content, options) {
 						// load new content based off of filter selection and current settings
 						// update parameters for new api call
 						// add selected filter
-						settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected] = selectedValue;
-						// reset offset to start from the beginning - 
+						// check if multiple filter option can be selected
+						if (multipleSelect) {
+							// check if filter already exists
+							if (settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected]) {
+								// check if existing filter is a string or an array
+								if (typeof settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected] === "string") {
+									// convert string into array
+									settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected] = [settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected]];
+									// add new option to filter array
+									settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected].push(selectedValue);
+								} else {
+									// add new filter option to existing filter array
+									settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected].push(selectedValue);								
+								}
+							} else {
+								// create array from selected option and set filter
+								settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected] = [selectedValue];
+							}
+						} else {
+							// set filter as string
+							settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected] = selectedValue;
+						}
+						// reset offset to start from the beginning
 						settings["viewReloadOptions"]["modelSettings"]["Parameters"]["offset"] = 0;
 						// make new api call
 						settings["viewReloadOptions"]["model"] (
@@ -372,11 +428,38 @@ function loadIndividualFilters (content, options) {
 					} else if ($(this).attr("data-selected") == "true") {
 						var refreshContainer = $(settings["viewReloadOptions"]["controllerSettings"]["parentContainer"]).find(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]).andSelf().filter(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]);
 						var selected = $(this).attr("data-filter-parameter");
-						var selectedValue = null;
+						var selectedValue = $(this).attr("data-filter-value");
 						// load new content based off of filter selection and current settings
 						// update parameters for new api call
 						// add selected filter
-						settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected] = selectedValue;
+						// check if multiple filter option can be selected
+						if (multipleSelect) {
+							// verify filter already exists
+							if (settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected]) {
+								// check if existing filter is a string or an array
+								if (typeof settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected] === "string") {
+									// set filter to null since the value is a string
+									settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected] = null;
+								} else {
+									// check if more than one value is in array
+									if (settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected].length > 1) {
+										// multiple values exist - remove filter option from existing filter array
+										settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected] = $.grep(settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected], function(value) {
+											return value != selectedValue;
+										});
+									} else {
+										// set filter to null since filter already does not exist
+										settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected] = null;
+									}
+								}
+							} else {
+								// set filter to null since filter already does not exist
+								settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected] = null;
+							}
+						} else {
+							// set filter to null since only one value is allowed and it is being removed
+							settings["viewReloadOptions"]["modelSettings"]["Parameters"]["filter"][selected] = null;
+						}
 						// reset offset to start from the beginning
 						settings["viewReloadOptions"]["modelSettings"]["Parameters"]["offset"] = 0;
 						// make new api call
@@ -396,7 +479,8 @@ function loadIndividualFilters (content, options) {
 							settings["viewReloadOptions"]["modelSettings"]
 						);
 					}
-				});
+				}
+			});
 		});
 	}
 }

@@ -136,9 +136,16 @@ function initBVReviews () {
 			).done(function(){
 				// load reviews
 				getAllReviews (productId, defaultReviewsParentContainer, function(content, modelLocalDefaultSettings) {
-					// callback function
+					// callback functions
+					loadPrimarySummary (content, {
+						"parentContainer":"body",
+						"productId":productId,
+						"modelLocalDefaultSettings":{
+							"Parameters":modelLocalDefaultSettings
+						}
+					});
 					loadReviewWidget (content, {
-						"parentContainer":defaultReviewsParentContainer,
+						"parentContainer":"body",
 						"productId":productId,
 						"modelLocalDefaultSettings":{
 							"Parameters":modelLocalDefaultSettings

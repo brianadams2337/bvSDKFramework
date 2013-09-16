@@ -126,6 +126,9 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 						.BVFilter.BVSelected .BVFilterTextPrefix {background-position: 0 -160px;}
 						.BVFilter.BVSelected:hover .BVFilterTextPrefix {background-position: 0 0;}
 						.BVFilter:hover ._BVFilterText {cursor: pointer;}
+						.BVFilter.BVDisabled, .BVFilter.BVDisabled:hover {opacity: 0.5; cursor: default;}
+						.BVFilter.BVDisabled .BVFilterTextPrefix {background-position: 0 -240px;}
+						.BVFilter.BVDisabled:hover ._BVFilterText {cursor: default;}
 						._BVFilterLabelText {margin-bottom: 6px;}
 						._BVFilterText {color: #085EB9; margin-right: 3px;}
 						._BVFilterCountText, .BVFilterCountTextPrefix, .BVFilterCountTextSuffix {font-size: 11px; color: #737474;}

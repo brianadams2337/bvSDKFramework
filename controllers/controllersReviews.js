@@ -209,6 +209,44 @@ function loadIndividualReview (content, options) {
 
 /* DEFAULT QUICKTAKE FUNCTION */
 
+function loadPrimarySummary (content, options) {
+	content = content["Includes"]["Products"][productId]['FilteredReviewStatistics'];
+	var settings = $.extend(true, {
+		"parentContainer":"", // template must be defined in call
+		"targetContainer":defaultPrimarySummaryContainer,
+		"viewContainer":defaultPrimarySummaryContainerView,
+		"productId":"",
+	}, options);
+	// set container & template
+	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
+	var $template = returnTemplate(settings["viewContainer"]);
+	// add quick take template
+	$container.append($template);
+			
+	// overall rating average
+	loadReviewRatingAverage (content, {
+		"parentContainer":$template
+	});
+	// histogram
+	loadHistogramOverallRating (content, {
+		"parentContainer":$template
+	});
+	// write review button
+	loadWriteReviewButton ("Review This Product", {
+		"parentContainer":$template,
+		"viewContainer":defaultButtonTextContainerView,
+		"productId":settings["productId"]
+	});
+	// read reviews button
+	loadReadReviewsButton ("Read All Reviews", {
+		"parentContainer":$template,
+		"viewContainer":defaultButtonTextContainerView,
+		"productId":settings["productId"]
+	});
+}
+
+/* DEFAULT QUICKTAKE FUNCTION */
+
 function loadQuickTake (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"", // template must be defined in call
