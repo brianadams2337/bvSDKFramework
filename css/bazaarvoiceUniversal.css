@@ -30,6 +30,15 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 
 
 
+/* PRIMARY SUMMARY */
+	#BVRRPrimarySummaryContainer {float: left; overflow: hidden; position: relative; top: 7px;}
+		._BVPrimarySummaryContainer ._BVOverallRatingContainer {float: left; overflow: hidden; margin-right: 10px;}
+
+		._BVPrimarySummaryContainer ._BVButtonWriteReviewContainer {float: left; clear: none; padding-right: 5px; margin-right: 5px;}
+		._BVPrimarySummaryContainer ._BVButtonReadReviewsContainer {float: left; clear: none;}
+
+
+
 /* BUTTONS */
 
 	/* Generic */
@@ -58,28 +67,6 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 
 	._BVButtonSubmitContainer a._BVButton, ._BVButtonPreviewContainer a._BVButton {font-size: 14px;}
 
-/* PRIMARY SUMMARY */
-	#BVRRPrimarySummaryContainer {float: left; overflow: hidden;}
-		._BVPrimarySummaryContainer ._BVOverallRatingContainer {float: left; overflow: hidden; margin-right: 10px;}
-
-		._BVPrimarySummaryContainer ._BVButtonWriteReviewContainer {float: left; clear: none; padding-right: 5px; margin-right: 5px;}
-		._BVPrimarySummaryContainer ._BVButtonReadReviewsContainer {float: left; clear: none;}
-
-
-/*
-	a._BVButton, a._BVButton:visited {display: inline-block; padding: 7px 12px; font-size: 13px; font-weight: bold; line-height: 19px; color: #085EB9; text-shadow: 0 1px 0 rgba(255,255,255,0.9); white-space: nowrap; background-color: #F6F6F6; background-image: -moz-linear-gradient(#F6F6F6, #E8E8E8); background-image: -webkit-linear-gradient(#F6F6F6, #E8E8E8); background-image: -ms-linear-gradient(#F6F6F6, #E8E8E8); background-image: -o-linear-gradient(#F6F6F6, #E8E8E8); background-image: linear-gradient(#F6F6F6, #E8E8E8); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#F6F6F6, endColorstr=#E8E8E8, GradientType=0); background-repeat: repeat-x; border-radius: 4px; border: 1px solid #C3C4C4; vertical-align: middle; cursor: pointer; text-decoration: none;}
-	a._BVButton:active, a._BVButton:focus, a._BVButton:hover {background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F6F6F6)); background-image: -webkit-linear-gradient(#FFFFFF, #F6F6F6); background-image: -moz-linear-gradient(#FFFFFF, #F6F6F6); background-image: -ms-linear-gradient(#FFFFFF, #F6F6F6); background-image: -o-linear-gradient(#FFFFFF, #F6F6F6); background-image: linear-gradient(#FFFFFF, #F6F6F6); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F6F6F6, GradientType=0);}
-
-	._BVButtonSubmitContainer a._BVButton, ._BVButtonSubmitContainer a._BVButton:visited {background-color: #F7CF00; background-image: -moz-linear-gradient(#FFF200, #F7CF00); background-image: -webkit-linear-gradient(#FFF200, #F7CF00); background-image: -ms-linear-gradient(#FFF200, #F7CF00); background-image: -o-linear-gradient(#FFF200, #F7CF00); background-image: linear-gradient(#FFF200, #F7CF00); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFF200, endColorstr=#F7CF00, GradientType=0); border: 1px solid #F9C500; font-size:;}
-		._BVButtonSubmitContainer a._BVButton ._BVButtonText {color: #003B64; text-shadow: 0 1px 1px rgba(255,255,255,0.75);}
-	._BVButtonSubmitContainer a._BVButton:active, ._BVButtonSubmitContainer a._BVButton:focus, ._BVButtonSubmitContainer a._BVButton:hover {background-image: -webkit-gradient(linear, left top, left bottom, from(#FFF86E), to(#FFF200)); background-image: -webkit-linear-gradient(#FFF86E, #FFF200); background-image: -moz-linear-gradient(#FFF86E, #FFF200); background-image: -ms-linear-gradient(#FFF86E, #FFF200); background-image: -o-linear-gradient(#FFF86E, #FFF200); background-image: linear-gradient(#FFF86E, #FFF200); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFF86E, endColorstr=#FFF200, GradientType=0);}
-
-	._BVButtonWriteReviewContainer a._BVButton, ._BVButtonWriteReviewContainer a._BVButton:visited, ._BVButtonPreviewContainer a._BVButton, ._BVButtonPreviewContainer a._BVButton:visited, ._BVButtonReturnContainer a._BVButton, ._BVButtonReturnContainer a._BVButton:visited {background-color: #006CBC; background-image: -moz-linear-gradient(#006CBC, #00449E); background-image: -webkit-linear-gradient(#006CBC, #00449E); background-image: -ms-linear-gradient(#006CBC, #00449E); background-image: -o-linear-gradient(#006CBC, #00449E); background-image: linear-gradient(#006CBC, #00449E); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#006CBC, endColorstr=#00449E, GradientType=0); border: 1px solid #003865;}
-		._BVButtonWriteReviewContainer a._BVButton ._BVButtonText, ._BVButtonPreviewContainer a._BVButton ._BVButtonText, ._BVButtonReturnContainer a._BVButton ._BVButtonText {color: #fff; text-shadow: 0 -1px 1px rgba(0,0,0,0.75);}
-	._BVButtonWriteReviewContainer a._BVButton:active, ._BVButtonWriteReviewContainer a._BVButton:focus, ._BVButtonWriteReviewContainer a._BVButton:hover, ._BVButtonPreviewContainer a._BVButton:active, ._BVButtonPreviewContainer a._BVButton:focus, ._BVButtonPreviewContainer a._BVButton:hover, ._BVButtonReturnContainer a._BVButton:hover, ._BVButtonReturnContainer a._BVButton:active, ._BVButtonReturnContainer a._BVButton:focus {background-image: -webkit-gradient(linear, left top, left bottom, from(#2488D2), to(#006CBC)); background-image: -webkit-linear-gradient(#2488D2, #006CBC); background-image: -moz-linear-gradient(#2488D2, #006CBC); background-image: -ms-linear-gradient(#2488D2, #006CBC); background-image: -o-linear-gradient(#2488D2, #006CBC); background-image: linear-gradient(#2488D2, #006CBC); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#2488D2, endColorstr=#006CBC, GradientType=0);}
-
-	._BVButtonSubmitContainer a._BVButton, ._BVButtonPreviewContainer a._BVButton {font-size: 14px;}
-*/
 
 /* RATINGS */
 
