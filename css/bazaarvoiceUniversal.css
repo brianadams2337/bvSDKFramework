@@ -20,6 +20,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 
 	/* Titles, Labels, Values */
 	.BVTitle {font-size: 18px; font-weight: bold; line-height: normal;}
+	h2.BVTitle {border-bottom: 1px solid #C3C4C4; margin: 0 0 20px; padding: 0 0 2px; font-size: 25px; font-weight: normal; line-height: 1.5;}
 	.BVLabel {font-weight: bold;}
 	.BVValue {}
 
@@ -36,22 +37,23 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	a._BVButton:active, a._BVButton:focus, a._BVButton:hover {background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F6F6F6)); background-image: -webkit-linear-gradient(#FFFFFF, #F6F6F6); background-image: -moz-linear-gradient(#FFFFFF, #F6F6F6); background-image: -ms-linear-gradient(#FFFFFF, #F6F6F6); background-image: -o-linear-gradient(#FFFFFF, #F6F6F6); background-image: linear-gradient(#FFFFFF, #F6F6F6); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F6F6F6, GradientType=0);}
 
 	/* Submit */
-	._BVButtonSubmitContainer a._BVButton, ._BVButtonSubmitContainer a._BVButton:visited {background-color: #F7CF00; background-image: -moz-linear-gradient(#FFF200, #F7CF00); background-image: -webkit-linear-gradient(#FFF200, #F7CF00); background-image: -ms-linear-gradient(#FFF200, #F7CF00); background-image: -o-linear-gradient(#FFF200, #F7CF00); background-image: linear-gradient(#FFF200, #F7CF00); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFF200, endColorstr=#F7CF00, GradientType=0); border: 1px solid #F9C500;}
+	._BVButtonSubmitContainer a._BVButton, ._BVButtonSubmitContainer a._BVButton:visited {background-color: #F7CF00; background-image: -moz-linear-gradient(#FFF200, #F7CF00); background-image: -webkit-linear-gradient(#FFF200, #F7CF00); background-image: -ms-linear-gradient(#FFF200, #F7CF00); background-image: -o-linear-gradient(#FFF200, #F7CF00); background-image: linear-gradient(#FFF200, #F7CF00); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFF200, endColorstr=#F7CF00, GradientType=0); border: 1px solid #F9C500; font-size:;}
 		._BVButtonSubmitContainer a._BVButton ._BVButtonText {color: #003B64; text-shadow: 0 1px 1px rgba(255,255,255,0.75);}
 	._BVButtonSubmitContainer a._BVButton:active, ._BVButtonSubmitContainer a._BVButton:focus, ._BVButtonSubmitContainer a._BVButton:hover {background-image: -webkit-gradient(linear, left top, left bottom, from(#FFF86E), to(#FFF200)); background-image: -webkit-linear-gradient(#FFF86E, #FFF200); background-image: -moz-linear-gradient(#FFF86E, #FFF200); background-image: -ms-linear-gradient(#FFF86E, #FFF200); background-image: -o-linear-gradient(#FFF86E, #FFF200); background-image: linear-gradient(#FFF86E, #FFF200); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFF86E, endColorstr=#FFF200, GradientType=0);}
 
-	/* Write a Review & Preview */
-	._BVButtonWriteReviewContainer a._BVButton, ._BVButtonWriteReviewContainer a._BVButton:visited, ._BVButtonPreviewContainer a._BVButton, ._BVButtonPreviewContainer a._BVButton:visited {background-color: #006CBC; background-image: -moz-linear-gradient(#006CBC, #00449E); background-image: -webkit-linear-gradient(#006CBC, #00449E); background-image: -ms-linear-gradient(#006CBC, #00449E); background-image: -o-linear-gradient(#006CBC, #00449E); background-image: linear-gradient(#006CBC, #00449E); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#006CBC, endColorstr=#00449E, GradientType=0); border: 1px solid #003865;}
-		._BVButtonWriteReviewContainer a._BVButton ._BVButtonText, ._BVButtonPreviewContainer a._BVButton ._BVButtonText {color: #fff; text-shadow: 0 -1px 1px rgba(0,0,0,0.75);}
-	._BVButtonWriteReviewContainer a._BVButton:active, ._BVButtonWriteReviewContainer a._BVButton:focus, ._BVButtonWriteReviewContainer a._BVButton:hover, ._BVButtonPreviewContainer a._BVButton:active, ._BVButtonPreviewContainer a._BVButton:focus, ._BVButtonPreviewContainer a._BVButton:hover {background-image: -webkit-gradient(linear, left top, left bottom, from(#2488D2), to(#006CBC)); background-image: -webkit-linear-gradient(#2488D2, #006CBC); background-image: -moz-linear-gradient(#2488D2, #006CBC); background-image: -ms-linear-gradient(#2488D2, #006CBC); background-image: -o-linear-gradient(#2488D2, #006CBC); background-image: linear-gradient(#2488D2, #006CBC); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#2488D2, endColorstr=#006CBC, GradientType=0);}
+	/* Write a Review & Preview, Return */
+	._BVButtonWriteReviewContainer a._BVButton, ._BVButtonWriteReviewContainer a._BVButton:visited, ._BVButtonPreviewContainer a._BVButton, ._BVButtonPreviewContainer a._BVButton:visited, ._BVButtonReturnContainer a._BVButton, ._BVButtonReturnContainer a._BVButton:visited {background-color: #006CBC; background-image: -moz-linear-gradient(#006CBC, #00449E); background-image: -webkit-linear-gradient(#006CBC, #00449E); background-image: -ms-linear-gradient(#006CBC, #00449E); background-image: -o-linear-gradient(#006CBC, #00449E); background-image: linear-gradient(#006CBC, #00449E); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#006CBC, endColorstr=#00449E, GradientType=0); border: 1px solid #003865;}
+		._BVButtonWriteReviewContainer a._BVButton ._BVButtonText, ._BVButtonPreviewContainer a._BVButton ._BVButtonText, ._BVButtonReturnContainer a._BVButton ._BVButtonText {color: #fff; text-shadow: 0 -1px 1px rgba(0,0,0,0.75);}
+	._BVButtonWriteReviewContainer a._BVButton:active, ._BVButtonWriteReviewContainer a._BVButton:focus, ._BVButtonWriteReviewContainer a._BVButton:hover, ._BVButtonPreviewContainer a._BVButton:active, ._BVButtonPreviewContainer a._BVButton:focus, ._BVButtonPreviewContainer a._BVButton:hover, ._BVButtonReturnContainer a._BVButton:hover, ._BVButtonReturnContainer a._BVButton:active, ._BVButtonReturnContainer a._BVButton:focus {background-image: -webkit-gradient(linear, left top, left bottom, from(#2488D2), to(#006CBC)); background-image: -webkit-linear-gradient(#2488D2, #006CBC); background-image: -moz-linear-gradient(#2488D2, #006CBC); background-image: -ms-linear-gradient(#2488D2, #006CBC); background-image: -o-linear-gradient(#2488D2, #006CBC); background-image: linear-gradient(#2488D2, #006CBC); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#2488D2, endColorstr=#006CBC, GradientType=0);}
+
+	._BVButtonSubmitContainer a._BVButton, ._BVButtonPreviewContainer a._BVButton {font-size: 14px;}
 
 
 
 /* RATINGS */
 
 	/* Filled & Unfilled Images - SVG scaling */
-	._BVRatingStarsFilledImage, ._BVRatingStarsUnfilledImage {width: 100%; height: auto;}
-	.webkit ._BVRatingStarsFilledImage, .webkit ._BVRatingStarsUnfilledImage {width: auto;}
+	._BVRatingStarsFilledImage, ._BVRatingStarsUnfilledImage {}
 
 	/* Overall Star Rating */
 	.BVOverallRatingContainer ._BVRatingStarsContainer {min-width: 100px; height: auto; display: block; float: left;}
@@ -64,18 +66,45 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 
 
 
+/* HISTOGRAM */
+
+	/* Popin */
+	a.BVHistogramLauncher, a.BVHistogramLauncher:hover, a.BVHistogramLauncher:active, a.BVHistogramLauncher:focus {border: 0 none !important; text-decoration: none !important;}
+	._BVHistorgramWidgetContainer {width: 290px; margin: 20px 0 0; border: 1px solid #C3C4C4; padding: 30px; background-color: #fff; border-radius: 4px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); display: none; position: absolute;}
+		
+		._BVHistorgramWidgetContainer ._BVHistogramLableText {width: 90px; height: 17px; display: block; float: left; background: url(images/histogramStars.png); margin-right: 10px;}
+			._BVHistorgramWidgetContainer ._BVHistogramLableText span {height: 17px; display: block; background: url(images/histogramStars.png) 0 -17px; text-indent: -999em; outline: none;}
+				
+				/* Stars */
+				._BVHistorgramWidgetContainer .BVHistogram5Stars {width: 90px;}
+				._BVHistorgramWidgetContainer .BVHistogram4Stars {display: block; width: 72px; background: url(images/histogramStars.png) 0 -15px;}
+				._BVHistorgramWidgetContainer .BVHistogram3Stars {width: 54px;}
+				._BVHistorgramWidgetContainer .BVHistogram2Stars {width: 36px;}
+				._BVHistorgramWidgetContainer .BVHistogram1Star {width: 18px;}
+
+	.BVHistorgramWidgetContainerArrow {width: 26px; height: 13px; position: absolute; top: -13px; left: 160px;}
+		.BVHistorgramWidgetContainerArrowMask {width: 0; height: 0; position: absolute; z-index: 10000; border-style: solid; border-color: transparent transparent #fff; border-width: 0 11px 11px; margin: 2px 0 0 2px;}
+		.BVHistorgramWidgetContainerArrowShadow {border-style: solid; border-color: transparent transparent #C3C4C4; border-width: 0 13px 13px; z-index: 9999;}
+
+		._BVHistogramIndividualContainer {margin-bottom: 10px;}
+		._BVHistogramIndividualContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
+			._BVHistogramIndividualWrapper {width: 80px; height: 14px; margin-top: 2px; display: block; float: left; margin-right: 10px; background: url(images/histogramBar.png);}
+				._BVHistogramIndividual {height: 14px; display: block; float: left; background: url(images/histogramBar.png) 0 -14px;}
+
+
+
+
 /* QUICKTAKE DASHBOARD */
 	
 	._BVQuickTakeContainer {overflow: hidden; position: relative;}
 		
 		/* Title */
-		._BVQuickTakeContainer ._BVQuickTakeSummaryTitle {padding: 0 0 12px;}
+		._BVQuickTakeContainer .BVQuickTakeSummaryTitle {padding: 0 0 12px;}
 		
 		/* Overall Rating */
 		._BVQuickTakeContainer ._BVOverallRatingContainer {}
 		._BVQuickTakeContainer ._BVOverallRatingContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
-			._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsContainer {float: left;}
-				._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsFilledImage, ._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsUnfilledImage {width: 170px !important;}
+			._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsContainer {width: 170px; height: 30px; float: left;}
 			._BVQuickTakeContainer .BVOverallRatingContainer .BVRatingOutOfContainer {font-weight: bold; line-height: 33px; font-size: 34px; color: #085EB9; float: left;}
 				._BVQuickTakeContainer .BVOverallRatingContainer .BVRatingSeparator, ._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingRange {display: none;}
 		
@@ -87,14 +116,28 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		/* Filters */
 		._BVQuickTakeContainer ._BVFilters {border-top: 1px solid #E7E7E7; clear: both; margin-top: 30px; padding: 30px 0;}
 			._BVFiltersTitle {margin-bottom: 5px;}
-			.BVFilterGroupContainer {padding: 3px 0;}
-				._BVFilterLabelText {margin-bottom: 6px; font-size: 14px;}
-				._BVFilterText {width: 40px; color: #085EB9; margin-right: 5px;}
-				._BVFilterCountText {font-size: 11px; color: #737474;}
-				._BVFiltersFilteringStatement {font-size: 9px;}
+			._BVFiltersContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
+				.BVFilterGroupContainer {width: 28%; float: left; padding: 3px 0; margin-right: 10px;}
+					.BVFilter {float: left; clear: both; margin-bottom: 5px;} /* float: left; to keep row from being full width with clickable whitespace */
+					.BVFilter:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
+						.BVFilterTextPrefix {width: 20px; height: 18px; display: block; float: left; background: url(images/iconFilters.gif) no-repeat 0 -240px;}
+						.BVFilter:hover {cursor: pointer;}
+						.BVFilter:hover .BVFilterTextPrefix {background-position: 0 -160px;}
+						.BVFilter.BVSelected .BVFilterTextPrefix {background-position: 0 -160px;}
+						.BVFilter.BVSelected:hover .BVFilterTextPrefix {background-position: 0 0;}
+						.BVFilter.BVDisabled, .BVFilter.BVDisabled:hover {opacity: 0.5; cursor: default;}
+						.BVFilter.BVDisabled .BVFilterTextPrefix {background-position: 0 -240px;}
+						.BVFilter:hover ._BVFilterText {cursor: pointer;}
+						._BVFilterLabelText {margin-bottom: 6px;}
+						._BVFilterText {color: #085EB9; margin-right: 3px;}
+						._BVFilterCountText, .BVFilterCountTextPrefix, .BVFilterCountTextSuffix {font-size: 11px; color: #737474;}
+						.BVFilterTextSuffix {display: none;}
+						._BVFilterText, .BVFilterCountTextPrefix {float: left;}
+							._BVFilterText span {width: 45px; display: block;}
+					.BVFiltersFilteringStatement {font-size: 9px;}
 		
 		/* Write a Review & Sorting */
-		._BVQuickTakeContainer ._BVButtonWriteReviewContainer {background-image: -moz-linear-gradient(#E7E7E7, #F2F2F2); background-image: -webkit-linear-gradient(#E7E7E7, #F2F2F2); background-image: linear-gradient(#E7E7E7, #F2F2F2); background-repeat: repeat-x; border-bottom: 1px solid #C4C4C4; padding: 7px 12px; overflow: hidden;}
+		._BVQuickTakeContainer ._BVButtonWriteReviewContainer {background-image: -webkit-gradient(linear, left top, left bottom, from(#E7E7E7), to(#F2F2F2)); background-image: -webkit-linear-gradient(#E7E7E7, #F2F2F2); background-image: -moz-linear-gradient(#E7E7E7, #F2F2F2); background-image: -ms-linear-gradient(#E7E7E7, #F2F2F2); background-image: -o-linear-gradient(#E7E7E7, #F2F2F2); background-image: linear-gradient(#E7E7E7, #F2F2F2); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#E7E7E7, endColorstr=#F2F2F2, GradientType=0); background-repeat: repeat-x; border-bottom: 1px solid #C4C4C4; padding: 7px 12px; overflow: hidden;}
 		._BVQuickTakeContainer .BVSortContainer {position: absolute; right: 12px; bottom: 14px;}
 
 
@@ -124,13 +167,13 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	.BVUserDataContainer {background: url(images/backgroundShadowEdge.png) no-repeat bottom left; padding: 0 0 14px 14px; margin: 15px 0 30px; clear: both; overflow: hidden;}
 		
 		/* Avatar */
-		.BVAvatar {float: left; margin-right: 15px;}
+		.BVAvatar {height: 41px; float: left; margin-right: 15px;}
 
 		/* Nickname, Location, Context Data */
 		.BVUserInfo {margin-left: 56px; color: #737474;}
 			._BVUserNicknameContainer, ._BVUserLocationContainer, ._BVDateContainer {display: inline;}
-			._BVContextDataValueGroupContainer {display: inline;}
-				.BVContextDataValueContainer {float: left; margin-right: 15px;}
+			._BVContextDataValueGroupContainer {}
+				.BVContextDataValueContainer {margin-bottom: 15px;}
 
 	
 	/* Badges */
@@ -176,13 +219,16 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	.BVUGCSecondaryContent {clear: right; float: right; vertical-align: top;}
 		._BVSecondaryRatingsContainer:empty {display: none;}
 		.BVUGCSecondaryContent ._BVSecondaryRatingsContainer, .BVUGCSecondaryContent .BVUGCMediaContent {width: 188px; border-bottom: 1px solid #E7E7E7; overflow: hidden; zoom: 1; margin-bottom: 15px; padding-bottom: 15px;}
+		.BVUGCSecondaryContent .BVUGCMediaContent {border-bottom-width: 0;}
 		.BVUGCSecondaryContent ._BVSecondaryRatingsContainer:after, .BVUGCSecondaryContent .BVUGCMediaContent:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
+		._BVPhotoGroupContainer:empty, ._BVVideoGroupContainer:empty {display: none;}
 
 		/* Secondary Ratings */
-		.BVSecondaryRatingContainer {width: 195px;}
+		.BVSecondaryRatingContainer {width: 195px; margin-bottom: 10px;}
 		.BVSecondaryRatingContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
-			.BVSecondaryRatingContainer ._BVRatingLabelText {font-weight: bold; display: block;}
-			.BVSecondaryRatingContainer ._BVRatingStarsContainer, .BVSecondaryRatingContainer .BVRatingOutOfContainer {display: block; float: left;}
+			.BVSecondaryRatingContainer ._BVRatingLabelText {font-weight: bold; display: block; margin-bottom: 3px;}
+			.BVSecondaryRatingContainer ._BVRatingStarsContainer, .BVSecondaryRatingContainer .BVRatingOutOfContainer {display: block; float: left; line-height: 11px;}
+			.BVSecondaryRatingContainer ._BVRatingStarsContainer {width: 150px;}
 			.BVSecondaryRatingContainer .BVRatingOutOfContainer {font-weight: bold;}
 				.BVSecondaryRatingContainer .BVRatingOutOfContainer .BVRatingSeparator, .BVSecondaryRatingContainer .BVRatingOutOfContainer ._BVRatingRange {display: none;}
 
@@ -195,7 +241,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	/* Footer - Helpfulness Voting, Reporting, Comments */
 
 		/* Helpfulness Voting */
-		._BVFeedbackContainer {background-image: -moz-linear-gradient(#E7E7E7, #F2F2F2); background-image: -webkit-linear-gradient(#E7E7E7, #F2F2F2); background-image: linear-gradient(#E7E7E7, #F2F2F2); background-repeat: repeat-x; padding: 12px; margin-top: 30px; clear: both;}
+		._BVFeedbackContainer {background-image: -webkit-gradient(linear, left top, left bottom, from(#E7E7E7), to(#F2F2F2)); background-image: -webkit-linear-gradient(#E7E7E7, #F2F2F2); background-image: -moz-linear-gradient(#E7E7E7, #F2F2F2); background-image: -ms-linear-gradient(#E7E7E7, #F2F2F2); background-image: -o-linear-gradient(#E7E7E7, #F2F2F2); background-image: linear-gradient(#E7E7E7, #F2F2F2); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#E7E7E7, endColorstr=#F2F2F2, GradientType=0); background-repeat: repeat-x; padding: 12px; margin-top: 30px; clear: both;}
 		._BVFeedbackContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
 			._BVFeedbackCountContainer {color: #666; margin-bottom: 10px; display: none;}
 			.BVFeedbackVotingPrefix {float: left; line-height: 33px; margin-right: 10px;}
@@ -210,7 +256,6 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 
 		/* Inappropriate Reporting */
 		._BVReportInappropriateContainer {}
-			._BVReportInappropriateForm .BVFooter {margin-left: 0;}
 
 			/* Report Button */
 			._BVReportInappropriateForm .BVFieldButtonGroup, ._BVReportInappropriateForm .BVFieldButtonGroup .BVField {margin-bottom: 0;}
@@ -219,7 +264,12 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 
 			/* Report Form */
 			._BVReportInappropriateFormContainer {position: relative;}
-				._BVReportInappropriateFormContainer ._BVReportInappropriateForm {position: absolute; top: 0; left: 0; background-color: #fff; border: 1px solid #C3C4C4; border-radius: 4px; padding: 10px; box-shadow: 0px 0px 3px rgba(0,0,0,0.3);}
+				._BVReportInappropriateFormContainer ._BVReportInappropriateForm {width: 420px; position: absolute; top: 0; left: 0; background-color: #fff; border: 1px solid #C3C4C4; border-radius: 4px; padding: 10px; box-shadow: 0px 0px 3px rgba(0,0,0,0.3);}
+					._BVSectionHeaderReportInappropriateContainer {margin-bottom: 10px !important;}
+						._BVSectionHeaderReportInappropriateContainer h2._BVSectionHeaderText {margin-left: 0;}
+					._BVReportInappropriateTextInputContainer {margin-bottom: 10px !important;}
+					._BVReportInappropriateForm ._BVHelperText {display: none;}
+					._BVReportInappropriateForm .BVFooter, ._BVReportInappropriateForm .BVFieldButtonGroup {margin: 0 !important;}
 
 
 	/* Comments */
@@ -261,22 +311,28 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	/* Reviews Display */
 	._BVReviewBodyContainer, ._BVQuestionAnswerBodyContainer {}
 		._BVReviewContainer, ._BVQuestionAnswerContainer {}
+		._BVReviewContainer {margin-top: 50px;}
+		._BVReviewContainer.BVfirst {margin-top: 0;}
 		._BVReviewContainer.BVlast, ._BVQuestionAnswerContainer.BVlast {}
-		._BVReviewContainer .BVUGCSpacerTop {height: 30px; margin-bottom: 40px; background-image: -moz-linear-gradient(#E7E7E7, #FFFFFF); background-image: -webkit-linear-gradient(#E7E7E7, #FFFFFF); background-image: linear-gradient(#E7E7E7, #FFFFFF); background-repeat: repeat-x;}
+		._BVReviewContainer .BVUGCSpacerTop {height: 30px; margin-bottom: 40px; background-image: -webkit-gradient(linear, left top, left bottom, from(#E7E7E7), to(#FFFFFF)); background-image: -webkit-linear-gradient(#E7E7E7, #FFFFFF); background-image: -moz-linear-gradient(#E7E7E7, #FFFFFF); background-image: -ms-linear-gradient(#E7E7E7, #FFFFFF); background-image: -o-linear-gradient(#E7E7E7, #FFFFFF); background-image: linear-gradient(#E7E7E7, #FFFFFF); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#E7E7E7, endColorstr=#FFFFFF, GradientType=0); background-repeat: repeat-x;}
 
 
 
 /* SUBMISSION FORM STYLES */
 
+	/* Form Elements */
+	._BVFormInput {font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #49494A; line-height: 1.5em;}
+	.BVFormInputCheckbox, .BVFormInputRadioButton {margin-left: 0;}
+
 	/* General - Titles, Labels, Values */
 	._BVLabelText {width: 210px; float: left; margin-right: 10px; font-weight: bold;}
+		.BVRequiredIndicator {color: #bb0628; display: inline-block; margin-left: -3px;}
 	h1._BVPageHeaderText, h2._BVSectionHeaderText {margin: 0;}
-	._BVPageHeaderContainer {display: none;}
 
 	/* Sections */
-	.BVSection {background-image: -moz-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -webkit-linear-gradient(bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: linear-gradient(bottom, #EBEBEB 0%, #FFFFFF 20%); background-repeat: repeat-x; margin-bottom: 40px; padding: 25px 0 15px;}
+	.BVSection {background-image: -webkit-gradient(linear, center bottom, from(#EBEBEB 0%), to(#FFFFFF 20%)); background-image: -webkit-linear-gradient(bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: -moz-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background:-ms-linear-gradient(top, #FFFFFF 20%, #EBEBEB 100%); background-image: -o-linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-image: linear-gradient(center bottom, #EBEBEB 0%, #FFFFFF 20%); background-repeat: repeat-x; margin-bottom: 40px; padding: 25px 30px 15px;}
 	.BVSection:empty, .BVSection div:empty, .BVFooter:empty, .BVFooter div:empty {display: none;}
-		.BVSectionHeader {padding: 0 0 2px; margin: 0 0 20px;}
+		.BVSectionHeader {padding: 0 0 2px; margin: 0 0 45px;}
 			h2._BVSectionHeaderText {font-size: 24px; font-weight: normal; line-height: 1.333; display: block; margin-left: 42px;}
 		.BVSectionBody {padding: 30px 42px 0;}
 		.BVSectionBody:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
@@ -289,19 +345,23 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 
 		/* Product Information */
 		.BVSectionProductContainer {background: none transparent; padding: 0; margin: 0;}
-		._BVProductInfoWidgetContainer {width: 175px; float: right; padding: 0 50px 30px 0; display: block;}
+		._BVProductInfoWidgetContainer {width: 175px; float: right; padding: 110px 50px 30px 0; display: block;}
 			._BVProductInfoNameContainer {font-size: 14px; font-weight: bold;}
 			._BVProductInfoDescriptionContainer {display: none;}
 			._BVProductInfoImageContainer {}
 
 	/* Error Container */
-	.BVSectionErrorContainer {background: none transparent; padding: 0; margin: 0; color: #F00;}
-	.BVErrorText {color: #F00 !important;}
-	.BVErrorBorder {border: 1px solid #F00 !important;}
+	.BVSectionErrorContainer {background: none transparent; padding: 0; margin: 0;}
+		
+		/* Errors */
+		._BVFormErrorsContainer {margin-left: 30px; width: 600px; color: #bb0628; border: 1px solid #bb0628; padding: 15px;}
+			ul.parsley-error-list {list-style-type: none; margin: 0 0 0 220px; color: #bb0628; padding: 5px 0 0;}
+			._BVFormErrorsContainer ul.parsley-error-list {color: #bb0628; padding: 5px 0 0;}
+		.BVErrorContainerInline {margin-left: 220px; color: #bb0628; padding: 5px 0 0; clear: left;}
 
 	/* Fields */
 	.BVField {clear: left; overflow: hidden; margin-bottom: 30px;}
-	.BVFieldGroup {margin-bottom: 0;}
+	.BVFieldGroup {}
 		.BVFormInputText, .BVFormInputTextarea {padding: 7px 8px; color: #333; vertical-align: middle;}
 		.BVFormInputText:focus, .BVFormInputTextarea:focus {}
 		.BVFormInputText {width: 400px;}
@@ -311,12 +371,15 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		._BVRadioButtonGroupContainer {float: left;}
 
 	/* Helper Text & Character Counter */
-	._BVHelperText, .BVCharacterCounterText {width: 400px; margin-left: 220px; padding: 5px 0 0; font-size: 11px; color: #737474;}
+	._BVHelperText {width: 400px;}
+	._BVHelperText, .BVCharacterCounterText {margin-left: 220px;}
+	._BVHelperText, .BVCharacterCounterText, ._BVCharacterCounter {font-size: 11px; color: #737474; padding: 5px 0 0;}
 
 	/* Rating Stars */
-	.BVFieldRating ._BVRadioLabelText {display: none;}
+	.BVFieldRating {margin-bottom: 15px !important;}
+		.BVFieldRating ._BVRadioLabelText {display: none;}
 	/* jQuery.Rating Plugin CSS - http://www.fyneworks.com/jquery/star-rating/ */
-	#BVSubmissionContainer div.rating-cancel, #BVSubmissionContainer div.star-rating {float: left; width: 30px; height: 24px; text-indent: -999em; cursor: pointer; display: block; background: transparent; overflow: hidden;}
+	#BVSubmissionContainer div.rating-cancel, #BVSubmissionContainer div.star-rating {float: left; width: 36px; height: 24px; text-indent: -999em; cursor: pointer; display: block; background: transparent; overflow: hidden;}
 	#BVSubmissionContainer div.rating-cancel {display: none !important;}
 	#BVSubmissionContainer div.rating-cancel, #BVSubmissionContainer div.rating-cancel a {background: url(../images/delete.gif) no-repeat 0 -16px;}
 	#BVSubmissionContainer div.star-rating, #BVSubmissionContainer div.star-rating a {background: url(images/ratingStars_star.gif) no-repeat 0 0px;}
@@ -329,6 +392,20 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	#BVSubmissionContainer div.star-rating {background: transparent !important; overflow: hidden !important;}
 	/* END jQuery.Rating Plugin CSS */
 
+	/* Rating Bars */
+	#BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.rating-cancel, #BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.star-rating {float: left; width: 35px; height: 9px; text-indent: -999em; cursor: pointer; display: block; background: transparent; overflow: hidden;}
+	#BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.rating-cancel {display: none !important;}
+	#BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.rating-cancel, #BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.rating-cancel a {background: url(../images/delete.gif) no-repeat 0 -16px;}
+	#BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.star-rating, #BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.star-rating a {background: url(images/ratingStars_secondary.gif) no-repeat 0 0px;}
+	#BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.rating-cancel a, #BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.star-rating a {display: block; width: 35px; height: 100%; background-position: 0 0px; border: 0;}
+	#BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.star-rating-on a {background-position: 0 -9px !important;}
+	#BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.star-rating-hover a {background-position: 0 -9px;}
+	/* Read Only CSS */
+	#BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.star-rating-readonly a {cursor: default !important;}
+	/* Partial Star CSS */
+	#BVSubmissionContainer ._BVSecondaryRatingGroupInputContainer div.star-rating {background: transparent !important; overflow: hidden !important;}
+	/* END jQuery.Rating Plugin CSS */
+
 	/* Ratings */
 	._BVOverallRatingInputContainer ._BVLabelText {font-size: 14px;}
 
@@ -339,51 +416,78 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 			._BVRecommendedInputContainer .BVRadioButtonIndividualContainer {width: 60px; float: left; margin-right: 15px;}
 
 	/* Title & Body Text */
+	.BVSectionReviewGuidelines {height: 0; position: relative; zoom: 1;}
+		.BVSectionReviewGuidelines .BVPopinLauncher {position: absolute; top: 2px; left: 650px;}
 	._BVTitleInputContainer ._BVLabelText, ._BVBodyTextInputContainer ._BVLabelText {font-size: 14px;}
 
 	/* Tags */
-	._BVTagGroupInputContainer {margin-left: 160px;}
-		.BVTagIndividualInputContainer {width: 35%; float: left; margin-right: 15px;}
-		.BVTagIndividualInputContainer ._BVLabelText {width: auto; float: none;}
-			._BVCheckboxGroupContainer ._BVCheckboxIndividualContainer {padding-bottom: 4px;}
-				._BVCheckboxIndividualContainer .BVFormInputText {width: 150px;}
+	._BVTagGroupInputContainer {}
+		.BVTagIndividualInputContainer {margin-bottom: 30px;}
+		.BVTagIndividualInputContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
+		.BVTagIndividualInputContainer ._BVLabelText {}
+		._BVTagGroupInputContainer ._BVInputGroupContainer {width: 500px; float: left;}
+			.BVTagInput {width: 48%; float: left; margin-bottom: 5px;}
+			._BVTagGroupInputContainer ._BVCheckboxGroupContainer ._BVCheckboxIndividualContainer {padding-bottom: 4px;}
+				._BVTagGroupInputContainer ._BVCheckboxIndividualContainer .BVFormInputText {width: 150px;}
 
 	/* Media Upload */
-	.BVSectionMediaContainer ._BVInputGroupContainer {width: 400px; float: left;}
+	.BVSectionMediaContainer ._BVInputGroupContainer {width: 425px; float: left;}
 		._BVUploadIndividualInputContainer {margin-bottom: 15px;}
-		.BVSectionMediaContainer ._BVHelperText {margin-left: 0;}
-	.BVSectionMediaGuidelines {position: absolute; left: 730px;}
+		._BVUploadIndividualInputContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
+		.BVPhotoUploadPreviewWrapper {position: relative; zoom: 1;}
+			.BVPhotoUploadPreviewWrapper a._BVPhotoThumbnail, .BVPhotoUploadPreviewWrapper a._BVPhotoThumbnail:visited, .BVPhotoUploadPreviewWrapper a._BVPhotoThumbnail:hover, .BVPhotoUploadPreviewWrapper a._BVPhotoThumbnail:focus, .BVPhotoUploadPreviewWrapper a._BVPhotoThumbnail:active {cursor: default;}
+			._BVUploadIndividualInputContainer ._BVLabelText {width: 100px; padding-top: 7px;}
+			._BVUploadIndividualInputContainer .BVFormInputText {width: 228px;}
+			._BVUploadIndividualInputContainer ._BVButtonGenericContainer {position: absolute; top: 29px; left: 59px;}
+			._BVUploadIndividualInputContainer .BVButtonClose {background: none transparent; padding: 0; border: 0 none;}
+		.BVSectionMediaContainer .BVUploadInput ._BVHelperText {margin-left: 0;}
+	.BVSectionMediaGuidelines {height: 0; position: relative; zoom: 1;}
+		.BVSectionMediaGuidelines .BVPopinLauncher {position: absolute; top: 4px; left: 650px;}
+	.BVVideoPasteGuideContainer {position: absolute; border: 1px solid #000; background-color: #fff;}
+		.BVVideoPasteGuideContainerImage {width: 432px; height: 62px; background: url(images/vid_paste_youtube.gif) no-repeat; display: block !important;}
+		.BVVideoPasteGuideContainerLabel {font-size: 11px; padding: 2px 5px; white-space: nowrap;}
 
 	/* User Info */
 	._BVUserNicknameInputContainer ._BVLabelText, ._BVUserEmailInputContainer ._BVLabelText {font-size: 14px;}
 
 	/* Additional Fields */
-	._BVAdditionalFieldGroupInputContainer {}
+	._BVAdditionalFieldGroupInputContainer {margin-bottom: 0;}
+		._BVAdditionalFieldGroupInputContainer ._BVAdditionalFieldIndividualInputContainer {clear: both; margin-bottom: 30px;}
+		._BVAdditionalFieldGroupInputContainer ._BVAdditionalFieldIndividualInputContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
 		._BVAdditionalFieldGroupInputContainer #additionalfield_RewardZoneNumberWrapperID {display: none;}
+		#contextdatavalue_rewardZoneMembershipV3WrapperID ._BVLabelText {padding-top: 22px;}
+		#contextdatavalue_rewardZoneMembershipV3WrapperID ._BVHelperTextCustom {padding-bottom: 5px;}
+		#contextdatavalue_rewardZoneMembershipV3WrapperID ._BVHelperTextCustom span {color: #003B64;}
 
 	/* Email Subscription */
-	._BVEmailAlertWhenPublishedContainer, ._BVEmailAlertWhenCommentedContainer {margin: 0 0 0 215px;}
-	._BVEmailAlertWhenCommentedContainer {margin-bottom: 15px;}
+	._BVEmailAlertWhenPublishedContainer, ._BVEmailAlertWhenCommentedContainer {margin: 0 0 15px 220px;}
 
 	/* Footer */
-	.BVFooter {margin-left: 265px;}
+	.BVFooter {margin-left: 250px;}
 		.BVFooter .BVField {margin-bottom: 15px;}
 
 	/* Buttons */
-	.BVFieldButtonGroup {margin-left: 265px;}
+	.BVFieldButtonGroup {}
 	.BVFieldButtonGroup .BVField {float: left; clear: none; margin-right: 10px;}
-		._BVButtonSubmitContainer a {color: #fff; text-shadow: 0 1px 0 rgba(193,90,24,1); background-color: #EE8A27; background-image: -moz-linear-gradient(#EE8A27, #E86C1F); background-image: -webkit-linear-gradient(#EE8A27, #E86C1F); background-image: linear-gradient(#EE8A27, #E86C1F); border: 1px solid #EE8A27; border-bottom-color: #E86C1F;}
+		._BVButtonSubmitContainer a {color: #fff; text-shadow: 0 1px 0 rgba(193,90,24,1); background-color: #EE8A27; background-image: -webkit-gradient(linear, left top, left bottom, from(#EE8A27), to(#E86C1F)); background-image: -webkit-linear-gradient(#EE8A27, #E86C1F); background-image: -moz-linear-gradient(#EE8A27, #E86C1F); background-image: -ms-linear-gradient(#EE8A27, #E86C1F); background-image: -o-linear-gradient(#EE8A27, #E86C1F); background-image: linear-gradient(#EE8A27, #E86C1F); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EE8A27, endColorstr=#E86C1F, GradientType=0); border: 1px solid #EE8A27; border-bottom-color: #E86C1F;}
 
 	/* Popins */
-	.BVPopinLauncher {color: #085EB9;}
-	.BVPopin {width: 245px; border: 1px solid #C3C4C4; padding: 15px; background-color: #fff; border-radius: 4px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); display: none;}
+	.BVPopinLauncher a {background: url(images/iconText.png) no-repeat 0 -160px; color: #085EB9; padding: 2px 0 2px 22px; display: inline-block;}
+	.BVPopin {width: 245px; border: 1px solid #C3C4C4; padding: 15px; background-color: #fff; border-radius: 4px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); display: none; position: absolute; top: 35px; left: 650px;}
+	.BVPopin:hover {cursor: pointer;}
 		.BVPopin .BVHeader {font-size: 14px; margin-bottom: 10px;}
 		.BVPopin ul {margin: 0; padding-left: 15px;}
 
-/* HISTOGRAM */
 
-	._BVHistogramIndividualWrapper {display: inline-block; height: 10px; width: 100px; background-color: #cccccc;}
-	._BVHistogramIndividual {float: left; background-color: #085EB9; height: 10px;}
+	/* Preview & Thank You page */
+	.BVPreviewSection, .BVThankYouSection {background: none transparent; padding: 0; margin: 0 0 30px;}
+	.BVThankYouSection {margin: 30px 0;}
+		.BVThankYouText {display: none;}
+	._BVSubmissionPreviewContainer .BVFieldButtonGroup {margin-top: 30px;}
+
+		/* Review Preview */
+		._BVReviewPreviewBodyContainer .BVUGCSpacerTop {display: block !important;}
 
 
+	.BVHidden {display: none;}
 

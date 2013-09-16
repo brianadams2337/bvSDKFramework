@@ -3,7 +3,7 @@ var jqueryVersion = "1.10.2";
 var jqueryUIVersion = "1.10.3";
 
 // check if jquery does not exist or does not match version
-if (typeof jQuery == 'undefined' || !(($.fn.jquery) = jqueryVersion)) {
+if (typeof jQuery == 'undefined' || !(($.fn.jquery) == jqueryVersion)) {
 	var otherJSLibrary;
 	// check for other js libraries
 	if (typeof $ == 'function') {
@@ -135,9 +135,16 @@ function initBVReviews () {
 			).done(function(){
 				// load reviews
 				getAllReviews (productId, defaultReviewsParentContainer, function(content, modelLocalDefaultSettings) {
-					// callback function
+					// callback functions
+					loadPrimarySummary (content, {
+						"parentContainer":"body",
+						"productId":productId,
+						"modelLocalDefaultSettings":{
+							"Parameters":modelLocalDefaultSettings
+						}
+					});
 					loadReviewWidget (content, {
-						"parentContainer":defaultReviewsParentContainer,
+						"parentContainer":"body",
 						"productId":productId,
 						"modelLocalDefaultSettings":{
 							"Parameters":modelLocalDefaultSettings
