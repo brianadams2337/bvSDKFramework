@@ -137,15 +137,14 @@ function initBVReviews () {
 				getAllReviews (productId, defaultReviewsParentContainer, function(content, modelLocalDefaultSettings) {
 					// callback functions
 					loadPrimarySummary (content, {
-						"parentContainer":"#BVRRPrimarySummaryContainer",
-						"targetContainer":"#BVRRPrimarySummaryContainer",
+						"parentContainer":"body",
 						"productId":productId,
 						"modelLocalDefaultSettings":{
 							"Parameters":modelLocalDefaultSettings
 						}
 					});
 					loadReviewWidget (content, {
-						"parentContainer":defaultReviewsParentContainer,
+						"parentContainer":"body",
 						"productId":productId,
 						"modelLocalDefaultSettings":{
 							"Parameters":modelLocalDefaultSettings
