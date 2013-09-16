@@ -159,7 +159,7 @@ function loadFeedbackVotingButton (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultFeedbackVotingButtonContainer,
-		"viewContainer":defaultButtonSecondaryContainerView,
+		"viewContainer":defaultButtonTertiaryContainerView,
 		"loadOrder":"",
 		"productId":"",
 		"contentId":"",
