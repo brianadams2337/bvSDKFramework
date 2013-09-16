@@ -220,7 +220,7 @@ function loadSubmitButton (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultButtonSubmitContainer,
-		"viewContainer":defaultButtonPrimaryContainerView,
+		"viewContainer":defaultButtonSecondaryContainerView,
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
@@ -241,7 +241,7 @@ function loadPreviewButton (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultButtonPreviewContainer,
-		"viewContainer":defaultButtonSecondaryContainerView,
+		"viewContainer":defaultButtonPrimaryContainerView,
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
@@ -263,7 +263,7 @@ function loadEditButton (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultButtonEditContainer,
-		"viewContainer":defaultButtonSecondaryContainerView,
+		"viewContainer":defaultButtonTertiaryContainerView,
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
@@ -305,7 +305,7 @@ function loadReturnButton (content, options) {
 	var settings = $.extend(true, {
 		"parentContainer":"", // container must be defined in call
 		"targetContainer":defaultButtonReturnContainer,
-		"viewContainer":defaultButtonSecondaryContainerView,
+		"viewContainer":defaultButtonPrimaryContainerView,
 	}, options);
 	// set container & template
 	var $container = $(settings["parentContainer"]).find(settings["targetContainer"]).andSelf().filter(settings["targetContainer"]);
