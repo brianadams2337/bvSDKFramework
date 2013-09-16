@@ -16,7 +16,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 /* GENERAL */
 
 	/* Font Styles */
-	#BVRRContainer, #BVQAContainer, #BVSubmissionContainer {font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #49494A; line-height: 1.5em;}
+	#BVRRContainer, #BVRRPrimarySummaryContainer, #BVSubmissionContainer {font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #49494A; line-height: 1.5em;}
 
 	/* Titles, Labels, Values */
 	.BVTitle {font-size: 18px; font-weight: bold; line-height: normal;}
@@ -25,8 +25,17 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	.BVValue {}
 
 	/* Links */
-	#BVRRContainer a, #BVQAContainer a, #BVSubmissionContainer a, #BVRRContainer a:visited, #BVQAContainer a:visited, #BVSubmissionContainer a:visited {color: #085EB9; text-decoration: none;}
-	#BVRRContainer a:hover, #BVQAContainer a:hover, #BVSubmissionContainer a:hover, #BVRRContainer a:focus, #BVQAContainer a:focus, #BVSubmissionContainer a:focus, #BVRRContainer a:active, #BVQAContainer a:active, #BVSubmissionContainer a:active {color: #085EB9; text-decoration: none;}
+	#BVRRContainer a, #BVRRPrimarySummaryContainer a, #BVSubmissionContainer a, #BVRRContainer a:visited, #BVRRPrimarySummaryContainer a:visited, #BVSubmissionContainer a:visited {color: #085EB9; text-decoration: none;}
+	#BVRRContainer a:hover, #BVRRPrimarySummaryContainer a:hover, #BVSubmissionContainer a:hover, #BVRRContainer a:focus, #BVRRPrimarySummaryContainer a:focus, #BVSubmissionContainer a:focus, #BVRRContainer a:active, #BVRRPrimarySummaryContainer a:active, #BVSubmissionContainer a:active {color: #085EB9; text-decoration: none;}
+
+
+
+/* PRIMARY SUMMARY */
+	#BVRRPrimarySummaryContainer {float: left; overflow: hidden; position: relative; top: 7px;}
+		._BVPrimarySummaryContainer ._BVOverallRatingContainer {float: left; overflow: hidden; margin-right: 10px;}
+
+		._BVPrimarySummaryContainer ._BVButtonWriteReviewContainer {float: left; clear: none; padding-right: 5px; margin-right: 5px;}
+		._BVPrimarySummaryContainer ._BVButtonReadReviewsContainer {float: left; clear: none;}
 
 
 
@@ -37,14 +46,24 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	a._BVButton:active, a._BVButton:focus, a._BVButton:hover {background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F6F6F6)); background-image: -webkit-linear-gradient(#FFFFFF, #F6F6F6); background-image: -moz-linear-gradient(#FFFFFF, #F6F6F6); background-image: -ms-linear-gradient(#FFFFFF, #F6F6F6); background-image: -o-linear-gradient(#FFFFFF, #F6F6F6); background-image: linear-gradient(#FFFFFF, #F6F6F6); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F6F6F6, GradientType=0);}
 
 	/* Submit */
-	._BVButtonSubmitContainer a._BVButton, ._BVButtonSubmitContainer a._BVButton:visited {background-color: #F7CF00; background-image: -moz-linear-gradient(#FFF200, #F7CF00); background-image: -webkit-linear-gradient(#FFF200, #F7CF00); background-image: -ms-linear-gradient(#FFF200, #F7CF00); background-image: -o-linear-gradient(#FFF200, #F7CF00); background-image: linear-gradient(#FFF200, #F7CF00); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFF200, endColorstr=#F7CF00, GradientType=0); border: 1px solid #F9C500; font-size:;}
-		._BVButtonSubmitContainer a._BVButton ._BVButtonText {color: #003B64; text-shadow: 0 1px 1px rgba(255,255,255,0.75);}
-	._BVButtonSubmitContainer a._BVButton:active, ._BVButtonSubmitContainer a._BVButton:focus, ._BVButtonSubmitContainer a._BVButton:hover {background-image: -webkit-gradient(linear, left top, left bottom, from(#FFF86E), to(#FFF200)); background-image: -webkit-linear-gradient(#FFF86E, #FFF200); background-image: -moz-linear-gradient(#FFF86E, #FFF200); background-image: -ms-linear-gradient(#FFF86E, #FFF200); background-image: -o-linear-gradient(#FFF86E, #FFF200); background-image: linear-gradient(#FFF86E, #FFF200); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFF86E, endColorstr=#FFF200, GradientType=0);}
+	.BVTextButtonWrapper a._BVButton, .BVTextButtonWrapper a._BVButton:visited {background: none; border: none; padding: 0; font-weight: normal;}
+		.BVTextButtonWrapper a._BVButton ._BVButtonText {color: #085EB9; text-shadow: none;}
+	.BVTextButtonWrapper a._BVButton:active, .BVTextButtonWrapper a._BVButton:focus, .BVTextButtonWrapper a._BVButton:hover {background: none; border: none; padding: 0; text-decoration: underline;}
+
+	/* Submit */
+	.BVTertiaryButtonWrapper a._BVButton, .BVTertiaryButtonWrapper a._BVButton:visited {background-color: #F6F6F6; background-image: -moz-linear-gradient(#F6F6F6, #E8E8E8); background-image: -webkit-linear-gradient(#F6F6F6, #E8E8E8); background-image: -ms-linear-gradient(#F6F6F6, #E8E8E8); background-image: -o-linear-gradient(#F6F6F6, #E8E8E8); background-image: linear-gradient(#F6F6F6, #E8E8E8); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#F6F6F6, endColorstr=#E8E8E8, GradientType=0); border: 1px solid #C3C4C4;}
+		.BVTertiaryButtonWrapper a._BVButton ._BVButtonText {color: #085EB9; text-shadow: 0 1px 0 rgba(255,255,255,0.9);}
+	.BVTertiaryButtonWrapper a._BVButton:active, .BVTertiaryButtonWrapper a._BVButton:focus, .BVTertiaryButtonWrapper a._BVButton:hover {background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F6F6F6)); background-image: -webkit-linear-gradient(#FFFFFF, #F6F6F6); background-image: -moz-linear-gradient(#FFFFFF, #F6F6F6); background-image: -ms-linear-gradient(#FFFFFF, #F6F6F6); background-image: -o-linear-gradient(#FFFFFF, #F6F6F6); background-image: linear-gradient(#FFFFFF, #F6F6F6); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F6F6F6, GradientType=0);}
+
+	/* Submit */
+	.BVSecondaryButtonWrapper a._BVButton, .BVSecondaryButtonWrapper a._BVButton:visited {background-color: #F7CF00; background-image: -moz-linear-gradient(#FFF200, #F7CF00); background-image: -webkit-linear-gradient(#FFF200, #F7CF00); background-image: -ms-linear-gradient(#FFF200, #F7CF00); background-image: -o-linear-gradient(#FFF200, #F7CF00); background-image: linear-gradient(#FFF200, #F7CF00); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFF200, endColorstr=#F7CF00, GradientType=0); border: 1px solid #F9C500;}
+		.BVSecondaryButtonWrapper a._BVButton ._BVButtonText {color: #003B64; text-shadow: 0 1px 1px rgba(255,255,255,0.75);}
+	.BVSecondaryButtonWrapper a._BVButton:active, .BVSecondaryButtonWrapper a._BVButton:focus, .BVSecondaryButtonWrapper a._BVButton:hover {background-image: -webkit-gradient(linear, left top, left bottom, from(#FFF86E), to(#FFF200)); background-image: -webkit-linear-gradient(#FFF86E, #FFF200); background-image: -moz-linear-gradient(#FFF86E, #FFF200); background-image: -ms-linear-gradient(#FFF86E, #FFF200); background-image: -o-linear-gradient(#FFF86E, #FFF200); background-image: linear-gradient(#FFF86E, #FFF200); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFF86E, endColorstr=#FFF200, GradientType=0);}
 
 	/* Write a Review & Preview, Return */
-	._BVButtonWriteReviewContainer a._BVButton, ._BVButtonWriteReviewContainer a._BVButton:visited, ._BVButtonPreviewContainer a._BVButton, ._BVButtonPreviewContainer a._BVButton:visited, ._BVButtonReturnContainer a._BVButton, ._BVButtonReturnContainer a._BVButton:visited {background-color: #006CBC; background-image: -moz-linear-gradient(#006CBC, #00449E); background-image: -webkit-linear-gradient(#006CBC, #00449E); background-image: -ms-linear-gradient(#006CBC, #00449E); background-image: -o-linear-gradient(#006CBC, #00449E); background-image: linear-gradient(#006CBC, #00449E); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#006CBC, endColorstr=#00449E, GradientType=0); border: 1px solid #003865;}
-		._BVButtonWriteReviewContainer a._BVButton ._BVButtonText, ._BVButtonPreviewContainer a._BVButton ._BVButtonText, ._BVButtonReturnContainer a._BVButton ._BVButtonText {color: #fff; text-shadow: 0 -1px 1px rgba(0,0,0,0.75);}
-	._BVButtonWriteReviewContainer a._BVButton:active, ._BVButtonWriteReviewContainer a._BVButton:focus, ._BVButtonWriteReviewContainer a._BVButton:hover, ._BVButtonPreviewContainer a._BVButton:active, ._BVButtonPreviewContainer a._BVButton:focus, ._BVButtonPreviewContainer a._BVButton:hover, ._BVButtonReturnContainer a._BVButton:hover, ._BVButtonReturnContainer a._BVButton:active, ._BVButtonReturnContainer a._BVButton:focus {background-image: -webkit-gradient(linear, left top, left bottom, from(#2488D2), to(#006CBC)); background-image: -webkit-linear-gradient(#2488D2, #006CBC); background-image: -moz-linear-gradient(#2488D2, #006CBC); background-image: -ms-linear-gradient(#2488D2, #006CBC); background-image: -o-linear-gradient(#2488D2, #006CBC); background-image: linear-gradient(#2488D2, #006CBC); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#2488D2, endColorstr=#006CBC, GradientType=0);}
+	.BVPrimaryButtonWrapper a._BVButton, .BVPrimaryButtonWrapper a._BVButton:visited {background-color: #006CBC; background-image: -moz-linear-gradient(#006CBC, #00449E); background-image: -webkit-linear-gradient(#006CBC, #00449E); background-image: -ms-linear-gradient(#006CBC, #00449E); background-image: -o-linear-gradient(#006CBC, #00449E); background-image: linear-gradient(#006CBC, #00449E); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#006CBC, endColorstr=#00449E, GradientType=0); border: 1px solid #003865;}
+		.BVPrimaryButtonWrapper a._BVButton ._BVButtonText {color: #fff; text-shadow: 0 -1px 1px rgba(0,0,0,0.75);}
+	.BVPrimaryButtonWrapper a._BVButton:active, .BVPrimaryButtonWrapper a._BVButton:focus, .BVPrimaryButtonWrapper a._BVButton:hover {background-image: -webkit-gradient(linear, left top, left bottom, from(#2488D2), to(#006CBC)); background-image: -webkit-linear-gradient(#2488D2, #006CBC); background-image: -moz-linear-gradient(#2488D2, #006CBC); background-image: -ms-linear-gradient(#2488D2, #006CBC); background-image: -o-linear-gradient(#2488D2, #006CBC); background-image: linear-gradient(#2488D2, #006CBC); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#2488D2, endColorstr=#006CBC, GradientType=0);}
 
 	._BVButtonSubmitContainer a._BVButton, ._BVButtonPreviewContainer a._BVButton {font-size: 14px;}
 
@@ -105,8 +124,11 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		._BVQuickTakeContainer ._BVOverallRatingContainer {}
 		._BVQuickTakeContainer ._BVOverallRatingContainer:after {content: "."; height: 0; width: 0; visibility: hidden; display: block; clear: both;}
 			._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingStarsContainer {width: 170px; height: 30px; float: left;}
+			._BVPrimarySummaryContainer .BVOverallRatingContainer ._BVRatingStarsContainer {width: 80px; height: 21px; float: left;}
 			._BVQuickTakeContainer .BVOverallRatingContainer .BVRatingOutOfContainer {font-weight: bold; line-height: 33px; font-size: 34px; color: #085EB9; float: left;}
+			._BVPrimarySummaryContainer .BVOverallRatingContainer .BVRatingOutOfContainer {font-weight: bold; line-height: 18px; font-size: 14px; color: #085EB9; float: left;}
 				._BVQuickTakeContainer .BVOverallRatingContainer .BVRatingSeparator, ._BVQuickTakeContainer .BVOverallRatingContainer ._BVRatingRange {display: none;}
+				._BVPrimarySummaryContainer .BVOverallRatingContainer .BVRatingSeparator, ._BVPrimarySummaryContainer .BVOverallRatingContainer ._BVRatingRange {display: none;}
 		
 		/* Buy Again */
 		._BVQuickTakeContainer ._BVRecommendedContainerAverage {width: 320px; background: url(images/backgroundBuyAgain.gif) no-repeat; padding: 7px 0 12px 87px; position: absolute; left: 280px; top: 18px; font-size: 14px;}
@@ -125,9 +147,10 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 						.BVFilter:hover .BVFilterTextPrefix {background-position: 0 -160px;}
 						.BVFilter.BVSelected .BVFilterTextPrefix {background-position: 0 -160px;}
 						.BVFilter.BVSelected:hover .BVFilterTextPrefix {background-position: 0 0;}
+						.BVFilter:hover ._BVFilterText {cursor: pointer;}
 						.BVFilter.BVDisabled, .BVFilter.BVDisabled:hover {opacity: 0.5; cursor: default;}
 						.BVFilter.BVDisabled .BVFilterTextPrefix {background-position: 0 -240px;}
-						.BVFilter:hover ._BVFilterText {cursor: pointer;}
+						.BVFilter.BVDisabled:hover ._BVFilterText {cursor: default;}
 						._BVFilterLabelText {margin-bottom: 6px;}
 						._BVFilterText {color: #085EB9; margin-right: 3px;}
 						._BVFilterCountText, .BVFilterCountTextPrefix, .BVFilterCountTextSuffix {font-size: 11px; color: #737474;}
