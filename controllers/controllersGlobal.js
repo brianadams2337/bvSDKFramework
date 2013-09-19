@@ -172,6 +172,36 @@ function consoleLogFallback (content) {
 	}
 }
 
+
+/***** ANIMATIONS *****/
+
+
+function loadLoadingOverlay (container, template, scroll) {
+	// get loading overlay template
+	var $template = returnTemplate(template);
+	// add overlay template to loading container
+	$($template).appendTo(container);
+	// set loading container height - this needs to be done to animate height once content is loaded
+	$(container).css({"height":$(container).prop("scrollHeight")});
+	// scroll to top of loading container
+	if (scroll) {
+		$('html, body').animate({
+			scrollTop: $(container).offset().top
+		}, defaultAnimationSpeed);
+	}
+}
+
+function removeLoadingOverlay (container, template, scroll) {
+	// animate height of loading container to fit content
+	$(container).animate({"height":$(container).prop("scrollHeight")}, defaultAnimationSpeed, function() {
+		// callback to remove inline height style from loading container in case a child element changes size
+		$(container).css({"height":""});
+	});
+	// remove overlay template from loading container
+	$(container).find(template).andSelf().filter(template).remove();
+}
+
+
 /***** HEADERS *****/
 
 
