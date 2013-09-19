@@ -322,7 +322,7 @@ function loadReviewSubmissionForm (content, options) {
 		if (validated) {
 			$("#BVSubmissionContainer").css({"height":$(defaultSubmissionFormContainer).height()});
 			$('html, body').animate({
-				scrollTop: $("#BVSubmissionContainer").offset().top
+				scrollTop: $("body").offset().top
 			}, 300);
 			$(defaultSubmissionFormContainer).fadeOut(300, function() {
 				postReviewsSubmissionForm(productId, defaultSubmissionPreviewContainer, function (content) {

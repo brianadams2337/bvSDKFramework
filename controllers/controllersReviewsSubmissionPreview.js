@@ -47,7 +47,7 @@ function loadReviewSubmissionPreviewWidget (content, options) {
 		if (validated) {
 			$("#BVSubmissionContainer").css({"height":$(defaultSubmissionPreviewContainer).height()});
 			$('html, body').animate({
-				scrollTop: $("#BVSubmissionContainer").offset().top
+				scrollTop: $("body").offset().top
 			}, 300);
 			$(defaultSubmissionPreviewContainer).fadeOut(300, function() {
 				postReviewsSubmissionForm(productId, defaultSubmissionThankYouContainer, function (content) {
