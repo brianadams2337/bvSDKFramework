@@ -56,6 +56,7 @@ function getAllReviews (productID, container, callBack, options) {
 			removeLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, false);
 		},
 		error: function(e) {
+			$(container).removeClass("_BVContentLoadingContainer").html("Reviews are not currently unavailable.")
 			defaultAjaxErrorFunction(e);
 		},
 		beforeSend: function() {

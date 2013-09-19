@@ -52,6 +52,7 @@ function getAllReviewComments (reviewID, container, callBack, options) {
 			removeLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, false);
 		},
 		error: function(e) {
+			$(container).removeClass("_BVContentLoadingContainer").html("Comments are not currently unavailable.")
 			defaultAjaxErrorFunction(e);
 		},
 		beforeSend: function() {

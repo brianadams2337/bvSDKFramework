@@ -20,6 +20,7 @@ function getReviewCommentsSubmissionForm (reviewid, container, callBack, options
 			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
+			$(container).removeClass("_BVContentLoadingContainer").html("Submission is currently unavailable.")
 			defaultAjaxErrorFunction(e);
 		},
 		beforeSend: function() {
@@ -62,6 +63,7 @@ function postReviewCommentsSubmissionForm (reviewid, container, callBack, option
 			$(container).removeClass("_BVContentLoadingContainer");
 		},
 		error: function(e) {
+			$(container).removeClass("_BVContentLoadingContainer").html("Submission is currently unavailable.")
 			defaultAjaxErrorFunction(e);
 		},
 		beforeSend: function() {
