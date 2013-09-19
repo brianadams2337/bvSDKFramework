@@ -19,13 +19,13 @@ function getSpecificReviews (reviewIDs, container, callBack, options) {
 		success: function(data) {
 			consoleLogFallback(data, paramString, paramObject);
 			callBack(data, paramObject);
-			removeLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, true);
+			removeLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, false);
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
 		},
 		beforeSend: function() {
-			loadLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, true);
+			loadLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, false);
 		}
 	});
 }
@@ -53,13 +53,13 @@ function getAllReviews (productID, container, callBack, options) {
 		success: function(data) {
 			consoleLogFallback(data, urlString, paramString, paramObject);
 			callBack(data, paramObject);
-			removeLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, true);
+			removeLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, false);
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
 		},
 		beforeSend: function() {
-			loadLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, true);
+			loadLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, false);
 		}
 	});
 }
@@ -87,13 +87,13 @@ function getReviewsStats (productID, container, callBack, options) {
 		success: function(data) {
 			consoleLogFallback(data, paramString, paramObject);
 			callBack(data, paramObject);
-			removeLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, true);
+			removeLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, false);
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
 		},
 		beforeSend: function() {
-			loadLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, true);
+			loadLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, false);
 		}
 	});
 }
@@ -120,13 +120,13 @@ function getFeaturedReviews (productID, container, callBack, options) {
 		success: function(data) {
 			consoleLogFallback(data, paramString, paramObject);
 			callBack(data, paramObject);
-			removeLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, true);
+			removeLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, false);
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
 		},
 		beforeSend: function() {
-			loadLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, true);
+			loadLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, false);
 		}
 	});
 }
@@ -153,13 +153,13 @@ function getPhotoReviews (productID, container, callBack, options) {
 		success: function(data) {
 			consoleLogFallback(data, paramString, paramObject);
 			callBack(data, paramObject);
-			removeLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, true);
+			removeLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, false);
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
 		},
 		beforeSend: function() {
-			loadLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, true);
+			loadLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, false);
 		}
 	});
 }
@@ -187,13 +187,13 @@ function getFeaturedPhotoReviews (productID, container, callBack, options) {
 		success: function(data) {
 			consoleLogFallback(data, paramString, paramObject);
 			callBack(data, paramObject);
-			removeLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, true);
+			removeLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, false);
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
 		},
 		beforeSend: function() {
-			loadLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, true);
+			loadLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, false);
 		}
 	});
 }
@@ -219,13 +219,13 @@ function getReviewsCustom (productID, container, callBack, options) {
 		success: function(data) {
 			consoleLogFallback(data, paramString, paramObject);
 			callBack(data, paramObject);
-			removeLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, true);
+			removeLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, false);
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
 		},
 		beforeSend: function() {
-			loadLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, true);
+			loadLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, false);
 		}
 	});
 }
