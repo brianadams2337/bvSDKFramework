@@ -111,7 +111,8 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 		._BVPrimarySummaryContainer ._BVButtonWriteReviewContainer {float: left; clear: none; margin-right: 5px;}
 		._BVPrimarySummaryContainer ._BVButtonReadReviewsContainer {float: left; clear: none; margin-left:  5px;}
 		#BVRRPrimarySummaryContainer .BVButtonWrapper a._BVButton, #BVRRPrimarySummaryContainer .BVButtonWrapper a._BVButton:visited, #BVRRPrimarySummaryContainer .BVButtonWrapper a._BVButton:focus, #BVRRPrimarySummaryContainer .BVButtonWrapper a._BVButton:hover, #BVRRPrimarySummaryContainer .BVButtonWrapper a._BVButton:active {background: none transparent; font-weight: normal; box-shadow: none; text-shadow: none; -ms-filter: "progid:DXImageTransform.Microsoft.gradient(enabled=false)";}
-	.BVButtonSeparator {float: left;}
+	#BVRRPrimarySummaryContainer ._BVButtonWriteReviewContainer {display: none;}
+	#BVRRPrimarySummaryContainer .BVButtonSeparator {float: left; display: none;}
 
 
 
