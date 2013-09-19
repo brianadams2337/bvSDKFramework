@@ -649,7 +649,7 @@ function loadFeedbackStatus (content, options) {
 	// set status container variable using data attribute - this needs to be done here to avoid a bug with fadeout in jQuery 1.9.1
 	var statusContainer = $("[data-feedbacktype='statusMessage'][data-contentid='" + contentId + "']");
 	// load close button
-	loadGenericButton ("close", {
+	loadGenericButton ("<strong>x</strong> close", {
 		"parentContainer":$template,
 	})
 	// close button functionality

@@ -286,13 +286,16 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 				._BVReportInappropriateButtonContainer a._BVButton, ._BVReportInappropriateButtonContainer a._BVButton:hover, ._BVReportInappropriateButtonContainer a._BVButton:active, ._BVReportInappropriateButtonContainer a._BVButton:focus, ._BVReportInappropriateButtonContainer a._BVButton:visited {padding: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px; -ms-filter: "progid:DXImageTransform.Microsoft.gradient(enabled=false)";}
 
 			/* Report Form */
-			._BVReportInappropriateFormContainer {position: relative;}
-				._BVReportInappropriateFormContainer ._BVReportInappropriateForm {width: 420px; position: absolute; top: 0; left: 0; background-color: #fff; border: 1px solid #C3C4C4; border-radius: 4px; padding: 10px; box-shadow: 0px 0px 3px rgba(0,0,0,0.3);}
+			._BVReportInappropriateFormContainer, ._BVFeedbackVotingStatusMessageContainer {position: relative;}
+				._BVReportInappropriateFormContainer ._BVReportInappropriateForm, ._BVFeedbackVotingStatusMessageContainer .BVStatusMessageWrapper {width: 420px; position: absolute; top: 0; left: 0; background-color: #fff; border: 1px solid #C3C4C4; border-radius: 4px; padding: 10px; box-shadow: 0px 0px 3px rgba(0,0,0,0.3);}
+				._BVFeedbackVotingStatusMessageContainer .BVStatusMessageWrapper {margin: 45px 0 0 145px;}
+					._BVButtonGenericContainer {position: absolute; right: 15px; top: 1px;}
 					._BVSectionHeaderReportInappropriateContainer {margin-bottom: 10px !important;}
 						._BVSectionHeaderReportInappropriateContainer h2._BVSectionHeaderText {margin-left: 0;}
 					._BVReportInappropriateTextInputContainer {margin-bottom: 10px !important;}
 					._BVReportInappropriateForm ._BVHelperText {display: none;}
 					._BVReportInappropriateForm .BVFooter, ._BVReportInappropriateForm .BVFieldButtonGroup {margin: 0 !important;}
+					._BVFeedbackVotingStatusMessageContainer .BVTertiaryButtonWrapper a._BVButton, ._BVFeedbackVotingStatusMessageContainer .BVTertiaryButtonWrapper a._BVButton:hover {padding: 0; border: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px; -ms-filter: "progid:DXImageTransform.Microsoft.gradient(enabled=false)";}
 
 
 	/* Comments */
