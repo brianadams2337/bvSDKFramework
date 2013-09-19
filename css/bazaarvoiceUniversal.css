@@ -81,7 +81,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 	/* Popin */
 	a.BVHistogramLauncher, a.BVHistogramLauncher:hover, a.BVHistogramLauncher:active, a.BVHistogramLauncher:focus {border: 0 none !important; text-decoration: none !important;}
 	._BVHistorgramWidgetContainer {width: 290px; margin: 20px 0 0; border: 1px solid #C3C4C4; padding: 30px; background-color: #fff; border-radius: 4px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); display: none; position: absolute; z-index: 1000;}
-		._BVPrimarySummaryContainer ._BVHistorgramWidgetContainer {margin-top: 35px;}
+		._BVPrimarySummaryContainer ._BVHistorgramWidgetContainer {margin: 35px 0 0 -122px;}
 		
 		._BVHistorgramWidgetContainer ._BVHistogramLableText {width: 90px; height: 17px; display: block; float: left; background: url(images/histogramStars.png); margin-right: 10px;}
 			._BVHistorgramWidgetContainer ._BVHistogramLableText span {height: 17px; display: block; background: url(images/histogramStars.png) 0 -17px; text-indent: -999em; outline: none;}
@@ -94,6 +94,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 				._BVHistorgramWidgetContainer .BVHistogram1Star {width: 18px;}
 
 	.BVHistorgramWidgetContainerArrow {width: 26px; height: 13px; position: absolute; top: -13px; left: 160px;}
+	#BVQuickTakeHistogramID .BVHistorgramWidgetContainerArrow {left: 72px;}
 		.BVHistorgramWidgetContainerArrowMask {width: 0; height: 0; position: absolute; z-index: 10000; border-style: solid; border-color: transparent transparent #fff; border-width: 0 11px 11px; margin: 2px 0 0 2px;}
 		.BVHistorgramWidgetContainerArrowShadow {border-style: solid; border-color: transparent transparent #C3C4C4; border-width: 0 13px 13px; z-index: 9999;}
 
