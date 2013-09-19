@@ -56,7 +56,7 @@ function loadReviewSubmissionPreviewWidget (content, options) {
 							"productId":productId,
 							"returnURL":returnURL,
 						});
-						$("#BVSubmissionContainer").animate({"height":$(defaultSubmissionPreviewContainer).height()}, 300);
+						$("#BVSubmissionContainer").animate({"height":$(defaultSubmissionThankYouContainer).height()}, 300);
 					}, {
 					"Parameters": params
 				});

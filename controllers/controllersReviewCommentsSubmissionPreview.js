@@ -44,16 +44,32 @@ function loadReviewCommentSubmissionPreviewWidget (content, options) {
 		var validated = $("#" + newID).parsley('validate');
 		// POST form to server if no errors
 		if (validated) {
-			$(defaultSubmissionPreviewContainer).hide();
-			postReviewCommentsSubmissionForm(contentId, defaultSubmissionPreviewContainer, function (content) {
-					loadReviewCommentSubmissionThankYouWidget (content, {
-						"parentContainer":settings["parentContainer"],
-						"productId":productId,
-						"returnURL":returnURL,
-					});
-				}, {
-				"Parameters": params
+			$("#BVSubmissionContainer").css({"height":$(defaultSubmissionPreviewContainer).height()});
+			$('html, body').animate({
+				scrollTop: $("body").offset().top
+			}, 300);
+			$(defaultSubmissionPreviewContainer).fadeOut(300, function() {
+				postReviewCommentsSubmissionForm(productId, defaultSubmissionPreviewContainer, function (content) {
+						loadReviewCommentSubmissionThankYouWidget (content, {
+							"parentContainer":settings["parentContainer"],
+							"productId":productId,
+							"returnURL":returnURL,
+						});
+						$("#BVSubmissionContainer").animate({"height":$(defaultSubmissionThankYouContainer).height()}, 300);
+					}, {
+					"Parameters": params
+				});
 			});
+			// $(defaultSubmissionPreviewContainer).hide();
+			// postReviewCommentsSubmissionForm(contentId, defaultSubmissionPreviewContainer, function (content) {
+			// 		loadReviewCommentSubmissionThankYouWidget (content, {
+			// 			"parentContainer":settings["parentContainer"],
+			// 			"productId":productId,
+			// 			"returnURL":returnURL,
+			// 		});
+			// 	}, {
+			// 	"Parameters": params
+			// });
 		}
 	});
 
