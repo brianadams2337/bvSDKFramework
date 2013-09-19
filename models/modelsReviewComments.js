@@ -18,13 +18,13 @@ function getSpecificReviewComments (reviewIDs, container, callBack, options) {
 		dataType: "jsonp",
 		success: function(data) {
 			callBack(data, paramObject);
-			$(container).removeClass("_BVContentLoadingContainer");
+			removeLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, false);
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
 		},
 		beforeSend: function() {
-			$(container).empty().addClass("_BVContentLoadingContainer");
+			loadLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, false);
 		}
 	});
 }
@@ -49,13 +49,13 @@ function getAllReviewComments (reviewID, container, callBack, options) {
 		dataType: "jsonp",
 		success: function(data) {
 			callBack(data, paramObject);
-			$(container).removeClass("_BVContentLoadingContainer");
+			removeLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, false);
 		},
 		error: function(e) {
 			defaultAjaxErrorFunction(e);
 		},
 		beforeSend: function() {
-			$(container).empty().addClass("_BVContentLoadingContainer");
+			loadLoadingOverlay (container, defaultOverlayLoadingGenericContainerView, false);
 		}
 	});
 }
