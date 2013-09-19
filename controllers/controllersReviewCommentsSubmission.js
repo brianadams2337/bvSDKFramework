@@ -204,39 +204,20 @@ function loadReviewCommentSubmissionForm (content, options) {
 		var validated = $("#" + newID).parsley('validate');
 		// POST form to server if no errors
 		if (validated) {
-			$("#BVSubmissionContainer").css({"height":$(defaultSubmissionFormContainer).height()});
-			$('html, body').animate({
-				scrollTop: $("body").offset().top
-			}, 300);
-			$(defaultSubmissionFormContainer).fadeOut(300, function() {
-				postReviewCommentsSubmissionForm(productId, defaultSubmissionPreviewContainer, function (content) {
-						// update content to have matching review node so the preview will match the display
-						content = updateCommentPreviewNode(content);
-						// review preview
-						loadReviewCommentSubmissionPreviewWidget (content, {
-							"parentContainer":settings["parentContainer"],
-							"productId":productId,
-							"returnURL":returnURL,
-						});
-						$("#BVSubmissionContainer").animate({"height":$(defaultSubmissionPreviewContainer).height()}, 300);
-					}, {
-					"Parameters": params
-				});
+			$(defaultSubmissionFormContainer).hide();
+			postReviewCommentsSubmissionForm(contentId, defaultSubmissionPreviewContainer, function (content) {
+					// update content to have matching review node so the preview will match the display
+					content = updateCommentPreviewNode(content);
+					// comment preview
+					loadReviewCommentSubmissionPreviewWidget (content, {
+						"parentContainer":settings["parentContainer"],
+						"productId":productId,
+						"contentId":contentId,
+						"returnURL":returnURL,
+					});
+				}, {
+				"Parameters": params
 			});
-			// $(defaultSubmissionFormContainer).hide();
-			// postReviewCommentsSubmissionForm(contentId, defaultSubmissionPreviewContainer, function (content) {
-			// 		// update content to have matching review node so the preview will match the display
-			// 		content = updateCommentPreviewNode(content);
-			// 		// comment preview
-			// 		loadReviewCommentSubmissionPreviewWidget (content, {
-			// 			"parentContainer":settings["parentContainer"],
-			// 			"productId":productId,
-			// 			"contentId":contentId,
-			// 			"returnURL":returnURL,
-			// 		});
-			// 	}, {
-			// 	"Parameters": params
-			// });
 		}
 	});
 
