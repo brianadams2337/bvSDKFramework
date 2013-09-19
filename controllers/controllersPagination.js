@@ -185,6 +185,10 @@ function loadPaginationButton (content, options) {
 	// apply pagination functionality
 	if (!$($template).data("disabled")) {
 		$($template).click(function(){
+			$('html, body').animate({
+				scrollTop: $("#BVRRContainer").offset().top
+			}, defaultAnimationSpeed);
+
 			// container info to refresh
 			var refreshContainer = $(settings["viewReloadOptions"]["controllerSettings"]["parentContainer"]).find(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]).andSelf().filter(settings["viewReloadOptions"]["controllerSettings"]["targetContainer"]);
 			// make new api call
