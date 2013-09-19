@@ -283,7 +283,7 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 			/* Report Button */
 			._BVReportInappropriateForm .BVFieldButtonGroup, ._BVReportInappropriateForm .BVFieldButtonGroup .BVField {margin-bottom: 0;}
 			._BVReportInappropriateButtonContainer a._BVButton.BVDisabled {opacity: 0.5; cursor: default;}
-				._BVReportInappropriateButtonContainer a._BVButton, ._BVReportInappropriateButtonContainer a._BVButton:hover, ._BVReportInappropriateButtonContainer a._BVButton:active, ._BVReportInappropriateButtonContainer a._BVButton:focus, ._BVReportInappropriateButtonContainer a._BVButton:visited {padding: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px;}
+				._BVReportInappropriateButtonContainer a._BVButton, ._BVReportInappropriateButtonContainer a._BVButton:hover, ._BVReportInappropriateButtonContainer a._BVButton:active, ._BVReportInappropriateButtonContainer a._BVButton:focus, ._BVReportInappropriateButtonContainer a._BVButton:visited {padding: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px; -ms-filter: "progid:DXImageTransform.Microsoft.gradient(enabled=false)";}
 
 			/* Report Form */
 			._BVReportInappropriateFormContainer {position: relative;}
@@ -300,11 +300,11 @@ behavior: url(includes/PIE-1.0.0/PIE.htc);
 
 		/* Write Comment Button */
 		._BVButtonWriteReviewCommentContainer {position: absolute; top: -45px; right: 12px;}
-			._BVButtonWriteReviewCommentContainer a._BVButton, ._BVButtonWriteReviewCommentContainer a._BVButton:hover, ._BVButtonWriteReviewCommentContainer a._BVButton:active, ._BVButtonWriteReviewCommentContainer a._BVButton:focus, ._BVButtonWriteReviewCommentContainer a._BVButton:visited {padding: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px;}
+			._BVButtonWriteReviewCommentContainer a._BVButton, ._BVButtonWriteReviewCommentContainer a._BVButton:hover, ._BVButtonWriteReviewCommentContainer a._BVButton:active, ._BVButtonWriteReviewCommentContainer a._BVButton:focus, ._BVButtonWriteReviewCommentContainer a._BVButton:visited {padding: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px; -ms-filter: "progid:DXImageTransform.Microsoft.gradient(enabled=false)";}
 
 		/* Toggle Comments Button */
 		._BVButtonToggleReviewCommentsContainer {position: absolute; top: -45px; right: 118px;}
-			._BVButtonToggleReviewCommentsContainer a._BVButton, ._BVButtonToggleReviewCommentsContainer a._BVButton:hover, ._BVButtonToggleReviewCommentsContainer a._BVButton:active, ._BVButtonToggleReviewCommentsContainer a._BVButton:focus, ._BVButtonToggleReviewCommentsContainer a._BVButton:visited {padding: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px;}
+			._BVButtonToggleReviewCommentsContainer a._BVButton, ._BVButtonToggleReviewCommentsContainer a._BVButton:hover, ._BVButtonToggleReviewCommentsContainer a._BVButton:active, ._BVButtonToggleReviewCommentsContainer a._BVButton:focus, ._BVButtonToggleReviewCommentsContainer a._BVButton:visited {padding: 0; background: none transparent; border: 0 none; font-weight: normal; box-shadow: none; text-shadow: none; line-height: 33px; -ms-filter: "progid:DXImageTransform.Microsoft.gradient(enabled=false)";}
 
 		/* Comments Display */
 		._BVReviewCommentsToggleContainer {clear: both; display: none;}
