@@ -45,15 +45,21 @@ function loadReviewSubmissionPreviewWidget (content, options) {
 		var validated = $("#" + newID).parsley('validate');
 		// POST form to server if no errors
 		if (validated) {
-			$(defaultSubmissionPreviewContainer).hide();
-			postReviewsSubmissionForm(productId, defaultSubmissionThankYouContainer, function (content) {
-					loadReviewSubmissionThankYouWidget (content, {
-						"parentContainer":settings["parentContainer"],
-						"productId":productId,
-						"returnURL":returnURL,
-					});
-				}, {
-				"Parameters": params
+			$("#BVSubmissionContainer").css({"height":$(defaultSubmissionPreviewContainer).height()});
+			$('html, body').animate({
+				scrollTop: $("#BVSubmissionContainer").offset().top
+			}, 300);
+			$(defaultSubmissionPreviewContainer).fadeOut(300, function() {
+				postReviewsSubmissionForm(productId, defaultSubmissionThankYouContainer, function (content) {
+						loadReviewSubmissionThankYouWidget (content, {
+							"parentContainer":settings["parentContainer"],
+							"productId":productId,
+							"returnURL":returnURL,
+						});
+						$("#BVSubmissionContainer").animate({"height":$(defaultSubmissionPreviewContainer).height()}, 300);
+					}, {
+					"Parameters": params
+				});
 			});
 		}
 	});

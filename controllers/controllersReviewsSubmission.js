@@ -16,7 +16,7 @@ function loadReviewSubmissionWidget (content, options) {
 	var productId = settings["productId"];
 	var returnURL = settings["returnURL"];
 	// add submission widget template
-	$container.append($template);
+	$container.html($template);
 	// load review submission form
 	loadReviewSubmissionForm (content, {
 		"parentContainer":$template,

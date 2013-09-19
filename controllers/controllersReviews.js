@@ -188,7 +188,7 @@ function loadIndividualReview (content, options) {
 
 	// load comments if available
 	if (content["TotalCommentCount"] != undefined) {
-		getAllReviewComments (contentId, defaultReviewCommentsWidgetContainer, function(content, modelLocalDefaultSettings) {
+		getAllReviewComments (contentId, $($template).find(defaultReviewCommentsWidgetContainer).andSelf().filter(defaultReviewCommentsWidgetContainer), function(content, modelLocalDefaultSettings) {
 			loadReviewCommentsWidget (content, {
 				"parentContainer":$template,
 				"productId":settings["productId"],
