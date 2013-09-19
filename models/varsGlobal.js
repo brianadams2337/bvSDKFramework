@@ -73,8 +73,10 @@ if (bvProduction) {
 
 
 /***** TOGGLE OPTIONS *****/
+var defaultAnimationSpeed = 300; // milliseconds
+
 var defaultToggleOptions = {
-	duration: 300,
+	duration: defaultAnimationSpeed,
 	easing: "swing",
 	queue: true
 };

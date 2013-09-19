@@ -14,6 +14,14 @@ var defaultSectionHeaderContainerView = "#bvtemplate-header-section-universal"; 
 
 
 
+/***** HEADERS *****/
+
+
+
+var defaultOverlayLoadingGenericContainerView = "#bvtemplate-overlay-loading-generic-universal"; // generic content loading overlay
+
+
+
 /***** BUTTONS *****/
 
 
@@ -238,6 +246,7 @@ var defaultBadgesBestBuy = {
 var defaultPaginationContainerView = "#bvtemplate-pagination-widget-universal"; // entire pagination module
 var defaultPaginationButtonContainerView = "#bvtemplate-pagination-button-universal" // individual pagination button module
 var defaultPaginationButtonSelectedContainerView = "#bvtemplate-pagination-button-selected-universal" // individual selected pagination button module
+
 
 
 /************************* SUBMISSION ******************************/
