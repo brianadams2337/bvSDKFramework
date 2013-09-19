@@ -1,8 +1,8 @@
 /***** CLIENT DEFAULTS *****/
 
 // url path for staging site
-var stagingURL = stagingURL || (location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bv/bvSDKFramework/");
-var stagingSubmissionURL = stagingSubmissionURL || (location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bv/submission.html?");
+var stagingURL = stagingURL || (location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/");
+var stagingSubmissionURL = stagingSubmissionURL || (location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/submission.html?");
 // url pate for production site
 var productionURL = productionURL || (location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/bvSDKFramework/");
 var productionSubmissionURL = productionSubmissionURL || (location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/submission.html?");
